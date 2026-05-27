@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PolyPilot Intelligence Platform</title>
+  <style>
+    :root {
+      --bg-0: #05060c;
+      --bg-1: #0b1020;
+      --bg-2: #101a34;
+      --panel: rgba(13, 20, 40, 0.68);
+      --panel-border: rgba(120, 180, 255, 0.2);
+      --text: #ebf4ff;
+      --muted: #8ba4c4;
+      --cyan: #00f0ff;
+      --violet: #8b5cf6;
+      --green: #00e08a;
+      --red: #ff4d6d;
+      --orange: #ffb347;
+      --shadow: 0 0 25px rgba(0, 240, 255, 0.2), 0 0 60px rgba(139, 92, 246, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Inter, Segoe UI, Roboto, sans-serif;
+    }
+
+    body {
+      color: var(--text);
+      background: radial-gradient(circle at 10% 10%, #15244f 0%, transparent 35%),
+                  radial-gradient(circle at 90% 15%, #2b1457 0%, transparent 28%),
+                  radial-gradient(circle at 50% 80%, #072f3f 0%, transparent 30%),
+                  linear-gradient(130deg, var(--bg-0), var(--bg-1) 45%, var(--bg-2));
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: -20%;
+      pointer-events: none;
+      z-index: 0;
+      background: conic-gradient(from 0deg, transparent 0deg, rgba(0, 240, 255, 0.08) 90deg, transparent 160deg, rgba(139, 92, 246, 0.08) 220deg, transparent 360deg);
+      filter: blur(90px);
+      animation: swirl 18s linear infinite;
+    }
+
+    body::after {
+      animation-direction: reverse;
+      animation-duration: 28s;
+      opacity: 0.8;
+    }
+
+    .particles {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #7dd3fc, transparent 65%);
+      box-shadow: 0 0 8px #22d3ee;
+      animation: floatUp linear infinite;
+      opacity: 0.75;
+    }
+
+    .app {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 270px 1fr;
+      gap: 22px;
+      padding: 22px;
+      min-height: 100vh;
+    }
+
+    .sidebar,
+    .panel,
+    .hero,
+    .event-card,
+    .summary-block {
+      background: var(--panel);
+      backdrop-filter: blur(18px);
+      border: 1px solid var(--panel-border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .sidebar {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .logo {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--cyan);
+      text-shadow: 0 0 12px rgba(0, 240, 255, 0.65);
+      margin-bottom: 10px;
+    }
+
+    .menu-item {
+      color: var(--muted);
+      text-decoration: none;
+      padding: 10px 12px;
+      border-radius: 12px;
+      transition: 0.25s;
+      border: 1px solid transparent;
+      font-size: 0.95rem;
+      display: block;
+    }
+
+    .menu-item:hover,
+    .menu-item.active {
+      color: var(--text);
+      border-color: rgba(0, 240, 255, 0.4);
+      background: linear-gradient(120deg, rgba(0, 240, 255, 0.12), rgba(139, 92, 246, 0.12));
+      transform: translateX(3px);
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .hero {
+      padding: 30px;
+      background: linear-gradient(140deg, rgba(0, 240, 255, 0.12), rgba(139, 92, 246, 0.14), rgba(0, 0, 0, 0.4));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.09), transparent);
+      transform: translateX(-120%);
+      animation: scan 4.4s infinite;
+    }
+
+    h1 {
+      font-size: clamp(1.9rem, 3.8vw, 2.8rem);
+      margin-bottom: 10px;
+      letter-spacing: 0.03em;
+    }
+
+    .subtitle {
+      color: #b9cbea;
+      font-size: 1.05rem;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(160px, 1fr));
+      gap: 14px;
+    }
+
+    .summary-block {
+      padding: 14px;
+      transition: transform .2s;
+    }
+
+    .summary-block:hover { transform: translateY(-4px); }
+
+    .summary-title {
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .summary-value {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .events-wrap {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .event-card {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .event-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      border: 1px solid transparent;
+      background: linear-gradient(130deg, rgba(0,240,255,.4), rgba(139,92,246,.4), transparent) border-box;
+      -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+      opacity: .45;
+      pointer-events: none;
+    }
+
+    .event-title { font-weight: 600; }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(80px, 1fr));
+      gap: 10px;
+      font-size: 0.9rem;
+    }
+
+    .metric label {
+      display: block;
+      color: var(--muted);
+      font-size: 0.78rem;
+      margin-bottom: 3px;
+    }
+
+    .delta-up { color: var(--green); }
+    .delta-down { color: var(--red); }
+    .risk-low { color: var(--green); }
+    .risk-mid { color: var(--orange); }
+    .risk-high { color: var(--red); }
+
+    .ai-comment {
+      color: #c8d6ef;
+      font-size: 0.9rem;
+      line-height: 1.45;
+    }
+
+    .open-btn {
+      border: 1px solid rgba(0, 240, 255, 0.45);
+      background: linear-gradient(120deg, rgba(0,240,255,.2), rgba(139,92,246,.2));
+      color: #f5fbff;
+      padding: 10px 14px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      width: fit-content;
+      transition: .25s;
+    }
+
+    .open-btn:hover {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 0 16px rgba(0, 240, 255, 0.45);
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 5, 12, 0.72);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 20;
+      padding: 30px;
+    }
+
+    .modal.active { display: flex; }
+
+    .modal-content {
+      width: min(860px, 100%);
+      background: rgba(8, 14, 30, 0.95);
+      border: 1px solid rgba(0, 240, 255, 0.35);
+      border-radius: 18px;
+      box-shadow: 0 0 35px rgba(0, 240, 255, .35);
+      padding: 22px;
+      animation: rise .25s ease;
+    }
+
+    .modal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .close {
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-size: 1.5rem;
+    }
+
+    .analysis-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 16px;
+    }
+
+    .analysis-panel {
+      background: rgba(12, 22, 44, .75);
+      border: 1px solid rgba(139, 92, 246, .35);
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    .chart {
+      height: 180px;
+      border-radius: 10px;
+      background:
+        linear-gradient(to top, rgba(0,240,255,.2), transparent),
+        repeating-linear-gradient(0deg, rgba(200,220,255,.08) 0 1px, transparent 1px 30px),
+        repeating-linear-gradient(90deg, rgba(200,220,255,.06) 0 1px, transparent 1px 36px),
+        linear-gradient(120deg, rgba(139,92,246,.16), rgba(0,240,255,.14));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .chart::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 18%;
+      height: 3px;
+      background: linear-gradient(90deg, #00f0ff 0%, #8b5cf6 55%, #00f0ff 100%);
+      box-shadow: 0 0 10px #00f0ff;
+      transform-origin: left;
+      animation: pulseLine 2.5s ease-in-out infinite;
+    }
+
+    ul { padding-left: 20px; }
+    li { margin: 8px 0; color: #c7d9f8; }
+
+    @keyframes swirl { to { transform: rotate(360deg); } }
+    @keyframes floatUp {
+      from { transform: translateY(20px); opacity: 0; }
+      15% { opacity: .85; }
+      to { transform: translateY(-120vh); opacity: 0; }
+    }
+    @keyframes scan {
+      0% { transform: translateX(-120%); }
+      100% { transform: translateX(130%); }
+    }
+    @keyframes rise { from { transform: translateY(12px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @keyframes pulseLine {
+      0%,100% { transform: scaleX(0.75); }
+      50% { transform: scaleX(1); }
+    }
+
+    @media (max-width: 1100px) {
+      .summary-grid { grid-template-columns: repeat(2, minmax(160px, 1fr)); }
+      .events-wrap { grid-template-columns: 1fr; }
+      .analysis-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="particles" id="particles"></div>
+
+  <div class="app">
+    <aside class="sidebar">
+      <div class="logo">POLYPILOT // CORE</div>
+      <a class="menu-item active" href="#">Overview</a>
+      <a class="menu-item" href="#">Hot Events</a>
+      <a class="menu-item" href="#">Portfolio</a>
+      <a class="menu-item" href="#">Risk Management</a>
+      <a class="menu-item" href="#">AI Analysis</a>
+      <a class="menu-item" href="#">Learn</a>
+    </aside>
+
+    <main>
+      <section class="hero">
+        <h1>PolyPilot Intelligence Platform</h1>
+        <p class="subtitle">AI-надстройка над prediction markets.</p>
+      </section>
+
+      <section class="summary-grid">
+        <article class="summary-block">
+          <div class="summary-title">Hot Events Today</div>
+          <div class="summary-value">24 Active</div>
+        </article>
+        <article class="summary-block">
+          <div class="summary-title">AI Summary</div>
+          <div class="summary-value">Macro Volatility ↑</div>
+        </article>
+        <article class="summary-block">
+          <div class="summary-title">Portfolio Risk</div>
+          <div class="summary-value">Medium 0.62</div>
+        </article>
+        <article class="summary-block">
+          <div class="summary-title">Market Opportunities</div>
+          <div class="summary-value">7 Signals</div>
+        </article>
+      </section>
+
+      <section class="events-wrap">
+        <article class="event-card">
+          <div class="event-title">Will Fed cut rates by September?</div>
+          <div class="metrics">
+            <div class="metric"><label>Probability</label><strong>63%</strong></div>
+            <div class="metric"><label>Change</label><strong class="delta-up">+4.2%</strong></div>
+            <div class="metric"><label>Risk</label><strong class="risk-mid">Medium</strong></div>
+          </div>
+          <p class="ai-comment">AI: Yield curve compression and softer labor prints increase cut probability over the next 6 weeks.</p>
+          <button class="open-btn" data-event="Fed rate cut" data-prob="63%" data-rec="Open small long exposure; hedge with inflation surprise scenario.">Open Analysis</button>
+        </article>
+
+        <article class="event-card">
+          <div class="event-title">Will BTC close above $100k this quarter?</div>
+          <div class="metrics">
+            <div class="metric"><label>Probability</label><strong>41%</strong></div>
+            <div class="metric"><label>Change</label><strong class="delta-down">-2.8%</strong></div>
+            <div class="metric"><label>Risk</label><strong class="risk-high">High</strong></div>
+          </div>
+          <p class="ai-comment">AI: Momentum cooled after ETF flow divergence, but options skew still supports upside tail scenarios.</p>
+          <button class="open-btn" data-event="BTC > $100k" data-prob="41%" data-rec="Wait for confirmation above weekly resistance before scaling risk.">Open Analysis</button>
+        </article>
+
+        <article class="event-card">
+          <div class="event-title">Will AI chip exports face new restrictions?</div>
+          <div class="metrics">
+            <div class="metric"><label>Probability</label><strong>57%</strong></div>
+            <div class="metric"><label>Change</label><strong class="delta-up">+1.9%</strong></div>
+            <div class="metric"><label>Risk</label><strong class="risk-mid">Medium</strong></div>
+          </div>
+          <p class="ai-comment">AI: Policy language tracking indicates elevated chance of tighter licensing in strategic sectors.</p>
+          <button class="open-btn" data-event="AI chip restrictions" data-prob="57%" data-rec="Favor defensive spread and monitor policy headline velocity.">Open Analysis</button>
+        </article>
+
+        <article class="event-card">
+          <div class="event-title">Will Eurozone CPI beat expectations next print?</div>
+          <div class="metrics">
+            <div class="metric"><label>Probability</label><strong>48%</strong></div>
+            <div class="metric"><label>Change</label><strong class="delta-up">+0.7%</strong></div>
+            <div class="metric"><label>Risk</label><strong class="risk-low">Low</strong></div>
+          </div>
+          <p class="ai-comment">AI: Base effects and energy stabilization reduce surprise amplitude; bias remains balanced.</p>
+          <button class="open-btn" data-event="Eurozone CPI beat" data-prob="48%" data-rec="Neutral stance with optional volatility capture strategy.">Open Analysis</button>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal" id="analysisModal">
+    <div class="modal-content">
+      <div class="modal-head">
+        <h2 id="modalTitle">Event Analysis</h2>
+        <button class="close" id="closeModal">×</button>
+      </div>
+
+      <div class="analysis-grid">
+        <div class="analysis-panel">
+          <p><strong>Probability:</strong> <span id="modalProb">--</span></p>
+          <div class="chart" aria-label="Fake chart visualization"></div>
+          <p style="margin-top:10px; color:#9fb7d7;">Signal momentum window: 24h / 7d / 30d.</p>
+        </div>
+
+        <div class="analysis-panel">
+          <h3 style="margin-bottom:8px;">AI Reasoning</h3>
+          <ul>
+            <li>Cross-market signals align with current probability regime.</li>
+            <li>Order-book imbalance suggests near-term volatility expansion.</li>
+            <li>Sentiment feed turned positive after recent macro commentary.</li>
+          </ul>
+          <h3 style="margin:12px 0 8px;">Risks</h3>
+          <ul>
+            <li>Headline shock can rapidly reprice event odds.</li>
+            <li>Low-liquidity windows may amplify spread costs.</li>
+          </ul>
+          <h3 style="margin:12px 0 8px;">Recommendation</h3>
+          <p id="modalRec" style="color:#cde3ff; line-height:1.45"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById('analysisModal');
+    const titleEl = document.getElementById('modalTitle');
+    const probEl = document.getElementById('modalProb');
+    const recEl = document.getElementById('modalRec');
+
+    document.querySelectorAll('.open-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        titleEl.textContent = `Analysis: ${btn.dataset.event}`;
+        probEl.textContent = btn.dataset.prob;
+        recEl.textContent = btn.dataset.rec;
+        modal.classList.add('active');
+      });
+    });
+
+    document.getElementById('closeModal').addEventListener('click', () => {
+      modal.classList.remove('active');
+    });
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.remove('active');
+    });
+
+    const particleContainer = document.getElementById('particles');
+    for (let i = 0; i < 48; i++) {
+      const p = document.createElement('span');
+      p.className = 'particle';
+      p.style.left = `${Math.random() * 100}%`;
+      p.style.bottom = `${-5 - Math.random() * 90}px`;
+      p.style.animationDuration = `${8 + Math.random() * 12}s`;
+      p.style.animationDelay = `${Math.random() * 8}s`;
+      p.style.opacity = (0.3 + Math.random() * 0.7).toFixed(2);
+      particleContainer.appendChild(p);
+    }
+  </script>
+</body>
+</html>
