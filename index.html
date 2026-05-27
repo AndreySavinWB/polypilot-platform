@@ -80,21 +80,13 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(170deg, rgba(4, 7, 18, 0.56), rgba(4, 8, 22, 0.72));
+      background: rgba(4, 7, 18, 0.18);
       pointer-events: none;
       z-index: 1;
     }
 
     .presentation::after {
-      content: "";
-      position: absolute;
-      inset: -15%;
-      background: radial-gradient(circle at 65% 38%, rgba(64, 144, 255, 0.24), transparent 42%),
-                  radial-gradient(circle at 30% 72%, rgba(168, 87, 255, 0.18), transparent 40%);
-      filter: blur(44px);
-      animation: pulseBg 10s ease-in-out infinite;
-      pointer-events: none;
-      z-index: 2;
+      content: none;
     }
 
     .legend {
@@ -114,39 +106,36 @@
     .legend li { color: #a7bddf; font-size: .92rem; display: flex; align-items: center; gap: 8px; }
     .legend li::before { content: ""; width: 18px; height: 2px; background: linear-gradient(90deg, var(--blue), var(--purple)); box-shadow: 0 0 8px #357eff; }
 
-    .brand {
+    .flow-dots {
       position: absolute;
-      right: 86px;
-      top: 54%;
-      transform: translateY(-50%);
-      z-index: 4;
-      text-align: left;
+      inset: 0;
+      z-index: 3;
+      pointer-events: none;
+      overflow: hidden;
     }
-    .logo-ring {
-      width: 280px; height: 280px; border-radius: 50%;
-      border: 4px solid transparent;
-      background: linear-gradient(#06133b, #06133b) padding-box, linear-gradient(135deg, #1cb9ff, #7f4cff, #cf34ff) border-box;
-      box-shadow: 0 0 40px rgba(43, 152, 255, 0.45), 0 0 90px rgba(123, 75, 255, 0.28);
-      display: grid; place-items: center;
-      animation: breathe 4.2s ease-in-out infinite;
+    .flow-dot {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(167, 217, 255, 1) 0%, rgba(76, 174, 255, 0.95) 45%, rgba(76, 174, 255, 0) 100%);
+      box-shadow: 0 0 12px rgba(60, 180, 255, 0.9), 0 0 22px rgba(131, 87, 255, 0.45);
+      opacity: 0;
+      animation: flowPulse var(--dur, 8s) linear infinite;
+      animation-delay: var(--delay, 0s);
     }
-    .logo-p { font-size: 10rem; font-weight: 800; line-height: 1; background: linear-gradient(140deg, #31c2ff, #6a58ff, #c33aff); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: 0 0 28px rgba(110, 144, 255, 0.45); }
-    .brand-title { margin-top: 18px; font-size: 3rem; font-weight: 700; letter-spacing: .02em; }
-    .brand-title span { color: #2c92ff; }
-    .brand-slogan { margin-top: 8px; color: #e4ecfb; letter-spacing: .24em; font-size: 1.04rem; }
-    .brand-sub { margin-top: 10px; color: #55a6ff; font-size: 1.5rem; }
 
     .metrics-bar {
       position: absolute;
       left: 26px;
       right: 26px;
-      bottom: 26px;
+      bottom: 16px;
       z-index: 4;
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      background: linear-gradient(120deg, rgba(10, 22, 52, 0.62), rgba(16, 28, 62, 0.48));
-      border: 1px solid rgba(128, 181, 255, 0.4);
-      backdrop-filter: blur(14px);
+      background: linear-gradient(120deg, rgba(10, 22, 52, 0.42), rgba(16, 28, 62, 0.3));
+      border: 1px solid rgba(128, 181, 255, 0.28);
+      backdrop-filter: blur(10px);
       border-radius: 16px;
       overflow: hidden;
     }
@@ -177,19 +166,17 @@
 
     @keyframes swirl { to { transform: rotate(360deg); } }
     @keyframes floatUp { from { transform: translateY(20px); opacity: 0; } 15% { opacity: .85; } to { transform: translateY(-120vh); opacity: 0; } }
-    @keyframes pulseBg { 0%,100% { opacity: .65; } 50% { opacity: 1; } }
+        @keyframes flowPulse {
+      0% { transform: translateX(var(--x-start)) translateY(0) scale(0.7); opacity: 0; }
+      12% { opacity: 0.95; }
+      50% { transform: translateX(calc((var(--x-start) + var(--x-end)) / 2)) translateY(var(--y-drift, -8px)) scale(1); opacity: 0.9; }
+      88% { opacity: 0.85; }
+      100% { transform: translateX(var(--x-end)) translateY(0) scale(0.75); opacity: 0; }
+    }
     @keyframes pulseDot { 0%,100% { opacity: .7; r: 3; } 50% { opacity: 1; r: 5; } }
     @keyframes dashFlow { from { stroke-dashoffset: 120; } to { stroke-dashoffset: 0; } }
-    @keyframes breathe { 0%,100% { transform: scale(1); } 50% { transform: scale(1.03); } }
     @keyframes scan { 0% { transform: translateX(-120%); } 100% { transform: translateX(130%); } }
 
-    @media (max-width: 1400px) {
-      .brand { right: 34px; }
-      .logo-ring { width: 220px; height: 220px; }
-      .logo-p { font-size: 8rem; }
-      .brand-title { font-size: 2.4rem; }
-      .brand-sub { font-size: 1.2rem; }
-    }
   </style>
 </head>
 <body>
@@ -221,12 +208,7 @@
           </ul>
         </div>
 
-        <div class="brand">
-          <div class="logo-ring"><div class="logo-p">P</div></div>
-          <div class="brand-title">Poly<span>Pilot</span></div>
-          <div class="brand-slogan">NAVIGATE WHAT'S NEXT.</div>
-          <div class="brand-sub">Signals. Intelligence. Future.</div>
-        </div>
+        <div class="flow-dots" id="flowDots"></div>
 
         <div class="metrics-bar">
           <div class="metric-cell"><div class="metric-label">Global Coverage</div><div class="metric-value">195+</div><div class="metric-note">countries</div></div>
@@ -262,6 +244,20 @@
       p.style.animationDelay = `${Math.random() * 8}s`;
       p.style.opacity = (0.3 + Math.random() * 0.7).toFixed(2);
       particleContainer.appendChild(p);
+    }
+
+    const flowDots = document.getElementById('flowDots');
+    for (let i = 0; i < 12; i++) {
+      const dot = document.createElement('span');
+      dot.className = 'flow-dot';
+      const fromLeft = i % 2 === 0;
+      dot.style.setProperty('--x-start', fromLeft ? '-8vw' : '104vw');
+      dot.style.setProperty('--x-end', fromLeft ? '65vw' : '36vw');
+      dot.style.top = `${20 + Math.random() * 58}%`;
+      dot.style.setProperty('--dur', `${6 + Math.random() * 4}s`);
+      dot.style.setProperty('--delay', `${Math.random() * 5}s`);
+      dot.style.setProperty('--y-drift', `${(Math.random() * 20 - 10).toFixed(1)}px`);
+      flowDots.appendChild(dot);
     }
 
     const menuItems = document.querySelectorAll('.menu-item[data-view]');
