@@ -89,22 +89,6 @@
       content: none;
     }
 
-    .legend {
-      position: absolute;
-      top: 28px;
-      right: 26px;
-      width: 230px;
-      background: rgba(8, 13, 36, 0.78);
-      border: 1px solid rgba(124, 163, 255, 0.34);
-      border-radius: 14px;
-      padding: 14px;
-      backdrop-filter: blur(12px);
-      z-index: 4;
-    }
-    .legend h4 { font-size: 0.84rem; color: #c9daf8; letter-spacing: .07em; margin-bottom: 12px; }
-    .legend ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-    .legend li { color: #a7bddf; font-size: .92rem; display: flex; align-items: center; gap: 8px; }
-    .legend li::before { content: ""; width: 18px; height: 2px; background: linear-gradient(90deg, var(--blue), var(--purple)); box-shadow: 0 0 8px #357eff; }
 
     .flow-dots {
       position: absolute;
@@ -115,13 +99,14 @@
     }
     .flow-dot {
       position: absolute;
-      width: 8px;
-      height: 8px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(167, 217, 255, 1) 0%, rgba(76, 174, 255, 0.95) 45%, rgba(76, 174, 255, 0) 100%);
-      box-shadow: 0 0 12px rgba(60, 180, 255, 0.9), 0 0 22px rgba(131, 87, 255, 0.45);
+      background: radial-gradient(circle, rgba(196, 231, 255, 0.95) 0%, rgba(92, 192, 255, 0.85) 42%, rgba(92, 192, 255, 0) 100%);
+      box-shadow: 0 0 8px rgba(72, 188, 255, 0.8), 0 0 18px rgba(132, 93, 255, 0.35);
       opacity: 0;
-      animation: flowPulse var(--dur, 8s) linear infinite;
+      transform: translate(0, 0) scale(0.5);
+      animation: flowPulse var(--dur, 5.4s) cubic-bezier(0.22, 0.05, 0.35, 1) infinite;
       animation-delay: var(--delay, 0s);
     }
 
@@ -167,11 +152,11 @@
     @keyframes swirl { to { transform: rotate(360deg); } }
     @keyframes floatUp { from { transform: translateY(20px); opacity: 0; } 15% { opacity: .85; } to { transform: translateY(-120vh); opacity: 0; } }
         @keyframes flowPulse {
-      0% { transform: translateX(var(--x-start)) translateY(0) scale(0.7); opacity: 0; }
-      12% { opacity: 0.95; }
-      50% { transform: translateX(calc((var(--x-start) + var(--x-end)) / 2)) translateY(var(--y-drift, -8px)) scale(1); opacity: 0.9; }
-      88% { opacity: 0.85; }
-      100% { transform: translateX(var(--x-end)) translateY(0) scale(0.75); opacity: 0; }
+      0% { transform: translate(0, 0) scale(0.42); opacity: 0; }
+      15% { opacity: 0.38; }
+      55% { transform: translate(calc(var(--dx) * 0.52 + var(--cx)), calc(var(--dy) * 0.5 + var(--cy))) scale(0.9); opacity: 0.95; }
+      86% { opacity: 0.88; }
+      100% { transform: translate(var(--dx), var(--dy)) scale(0.22); opacity: 0; }
     }
     @keyframes pulseDot { 0%,100% { opacity: .7; r: 3; } 50% { opacity: 1; r: 5; } }
     @keyframes dashFlow { from { stroke-dashoffset: 120; } to { stroke-dashoffset: 0; } }
@@ -196,18 +181,7 @@
 
     <main>
       <section class="view presentation active" id="presentationView">
-        <div class="legend">
-          <h4>REAL-TIME FLOW</h4>
-          <ul>
-            <li>Market Signals</li>
-            <li>News &amp; Events</li>
-            <li>Social Sentiment</li>
-            <li>Economic Data</li>
-            <li>Geopolitical Moves</li>
-            <li>Tech &amp; Innovation</li>
-          </ul>
-        </div>
-
+        
         <div class="flow-dots" id="flowDots"></div>
 
         <div class="metrics-bar">
@@ -247,18 +221,45 @@
     }
 
     const flowDots = document.getElementById('flowDots');
-    for (let i = 0; i < 12; i++) {
-      const dot = document.createElement('span');
-      dot.className = 'flow-dot';
-      const fromLeft = i % 2 === 0;
-      dot.style.setProperty('--x-start', fromLeft ? '-8vw' : '104vw');
-      dot.style.setProperty('--x-end', fromLeft ? '65vw' : '36vw');
-      dot.style.top = `${20 + Math.random() * 58}%`;
-      dot.style.setProperty('--dur', `${6 + Math.random() * 4}s`);
-      dot.style.setProperty('--delay', `${Math.random() * 5}s`);
-      dot.style.setProperty('--y-drift', `${(Math.random() * 20 - 10).toFixed(1)}px`);
-      flowDots.appendChild(dot);
-    }
+    const logoTarget = { x: 78, y: 50 };
+    const streamOrigins = [
+      { city: 'New York', x: 22, y: 31, copies: 2 },
+      { city: 'Los Angeles', x: 10, y: 46, copies: 1 },
+      { city: 'São Paulo', x: 27, y: 66, copies: 1 },
+      { city: 'London', x: 45, y: 28, copies: 2 },
+      { city: 'Dubai', x: 58, y: 42, copies: 2 },
+      { city: 'Tokyo', x: 73, y: 39, copies: 1 },
+      { city: 'Sydney', x: 78, y: 72, copies: 1 }
+    ];
+
+    streamOrigins.forEach((origin, idx) => {
+      for (let copy = 0; copy < origin.copies; copy++) {
+        const dot = document.createElement('span');
+        dot.className = 'flow-dot';
+
+        const jitterX = (Math.random() * 2.2 - 1.1);
+        const jitterY = (Math.random() * 2.2 - 1.1);
+        const startX = origin.x + jitterX;
+        const startY = origin.y + jitterY;
+
+        dot.style.left = `${startX}%`;
+        dot.style.top = `${startY}%`;
+
+        const dx = logoTarget.x - startX;
+        const dy = logoTarget.y - startY;
+        const bendX = (dy > 0 ? -1 : 1) * (8 + Math.random() * 8);
+        const bendY = (dx > 0 ? -1 : 1) * (6 + Math.random() * 7);
+
+        dot.style.setProperty('--dx', `${dx.toFixed(2)}%`);
+        dot.style.setProperty('--dy', `${dy.toFixed(2)}%`);
+        dot.style.setProperty('--cx', `${bendX.toFixed(2)}px`);
+        dot.style.setProperty('--cy', `${bendY.toFixed(2)}px`);
+        dot.style.setProperty('--dur', `${(3.6 + Math.random() * 2.3).toFixed(2)}s`);
+        dot.style.setProperty('--delay', `${((idx * 0.34) + copy * 0.22 + Math.random() * 0.9).toFixed(2)}s`);
+
+        flowDots.appendChild(dot);
+      }
+    });
 
     const menuItems = document.querySelectorAll('.menu-item[data-view]');
     const views = {
