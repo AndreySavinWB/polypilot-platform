@@ -64,32 +64,38 @@
 
     .presentation {
       min-height: calc(100vh - 40px);
-      background: linear-gradient(150deg, rgba(3, 8, 22, 0.94), rgba(7, 10, 30, 0.94));
+      background-image: url("assets/polypilot-map-hero.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
       border: 1px solid rgba(85, 150, 255, 0.3);
       border-radius: 22px;
       overflow: hidden;
       position: relative;
-      box-shadow: inset 0 0 100px rgba(10, 90, 220, 0.14), inset 0 0 120px rgba(164, 43, 255, 0.12), 0 0 60px rgba(41, 103, 255, 0.15);
+      box-shadow: 0 0 60px rgba(41, 103, 255, 0.15);
+      isolation: isolate;
     }
 
     .presentation::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 30% 40%, rgba(0, 105, 255, 0.16), transparent 45%), radial-gradient(circle at 74% 42%, rgba(173, 50, 255, 0.14), transparent 40%);
-      animation: pulseBg 8s ease-in-out infinite;
+      background: linear-gradient(170deg, rgba(4, 7, 18, 0.56), rgba(4, 8, 22, 0.72));
       pointer-events: none;
+      z-index: 1;
     }
 
-    .map-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-    .flow path { fill: none; stroke-width: 1.9; stroke-linecap: round; opacity: 0.8; }
-    .flow-blue path { stroke: rgba(37, 154, 255, 0.7); }
-    .flow-purple path { stroke: rgba(182, 63, 255, 0.7); }
-    .pulse-dot { animation: pulseDot 2.4s ease-in-out infinite; }
-
-    .flow-impulse { stroke: #fff; stroke-width: 3; filter: drop-shadow(0 0 8px #55deff); stroke-dasharray: 2 110; animation: dashFlow 3.2s linear infinite; }
-    .flow-impulse.slow { animation-duration: 5s; }
-    .flow-impulse.fast { animation-duration: 2.4s; }
+    .presentation::after {
+      content: "";
+      position: absolute;
+      inset: -15%;
+      background: radial-gradient(circle at 65% 38%, rgba(64, 144, 255, 0.24), transparent 42%),
+                  radial-gradient(circle at 30% 72%, rgba(168, 87, 255, 0.18), transparent 40%);
+      filter: blur(44px);
+      animation: pulseBg 10s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 2;
+    }
 
     .legend {
       position: absolute;
@@ -101,7 +107,7 @@
       border-radius: 14px;
       padding: 14px;
       backdrop-filter: blur(12px);
-      z-index: 3;
+      z-index: 4;
     }
     .legend h4 { font-size: 0.84rem; color: #c9daf8; letter-spacing: .07em; margin-bottom: 12px; }
     .legend ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
@@ -113,7 +119,7 @@
       right: 86px;
       top: 54%;
       transform: translateY(-50%);
-      z-index: 3;
+      z-index: 4;
       text-align: left;
     }
     .logo-ring {
@@ -135,11 +141,12 @@
       left: 26px;
       right: 26px;
       bottom: 26px;
-      z-index: 3;
+      z-index: 4;
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      background: rgba(5, 10, 30, 0.8);
-      border: 1px solid rgba(72, 124, 255, 0.35);
+      background: linear-gradient(120deg, rgba(10, 22, 52, 0.62), rgba(16, 28, 62, 0.48));
+      border: 1px solid rgba(128, 181, 255, 0.4);
+      backdrop-filter: blur(14px);
       border-radius: 16px;
       overflow: hidden;
     }
@@ -213,42 +220,6 @@
             <li>Tech &amp; Innovation</li>
           </ul>
         </div>
-
-        <svg class="map-svg" viewBox="0 0 1600 900" aria-label="Real-time global intelligence flow">
-          <defs>
-            <radialGradient id="dotBlue" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#8be8ff"/><stop offset="100%" stop-color="#00a3ff" stop-opacity="0.2"/></radialGradient>
-            <radialGradient id="dotPurple" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#f0a2ff"/><stop offset="100%" stop-color="#a12bff" stop-opacity="0.24"/></radialGradient>
-          </defs>
-
-          <g opacity="0.65" fill="#1271ff">
-            <ellipse cx="340" cy="250" rx="250" ry="120" /><ellipse cx="310" cy="390" rx="180" ry="100" /><ellipse cx="600" cy="260" rx="150" ry="90" />
-            <ellipse cx="700" cy="380" rx="160" ry="100" /><ellipse cx="830" cy="290" rx="140" ry="95" /><ellipse cx="980" cy="290" rx="260" ry="140" fill="#8b3dff" />
-            <ellipse cx="1220" cy="360" rx="170" ry="100" fill="#8b3dff" />
-          </g>
-
-          <g class="flow flow-blue">
-            <path d="M200 260 C 420 250, 550 300, 1290 430"/><path d="M210 350 C 420 330, 600 390, 1290 434"/><path d="M280 545 C 470 500, 690 460, 1290 446"/>
-            <path d="M560 240 C 690 250, 770 300, 1290 440"/><path d="M720 500 C 870 510, 980 480, 1290 450"/><path d="M805 345 C 920 360, 980 400, 1290 454"/>
-          </g>
-          <g class="flow flow-purple">
-            <path d="M1010 300 C 1110 320, 1180 360, 1290 442"/><path d="M1130 620 C 1190 580, 1240 520, 1290 460"/><path d="M930 560 C 1080 560, 1160 505, 1290 468"/>
-          </g>
-
-          <g>
-            <path class="flow-impulse" d="M200 260 C 420 250, 550 300, 1290 430"/>
-            <path class="flow-impulse fast" d="M210 350 C 420 330, 600 390, 1290 434"/>
-            <path class="flow-impulse slow" d="M280 545 C 470 500, 690 460, 1290 446"/>
-            <path class="flow-impulse" d="M560 240 C 690 250, 770 300, 1290 440"/>
-            <path class="flow-impulse fast" d="M1010 300 C 1110 320, 1180 360, 1290 442"/>
-            <path class="flow-impulse slow" d="M1130 620 C 1190 580, 1240 520, 1290 460"/>
-          </g>
-
-          <g>
-            <circle class="pulse-dot" cx="200" cy="260" r="4" fill="url(#dotBlue)"/><circle class="pulse-dot" cx="210" cy="350" r="4" fill="url(#dotBlue)"/><circle class="pulse-dot" cx="280" cy="545" r="4" fill="url(#dotBlue)"/>
-            <circle class="pulse-dot" cx="560" cy="240" r="4" fill="url(#dotBlue)"/><circle class="pulse-dot" cx="805" cy="345" r="4" fill="url(#dotPurple)"/><circle class="pulse-dot" cx="1010" cy="300" r="4" fill="url(#dotPurple)"/>
-            <circle class="pulse-dot" cx="1130" cy="620" r="4" fill="url(#dotPurple)"/><circle class="pulse-dot" cx="720" cy="500" r="4" fill="url(#dotBlue)"/><circle class="pulse-dot" cx="1290" cy="440" r="7" fill="url(#dotBlue)"/>
-          </g>
-        </svg>
 
         <div class="brand">
           <div class="logo-ring"><div class="logo-p">P</div></div>
