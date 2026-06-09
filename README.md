@@ -62,4 +62,4 @@ Obsidian vault: **`PolyPilot-Штаб/`** → заметка [[ДОМ_ШТАБ]]
 
 ## GitHub
 
-Репозиторий: **https://github.com/AndreySavinWB/PolyPilot**
+Репозиторий: **https://github.com/AndreySavinWB/polypilot-platform**
