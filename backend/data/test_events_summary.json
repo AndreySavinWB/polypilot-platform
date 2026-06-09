@@ -11,12 +11,28 @@
     "priorityDecision": "accepted",
     "priorityRank": 1,
     "riskLevel": "medium",
-    "ppVerdict": "Существует высокая вероятность сокращений ставок ФРС в 2026 году.",
+    "ppVerdict": "Событие имеет высокую вероятность сокращений ставок ФРС в 2026 году.",
     "confidence": 85,
     "sourceUrl": "https://polymarket.com/event/how-many-fed-rate-cuts-in-2026"
   },
   {
     "testNo": 2,
+    "id": "73969",
+    "title": "Trump out as President before 2027?",
+    "tags": [
+      "hot",
+      "news_driven"
+    ],
+    "priorityScore": 79.5,
+    "priorityDecision": "accepted",
+    "priorityRank": 2,
+    "riskLevel": "medium",
+    "ppVerdict": "Существует вероятность того, что Дональд Трамп может покинуть пост президента до 2027 года.",
+    "confidence": 65,
+    "sourceUrl": "https://polymarket.com/event/trump-out-as-president-before-2027"
+  },
+  {
+    "testNo": 3,
     "id": "32228",
     "title": "Balance of Power: 2026 Midterms",
     "tags": [
@@ -26,14 +42,47 @@
     ],
     "priorityScore": 79.5,
     "priorityDecision": "accepted",
-    "priorityRank": 2,
+    "priorityRank": 3,
     "riskLevel": "medium",
-    "ppVerdict": "Событие имеет высокую степень неопределенности, но его разрешение будет основано на четких критериях.",
+    "ppVerdict": "Рынок имеет высокую степень неопределенности, и результаты выборов могут сильно варьироваться.",
     "confidence": 75,
     "sourceUrl": "https://polymarket.com/event/balance-of-power-2026-midterms"
   },
   {
-    "testNo": 3,
+    "testNo": 4,
+    "id": "32225",
+    "title": "Which party will win the House in 2026?",
+    "tags": [
+      "hot",
+      "multi_market",
+      "news_driven"
+    ],
+    "priorityScore": 78.7,
+    "priorityDecision": "accepted",
+    "priorityRank": 4,
+    "riskLevel": "medium",
+    "ppVerdict": "Рынок имеет средний уровень риска из-за неопределенности политической ситуации.",
+    "confidence": 75,
+    "sourceUrl": "https://polymarket.com/event/which-party-will-win-the-house-in-2026"
+  },
+  {
+    "testNo": 5,
+    "id": "30615",
+    "title": "World Cup Winner ",
+    "tags": [
+      "hot",
+      "multi_market"
+    ],
+    "priorityScore": 78.2,
+    "priorityDecision": "accepted",
+    "priorityRank": 5,
+    "riskLevel": "medium",
+    "ppVerdict": "Событие имеет четкие критерии разрешения, но требует дальнейшего анализа.",
+    "confidence": 70,
+    "sourceUrl": "https://polymarket.com/event/world-cup-winner"
+  },
+  {
+    "testNo": 6,
     "id": "32224",
     "title": "Which party will win the Senate in 2026?",
     "tags": [
@@ -41,48 +90,16 @@
       "multi_market",
       "news_driven"
     ],
-    "priorityScore": 78.3,
+    "priorityScore": 77.5,
     "priorityDecision": "accepted",
-    "priorityRank": 3,
+    "priorityRank": 6,
     "riskLevel": "medium",
-    "ppVerdict": "Исход выборов в Сенат в 2026 году будет зависеть от официальных результатов и определения большинства.",
+    "ppVerdict": "Рынок имеет значительный потенциал для колебаний в зависимости от политической ситуации в США.",
     "confidence": 75,
     "sourceUrl": "https://polymarket.com/event/which-party-will-win-the-senate-in-2026"
   },
   {
-    "testNo": 4,
-    "id": "30615",
-    "title": "World Cup Winner ",
-    "tags": [
-      "hot",
-      "multi_market"
-    ],
-    "priorityScore": 78.1,
-    "priorityDecision": "accepted",
-    "priorityRank": 4,
-    "riskLevel": "medium",
-    "ppVerdict": "Событие имеет ясные критерии разрешения, но риск неопределенности остается высоким.",
-    "confidence": 75,
-    "sourceUrl": "https://polymarket.com/event/world-cup-winner"
-  },
-  {
-    "testNo": 5,
-    "id": "73969",
-    "title": "Trump out as President before 2027?",
-    "tags": [
-      "hot",
-      "news_driven"
-    ],
-    "priorityScore": 77.7,
-    "priorityDecision": "accepted",
-    "priorityRank": 5,
-    "riskLevel": "medium",
-    "ppVerdict": "Существует вероятность, что Дональд Трамп может уйти в отставку до 2027 года.",
-    "confidence": 65,
-    "sourceUrl": "https://polymarket.com/event/trump-out-as-president-before-2027"
-  },
-  {
-    "testNo": 6,
+    "testNo": 7,
     "id": "73056",
     "title": "Ukraine signs peace deal with Russia before 2027?",
     "tags": [
@@ -91,14 +108,14 @@
     ],
     "priorityScore": 76.6,
     "priorityDecision": "accepted",
-    "priorityRank": 6,
+    "priorityRank": 7,
     "riskLevel": "medium",
-    "ppVerdict": "Вероятность подписания мирного соглашения между Украиной и Россией до 2027 года составляет 27%.",
-    "confidence": 70,
+    "ppVerdict": "Существует вероятность того, что Украина подпишет мирное соглашение с Россией до 2027 года.",
+    "confidence": 65,
     "sourceUrl": "https://polymarket.com/event/ukraine-signs-peace-deal-with-russia-before-2027"
   },
   {
-    "testNo": 7,
+    "testNo": 8,
     "id": "57705",
     "title": "Which company has best AI model end of June?",
     "tags": [
@@ -107,14 +124,14 @@
     ],
     "priorityScore": 76.5,
     "priorityDecision": "accepted",
-    "priorityRank": 7,
+    "priorityRank": 8,
     "riskLevel": "medium",
-    "ppVerdict": "Событие имеет четкие критерии разрешения, но до него еще много времени.",
+    "ppVerdict": "Событие имеет четкие критерии для разрешения, но активность на рынке может быть низкой.",
     "confidence": 75,
     "sourceUrl": "https://polymarket.com/event/which-company-has-best-ai-model-end-of-june"
   },
   {
-    "testNo": 8,
+    "testNo": 9,
     "id": "34044",
     "title": "Will China invade Taiwan by end of 2026?",
     "tags": [
@@ -122,42 +139,26 @@
     ],
     "priorityScore": 74.6,
     "priorityDecision": "accepted",
-    "priorityRank": 8,
+    "priorityRank": 9,
     "riskLevel": "medium",
-    "ppVerdict": "Существует вероятность того, что Китай может вторгнуться на Тайвань до конца 2026 года, но это зависит от множества факт",
+    "ppVerdict": "Существует вероятность того, что Китай может начать военные действия против Тайваня до конца 2026 года.",
     "confidence": 65,
     "sourceUrl": "https://polymarket.com/event/will-china-invade-taiwan-before-2027"
   },
   {
-    "testNo": 9,
+    "testNo": 10,
     "id": "60182",
     "title": "Nobel Peace Prize Winner 2026",
     "tags": [
       "hot",
       "multi_market"
     ],
-    "priorityScore": 74.3,
-    "priorityDecision": "accepted",
-    "priorityRank": 9,
-    "riskLevel": "medium",
-    "ppVerdict": "Событие имеет средний уровень риска из-за неопределенности в отношении кандидатов на Нобелевскую премию мира 2026 года.",
-    "confidence": 65,
-    "sourceUrl": "https://polymarket.com/event/nobel-peace-prize-winner-2026-139"
-  },
-  {
-    "testNo": 10,
-    "id": "79048",
-    "title": "IPOs before 2027?",
-    "tags": [
-      "hot",
-      "multi_market"
-    ],
-    "priorityScore": 73.9,
+    "priorityScore": 74.4,
     "priorityDecision": "accepted",
     "priorityRank": 10,
     "riskLevel": "medium",
-    "ppVerdict": "Существует вероятность того, что IPO произойдут до 2027 года, но это зависит от множества факторов.",
-    "confidence": 65,
-    "sourceUrl": "https://polymarket.com/event/ipos-before-2027"
+    "ppVerdict": "Событие имеет высокий уровень неопределенности из-за отсутствия информации о кандидатах на Нобелевскую премию мира 2026 ",
+    "confidence": 60,
+    "sourceUrl": "https://polymarket.com/event/nobel-peace-prize-winner-2026-139"
   }
 ]
