@@ -43,7 +43,7 @@ PolyPilot/
 ### Railway (10 мин)
 
 1. New Project → GitHub → Root Directory: `backend`
-2. Variables: `OPENROUTER_API_KEY`, `LLM_PROVIDER=openrouter`, `LLM_MODEL=openai/gpt-4o-mini`
+2. Variables: `POLZA_API_KEY`, `LLM_PROVIDER=polza`
 3. Cron: `python scripts/harvest_test_events.py` каждые 6 ч
 
 ## Быстрый старт (локально)

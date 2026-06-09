@@ -29,7 +29,7 @@ FALLBACK_KEY_NAMES = ("LLM_API_KEY", "OPENROUTER_API_KEY", "POLZA_API_KEY", "OPE
 
 
 def get_provider_name():
-    return (os.getenv("LLM_PROVIDER") or "openrouter").strip().lower()
+    return (os.getenv("LLM_PROVIDER") or "polza").strip().lower()
 
 
 def get_api_key():
@@ -46,7 +46,7 @@ def has_llm_key():
 
 
 def _resolve_model(provider_name, model):
-    provider = PROVIDERS.get(provider_name, PROVIDERS["openrouter"])
+    provider = PROVIDERS.get(provider_name, PROVIDERS["polza"])
     model = (model or provider.get("default_model") or "openai/gpt-4o-mini").strip()
 
     if provider_name == "polza" and model and "/" not in model:
