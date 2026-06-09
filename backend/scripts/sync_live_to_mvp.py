@@ -227,12 +227,21 @@ def convert_item(item):
 def main():
     load_env()
     with open(SRC, "r", encoding="utf-8") as handle:
-        payload = json.load(handle)
+        source = json.load(handle)
 
-    events = [convert_item(item) for item in payload.get("items", [])]
+    events = [convert_item(item) for item in source.get("items", [])]
+    payload = {"events": events, "generatedAt": datetime.now(timezone.utc).isoformat()}
+    json_path = os.path.join(ROOT, "data", "events-live.json")
+    with open(json_path, "w", encoding="utf-8") as handle:
+        json.dump(payload, handle, ensure_ascii=False, indent=2)
+    print(f"Synced {len(events)} live events to {json_path}")
+
+    if not os.path.isdir(os.path.dirname(OUT)):
+        return
+
     js = "/** Auto-generated from backend/data/test_events.json */\n"
     js += "window.EVENTS_LIVE = "
-    js += json.dumps({"events": events, "generatedAt": datetime.now(timezone.utc).isoformat()}, ensure_ascii=False, indent=2)
+    js += json.dumps(payload, ensure_ascii=False, indent=2)
     js += ";\n"
 
     os.makedirs(os.path.dirname(OUT), exist_ok=True)

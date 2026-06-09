@@ -1,0 +1,9 @@
+# Railway: New Project → Deploy from GitHub → Root Directory = backend
+[build]
+builder = "NIXPACKS"
+
+[deploy]
+startCommand = "python server.py"
+healthcheckPath = "/health"
+healthcheckTimeout = 120
+restartPolicyType = "ON_FAILURE"

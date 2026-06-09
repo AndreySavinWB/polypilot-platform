@@ -1,0 +1,9 @@
+# Альтернатива Vercel: Site settings → Build → Publish directory = platform
+[build]
+  publish = "platform"
+  command = "echo static"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"

@@ -11,66 +11,65 @@ PolyPilot/
 ├── platform/          ← веб-приложение (HTML/CSS/JS)
 ├── backend/           ← API, агенты, Polymarket, LLM
 ├── PolyPilot-Штаб/    ← документация Obsidian (vault)
+├── vercel.json        ← деплой platform/ на Vercel
 └── README.md          ← вы здесь
 ```
 
-| Папка | Назначение |
-|-------|------------|
-| **platform/** | Сайт: лента событий, карточки, тарифы, демо-режимы |
-| **backend/** | Priority Agent, harvest, sync live-данных на сайт |
-| **PolyPilot-Штаб/** | Стратегия, архитектура, дорожная карта (Obsidian) |
-
 ## Сайт онлайн
 
-После включения GitHub Pages (Source: **GitHub Actions**, см. [[ДОРОЖНАЯ_КАРТА_ОНЛАЙН]]):
+| Куда | URL |
+|------|-----|
+| **Сейчас (Pages)** | https://andreysavinwb.github.io/polypilot-platform/app/events.html |
+| **Цель (Vercel)** | https://polypilot.pro/app/events.html |
 
-| Страница | URL |
-|----------|-----|
-| Лента событий | https://andreysavinwb.github.io/polypilot-platform/app/events.html |
-| Маркетинг | https://andreysavinwb.github.io/polypilot-platform/index.html |
+## Инфраструктура (целевая)
 
-Дорожная карта онлайн: `PolyPilot-Штаб/07_Архитектура/ДОРОЖНАЯ_КАРТА_ОНЛАЙН.md`
+| Слой | Хостинг | Папка |
+|------|---------|-------|
+| Frontend | **Vercel** (или Netlify) | `platform/` |
+| Backend | **Railway** → позже VPS | `backend/` |
+| Код + CI | **GitHub** | весь репо |
 
-## Быстрый старт
+Пошаговая настройка: `PolyPilot-Штаб/07_Архитектура/ЦЕЛЕВАЯ_ИНФРАСТРУКТУРА.md`  
+Дорожная карта: `PolyPilot-Штаб/07_Архитектура/ДОРОЖНАЯ_КАРТА_ОНЛАЙН.md`
 
-### Сайт (локально)
+### Vercel (5 мин)
 
-Откройте в браузере:
+1. Import repo на [vercel.com](https://vercel.com)
+2. Root Directory: `platform` *(или корень — см. `vercel.json`)*
+3. Deploy → привязать домен `polypilot.pro`
+
+### Railway (10 мин)
+
+1. New Project → GitHub → Root Directory: `backend`
+2. Variables: `POLZA_API_KEY`, `LLM_PROVIDER=polza`
+3. Cron: `python scripts/harvest_test_events.py` каждые 6 ч
+
+## Быстрый старт (локально)
+
+### Сайт
 
 ```text
 platform/app/events.html
 ```
 
-Или поднимите статический сервер из корня `platform/`.
-
 ### Backend
 
 ```powershell
 cd backend
-copy .env.example .env   # заполнить POLZA_API_KEY
+copy .env.example .env
 .\run.ps1
 ```
 
-Проверка: http://127.0.0.1:8787/health
+http://127.0.0.1:8787/health
 
-### Обновить live-события на сайте
+### Harvest
 
 ```powershell
 cd backend
 .\.runtime\python.exe scripts\harvest_test_events.py
 ```
 
-Скан Polymarket → Priority Agent → анализ → `platform/data/events-live.js`
-
-## Документация
-
-Obsidian vault: **`PolyPilot-Штаб/`** → заметка [[ДОМ_ШТАБ]]
-
-Ключевые файлы:
-
-- `PolyPilot-Штаб/07_Архитектура/СТАТУС_ЛАБОРАТОРИИ.md`
-- `PolyPilot-Штаб/07_Архитектура/ПРИОРИТЕТ_АГЕНТ.md`
-
 ## GitHub
 
-Репозиторий: **https://github.com/AndreySavinWB/polypilot-platform**
+https://github.com/AndreySavinWB/polypilot-platform

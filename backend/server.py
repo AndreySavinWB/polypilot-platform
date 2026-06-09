@@ -76,6 +76,15 @@ class Handler(BaseHTTPRequestHandler):
                 self._send_json(200, score_event(match, use_llm=False))
                 return
 
+            if parsed.path == "/api/live/events":
+                live_path = os.path.join(ROOT, "data", "events-live.json")
+                if not os.path.exists(live_path):
+                    self._send_json(200, {"events": [], "generatedAt": None})
+                    return
+                with open(live_path, "r", encoding="utf-8") as live_file:
+                    self._send_json(200, json.load(live_file))
+                return
+
             self._send_json(404, {"error": "Not found"})
         except Exception as error:
             self._send_json(500, {"error": str(error)})
@@ -107,6 +116,7 @@ class Handler(BaseHTTPRequestHandler):
 if __name__ == "__main__":
     load_env()
     port = int(os.getenv("PORT", "8787"))
-    server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
-    print(f"PolyPilot backend running on http://127.0.0.1:{port}")
+    host = os.getenv("HOST", "0.0.0.0")
+    server = ThreadingHTTPServer((host, port), Handler)
+    print(f"PolyPilot backend running on http://{host}:{port}")
     server.serve_forever()
