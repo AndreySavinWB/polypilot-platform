@@ -29,6 +29,7 @@ def main():
     load_env()
     print("LLM key configured:", has_llm_key())
     print("Provider:", os.getenv("LLM_PROVIDER"))
+    print("Model:", os.getenv("LLM_MODEL") or os.getenv("OPENAI_MODEL"))
     event = list_active_events(limit=1)[0]
     print("Event:", event.get("title"))
     result = analyze_event(event)

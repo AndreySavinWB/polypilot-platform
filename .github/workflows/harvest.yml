@@ -17,10 +17,13 @@ jobs:
       run:
         working-directory: backend
     env:
-      LLM_PROVIDER: polza
+      LLM_PROVIDER: openrouter
+      LLM_MODEL: openai/gpt-4o-mini
       PP_SCAN_LIMIT: "300"
       PP_TOP_N: "10"
-      POLZA_API_KEY: ${{ secrets.POLZA_API_KEY }}
+      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+      OPENROUTER_HTTP_REFERER: https://polypilot-platform.vercel.app
+      OPENROUTER_APP_NAME: PolyPilot
     steps:
       - name: Checkout
         uses: actions/checkout@v4

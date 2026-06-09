@@ -1,11 +1,11 @@
 # PolyPilot — Backend
 
-API и агенты: Priority Agent (рубрика v1), Polymarket, LLM (Polza).
+API и агенты: Priority Agent (рубрика v1), Polymarket, LLM (OpenRouter).
 
 ## Локально
 
 ```powershell
-copy .env.example .env   # POLZA_API_KEY
+copy .env.example .env   # OPENROUTER_API_KEY
 .\run.ps1
 # http://127.0.0.1:8787/health
 ```
@@ -14,7 +14,7 @@ copy .env.example .env   # POLZA_API_KEY
 
 Root Directory: **`backend`**. См. `railway.toml`, `Procfile`.
 
-Переменные: `POLZA_API_KEY`, `LLM_PROVIDER=polza`, `PP_SCAN_LIMIT`, `PP_TOP_N`.
+Переменные: `OPENROUTER_API_KEY`, `LLM_PROVIDER=openrouter`, `LLM_MODEL=openai/gpt-4o-mini`, `PP_SCAN_LIMIT`, `PP_TOP_N`.
 
 Cron (harvest):
 

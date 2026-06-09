@@ -55,7 +55,7 @@ def main():
     scan_limit = int(os.getenv("PP_SCAN_LIMIT", "300"))
     top_n = int(os.getenv("PP_TOP_N", "10"))
 
-    print("LLM enabled:", has_llm_key(), "| provider:", os.getenv("LLM_PROVIDER"))
+    print("LLM enabled:", has_llm_key(), "| provider:", os.getenv("LLM_PROVIDER"), "| model:", os.getenv("LLM_MODEL") or os.getenv("OPENAI_MODEL"))
     print(f"Scanning up to {scan_limit} active Polymarket events...")
 
     pool = scan_active_events(max_events=scan_limit)
