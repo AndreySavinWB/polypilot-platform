@@ -1,0 +1,1773 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>События — PolyPilot</title>
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/event-card.css">
+  <style>
+    * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+    /* =============================================
+       SECTION HEADERS
+       ============================================= */
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.2px;
+    }
+    .section-sub {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* =============================================
+       HOT EVENTS SECTION
+       ============================================= */
+    .ev-hot {
+      padding: 20px 32px 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .ev-hot-header {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .ev-hot-badge {
+      font-size: 11px;
+      font-weight: 700;
+      color: #fb923c;
+      background: rgba(251,146,60,0.12);
+      border: 1px solid rgba(251,146,60,0.25);
+      border-radius: 9999px;
+      padding: 3px 10px;
+    }
+    .ev-source-badge {
+      font-size: 11px;
+      font-weight: 700;
+      border-radius: 9999px;
+      padding: 4px 12px;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+    }
+    .ev-source-badge.live {
+      color: #4ade80;
+      background: rgba(34,197,94,0.12);
+      border: 1px solid rgba(34,197,94,0.35);
+    }
+    .ev-source-badge.demo {
+      color: #9ca3af;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .ev-feed-divider {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 32px 10px;
+      gap: 12px;
+    }
+    .ev-feed-divider-count {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .card-source, .ev-list-source {
+      font-size: 10px;
+      font-weight: 700;
+      border-radius: 9999px;
+      padding: 2px 8px;
+      letter-spacing: 0.2px;
+    }
+    .card-source.live, .ev-list-source.live {
+      color: #4ade80;
+      background: rgba(34,197,94,0.15);
+      border: 1px solid rgba(34,197,94,0.3);
+    }
+    .card-source.demo, .ev-list-source.demo {
+      color: #9ca3af;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .ev-block-demo {
+      border-top: 1px solid var(--border);
+      margin-top: 4px;
+      padding-bottom: 24px;
+    }
+    .ev-hot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+      gap: 16px;
+      padding-bottom: 20px;
+    }
+
+    /* =============================================
+       FEED SECTION
+       ============================================= */
+    .ev-feed { padding: 0; }
+
+    .ev-feed-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 32px 14px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .ev-feed-title-group { display: flex; flex-direction: column; }
+
+    /* Sort dropdown */
+    .ev-sort {
+      padding: 7px 30px 7px 12px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text-secondary);
+      font-size: 12.5px;
+      font-family: inherit;
+      cursor: pointer;
+      outline: none;
+      transition: border-color 0.18s;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M2 4l4 4 4-4' stroke='%236b7280' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+    }
+    .ev-sort:focus { border-color: rgba(124,58,237,0.5); }
+    .ev-sort option { background: #0e1020; }
+
+    /* Filter pills */
+    .ev-filters {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 32px 14px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid var(--border);
+    }
+    .filter-btn {
+      padding: 6px 16px;
+      border-radius: var(--radius-full);
+      font-size: 12.5px;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.18s;
+      white-space: nowrap;
+    }
+    .filter-btn:hover { border-color: rgba(124,58,237,0.4); color: #c4b5fd; }
+    .filter-btn.active {
+      background: linear-gradient(90deg, #4f46e5, #7c3aed);
+      color: #fff;
+      border-color: transparent;
+    }
+
+    /* Search + Count bar */
+    .ev-search-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 32px;
+      border-bottom: 1px solid var(--border);
+    }
+    .ev-search-wrap {
+      position: relative;
+      flex: 1 1 260px;
+      max-width: 360px;
+    }
+    .ev-search-wrap svg {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 15px; height: 15px;
+      stroke: var(--text-muted);
+      fill: none;
+      pointer-events: none;
+    }
+    .ev-search {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 7px 12px 7px 34px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      color: var(--text-primary);
+      font-size: 13px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.18s;
+    }
+    .ev-search::placeholder { color: var(--text-muted); }
+    .ev-search:focus { border-color: rgba(124,58,237,0.5); background: rgba(124,58,237,0.04); }
+    .ev-count {
+      margin-left: auto;
+      font-size: 12.5px;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+    .ev-count strong { color: var(--text-secondary); }
+
+    /* =============================================
+       LIST ROWS
+       ============================================= */
+    .ev-list-row {
+      display: flex;
+      align-items: center;
+      padding: 14px 32px;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.15s;
+      gap: 0;
+    }
+    .ev-list-row:hover { background: rgba(255,255,255,0.025); }
+    .ev-list-row:hover .ev-list-arrow { opacity: 1; }
+
+    /* Thumbnail */
+    .ev-list-thumb {
+      width: 72px; height: 72px;
+      border-radius: 14px;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px;
+      margin-right: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+    .ev-list-thumb::after {
+      content: '';
+      position: absolute; inset: 0;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+    }
+    .ev-list-thumb svg {
+      width: 36px; height: 36px;
+      display: block;
+      stroke: currentColor;
+    }
+
+    /* Content */
+    .ev-list-content { flex: 1 1 0; min-width: 0; margin-right: 24px; }
+    .ev-list-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
+    .ev-list-cat {
+      font-size: 10px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.6px;
+      padding: 2px 8px; border-radius: 5px;
+    }
+    .ev-list-hot {
+      font-size: 10px; font-weight: 700;
+      color: #fb923c;
+      background: rgba(251,146,60,0.12);
+      border: 1px solid rgba(251,146,60,0.25);
+      border-radius: 9999px; padding: 2px 8px;
+    }
+    .ev-list-title {
+      font-size: 15px; font-weight: 700; color: #fff;
+      line-height: 1.35; letter-spacing: -0.15px;
+      margin-bottom: 5px;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .ev-list-sub { display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--text-muted); }
+    .ev-list-sub-dot { opacity: 0.35; }
+
+    /* Metrics */
+    .ev-list-metrics { display: flex; align-items: center; flex-shrink: 0; }
+    .ev-list-metric {
+      display: flex; flex-direction: column; align-items: flex-end;
+      min-width: 80px; padding: 0 16px;
+      border-right: 1px solid rgba(255,255,255,0.06);
+    }
+    .ev-list-metric:last-child { border-right: none; }
+    .ev-list-metric-val { font-size: 17px; font-weight: 700; line-height: 1.1; letter-spacing: -0.2px; }
+    .ev-list-metric-lbl { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+
+    /* Actions */
+    .ev-list-actions { display: flex; align-items: center; gap: 8px; margin-left: 16px; flex-shrink: 0; }
+    .ev-list-bookmark { font-size: 15px; color: var(--text-muted); cursor: pointer; padding: 4px; transition: color 0.15s; }
+    .ev-list-bookmark:hover { color: #c4b5fd; }
+    .ev-list-arrow {
+      width: 28px; height: 28px; border-radius: 8px;
+      background: rgba(124,58,237,0.10); border: 1px solid rgba(124,58,237,0.18);
+      display: flex; align-items: center; justify-content: center;
+      color: #a855f7; opacity: 0.5; transition: opacity 0.15s;
+    }
+    .ev-list-arrow svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* Empty state */
+    .ev-empty { padding: 40px 32px; text-align: center; color: var(--text-muted); font-size: 14px; }
+    .ev-empty-icon { font-size: 32px; margin-bottom: 10px; }
+
+    /* =============================================
+       UPSELL BANNER
+       ============================================= */
+    .ev-upsell {
+      margin: 0;
+      padding: 20px 32px;
+      background: linear-gradient(135deg, rgba(79,70,229,0.10) 0%, rgba(124,58,237,0.08) 100%);
+      border-top: 1px solid rgba(124,58,237,0.18);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .ev-upsell-icon {
+      width: 62px; height: 62px;
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 0 18px rgba(124,58,237,0.35);
+    }
+    .ev-upsell-icon img {
+      width: 38px; height: 38px; object-fit: contain;
+    }
+    .ev-upsell-text { flex: 1 1 0; min-width: 0; }
+    .ev-upsell-title { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 3px; }
+    .ev-upsell-sub { font-size: 12.5px; color: var(--text-muted); }
+    .ev-upsell-checks {
+      display: flex; flex-direction: column; gap: 4px;
+      font-size: 12px; color: rgba(196,181,253,0.75);
+      flex-shrink: 0;
+    }
+    .ev-upsell-check { display: flex; align-items: center; gap: 6px; }
+    .ev-upsell-check::before { content: '✓'; color: #a855f7; font-weight: 700; }
+    .ev-upsell-btn {
+      flex-shrink: 0;
+      padding: 11px 22px;
+      background: linear-gradient(90deg, #4f46e5, #7c3aed);
+      color: #fff; font-size: 13.5px; font-weight: 700;
+      border-radius: 12px; border: none; cursor: pointer;
+      line-height: 1.3; white-space: nowrap;
+      transition: opacity 0.18s;
+    }
+    .ev-upsell-btn:hover { opacity: 0.88; }
+
+    /* =============================================
+       PP CHECK SECTION
+       ============================================= */
+    @keyframes check-spin { to { transform: rotate(360deg); } }
+    @keyframes check-fade-up {
+      from { opacity:0; transform:translateY(14px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    @keyframes bar-grow { from { width:0; } }
+
+    /* ── PP Check section wrapper ── */
+    .ppcheck-outer {
+      margin: 56px 0 40px;
+      padding: 0 32px;
+    }
+
+    /* Section label row */
+    .ppcheck-section-label {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 20px;
+    }
+    .ppcheck-section-label-line {
+      flex: 1; height: 1px;
+      background: linear-gradient(90deg, rgba(139,92,246,0.4) 0%, transparent 100%);
+    }
+    .ppcheck-section-label-text {
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(139,92,246,0.8);
+      white-space: nowrap;
+    }
+
+    /* Hero quote */
+    .ppcheck-quote {
+      font-size: 26px; font-weight: 800; line-height: 1.25;
+      letter-spacing: -0.5px;
+      background: linear-gradient(90deg, #fff 0%, rgba(196,181,253,0.9) 60%, #a78bfa 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+    .ppcheck-quote-sub {
+      font-size: 14px; color: rgba(255,255,255,0.45);
+      margin-bottom: 28px;
+    }
+
+    .ppcheck-section {
+      background: linear-gradient(145deg, rgba(79,70,229,0.08) 0%, rgba(124,58,237,0.06) 50%, rgba(15,10,30,0.0) 100%);
+      border: 1px solid rgba(139,92,246,0.25);
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Top accent line */
+    .ppcheck-section::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, #4f46e5 0%, #7c3aed 50%, #a855f7 100%);
+    }
+    /* Glow blob */
+    .ppcheck-section::after {
+      content: '';
+      position: absolute; top: -80px; right: -60px;
+      width: 320px; height: 320px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(124,58,237,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .ppcheck-header {
+      display: flex; align-items: center; gap: 14px;
+      padding: 24px 28px 18px;
+      position: relative; z-index: 1;
+    }
+    .ppcheck-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 0 20px rgba(124,58,237,0.4);
+    }
+    .ppcheck-icon svg { width: 20px; height: 20px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; }
+    .ppcheck-title-group {}
+    .ppcheck-title { font-size: 18px; font-weight: 800; color: #fff; letter-spacing: -0.3px; }
+    .ppcheck-sub { font-size: 13px; color: rgba(255,255,255,0.45); margin-top: 3px; line-height: 1.45; }
+
+    /* Tabs */
+    .ppcheck-tabs { display: flex; gap: 4px; padding: 0 28px 14px; }
+    .ppcheck-tab {
+      padding: 6px 16px; border-radius: 9px;
+      font-size: 12.5px; font-weight: 600;
+      border: 1px solid var(--border); background: transparent;
+      color: var(--text-muted); cursor: pointer; transition: all 0.18s;
+    }
+    .ppcheck-tab.active { background: rgba(124,58,237,0.15); border-color: rgba(124,58,237,0.45); color: #c4b5fd; }
+
+    /* Input row */
+    .ppcheck-input-row {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 0 28px 20px;
+    }
+    .ppcheck-input-wrap { flex: 1 1 0; position: relative; }
+    .ppcheck-input-wrap svg.ppi-icon {
+      position: absolute; left: 13px; top: 13px;
+      width: 16px; height: 16px;
+      stroke: var(--text-muted); fill: none; pointer-events: none;
+    }
+    .ppcheck-input {
+      width: 100%; box-sizing: border-box;
+      padding: 12px 14px 12px 38px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border); border-radius: 11px;
+      color: var(--text-primary); font-size: 13.5px; font-family: inherit;
+      outline: none; transition: border-color 0.18s;
+    }
+    .ppcheck-input::placeholder { color: var(--text-muted); }
+    .ppcheck-input:focus { border-color: rgba(124,58,237,0.55); background: rgba(124,58,237,0.04); }
+    .ppcheck-textarea {
+      width: 100%; box-sizing: border-box;
+      padding: 12px 14px; min-height: 72px; resize: none;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border); border-radius: 11px;
+      color: var(--text-primary); font-size: 13.5px; font-family: inherit;
+      outline: none; transition: border-color 0.18s; line-height: 1.5;
+      display: none;
+    }
+    .ppcheck-textarea:focus { border-color: rgba(124,58,237,0.55); }
+    .ppcheck-btn {
+      padding: 12px 24px; flex-shrink: 0;
+      background: linear-gradient(90deg, #4f46e5, #7c3aed);
+      color: #fff; font-size: 13px; font-weight: 700;
+      border-radius: 11px; border: none; cursor: pointer;
+      display: flex; align-items: center; gap: 7px;
+      transition: opacity 0.18s, transform 0.15s;
+      white-space: nowrap;
+    }
+    .ppcheck-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+    .ppcheck-btn svg { width: 15px; height: 15px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; }
+    .ppcheck-chips {
+      display: flex; gap: 8px; padding: 0 28px 20px; flex-wrap: wrap;
+    }
+    .ppcheck-chip {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.35);
+      border: 1px solid rgba(255,255,255,0.07); border-radius: 7px; padding: 3px 10px;
+    }
+    .ppcheck-chip-dot { width: 5px; height: 5px; border-radius: 50%; }
+
+    /* Loading */
+    .ppcheck-loading {
+      display: none; padding: 32px; text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .ppcheck-loading.active { display: block; }
+    .ppcheck-spinner {
+      width: 40px; height: 40px; margin: 0 auto 16px;
+      border: 3px solid rgba(124,58,237,0.15);
+      border-top-color: #7c3aed; border-radius: 50%;
+      animation: check-spin 0.9s linear infinite;
+    }
+    .ppcheck-loading-title { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .ppcheck-loading-sub { font-size: 12px; color: var(--text-muted); margin-bottom: 20px; }
+    .ppcheck-steps { display: flex; flex-direction: column; gap: 8px; max-width: 320px; margin: 0 auto; text-align: left; }
+    .ppcheck-step { display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--text-muted); opacity: 0; transition: opacity 0.4s; }
+    .ppcheck-step.active, .ppcheck-step.done { opacity: 1; }
+    .ppcheck-step.done { color: #4ade80; }
+    .ppcheck-step-ico { width: 22px; height: 22px; border-radius: 5px; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; }
+
+    /* Results */
+    .ppcheck-results {
+      display: none; padding: 0 28px 28px;
+      border-top: 1px solid var(--border);
+      animation: check-fade-up 0.35s ease;
+    }
+    .ppcheck-results.active { display: block; }
+    .ppcheck-res-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 0 16px;
+    }
+    .ppcheck-res-title { font-size: 15px; font-weight: 700; color: #fff; max-width: 65%; }
+    .ppcheck-reset {
+      font-size: 12px; color: var(--text-muted); cursor: pointer;
+      border: 1px solid var(--border); border-radius: 8px;
+      padding: 6px 12px; background: transparent; transition: all 0.15s;
+      display: flex; align-items: center; gap: 5px;
+    }
+    .ppcheck-reset:hover { color: #c4b5fd; border-color: rgba(124,58,237,0.4); }
+    .ppcheck-reset svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+    /* Results grid */
+    .ppcheck-top-grid {
+      display: grid; grid-template-columns: 180px 1fr 1fr;
+      gap: 14px; margin-bottom: 18px;
+    }
+    /* Edge */
+    .ppcheck-edge {
+      background: linear-gradient(145deg,#080e1f,#0d1525);
+      border: 1px solid rgba(74,222,128,0.22); border-radius: 16px;
+      padding: 20px 16px; text-align: center;
+      box-shadow: 0 0 0 0 rgba(74,222,128,0.20);
+      animation: pulse-ring 3s ease-in-out infinite;
+    }
+    @keyframes pulse-ring {
+      0%,100% { box-shadow: 0 0 0 0 rgba(74,222,128,0.25); }
+      50%      { box-shadow: 0 0 0 10px rgba(74,222,128,0); }
+    }
+    .ppcheck-edge::before {
+      content:''; position:absolute; top:0;left:0;right:0;height:1px;
+      background: linear-gradient(90deg,transparent,rgba(74,222,128,0.5),transparent);
+    }
+    .ppcheck-edge { position: relative; }
+    .ppc-edge-lbl { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(74,222,128,0.65); margin-bottom: 8px; }
+    .ppc-edge-val { font-size: 46px; font-weight: 800; color: #4ade80; line-height: 1; letter-spacing: -2px; text-shadow: 0 0 24px rgba(74,222,128,0.4); }
+    .ppc-edge-val.neg { color: #f87171; text-shadow: 0 0 24px rgba(248,113,113,0.4); }
+    .ppc-edge-row { margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06); display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .ppc-mval-num { font-size: 18px; font-weight: 700; }
+    .ppc-mval-lbl { font-size: 9px; color: var(--text-muted); margin-top: 1px; }
+    /* Verdict */
+    .ppcheck-verdict {
+      background: linear-gradient(145deg,#080e1f,#0d1525);
+      border: 1px solid rgba(255,255,255,0.07); border-radius: 16px;
+      padding: 18px 20px;
+    }
+    .ppcv-top { display: flex; align-items: center; gap: 9px; margin-bottom: 10px; }
+    .ppcv-ico { width: 34px; height: 34px; border-radius: 9px; background: rgba(74,222,128,0.10); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+    .ppcv-lbl { font-size: 10px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.8px; }
+    .ppcv-text { font-size: 12.5px; color: rgba(255,255,255,0.75); line-height: 1.6; }
+    .ppcv-pill { display: inline-flex; align-items: center; gap: 5px; margin-top: 12px; padding: 5px 12px; border-radius: 9999px; font-size: 11px; font-weight: 700; }
+    .ppcv-pill.yes { background: rgba(74,222,128,0.10); border: 1px solid rgba(74,222,128,0.28); color: #4ade80; }
+    .ppcv-pill.maybe { background: rgba(251,146,60,0.10); border: 1px solid rgba(251,146,60,0.28); color: #fb923c; }
+    /* Risks summary */
+    .ppcheck-risks {
+      background: linear-gradient(145deg,#080e1f,#0d1525);
+      border: 1px solid rgba(255,255,255,0.07); border-radius: 16px;
+      padding: 18px 20px;
+    }
+    .ppck-risk-lbl { font-size: 10px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 12px; }
+    .ppck-risk-item { display: flex; align-items: center; gap: 8px; margin-bottom: 9px; }
+    .ppck-risk-item:last-child { margin-bottom: 0; }
+    .ppck-risk-name { font-size: 11.5px; color: rgba(255,255,255,0.60); flex: 1; }
+    .ppck-bar-wrap { width: 70px; height: 4px; background: rgba(255,255,255,0.07); border-radius: 9999px; overflow: hidden; flex-shrink: 0; }
+    .ppck-bar { height: 100%; border-radius: 9999px; animation: bar-grow 0.8s ease forwards; }
+    .ppck-badge { font-size: 9.5px; font-weight: 700; padding: 2px 6px; border-radius: 5px; flex-shrink: 0; }
+    .rl-low    { background: rgba(74,222,128,0.12); color: #4ade80; }
+    .rl-medium { background: rgba(251,146,60,0.12); color: #fb923c; }
+    .rl-high   { background: rgba(248,113,113,0.12); color: #f87171; }
+
+    /* War Room */
+    .ppck-warroom { margin-bottom: 18px; }
+    .ppck-wr-hdr { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .ppck-wr-title { font-size: 14px; font-weight: 700; color: #fff; }
+    .ppck-wr-badge { font-size: 10px; font-weight: 700; background: rgba(124,58,237,0.14); border: 1px solid rgba(124,58,237,0.28); color: #c4b5fd; border-radius: 6px; padding: 2px 8px; }
+    .ppck-agents { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; }
+    .ppck-agent {
+      background: linear-gradient(145deg,#080e1f,#0c1220);
+      border: 1px solid rgba(255,255,255,0.07); border-radius: 12px;
+      padding: 14px 16px; transition: border-color 0.2s;
+    }
+    .ppck-agent:hover { border-color: rgba(124,58,237,0.28); }
+    .ppck-agent-top { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+    .ppck-agent-av { width: 32px; height: 32px; border-radius: 8px; background: rgba(124,58,237,0.12); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+    .ppck-agent-name { font-size: 12.5px; font-weight: 700; color: #fff; }
+    .ppck-agent-role { font-size: 10.5px; color: var(--text-muted); }
+    .ppck-verdict { font-size: 9.5px; font-weight: 700; padding: 2px 8px; border-radius: 9999px; margin-left: auto; flex-shrink: 0; }
+    .av-green  { background: rgba(74,222,128,0.10); color: #4ade80; border: 1px solid rgba(74,222,128,0.22); }
+    .av-orange { background: rgba(251,146,60,0.10); color: #fb923c; border: 1px solid rgba(251,146,60,0.22); }
+    .av-red    { background: rgba(248,113,113,0.10); color: #f87171; border: 1px solid rgba(248,113,113,0.22); }
+    .av-purple { background: rgba(168,85,247,0.10); color: #c084fc; border: 1px solid rgba(168,85,247,0.22); }
+    .ppck-agent-msg { font-size: 12px; color: rgba(255,255,255,0.60); line-height: 1.5; margin-bottom: 8px; }
+    .ppck-conf { display: flex; align-items: center; gap: 7px; }
+    .ppck-conf-bar-wrap { flex: 1; height: 3px; background: rgba(255,255,255,0.07); border-radius: 9999px; overflow: hidden; }
+    .ppck-conf-bar { height: 100%; border-radius: 9999px; background: linear-gradient(90deg,#4f46e5,#7c3aed); animation: bar-grow 0.7s ease forwards; }
+    .ppck-conf-pct { font-size: 10.5px; font-weight: 700; color: var(--text-muted); }
+
+    /* Risk Matrix */
+    .ppck-matrix { margin-bottom: 20px; }
+    .ppck-matrix-title { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 12px; }
+    .ppck-matrix-table { background: linear-gradient(145deg,#080e1f,#0c1220); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; overflow: hidden; }
+    .ppck-mt-head { display: grid; grid-template-columns: 1fr 90px 90px 100px; padding: 8px 16px; background: rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 9.5px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.7px; gap: 10px; }
+    .ppck-mt-row { display: grid; grid-template-columns: 1fr 90px 90px 100px; padding: 10px 16px; border-bottom: 1px solid rgba(255,255,255,0.04); align-items: center; gap: 10px; font-size: 12px; }
+    .ppck-mt-row:last-child { border-bottom: none; }
+    .ppck-mt-name { color: rgba(255,255,255,0.72); }
+    .ppck-mt-prob { color: var(--text-muted); font-weight: 600; }
+    .ppck-mt-badge { font-size: 9.5px; font-weight: 700; padding: 2px 8px; border-radius: 5px; display: inline-block; }
+
+    /* Upsell inside check */
+    .ppcheck-upsell {
+      padding: 16px 20px;
+      background: linear-gradient(135deg, rgba(79,70,229,0.10), rgba(124,58,237,0.07));
+      border: 1px solid rgba(124,58,237,0.20); border-radius: 14px;
+      display: flex; align-items: center; gap: 14px;
+      margin-top: 8px;
+    }
+    .ppcu-ico { font-size: 22px; flex-shrink: 0; }
+    .ppcu-body { flex: 1; }
+    .ppcu-ttl { font-size: 13.5px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+    .ppcu-sub { font-size: 12px; color: var(--text-muted); }
+    .ppcu-btn { padding: 9px 18px; background: linear-gradient(90deg,#4f46e5,#7c3aed); color: #fff; font-size: 12.5px; font-weight: 700; border-radius: 9px; border: none; cursor: pointer; white-space: nowrap; transition: opacity 0.18s; flex-shrink: 0; }
+    .ppcu-btn:hover { opacity: 0.88; }
+
+    /* ═══════════════════════════════════════════════════
+       CLOSED EVENTS — Event Autopsy
+    ═══════════════════════════════════════════════════ */
+    .ev-closed-section {
+      padding: 0 32px 60px;
+    }
+
+    /* Section header */
+    .ev-closed-head {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 24px; margin-bottom: 32px;
+    }
+    .ev-closed-head-left {}
+    .ev-closed-eyebrow {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 11px; font-weight: 700; letter-spacing: 1.4px;
+      text-transform: uppercase; color: #a78bfa;
+      margin-bottom: 10px;
+    }
+    .ev-closed-eyebrow-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #a78bfa;
+    }
+    .ev-closed-title {
+      font-size: 28px; font-weight: 800; letter-spacing: -0.6px;
+      line-height: 1.2; color: #fff; margin-bottom: 10px;
+    }
+    .ev-closed-title span {
+      background: linear-gradient(90deg, #a78bfa 0%, #60a5fa 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .ev-closed-sub {
+      font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.55; max-width: 540px;
+    }
+
+    /* Accuracy summary strip */
+    .ev-closed-stats {
+      display: flex; gap: 12px; flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .ev-cs-stat {
+      display: flex; flex-direction: column; gap: 3px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px; padding: 14px 20px;
+      min-width: 120px;
+    }
+    .ev-cs-val {
+      font-size: 22px; font-weight: 800; letter-spacing: -0.4px;
+    }
+    .ev-cs-val.green { color: #4ade80; }
+    .ev-cs-val.purple { color: #c4b5fd; }
+    .ev-cs-val.blue { color: #60a5fa; }
+    .ev-cs-lbl {
+      font-size: 11.5px; color: rgba(255,255,255,0.40); font-weight: 500;
+    }
+
+    /* Cards grid */
+    .ev-closed-grid {
+      display: flex; flex-direction: column; gap: 20px;
+    }
+
+    /* Single card */
+    .ev-closed-card {
+      background: linear-gradient(145deg, #080c1a, #0a0f1e);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 20px; overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .ev-closed-card:hover { border-color: rgba(255,255,255,0.13); }
+
+    /* Card top bar */
+    .ev-closed-card-top {
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 20px; align-items: start;
+      padding: 22px 24px 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .ev-cc-left {}
+    .ev-cc-meta {
+      display: flex; align-items: center; gap: 8px; margin-bottom: 8px;
+    }
+    .ev-cc-cat {
+      font-size: 10.5px; font-weight: 700; letter-spacing: 0.5px;
+      padding: 3px 10px; border-radius: 9999px;
+      background: rgba(139,92,246,0.12);
+      border: 1px solid rgba(139,92,246,0.25);
+      color: #c4b5fd;
+    }
+    .ev-cc-date {
+      font-size: 11px; color: rgba(255,255,255,0.30);
+    }
+    .ev-cc-horizon {
+      font-size: 11px; color: rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.05);
+      border-radius: 6px; padding: 2px 8px;
+    }
+    .ev-cc-title {
+      font-size: 17px; font-weight: 700; color: #fff;
+      line-height: 1.3; letter-spacing: -0.2px;
+      margin-bottom: 8px;
+    }
+    .ev-cc-summary {
+      font-size: 13px; color: rgba(255,255,255,0.50); line-height: 1.6;
+    }
+
+    /* Right: verdict block */
+    .ev-cc-right {
+      display: flex; flex-direction: column; align-items: flex-end; gap: 10px;
+      flex-shrink: 0;
+    }
+    .ev-cc-verdict {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 16px; border-radius: 12px;
+      font-size: 13px; font-weight: 700;
+    }
+    .ev-cc-verdict.correct {
+      background: rgba(74,222,128,0.10);
+      border: 1px solid rgba(74,222,128,0.25);
+      color: #4ade80;
+    }
+    .ev-cc-verdict.wrong {
+      background: rgba(248,113,113,0.10);
+      border: 1px solid rgba(248,113,113,0.25);
+      color: #f87171;
+    }
+    .ev-cc-verdict svg {
+      width: 15px; height: 15px; fill: none; stroke: currentColor;
+      stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .ev-cc-outcome {
+      font-size: 12px; color: rgba(255,255,255,0.35); text-align: right;
+    }
+    .ev-cc-outcome strong { color: #fff; }
+
+    /* Odds comparison row */
+    .ev-closed-odds {
+      display: flex; gap: 0; padding: 18px 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      align-items: center; gap: 16px;
+    }
+    .ev-co-block {
+      display: flex; flex-direction: column; gap: 4px;
+      flex: 1;
+    }
+    .ev-co-lbl {
+      font-size: 11px; color: rgba(255,255,255,0.35); font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.7px;
+    }
+    .ev-co-val {
+      font-size: 22px; font-weight: 800; letter-spacing: -0.3px;
+    }
+    .ev-co-val.pp { color: #a78bfa; }
+    .ev-co-val.market { color: rgba(255,255,255,0.55); }
+    .ev-co-val.result { color: #4ade80; }
+    .ev-co-sub {
+      font-size: 11px; color: rgba(255,255,255,0.30);
+    }
+    .ev-co-divider {
+      width: 1px; height: 40px; background: rgba(255,255,255,0.07);
+      flex-shrink: 0;
+    }
+    .ev-co-arrow {
+      font-size: 18px; color: rgba(255,255,255,0.15); flex-shrink: 0;
+    }
+    .ev-co-edge {
+      display: flex; flex-direction: column; align-items: center;
+      background: rgba(74,222,128,0.06);
+      border: 1px solid rgba(74,222,128,0.15);
+      border-radius: 12px; padding: 8px 16px;
+      flex-shrink: 0;
+    }
+    .ev-co-edge-val {
+      font-size: 19px; font-weight: 800; color: #4ade80; letter-spacing: -0.3px;
+    }
+    .ev-co-edge-lbl { font-size: 10.5px; color: rgba(74,222,128,0.6); }
+
+    /* Bottom body: reasons + lesson */
+    .ev-closed-body {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    }
+    .ev-cb-col {
+      padding: 20px 24px;
+    }
+    .ev-cb-col:first-child {
+      border-right: 1px solid rgba(255,255,255,0.06);
+    }
+    .ev-cb-col-title {
+      font-size: 11px; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; color: rgba(255,255,255,0.35);
+      margin-bottom: 14px;
+    }
+
+    /* Reasons list */
+    .ev-cb-reasons { display: flex; flex-direction: column; gap: 9px; }
+    .ev-cb-reason {
+      display: flex; align-items: flex-start; gap: 9px;
+      font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.45;
+    }
+    .ev-cb-reason-ico {
+      width: 18px; height: 18px; border-radius: 5px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+    }
+    .ev-cb-reason-ico.positive {
+      background: rgba(74,222,128,0.12); color: #4ade80;
+      font-size: 11px;
+    }
+    .ev-cb-reason-ico.negative {
+      background: rgba(248,113,113,0.12); color: #f87171;
+      font-size: 11px;
+    }
+    .ev-cb-reason-ico.neutral {
+      background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.4);
+      font-size: 11px;
+    }
+
+    /* Right col: lesson + agent */
+    .ev-cb-lesson {
+      font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.65;
+      padding: 14px 16px;
+      background: rgba(124,58,237,0.06);
+      border: 1px solid rgba(124,58,237,0.12);
+      border-radius: 12px; margin-bottom: 12px;
+    }
+    .ev-cb-lesson::before {
+      content: '💡 ';
+    }
+    .ev-cb-agent-row {
+      display: flex; align-items: flex-start; gap: 9px;
+    }
+    .ev-cb-agent-ico {
+      width: 28px; height: 28px; border-radius: 8px;
+      background: linear-gradient(135deg,#4f46e5,#7c3aed);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 12px;
+    }
+    .ev-cb-agent-text {
+      font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.55;
+    }
+
+    /* Where wrong (if any) */
+    .ev-cb-wrong {
+      margin-top: 10px; font-size: 12px;
+      color: rgba(248,113,113,0.7);
+      background: rgba(248,113,113,0.06);
+      border: 1px solid rgba(248,113,113,0.12);
+      border-radius: 10px; padding: 10px 14px; line-height: 1.5;
+    }
+    .ev-cb-wrong::before { content: '⚠ Где ошиблись: '; font-weight: 700; }
+
+    /* Profit badge */
+    .ev-cc-profit {
+      font-size: 12.5px; font-weight: 700;
+      color: #4ade80;
+      background: rgba(74,222,128,0.08);
+      border: 1px solid rgba(74,222,128,0.18);
+      border-radius: 9px; padding: 5px 12px;
+      white-space: nowrap;
+    }
+
+    /* ---- Paywall notice ---- */
+    .paywall-notice {
+      margin: 0 32px;
+      padding: 13px 18px;
+      background: rgba(124,58,237,0.10);
+      border: 1px solid rgba(124,58,237,0.25);
+      border-radius: 12px;
+      font-size: 13px; color: #c4b5fd;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .paywall-notice .btn { padding: 7px 16px; font-size: 12px; }
+  </style>
+</head>
+<body>
+<div class="app-layout">
+  <aside id="sidebar"></aside>
+  <main class="main-content">
+
+    <div class="page-header">
+      <div class="page-title">События</div>
+      <div class="page-subtitle">AI-анализ активных рынков — находим edge до того, как его заметит толпа</div>
+    </div>
+
+    <!-- ======================== LIVE POLYMARKET ======================== -->
+    <section class="ev-hot">
+      <div class="ev-hot-header">
+        <div>
+          <span class="section-title">Реальные события на Полимаркете</span>
+          <div class="section-sub">Данные с рынка + анализ PP AI</div>
+        </div>
+        <span class="ev-source-badge live">ОНЛАЙН · Полимаркет</span>
+      </div>
+      <div class="ev-hot-grid" id="hot-grid">
+        <!-- JS fills -->
+      </div>
+    </section>
+
+    <!-- ======================== FEED ======================== -->
+    <section class="ev-feed">
+      <div class="ev-feed-header">
+        <div class="ev-feed-title-group">
+          <span class="section-title">Лента событий</span>
+          <span class="section-sub">Реальные рынки и демо-примеры — отдельными блоками</span>
+        </div>
+        <select class="ev-sort" id="ev-sort">
+          <option value="popular">Популярные</option>
+          <option value="edge">По перевесу ↑</option>
+          <option value="new">Новые</option>
+          <option value="volume">По объёму</option>
+          <option value="horizon">Ближайшие</option>
+        </select>
+      </div>
+
+      <!-- Filters -->
+      <div class="ev-filters">
+        <button class="filter-btn active" data-filter="all">Все события</button>
+        <button class="filter-btn" data-filter="crypto">Крипто</button>
+        <button class="filter-btn" data-filter="politics">Политика</button>
+        <button class="filter-btn" data-filter="economics">Экономика</button>
+        <button class="filter-btn" data-filter="macro">Макроэкономика</button>
+        <button class="filter-btn" data-filter="tech">Технологии</button>
+        <button class="filter-btn" data-filter="cinema">Кино</button>
+        <button class="filter-btn" data-filter="sport">Спорт</button>
+      </div>
+
+      <!-- Search + Count -->
+      <div class="ev-search-bar">
+        <div class="ev-search-wrap">
+          <svg viewBox="0 0 22 22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="10" cy="10" r="7"/><line x1="15.5" y1="15.5" x2="20" y2="20"/>
+          </svg>
+          <input class="ev-search" id="ev-search" type="text" placeholder="Поиск событий…" autocomplete="off">
+        </div>
+        <span class="ev-count" id="ev-count"><strong>0</strong> событий</span>
+      </div>
+
+      <div id="paywall-pulse" class="paywall-notice" style="display:none;margin:12px 32px 0;">
+        ⚡ Pulse-план: лимит 5 событий в день.
+        <a href="pricing.html" class="btn btn-primary">Перейти на PRO</a>
+      </div>
+
+      <!-- Feed lists: live + demo -->
+      <div class="ev-feed-divider">
+        <span class="ev-source-badge live">ОНЛАЙН · Полимаркет</span>
+        <span class="ev-feed-divider-count" id="live-count"></span>
+      </div>
+      <div id="feed-list-live"></div>
+
+      <div class="ev-block-demo">
+        <div class="ev-feed-divider">
+          <span class="ev-source-badge demo">ДЕМО · примеры интерфейса</span>
+          <span class="ev-feed-divider-count" id="demo-count"></span>
+        </div>
+        <div id="feed-list-demo"></div>
+      </div>
+
+      <!-- Upsell -->
+      <div class="ev-upsell">
+        <div class="ev-upsell-icon"><img src="../assets/img/logo-icon.png" alt="PP"></div>
+        <div class="ev-upsell-text">
+          <div class="ev-upsell-title">Раскройте все возможности PolyPilot</div>
+          <div class="ev-upsell-sub">Больше сигналов, ранние уведомления и продвинутая аналитика в PRO.</div>
+        </div>
+        <div class="ev-upsell-checks">
+          <div class="ev-upsell-check">Больше событий и рынков</div>
+          <div class="ev-upsell-check">AI-аналитика и прогнозы</div>
+          <div class="ev-upsell-check">Раньше других получайте сигналы</div>
+          <div class="ev-upsell-check">Приоритетная поддержка</div>
+        </div>
+        <button class="ev-upsell-btn" onclick="location.href='pricing.html'">
+          Раскройте все<br>возможности РР →
+        </button>
+      </div>
+      <!-- ======================== PP CHECK ======================== -->
+      <div class="ppcheck-outer">
+
+        <!-- Section label -->
+        <div class="ppcheck-section-label">
+          <div class="ppcheck-section-label-line"></div>
+          <div class="ppcheck-section-label-text">⚡ PP Check</div>
+          <div class="ppcheck-section-label-line" style="background: linear-gradient(90deg, transparent 0%, rgba(139,92,246,0.4) 100%)"></div>
+        </div>
+
+        <!-- Hero quote -->
+        <div class="ppcheck-quote">Проверь свою идею,<br>прежде чем поставить $500</div>
+        <div class="ppcheck-quote-sub">PP AI анализирует любое событие за секунды — перевес, штаб агентов и риск-матрица</div>
+
+        <div class="ppcheck-section" id="ppcheck-section">
+
+        <!-- Header -->
+        <div class="ppcheck-header">
+          <div class="ppcheck-icon">
+            <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <div class="ppcheck-title-group">
+            <div class="ppcheck-title">PP Check — Проверь своё событие</div>
+            <div class="ppcheck-sub">Вставь ссылку с Полимаркета или напиши тезис — получишь перевес PP, штаб агентов и риск-матрицу</div>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="ppcheck-tabs">
+          <button class="ppcheck-tab active" id="ppctab-url" onclick="ppcSwitchTab('url')">Ссылка Полимаркета</button>
+          <button class="ppcheck-tab" id="ppctab-thesis" onclick="ppcSwitchTab('thesis')">Свой тезис</button>
+        </div>
+
+        <!-- Input -->
+        <div class="ppcheck-input-row">
+          <div class="ppcheck-input-wrap">
+            <svg class="ppi-icon" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+            </svg>
+            <input class="ppcheck-input" id="ppc-url" type="text" placeholder="https://polymarket.com/event/...">
+            <textarea class="ppcheck-textarea" id="ppc-thesis" placeholder="Например: «Думаю, ФРС снизит ставку в сентябре 2026, потому что инфляция ниже 3%»"></textarea>
+          </div>
+          <button class="ppcheck-btn" onclick="ppcRun()">
+            <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            Запустить анализ
+          </button>
+        </div>
+
+        <!-- Chips -->
+        <div class="ppcheck-chips">
+          <div class="ppcheck-chip"><div class="ppcheck-chip-dot" style="background:#4ade80"></div>Перевес PP</div>
+          <div class="ppcheck-chip"><div class="ppcheck-chip-dot" style="background:#a855f7"></div>Штаб PP AI</div>
+          <div class="ppcheck-chip"><div class="ppcheck-chip-dot" style="background:#fb923c"></div>Риск-матрица</div>
+          <div class="ppcheck-chip"><div class="ppcheck-chip-dot" style="background:#60a5fa"></div>Итоговый вердикт</div>
+        </div>
+
+        <!-- Loading -->
+        <div class="ppcheck-loading" id="ppc-loading">
+          <div class="ppcheck-spinner"></div>
+          <div class="ppcheck-loading-title">PP AI анализирует событие…</div>
+          <div class="ppcheck-loading-sub">Обрабатываем данные рынка, новости и исторические паттерны</div>
+          <div class="ppcheck-steps">
+            <div class="ppcheck-step" id="ppcs-1"><div class="ppcheck-step-ico">🔍</div>Загрузка данных с Полимаркета</div>
+            <div class="ppcheck-step" id="ppcs-2"><div class="ppcheck-step-ico">📊</div>Расчёт перевеса PP</div>
+            <div class="ppcheck-step" id="ppcs-3"><div class="ppcheck-step-ico">🧠</div>Штаб PP AI — анализ агентов</div>
+            <div class="ppcheck-step" id="ppcs-4"><div class="ppcheck-step-ico">🛡️</div>Построение риск-матрицы</div>
+            <div class="ppcheck-step" id="ppcs-5"><div class="ppcheck-step-ico">✅</div>Формирование вердикта</div>
+          </div>
+        </div>
+
+        <!-- Results -->
+        <div class="ppcheck-results" id="ppc-results">
+          <div class="ppcheck-res-header">
+            <div class="ppcheck-res-title" id="ppc-res-title"></div>
+            <button class="ppcheck-reset" onclick="ppcReset()">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.95"/></svg>
+              Новый запрос
+            </button>
+          </div>
+
+          <!-- Top: Edge + Verdict + Risks -->
+          <div class="ppcheck-top-grid">
+            <div class="ppcheck-edge">
+              <div class="ppc-edge-lbl">⚡ Перевес PP</div>
+              <div class="ppc-edge-val" id="ppc-edge-val">+29</div>
+              <div style="font-size:11px;color:rgba(255,255,255,0.35);margin-top:6px" id="ppc-edge-desc"></div>
+              <div class="ppc-edge-row">
+                <div style="text-align:center">
+                  <div class="ppc-mval-num" style="color:rgba(255,255,255,0.45)" id="ppc-market-odds">38%</div>
+                  <div class="ppc-mval-lbl">Рынок</div>
+                </div>
+                <div style="text-align:center">
+                  <div class="ppc-mval-num" style="color:#c4b5fd" id="ppc-ai-odds">67%</div>
+                  <div class="ppc-mval-lbl">PP AI</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ppcheck-verdict">
+              <div class="ppcv-top">
+                <div class="ppcv-ico" id="ppc-verdict-ico">✅</div>
+                <div class="ppcv-lbl">Вердикт PP AI</div>
+              </div>
+              <div class="ppcv-text" id="ppc-verdict-text"></div>
+              <div id="ppc-verdict-pill"></div>
+            </div>
+
+            <div class="ppcheck-risks">
+              <div class="ppck-risk-lbl">🛡️ Ключевые риски</div>
+              <div id="ppc-risk-items"></div>
+            </div>
+          </div>
+
+          <!-- War Room -->
+          <div class="ppck-warroom">
+            <div class="ppck-wr-hdr">
+              <div class="ppck-wr-title">Штаб PP AI</div>
+              <div class="ppck-wr-badge" id="ppc-wr-badge">5 агентов</div>
+            </div>
+            <div class="ppck-agents" id="ppc-agents"></div>
+          </div>
+
+          <!-- Risk Matrix -->
+          <div class="ppck-matrix">
+            <div class="ppck-matrix-title">Риск-матрица</div>
+            <div class="ppck-matrix-table">
+              <div class="ppck-mt-head">
+                <div>Фактор риска</div><div>Вероятность</div><div>Влияние</div><div>Оценка</div>
+              </div>
+              <div id="ppc-matrix-rows"></div>
+            </div>
+          </div>
+
+          <!-- Upsell (for Lite) -->
+          <div class="ppcheck-upsell" id="ppc-upsell" style="display:none">
+            <div class="ppcu-ico">💎</div>
+            <div class="ppcu-body">
+              <div class="ppcu-ttl">PRO: 20 проверок в месяц + приоритетная очередь</div>
+              <div class="ppcu-sub">Lite — 1 проверка в неделю. Перейдите на PRO для полного доступа.</div>
+            </div>
+            <button class="ppcu-btn" onclick="location.href='pricing.html'">Перейти на PRO →</button>
+          </div>
+        </div>
+
+        </div><!-- /ppcheck-section -->
+      </div><!-- /ppcheck-outer -->
+
+      <!-- ======================== CLOSED EVENTS ======================== -->
+      <section class="ev-closed-section" id="ev-closed-section">
+
+        <!-- Header -->
+        <div class="ev-closed-head">
+          <div class="ev-closed-head-left">
+            <div class="ev-closed-eyebrow">
+              <div class="ev-closed-eyebrow-dot"></div>
+              Разбор закрытых событий
+            </div>
+            <div class="ev-closed-title">Закрытые события — <span>разбор полётов</span></div>
+            <div class="ev-closed-sub">PP AI ежедневно мониторит открытые события. После резолва — честный разбор: кто был прав, где ошиблись, какой урок. Это основа доверия.</div>
+          </div>
+        </div>
+
+        <!-- Accuracy stats -->
+        <div class="ev-closed-stats" id="ev-closed-stats">
+          <!-- JS fills -->
+        </div>
+
+        <!-- Cards -->
+        <div class="ev-closed-grid" id="ev-closed-grid">
+          <!-- JS fills -->
+        </div>
+
+      </section>
+
+      </section>
+
+  </main>
+</div>
+
+<script src="../data/events-live.js"></script>
+<script src="../data/events-data.js"></script>
+<script src="../assets/js/events-store.js"></script>
+<script src="../assets/js/state.js"></script>
+<script src="../assets/js/sidebar.js"></script>
+<script>
+(async function () {
+  const SVG = {
+    trending: `<svg viewBox="0 0 22 22" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,16 7,10 11,14 17,7"/><polyline points="13,7 17,7 17,11"/></svg>`,
+    calendar: `<svg viewBox="0 0 22 22" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="18" height="16" rx="2"/><line x1="7" y1="2" x2="7" y2="6"/><line x1="15" y1="2" x2="15" y2="6"/><line x1="2" y1="10" x2="20" y2="10"/></svg>`,
+    database: `<svg viewBox="0 0 22 22" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="11" cy="5.5" rx="7" ry="2.5"/><path d="M4 5.5 v5 c0 1.38 3.13 2.5 7 2.5s7-1.12 7-2.5v-5"/><path d="M4 10.5 v5 c0 1.38 3.13 2.5 7 2.5s7-1.12 7-2.5v-5"/></svg>`,
+    trendUp:  `<svg viewBox="0 0 22 22" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,18 7,12 11,15 16,8 20,5"/><polyline points="15,5 20,5 20,10"/></svg>`,
+    bars:     `<svg viewBox="0 0 22 22" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="14" width="5" height="6" rx="1.5"/><rect x="8.5" y="9" width="5" height="11" rx="1.5"/><rect x="15" y="4" width="5" height="16" rx="1.5"/></svg>`,
+  };
+
+  // SVG icons — line style matching app design system
+  const CAT_ICONS = {
+    macro: `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="3,18 8,11 12,14 18,6 22,3"/>
+      <polyline points="17,3 22,3 22,8"/>
+      <line x1="3" y1="21" x2="22" y2="21"/>
+    </svg>`,
+    crypto: `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M7 7h5.5a2.5 2.5 0 0 1 0 5H7z"/>
+      <path d="M7 12h6a2.5 2.5 0 0 1 0 5H7z"/>
+      <line x1="9.5" y1="7" x2="9.5" y2="4.5"/>
+      <line x1="13" y1="7" x2="13" y2="4.5"/>
+      <line x1="9.5" y1="17" x2="9.5" y2="19.5"/>
+      <line x1="13" y1="17" x2="13" y2="19.5"/>
+    </svg>`,
+    politics: `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="3" y1="21" x2="21" y2="21"/>
+      <path d="M3 10l9-7 9 7"/>
+      <rect x="9" y="14" width="6" height="7"/>
+      <rect x="4" y="13" width="3" height="4"/>
+      <rect x="17" y="13" width="3" height="4"/>
+    </svg>`,
+    tech: `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="7" y="7" width="10" height="10" rx="2"/>
+      <line x1="9" y1="7" x2="9" y2="4"/><line x1="12" y1="7" x2="12" y2="4"/><line x1="15" y1="7" x2="15" y2="4"/>
+      <line x1="9" y1="17" x2="9" y2="20"/><line x1="12" y1="17" x2="12" y2="20"/><line x1="15" y1="17" x2="15" y2="20"/>
+      <line x1="7" y1="9" x2="4" y2="9"/><line x1="7" y1="12" x2="4" y2="12"/><line x1="7" y1="15" x2="4" y2="15"/>
+      <line x1="17" y1="9" x2="20" y2="9"/><line x1="17" y1="12" x2="20" y2="12"/><line x1="17" y1="15" x2="20" y2="15"/>
+    </svg>`,
+    sport: `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 9H4a2 2 0 0 1-2-2V5h4"/>
+      <path d="M18 9h2a2 2 0 0 0 2-2V5h-4"/>
+      <path d="M8 21h8"/>
+      <line x1="12" y1="17" x2="12" y2="21"/>
+      <path d="M7 4h10v8a5 5 0 0 1-10 0z"/>
+    </svg>`,
+    economics: `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/>
+      <line x1="12" y1="6" x2="12" y2="7.5"/>
+      <line x1="12" y1="16.5" x2="12" y2="18"/>
+      <path d="M9.5 9.5a2.5 2.5 0 0 1 5 0c0 1.4-1 2-2.5 2.5S9 13 9 14.5a2.5 2.5 0 0 0 5 0"/>
+    </svg>`,
+    cinema: `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="8" width="20" height="13" rx="2"/>
+      <path d="M16 3l-4 5M8 3L4 8"/>
+      <line x1="2" y1="13" x2="22" y2="13"/>
+      <line x1="7" y1="8" x2="7" y2="21"/>
+      <line x1="12" y1="8" x2="12" y2="21"/>
+      <line x1="17" y1="8" x2="17" y2="21"/>
+    </svg>`,
+  };
+
+  const CAT_STYLE = {
+    macro:     { grad: 'linear-gradient(145deg,#0c1f3f,#1d3a7a)', color: '#60a5fa',  bg: 'rgba(37,99,235,0.12)',  border: 'rgba(37,99,235,0.30)', stroke: '#60a5fa' },
+    crypto:    { grad: 'linear-gradient(145deg,#2a0f00,#7c3000)', color: '#f97316',  bg: 'rgba(234,88,12,0.12)',  border: 'rgba(234,88,12,0.30)', stroke: '#fb923c' },
+    politics:  { grad: 'linear-gradient(145deg,#1a0845,#3b1880)', color: '#a855f7',  bg: 'rgba(124,58,237,0.12)', border: 'rgba(124,58,237,0.30)', stroke: '#c084fc' },
+    tech:      { grad: 'linear-gradient(145deg,#012e1e,#044d31)', color: '#10b981',  bg: 'rgba(5,150,105,0.12)',  border: 'rgba(5,150,105,0.30)', stroke: '#34d399' },
+    sport:     { grad: 'linear-gradient(145deg,#0b2e15,#145228)', color: '#22c55e',  bg: 'rgba(22,163,74,0.12)',  border: 'rgba(22,163,74,0.30)', stroke: '#4ade80' },
+    economics: { grad: 'linear-gradient(145deg,#042e2c,#0a4e4a)', color: '#14b8a6',  bg: 'rgba(20,184,166,0.12)', border: 'rgba(20,184,166,0.30)', stroke: '#2dd4bf' },
+    cinema:    { grad: 'linear-gradient(145deg,#2a022e,#620068)', color: '#e879f9',  bg: 'rgba(192,38,211,0.12)', border: 'rgba(192,38,211,0.30)', stroke: '#f0abfc' },
+  };
+  function getCatStyle(ev) { return CAT_STYLE[ev.categoryTag] || CAT_STYLE.macro; }
+  function getCatIcon(ev)  { return CAT_ICONS[ev.categoryTag]  || CAT_ICONS.macro;  }
+
+  const tier = PP.getTier();
+  if (tier === 'pulse') document.getElementById('paywall-pulse').style.display = 'flex';
+
+  let demoEvents = PP_EVENTS_STORE.getDemoEvents();
+  try {
+    const res = await fetch('../data/events.json');
+    const json = await res.json();
+    window.__PP_EVENTS_JSON__ = json;
+    demoEvents = PP_EVENTS_STORE.getDemoEvents();
+  } catch { /* events-data.js fallback */ }
+
+  const liveEvents = PP_EVENTS_STORE.getLiveEvents();
+
+  function sourceBadge(ev, cls) {
+    if (ev.isLive) return `<span class="${cls} live">ОНЛАЙН</span>`;
+    if (ev.isDemo) return `<span class="${cls} demo">ДЕМО</span>`;
+    return '';
+  }
+
+  // ---- Render HOT grid (live only, top 4) ----
+  const hotEvents = [...liveEvents]
+    .sort((a, b) => (b.edgeScore || 0) - (a.edgeScore || 0))
+    .slice(0, 4);
+
+  document.getElementById('hot-grid').innerHTML = hotEvents.length
+    ? hotEvents.map(ev => renderGridCard(ev)).join('')
+    : '<div class="ev-empty" style="grid-column:1/-1"><div class="ev-empty-icon">📡</div>Нет live-событий. Запустите harvest в backend.</div>';
+
+  // ---- Feed state ----
+  let currentFilter = 'all';
+  let currentSort   = 'popular';
+  let currentSearch = '';
+
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentFilter = btn.dataset.filter;
+      renderFeed();
+    });
+  });
+
+  document.getElementById('ev-sort').addEventListener('change', e => {
+    currentSort = e.target.value;
+    renderFeed();
+  });
+
+  let searchTimer;
+  document.getElementById('ev-search').addEventListener('input', e => {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => { currentSearch = e.target.value.trim().toLowerCase(); renderFeed(); }, 200);
+  });
+
+  function sortEvents(list) {
+    switch (currentSort) {
+      case 'edge':    list.sort((a,b) => (b.edgeScore||0)  - (a.edgeScore||0)); break;
+      case 'volume':  list.sort((a,b) => parseFloat(String(b.volumeTotal).replace(/[^0-9.]/g,'')) - parseFloat(String(a.volumeTotal).replace(/[^0-9.]/g,''))); break;
+      case 'new':     list.sort((a,b) => new Date(b.proofTrack?.opened||0) - new Date(a.proofTrack?.opened||0)); break;
+      case 'horizon': list.sort((a,b) => parseInt(a.horizon) - parseInt(b.horizon)); break;
+      default:        list.sort((a,b) => parseFloat(String(b.volumeTotal).replace(/[^0-9.]/g,'')) - parseFloat(String(a.volumeTotal).replace(/[^0-9.]/g,''))); break;
+    }
+    return list;
+  }
+
+  function getFeedList(source) {
+    let list = source === 'live' ? [...liveEvents] : [...demoEvents];
+    if (currentFilter !== 'all') list = list.filter(e => e.categoryTag === currentFilter);
+    if (currentSearch) list = list.filter(e =>
+      e.title.toLowerCase().includes(currentSearch) ||
+      e.category.toLowerCase().includes(currentSearch)
+    );
+    return sortEvents(list);
+  }
+
+  function renderFeedSection(elId, list) {
+    const el = document.getElementById(elId);
+    if (!list.length) {
+      el.innerHTML = `<div class="ev-empty"><div class="ev-empty-icon">🔍</div>Ничего не найдено</div>`;
+      return;
+    }
+    el.innerHTML = list.map(ev => renderListRow(ev)).join('');
+  }
+
+  function renderFeed() {
+    const liveList = getFeedList('live');
+    const demoList = getFeedList('demo');
+    const total = liveList.length + demoList.length;
+    document.getElementById('ev-count').innerHTML = `<strong>${total}</strong> ${plural(total,'событие','события','событий')}`;
+    document.getElementById('live-count').textContent = `${liveList.length} ${plural(liveList.length,'событие','события','событий')}`;
+    document.getElementById('demo-count').textContent = `${demoList.length} ${plural(demoList.length,'событие','события','событий')}`;
+    renderFeedSection('feed-list-live', liveList);
+    renderFeedSection('feed-list-demo', demoList);
+  }
+
+  // ---- Grid card ----
+  function renderGridCard(ev) {
+    const potClass   = 'sv-purple';
+    const vol24Class = ev.volume24hPositive ? 'sv-pos' : 'sv-neg';
+    const interestVal = ev.interestPositive ? 'Растёт' : 'Падает';
+    const interestSub = ev.interestPositive ? 'Рынок активен' : 'Рынок остывает';
+    const ppConf = ev.verdict === 'NO' ? (100 - ev.aiOdds) : ev.aiOdds;
+    return `
+      <div class="event-card is-hot" onclick="location.href='event.html?id=${ev.id}'">
+        <div class="card-topbar">
+          ${ev.hot ? '<span class="card-hot">🔥 Горячее</span>' : ''}
+          ${sourceBadge(ev, 'card-source')}
+          <span class="card-category-tag">${ev.category}</span>
+          <div class="card-topbar-right">
+            <span class="card-watchers">👁 ${ev.watchers||'—'} следят</span>
+            <span class="card-bookmark">🔖</span>
+          </div>
+        </div>
+        <div class="card-title-block"><div class="card-title">${ev.title}</div></div>
+        <div class="card-stats-row">
+          <div class="card-stat">
+            <div class="stat-icon si-purple">${SVG.trending}</div>
+            <div class="stat-body">
+              <span class="stat-lbl">Потенциал</span>
+              <span class="stat-val ${potClass}">${ev.potential||'—'}</span>
+              <span class="stat-sub">Возможный рост</span>
+            </div>
+          </div>
+          <div class="card-stat">
+            <div class="stat-icon si-purple">${SVG.trending}</div>
+            <div class="stat-body">
+              <span class="stat-lbl">Вероятность</span>
+              <span class="stat-val sv-purple">${ppConf}%</span>
+              <span class="stat-sub">Оценка PP AI</span>
+            </div>
+          </div>
+          <div class="card-stat">
+            <div class="stat-icon si-green">${SVG.calendar}</div>
+            <div class="stat-body">
+              <span class="stat-lbl">Горизонт</span>
+              <span class="stat-val sv-green">${ev.horizon||'—'}</span>
+              <span class="stat-sub">Ожидаемое движение</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-stats-row">
+          <div class="card-stat">
+            <div class="stat-icon si-blue">${SVG.database}</div>
+            <div class="stat-body">
+              <span class="stat-lbl">Денег в событии</span>
+              <span class="stat-val sv-white">${ev.volumeTotal||'—'}</span>
+              <span class="stat-sub">Всего за всё время</span>
+            </div>
+          </div>
+          <div class="card-stat">
+            <div class="stat-icon si-teal">${SVG.trendUp}</div>
+            <div class="stat-body">
+              <span class="stat-val ${vol24Class}">${ev.volume24h||'—'}</span>
+              <span class="stat-sub">за 24 часа</span>
+            </div>
+          </div>
+          <div class="card-stat">
+            <div class="stat-icon si-pink">${SVG.bars}</div>
+            <div class="stat-body">
+              <span class="stat-lbl">Интерес</span>
+              <span class="stat-val sv-pink">${interestVal}</span>
+              <span class="stat-sub">${interestSub}</span>
+            </div>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  // ---- List row ----
+  function renderListRow(ev) {
+    const cs = getCatStyle(ev);
+    const riskVal   = { low: 'Низкий', medium: 'Средний', high: 'Высокий' }[ev.riskLevel] || ev.riskLevel;
+    const riskColor = { low: '#22c55e', medium: '#f97316', high: '#f87171' }[ev.riskLevel] || '#fff';
+    return `
+      <div class="ev-list-row" onclick="location.href='event.html?id=${ev.id}'">
+        <div class="ev-list-thumb" style="background:${cs.grad}">
+        <span style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;color:${cs.stroke}">${getCatIcon(ev)}</span>
+      </div>
+        <div class="ev-list-content">
+          <div class="ev-list-meta">
+            ${ev.hot ? '<span class="ev-list-hot">🔥 Горячее</span>' : ''}
+            ${sourceBadge(ev, 'ev-list-source')}
+            <span class="ev-list-cat" style="color:${cs.color};background:${cs.bg};border:1px solid ${cs.border}">${ev.category}</span>
+          </div>
+          <div class="ev-list-title">${ev.title}</div>
+          <div class="ev-list-sub">
+            <span>${ev.volumeTotal||'—'}</span>
+            <span class="ev-list-sub-dot">·</span>
+            <span>${ev.volume24h||'—'} / 24ч</span>
+            <span class="ev-list-sub-dot">·</span>
+            <span style="color:${ev.interestPositive?'#22c55e':'#f87171'}">${ev.interestPositive?'▲ Интерес растёт':'▼ Интерес падает'}</span>
+          </div>
+        </div>
+        <div class="ev-list-metrics">
+          <div class="ev-list-metric">
+            <span class="ev-list-metric-val sv-purple">${ev.potential||'—'}</span>
+            <span class="ev-list-metric-lbl">Потенциал</span>
+          </div>
+          <div class="ev-list-metric">
+            <span class="ev-list-metric-val" style="color:${riskColor}">${riskVal}</span>
+            <span class="ev-list-metric-lbl">Риск</span>
+          </div>
+          <div class="ev-list-metric">
+            <span class="ev-list-metric-val sv-green">${ev.horizon||'—'}</span>
+            <span class="ev-list-metric-lbl">Горизонт</span>
+          </div>
+        </div>
+        <div class="ev-list-actions">
+          <span class="ev-list-bookmark" onclick="event.stopPropagation()">🔖</span>
+          <div class="ev-list-arrow"><svg viewBox="0 0 14 14"><polyline points="4,2 10,7 4,12"/></svg></div>
+        </div>
+      </div>`;
+  }
+
+  function plural(n, one, few, many) {
+    const m = n % 10, c = n % 100;
+    if (m===1 && c!==11) return one;
+    if (m>=2 && m<=4 && (c<10||c>=20)) return few;
+    return many;
+  }
+
+  renderFeed();
+})();
+
+/* ==================== PP CHECK ==================== */
+const PPC_DATA = {
+  default: {
+    title: 'ФРС снизит ставку в июле 2026?',
+    edge: '+29', edgeClass: '', market: '38%', ai: '67%',
+    edgeDesc: 'Рынок: 38% · PP AI: 67% · Перевес ДА',
+    verdictIco: '✅',
+    verdictText: 'Рынок недооценивает вероятность снижения. Данные PCE за май и риторика Пауэлла указывают на готовность к смягчению. Перевес положительный — позиция оправдана при ставке до 8% от портфеля.',
+    verdictPill: '<span class="ppcv-pill yes">✓ Рекомендовано к рассмотрению</span>',
+    agents: [
+      { av:'📊', name:'MacroScout', role:'Макроанализ', v:'ПОДДЕРЖИВАЕТ', vc:'av-green', msg:'Инфляция падает третий квартал подряд. Исторически в такие моменты ФРС снижает ставку.', conf:74 },
+      { av:'📡', name:'NewsRadar', role:'Новостной мониторинг', v:'ХОРОШИЙ ЗНАК', vc:'av-green', msg:'Пауэлл 12 июня: «готовы реагировать». WSJ инсайдеры намекают на июльское снижение.', conf:68 },
+      { av:'🛡️', name:'RiskGuard', role:'Анализ рисков', v:'ЕСТЬ РИСКИ', vc:'av-orange', msg:'Главный риск — данные по рынку труда 5 июля. Сильный NFP = пауза.', conf:55 },
+      { av:'⚡', name:'EdgeCalc', role:'Расчёт edge', v:'ВЫГОДНО ВОЙТИ', vc:'av-green', msg:'Перевес +29 пп. На $100 — ожидаемый выигрыш $38. Ставить до 8% портфеля.', conf:71 },
+      { av:'🔬', name:'AutopsyAI', role:'Трек-рекорд', v:'ИСТОРИЯ: ДА', vc:'av-purple', msg:'Сент.2024, июль 2019, дек.2015 — три раза PP видел больше рынка, все три раза ставку снизили.', conf:80 },
+    ],
+    risks: [
+      { n:'Данные рынка труда (5 июля)', p:'Высокая', i:'Сильное', b:'rl-high', bt:'Критично', bw:72, bc:'linear-gradient(90deg,#f97316,#ef4444)' },
+      { n:'Рост цен на нефть', p:'Средняя', i:'Умеренное', b:'rl-medium', bt:'Средний', bw:48, bc:'linear-gradient(90deg,#eab308,#f97316)' },
+      { n:'Инфляция в услугах >3.5%', p:'Средняя', i:'Умеренное', b:'rl-medium', bt:'Средний', bw:38, bc:'linear-gradient(90deg,#22c55e,#eab308)' },
+      { n:'Геополитический шок', p:'Низкая', i:'Сильное', b:'rl-low', bt:'Низкий', bw:18, bc:'linear-gradient(90deg,#4ade80,#22c55e)' },
+    ],
+  },
+  btc: {
+    title: 'Bitcoin достигнет $150 000 до конца 2026?',
+    edge: '+33', edgeClass: '', market: '29%', ai: '62%',
+    edgeDesc: 'Рынок: 29% · PP AI: 62% · Перевес ДА',
+    verdictIco: '⚠️',
+    verdictText: 'Цикл халвинга и институциональный спрос создают попутный ветер. Рынок пессимистичен после апрельской коррекции. Из-за высокой волатильности — ставка не более 3–5% портфеля.',
+    verdictPill: '<span class="ppcv-pill maybe">⚠ С осторожностью — риск высокий</span>',
+    agents: [
+      { av:'🔗', name:'OnChainBot', role:'On-chain анализ', v:'ПОДДЕРЖИВАЕТ', vc:'av-green', msg:'Биткоинов на биржах рекордно мало. 65% BTC не продавались больше года.', conf:82 },
+      { av:'📊', name:'MacroScout', role:'Макроанализ', v:'ХОРОШИЙ ЗНАК', vc:'av-green', msg:'BlackRock IBIT: $58 млрд. Просадку апреля скупили за рекордные 19 дней.', conf:76 },
+      { av:'🛡️', name:'RiskGuard', role:'Анализ рисков', v:'ВЫСОКИЙ РИСК', vc:'av-red', msg:'Закон ЕС о крипте — голосование в сентябре. Похожие новости роняли BTC на 15–25%.', conf:60 },
+      { av:'⚡', name:'EdgeCalc', role:'Расчёт edge', v:'С ОСТОРОЖНОСТЬЮ', vc:'av-orange', msg:'Перевес +33 пп, но высокие риски. Ставить только 3–5% от портфеля.', conf:58 },
+    ],
+    risks: [
+      { n:'Закон ЕС о регулировании крипты', p:'Средняя', i:'Сильное', b:'rl-high', bt:'Критично', bw:65, bc:'linear-gradient(90deg,#f97316,#ef4444)' },
+      { n:'Нестабильность у $120–130k', p:'Высокая', i:'Умеренное', b:'rl-high', bt:'Высокий', bw:78, bc:'linear-gradient(90deg,#ef4444,#f87171)' },
+      { n:'Coordinated sell крупных игроков', p:'Низкая', i:'Сильное', b:'rl-medium', bt:'Средний', bw:30, bc:'linear-gradient(90deg,#eab308,#f97316)' },
+      { n:'Регуляторный риск в Азии', p:'Средняя', i:'Умеренное', b:'rl-medium', bt:'Средний', bw:44, bc:'linear-gradient(90deg,#eab308,#f97316)' },
+    ],
+  },
+};
+
+let ppcTab = 'url';
+
+function ppcSwitchTab(t) {
+  ppcTab = t;
+  document.getElementById('ppctab-url').classList.toggle('active', t==='url');
+  document.getElementById('ppctab-thesis').classList.toggle('active', t==='thesis');
+  document.getElementById('ppc-url').style.display     = t==='url'    ? 'block' : 'none';
+  document.getElementById('ppc-thesis').style.display  = t==='thesis' ? 'block' : 'none';
+  document.querySelector('.ppi-icon').style.display    = t==='url'    ? 'block' : 'none';
+}
+
+function ppcRun() {
+  const q = ((ppcTab==='url'
+    ? document.getElementById('ppc-url').value
+    : document.getElementById('ppc-thesis').value) || '').trim().toLowerCase();
+
+  const inp = ppcTab==='url' ? document.getElementById('ppc-url') : document.getElementById('ppc-thesis');
+  if (!q) {
+    inp.style.borderColor='rgba(248,113,113,0.6)';
+    setTimeout(()=>inp.style.borderColor='',1500);
+    inp.focus(); return;
+  }
+
+  const scenario = (q.includes('btc')||q.includes('bitcoin')||q.includes('150')||q.includes('крипт'))
+    ? PPC_DATA.btc : PPC_DATA.default;
+
+  document.getElementById('ppc-results').classList.remove('active');
+  document.getElementById('ppc-loading').classList.add('active');
+  document.getElementById('ppcheck-section').scrollIntoView({ behavior:'smooth', block:'start' });
+
+  const sids = ['ppcs-1','ppcs-2','ppcs-3','ppcs-4','ppcs-5'];
+  sids.forEach((id,i)=>{
+    const el=document.getElementById(id);
+    el.classList.remove('active','done');
+    setTimeout(()=>{ el.classList.add('active'); if(i>0)document.getElementById(sids[i-1]).classList.add('done'); }, 350+i*420);
+  });
+
+  setTimeout(()=>{
+    document.getElementById('ppc-loading').classList.remove('active');
+    ppcFill(scenario);
+    document.getElementById('ppc-results').classList.add('active');
+    if(window.PP && PP.getTier()==='lite') document.getElementById('ppc-upsell').style.display='flex';
+  }, 350+sids.length*420+300);
+}
+
+function ppcFill(d) {
+  document.getElementById('ppc-res-title').textContent = d.title;
+  document.getElementById('ppc-edge-val').textContent = d.edge;
+  document.getElementById('ppc-edge-val').className = 'ppc-edge-val '+(d.edgeClass||'');
+  document.getElementById('ppc-market-odds').textContent = d.market;
+  document.getElementById('ppc-ai-odds').textContent = d.ai;
+  document.getElementById('ppc-edge-desc').textContent = d.edgeDesc;
+  document.getElementById('ppc-verdict-ico').textContent = d.verdictIco;
+  document.getElementById('ppc-verdict-text').textContent = d.verdictText;
+  document.getElementById('ppc-verdict-pill').innerHTML = d.verdictPill;
+  document.getElementById('ppc-wr-badge').textContent = d.agents.length+' агентов';
+
+  document.getElementById('ppc-agents').innerHTML = d.agents.map(a=>`
+    <div class="ppck-agent">
+      <div class="ppck-agent-top">
+        <div class="ppck-agent-av">${a.av}</div>
+        <div><div class="ppck-agent-name">${a.name}</div><div class="ppck-agent-role">${a.role}</div></div>
+        <div class="ppck-verdict ${a.vc}">${a.v}</div>
+      </div>
+      <div class="ppck-agent-msg">${a.msg}</div>
+      <div class="ppck-conf">
+        <div class="ppck-conf-bar-wrap"><div class="ppck-conf-bar" style="width:${a.conf}%"></div></div>
+        <div class="ppck-conf-pct">${a.conf}%</div>
+      </div>
+    </div>`).join('');
+
+  document.getElementById('ppc-risk-items').innerHTML = d.risks.map(r=>`
+    <div class="ppck-risk-item">
+      <div class="ppck-risk-name">${r.n}</div>
+      <div class="ppck-bar-wrap"><div class="ppck-bar" style="width:${r.bw}%;background:${r.bc}"></div></div>
+      <div class="ppck-badge ${r.b}">${r.bt}</div>
+    </div>`).join('');
+
+  document.getElementById('ppc-matrix-rows').innerHTML = d.risks.map(r=>`
+    <div class="ppck-mt-row">
+      <div class="ppck-mt-name">${r.n}</div>
+      <div class="ppck-mt-prob">${r.p}</div>
+      <div style="font-weight:600;font-size:12px;color:rgba(255,255,255,0.72)">${r.i}</div>
+      <div><span class="ppck-mt-badge ${r.b}">${r.bt}</span></div>
+    </div>`).join('');
+}
+
+function ppcReset() {
+  document.getElementById('ppc-results').classList.remove('active');
+  document.getElementById('ppc-url').value='';
+  document.getElementById('ppc-thesis').value='';
+  document.getElementById('ppc-url').focus();
+}
+
+/* ══════════════════════════════════════════════
+   CLOSED EVENTS — Event Autopsy
+══════════════════════════════════════════════ */
+(function renderClosedEvents() {
+  const data   = window.EVENTS_DATA?.closedEvents || [];
+  const grid   = document.getElementById('ev-closed-grid');
+  const stats  = document.getElementById('ev-closed-stats');
+  if (!grid) return;
+
+  /* ── Accuracy stats strip ── */
+  const total   = data.length;
+  const correct = data.filter(e => e.ppCorrect).length;
+  const pct     = total ? Math.round(correct / total * 100) : 0;
+  const avgEdge = total ? Math.round(data.reduce((s,e)=>s+parseFloat(e.edge||0),0)/total) : 0;
+
+  if (stats) {
+    stats.innerHTML = [
+      { val: pct + '%',     lbl: 'Точность PP AI',       cls: 'green'  },
+      { val: correct + '/' + total, lbl: 'Верных прогнозов', cls: 'purple' },
+      { val: '+' + avgEdge + '%',   lbl: 'Средний перевес',      cls: 'blue'   },
+      { val: data.length,   lbl: 'Закрытых событий',     cls: 'purple' },
+    ].map(s => `
+      <div class="ev-cs-stat">
+        <div class="ev-cs-val ${s.cls}">${s.val}</div>
+        <div class="ev-cs-lbl">${s.lbl}</div>
+      </div>`).join('');
+  }
+
+  /* ── Helpers ── */
+  const CAT_COLOR = {
+    macro: '#60a5fa', crypto: '#a78bfa', politics: '#fb923c',
+    tech: '#34d399', cinema: '#f472b6', sport: '#facc15', economics: '#60a5fa',
+  };
+  function catColor(tag) { return CAT_COLOR[tag] || '#a78bfa'; }
+
+  /* ── Render cards ── */
+  grid.innerHTML = data.map(ev => {
+    const col   = catColor(ev.categoryTag);
+    const dateStr = ev.resolvedDate
+      ? ev.resolvedDate.split('-').reverse().join('.')
+      : '';
+
+    const reasonsHTML = (ev.reasons || []).map(r => {
+      const ico = r.impact === 'positive' ? '✓' : r.impact === 'negative' ? '✕' : '—';
+      return `<div class="ev-cb-reason">
+        <div class="ev-cb-reason-ico ${r.impact}">${ico}</div>
+        <span>${r.text}</span>
+      </div>`;
+    }).join('');
+
+    const verdictLabel = ev.ppCorrect ? 'PP AI был прав' : 'PP AI ошибся';
+    const verdictIcon  = ev.ppCorrect
+      ? `<svg viewBox="0 0 20 20"><polyline points="4 10 8 14 16 6"/></svg>`
+      : `<svg viewBox="0 0 20 20"><line x1="5" y1="5" x2="15" y2="15"/><line x1="15" y1="5" x2="5" y2="15"/></svg>`;
+
+    const wrongHTML = ev.whereWrong
+      ? `<div class="ev-cb-wrong">${ev.whereWrong}</div>`
+      : '';
+
+    return `
+    <div class="ev-closed-card">
+
+      <!-- Top: title + verdict -->
+      <div class="ev-closed-card-top">
+        <div class="ev-cc-left">
+          <div class="ev-cc-meta">
+            <div class="ev-cc-cat" style="color:${col};background:${col}18;border-color:${col}30">${ev.category}</div>
+            <div class="ev-cc-date">Закрыто ${dateStr}</div>
+            <div class="ev-cc-horizon">${ev.horizon}</div>
+          </div>
+          <div class="ev-cc-title">${ev.title}</div>
+          <div class="ev-cc-summary">${ev.summary}</div>
+        </div>
+        <div class="ev-cc-right">
+          <div class="ev-cc-verdict ${ev.ppCorrect ? 'correct' : 'wrong'}">${verdictIcon}${verdictLabel}</div>
+          <div class="ev-cc-outcome">Итог: <strong>${ev.outcome === 'YES' ? 'Событие произошло' : 'Событие не произошло'}</strong></div>
+          <div class="ev-cc-profit">${ev.profit}</div>
+        </div>
+      </div>
+
+      <!-- Odds comparison -->
+      <div class="ev-closed-odds">
+        <div class="ev-co-block">
+          <div class="ev-co-lbl">PP AI при открытии</div>
+          <div class="ev-co-val pp">${ev.ppOddsAtOpen}%</div>
+          <div class="ev-co-sub">Прогноз PP AI</div>
+        </div>
+        <div class="ev-co-divider"></div>
+        <div class="ev-co-block">
+          <div class="ev-co-lbl">Рынок при открытии</div>
+          <div class="ev-co-val market">${ev.marketOddsAtOpen}%</div>
+          <div class="ev-co-sub">Полимаркет</div>
+        </div>
+        <div class="ev-co-arrow">→</div>
+        <div class="ev-co-block">
+          <div class="ev-co-lbl">Рынок при закрытии</div>
+          <div class="ev-co-val result">${ev.marketOddsAtClose}%</div>
+          <div class="ev-co-sub">Финальная цена</div>
+        </div>
+        <div class="ev-co-divider"></div>
+        <div class="ev-co-edge">
+          <div class="ev-co-edge-val">${ev.edge}</div>
+          <div class="ev-co-edge-lbl">Перевес PP AI</div>
+        </div>
+      </div>
+
+      <!-- Body: reasons + lesson -->
+      <div class="ev-closed-body">
+        <div class="ev-cb-col">
+          <div class="ev-cb-col-title">Почему это произошло</div>
+          <div class="ev-cb-reasons">${reasonsHTML}</div>
+          ${wrongHTML}
+        </div>
+        <div class="ev-cb-col">
+          <div class="ev-cb-col-title">Урок и анализ PP AI</div>
+          <div class="ev-cb-lesson">${ev.lesson}</div>
+          <div class="ev-cb-agent-row">
+            <div class="ev-cb-agent-ico">⚡</div>
+            <div class="ev-cb-agent-text">${ev.agentVerdict}</div>
+          </div>
+        </div>
+      </div>
+
+    </div>`;
+  }).join('');
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1005 @@
+{
+  "count": 10,
+  "items": [
+    {
+      "testNo": 1,
+      "tags": [
+        "low_liquidity",
+        "multi_market",
+        "news_driven"
+      ],
+      "event": {
+        "id": "16183",
+        "slug": "kraken-ipo-in-2025",
+        "title": "Kraken IPO by ___ ?",
+        "description": "This market will resolve to \"Yes\" if Kraken (US-based cryptocurrency exchange) completes an Initial Public Offering (IPO) by December 31, 2025, 11:59 PM ET, as confirmed by official company announcements or credible news sources. The IPO refers to the first sale of stock by Kraken to the public on any recognized stock exchange.\n\nIf Kraken merges with another entity, is acquired, or ceases to exist before the market resolves, the market will also resolve to \"No\".\n\nThis market will resolve early if Kraken completes an IPO by December 31, 2025, 11:59 PM ET.\n\nThe resolution source for this market is a consensus of credible reporting.",
+        "category": null,
+        "volume": 1571427.707500002,
+        "volume24hr": 461.64030199999996,
+        "liquidity": 7061.2979,
+        "startDate": "2024-12-31T19:05:45.901363Z",
+        "endDate": "2027-01-01T05:00:00Z",
+        "marketsCount": 4,
+        "markets": [
+          {
+            "id": "516950",
+            "question": "Kraken IPO in 2025?",
+            "conditionId": "0x5b70123b2c37355840b38bc60752919dae7ca5fe11d5e5184aa69be01b9db458",
+            "clobTokenIds": "[\"106229668102716149832209250222340847662201251266419359322746795373714233470739\", \"33007765079325382103458898680383691503895532108499178620460955049586020382226\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0\", \"1\"]",
+            "volume": "494516.53254",
+            "liquidity": null
+          },
+          {
+            "id": "678876",
+            "question": "Kraken IPO by March 31, 2026?",
+            "conditionId": "0x9b3c3177fe473124c756b01e123b4b03e3a99880844ed8dea21b0a7879ca04aa",
+            "clobTokenIds": "[\"33799186820745984796925628555218896548353763534512103584425851114581900224385\", \"103693433518125527001416636574099415821922498558487623412396163292963814003978\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0\", \"1\"]",
+            "volume": "545638.9248109999",
+            "liquidity": null
+          },
+          {
+            "id": "691547",
+            "question": "Kraken IPO by December 31, 2026?",
+            "conditionId": "0xced0cb8725bad43d78fda0cd0e5fa9e31804625cb3502b2c7897f8e8f7fa9e1f",
+            "clobTokenIds": "[\"34626184950254225208692030156208941308358060420950772251072421141618169142241\", \"28557614648090529004584076028720900603196666949274543515794672175624115225556\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0.28\", \"0.72\"]",
+            "volume": "531272.2501490023",
+            "liquidity": "7023.2979"
+          }
+        ],
+        "source": "polymarket_gamma",
+        "sourceUrl": "https://polymarket.com/event/kraken-ipo-in-2025"
+      },
+      "analysis": {
+        "eventId": "16183",
+        "source": "polymarket_gamma",
+        "priority": {
+          "agent": "Priority Agent",
+          "score": 75,
+          "decision": "watchlist",
+          "reason": "Potential for significant developments in the cryptocurrency market leading up to 2025."
+        },
+        "newsScout": {
+          "agent": "News Scout",
+          "summary": "Kraken has not made any official announcements regarding an IPO, but there are ongoing discussions in the cryptocurrency community about potential public offerings.",
+          "facts": [
+            "Kraken is a US-based cryptocurrency exchange.",
+            "The market resolves to 'Yes' if Kraken completes an IPO by December 31, 2025.",
+            "No official announcements have been made regarding the IPO."
+          ],
+          "missing": [
+            "Official announcements from Kraken regarding IPO plans.",
+            "Credible news sources confirming Kraken's IPO timeline."
+          ]
+        },
+        "riskOfficer": {
+          "agent": "Risk Officer",
+          "riskLevel": "medium",
+          "flags": [
+            "Uncertainty in cryptocurrency regulations.",
+            "Market volatility in the crypto sector."
+          ]
+        },
+        "verdict": {
+          "agent": "Verdict Agent",
+          "ppVerdict": "pending",
+          "confidence": 60,
+          "edgeScore": null,
+          "status": "research_required"
+        },
+        "ui": {
+          "closedCardBadge": "Watchlist",
+          "warRoomAgents": [
+            "Priority Agent",
+            "News Scout",
+            "Risk Officer",
+            "Verdict Agent"
+          ],
+          "disclaimer": "Analysis only. Not financial advice."
+        }
+      }
+    },
+    {
+      "testNo": 2,
+      "tags": [
+        "multi_market"
+      ],
+      "event": {
+        "id": "16263",
+        "slug": "macron-out-in-2025",
+        "title": "Macron out by...?",
+        "description": "This market will resolve to \"Yes\" if Emmanuel Macron ceases to be President of France for any length of time between January 2 and December 31, 2025, 11:59 PM ET (inclusive). Otherwise, this market will resolve to \"No\".\n\nIf Macron departs from office before the expiry date, the market should resolve immediately.\n\nThe primary resolution source for this market will be information from the government of France, however a consensus of credible reporting will also be used.",
+        "category": null,
+        "volume": 2018808.1589640004,
+        "volume24hr": 2837.801,
+        "liquidity": 23126.50639,
+        "startDate": "2025-01-03T19:35:04.095066Z",
+        "endDate": "2026-06-30T12:00:00Z",
+        "marketsCount": 3,
+        "markets": [
+          {
+            "id": "517231",
+            "question": "Macron out in 2025?",
+            "conditionId": "0x6301809524e73edb9ab1bd180101ae6d9588ba78075a64c479f334a6d2a12975",
+            "clobTokenIds": "[\"76829103262452682809495706312303596619517678311126635179788744002179270771878\", \"64363447502273727810951885622300334984823192995733592399845260605779604346480\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0\", \"1\"]",
+            "volume": "1386219.767204",
+            "liquidity": null
+          },
+          {
+            "id": "597964",
+            "question": "Macron out by June 30, 2026?",
+            "conditionId": "0xda5c517dd5b78c80dec8ceb08ca4f466317633487827d7290332b4851cc4a4fa",
+            "clobTokenIds": "[\"16201530957950630406397949502319734794139620443510795733205872225099141120819\", \"22488814055465212843401871684243737932656687199587127613893702721105723939237\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0.0025\", \"0.9975\"]",
+            "volume": "426963.8843380005",
+            "liquidity": "23090.84639"
+          },
+          {
+            "id": "623939",
+            "question": "Macron out by October 31, 2025?",
+            "conditionId": "0xdc7ff8e7d1bf22e6b9f372b3122bf553ed7bfedebc500e76e61aab35d9ebdb8e",
+            "clobTokenIds": "[\"34035142221712364354899416126623416304962260767590062792033879920204802585564\", \"63517326976374375632630658298716704665562106331315856506724933470892403292808\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0\", \"1\"]",
+            "volume": "205624.507422",
+            "liquidity": null
+          }
+        ],
+        "source": "polymarket_gamma",
+        "sourceUrl": "https://polymarket.com/event/macron-out-in-2025"
+      },
+      "analysis": {
+        "eventId": "16263",
+        "source": "polymarket_gamma",
+        "priority": {
+          "agent": "Priority Agent",
+          "score": 75,
+          "decision": "accepted",
+          "reason": "Macron's presidency is stable, but political dynamics could change."
+        },
+        "newsScout": {
+          "agent": "News Scout",
+          "summary": "Current political climate in France shows Macron maintaining a strong position, but potential challenges loom.",
+          "facts": [
+            "Macron was re-elected in 2022 and has a majority in the National Assembly.",
+            "Political opposition is fragmented, but there are growing protests against his policies."
+          ],
+          "missing": [
+            "Recent polling data on Macron's approval ratings.",
+            "Information on potential challengers for the presidency in 2025."
+          ]
+        },
+        "riskOfficer": {
+          "agent": "Risk Officer",
+          "riskLevel": "medium",
+          "flags": [
+            "Potential for political unrest.",
+            "Uncertainty regarding upcoming elections."
+          ]
+        },
+        "verdict": {
+          "agent": "Verdict Agent",
+          "ppVerdict": "No",
+          "confidence": 70,
+          "edgeScore": null,
+          "status": "ready"
+        },
+        "ui": {
+          "closedCardBadge": "Accepted",
+          "warRoomAgents": [
+            "Priority Agent",
+            "News Scout",
+            "Risk Officer",
+            "Verdict Agent"
+          ],
+          "disclaimer": "Analysis only. Not financial advice."
+        }
+      }
+    },
+    {
+      "testNo": 3,
+      "tags": [
+        "low_liquidity",
+        "multi_market",
+        "news_driven"
+      ],
+      "event": {
+        "id": "16423",
+        "slug": "uk-election-called-by",
+        "title": "UK election called by...?",
+        "description": "This is a market on predicting the date when the UK general election will be officially called.",
+        "category": null,
+        "volume": 785073.626681,
+        "volume24hr": 353.166156,
+        "liquidity": 10362.6932,
+        "startDate": "2025-01-06T13:23:37.947481Z",
+        "endDate": "2025-12-31T12:00:00Z",
+        "marketsCount": 5,
+        "markets": [
+          {
+            "id": "517548",
+            "question": "Will the next UK election be called by March 31?",
+            "conditionId": "0x6c3493304224c9c89a846a14c67a0510deb1cc5aa69159973f06940d5c6a4fa9",
+            "clobTokenIds": "[\"88690814996233770591898470716166328103466067940966473105605164201940329453282\", \"8742751018229234832921857767309518554098936800170398659707180534144915847218\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0\", \"1\"]",
+            "volume": "577431.026465",
+            "liquidity": null
+          },
+          {
+            "id": "517550",
+            "question": "Will the next UK election be called by December 31?",
+            "conditionId": "0xed3848eec7b1b96bd46d8c47b9d6761a304f37ee60a5bc4280e90e4fa2dea4f0",
+            "clobTokenIds": "[\"103987163544260987991532262433517870096186052165281012310649437931429785893640\", \"95240063980635384389711700976920130330286151970005645915312362757635455311419\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0\", \"1\"]",
+            "volume": "91962.29858",
+            "liquidity": null
+          },
+          {
+            "id": "517549",
+            "question": "Will the next UK election be called by June 30?",
+            "conditionId": "0xe2682c2d5706520d27adf5f395ba828265b7f592af186f630d1882f3f88801e2",
+            "clobTokenIds": "[\"71814393255767059896885192320205110950970857723857002926607409598043220968518\", \"12829516190095699015724020226971790365553069623531701813243912652159051546595\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0\", \"1\"]",
+            "volume": "56330.877836",
+            "liquidity": "0"
+          }
+        ],
+        "source": "polymarket_gamma",
+        "sourceUrl": "https://polymarket.com/event/uk-election-called-by"
+      },
+      "analysis": {
+        "eventId": "16423",
+        "source": "polymarket_gamma",
+        "priority": {
+          "agent": "Priority Agent",
+          "score": 75,
+          "decision": "watchlist",
+          "reason": "The UK election is expected to be called in 2025, but specific dates remain uncertain."
+        },
+        "newsScout": {
+          "agent": "News Scout",
+          "summary": "The UK general election is anticipated to be called sometime in 2025, with no official announcement yet.",
+          "facts": [
+            "The UK general election must be called by the end of 2025.",
+            "Current speculation suggests a possible call by March 31, June 30, or December 31."
+          ],
+          "missing": [
+            "Official announcements regarding the election date.",
+            "Political developments that may influence the timing of the election."
+          ]
+        },
+        "riskOfficer": {
+          "agent": "Risk Officer",
+          "riskLevel": "medium",
+          "flags": [
+            "Uncertainty regarding the exact date of the election call.",
+            "Potential for political changes that could affect the election timeline."
+          ]
+        },
+        "verdict": {
+          "agent": "Verdict Agent",
+          "ppVerdict": "research_required",
+          "confidence": 65,
+          "edgeScore": null,
+          "status": "research_required"
+        },
+        "ui": {
+          "closedCardBadge": "Watchlist",
+          "warRoomAgents": [
+            "Priority Agent",
+            "News Scout",
+            "Risk Officer",
+            "Verdict Agent"
+          ],
+          "disclaimer": "Analysis only. Not financial advice."
+        }
+      }
+    },
+    {
+      "testNo": 4,
+      "tags": [
+        "hot",
+        "low_liquidity",
+        "multi_market"
+      ],
+      "event": {
+        "id": "17526",
+        "slug": "china-x-india-military-clash-by-december-31",
+        "title": "China x India military clash by...?",
+        "description": "This is a market on the likelihood of a military clash between China and India occurring by December 31.",
+        "category": null,
+        "volume": 296057.1671369997,
+        "volume24hr": null,
+        "liquidity": 9355.8294,
+        "startDate": "2025-01-30T21:29:15.866418Z",
+        "endDate": "2025-12-31T12:00:00Z",
+        "marketsCount": 3,
+        "markets": [
+          {
+            "id": "521029",
+            "question": "China x India military clash by December 31?",
+            "conditionId": "0x689a77ca28cf59efae262fd37d07aa787194d52b13bbe009a223de15bf5c62af",
+            "clobTokenIds": "[\"62499647704758013801224496519154801919449219197687180369505612744147504118777\", \"89667254973027475163940771416019167537897714895546880163448338769528535684137\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0\", \"1\"]",
+            "volume": "73185.754279",
+            "liquidity": null
+          },
+          {
+            "id": "521028",
+            "question": "China x India military clash by June 30?",
+            "conditionId": "0x69eecc28e594a1c524ea95f095d6e86eb1bfd8a67277eda3010413e9edf68e03",
+            "clobTokenIds": "[\"82814855654672504061247670166274349069234747344604118638495723199148512283270\", \"28181983066814192341972022528872656900287488784777109397388022150121214816984\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0\", \"1\"]",
+            "volume": "37693.17445",
+            "liquidity": null
+          },
+          {
+            "id": "677404",
+            "question": "China x India military clash by December 31, 2026?",
+            "conditionId": "0x6e6851f2698629795fa06869d961c986221a80cedcba10fbaf0ed220607cdada",
+            "clobTokenIds": "[\"36135303630970774358991758965953725374791089628290212294816140371870983436829\", \"100818499003359884559774352671825765184103958625070066814408985574716007147193\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0.075\", \"0.925\"]",
+            "volume": "185178.2384079997",
+            "liquidity": "9355.8294"
+          }
+        ],
+        "source": "polymarket_gamma",
+        "sourceUrl": "https://polymarket.com/event/china-x-india-military-clash-by-december-31"
+      },
+      "analysis": {
+        "eventId": "17526",
+        "source": "polymarket_gamma",
+        "priority": {
+          "agent": "Priority Agent",
+          "score": 70,
+          "decision": "watchlist",
+          "reason": "Increased military tensions reported between China and India."
+        },
+        "newsScout": {
+          "agent": "News Scout",
+          "summary": "Recent reports indicate heightened military activity along the China-India border, raising concerns about a potential clash.",
+          "facts": [
+            "Both countries have increased troop deployments in border areas.",
+            "Diplomatic talks have stalled, leading to increased tensions."
+          ],
+          "missing": [
+            "Official statements from both governments regarding military intentions.",
+            "Analysis of recent military exercises conducted by either country."
+          ]
+        },
+        "riskOfficer": {
+          "agent": "Risk Officer",
+          "riskLevel": "high",
+          "flags": [
+            "Potential for escalation in military conflict.",
+            "Uncertainty in diplomatic relations."
+          ]
+        },
+        "verdict": {
+          "agent": "Verdict Agent",
+          "ppVerdict": "research_required",
+          "confidence": 65,
+          "edgeScore": null,
+          "status": "research_required"
+        },
+        "ui": {
+          "closedCardBadge": "Watchlist",
+          "warRoomAgents": [
+            "Priority Agent",
+            "News Scout",
+            "Risk Officer",
+            "Verdict Agent"
+          ],
+          "disclaimer": "Analysis only. Not financial advice."
+        }
+      }
+    },
+    {
+      "testNo": 5,
+      "tags": [
+        "low_liquidity"
+      ],
+      "event": {
+        "id": "17549",
+        "slug": "natoeu-troops-fighting-in-ukraine-in-2025",
+        "title": "NATO/EU troops fighting in Ukraine by...?",
+        "description": "This market will resolve to \"Yes\" if active military personnel officially affiliated with any NATO or EU country enter Ukraine for combat-related military purposes directly pertaining to the ongoing conflict with Russia by December 31, 2025, 11:59 PM ET. Otherwise, this market will resolve to \"No\".\n\nFor military personnel to qualify toward a \"Yes\" resolution, they must be 1) officially acknowledged as active military by the NATO or EU entity or member state they are affiliated with; 2) be publicly acknowledged by NATO or an EU-affiliated entity to have entered Ukraine for a combat-related military purpose directly pertaining to the ongoing conflict with Russia.\n\nFor military personnel to qualify toward a \"Yes\" resolution they need be active duty and acknowledged as described above. Participation in a combat role is necessary for this market to resolve to \"Yes\" (e.g. military personnel providing training or intelligence support would not qualify toward a \"Yes\" resolution, however drone pilots or infantry directly attacking Russian troops, or soldiers targeting and downing missiles from Ukrainian soil would qualify toward a \"Yes\" resolution).\n\nThe primary resolution source for this market will be official information from NATO, the EU, or member states of either entity, however a consensus of credible reporting will also be used.",
+        "category": null,
+        "volume": 315011.7505270001,
+        "volume24hr": 939.36,
+        "liquidity": 11703.62764,
+        "startDate": "2025-01-31T23:41:04.062553Z",
+        "endDate": "2025-12-31T12:00:00Z",
+        "marketsCount": 2,
+        "markets": [
+          {
+            "id": "521103",
+            "question": "NATO/EU troops fighting in Ukraine in 2025?",
+            "conditionId": "0x07f106c0b60e94d96a63954f0536811c1a0b054b958f26bb749689b620b72f50",
+            "clobTokenIds": "[\"103909253011351322759892776638669457027523901655815490042130382730360706229706\", \"40643730425995007653653846322257326466291751148478865541862332040512398068473\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0\", \"1\"]",
+            "volume": "170793.703881",
+            "liquidity": null
+          },
+          {
+            "id": "610236",
+            "question": "NATO/EU troops fighting in Ukraine in June 30, 2026?",
+            "conditionId": "0x6beb95a01147de25b24d3ffae7a43551f392da4235a62f058515c3e99d7af199",
+            "clobTokenIds": "[\"107587773577193309872234793913282710128193219302267633047803930965862507239189\", \"28896435178698960514118263445469746104354405285937252810253126742266982740239\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0.017\", \"0.983\"]",
+            "volume": "144218.04664600012",
+            "liquidity": "11776.45546"
+          }
+        ],
+        "source": "polymarket_gamma",
+        "sourceUrl": "https://polymarket.com/event/natoeu-troops-fighting-in-ukraine-in-2025"
+      },
+      "analysis": {
+        "eventId": "17549",
+        "source": "polymarket_gamma",
+        "priority": {
+          "agent": "Priority Agent",
+          "score": 75,
+          "decision": "watchlist",
+          "reason": "Potential for NATO/EU involvement in Ukraine is high, but official confirmation is lacking."
+        },
+        "newsScout": {
+          "agent": "News Scout",
+          "summary": "Current geopolitical tensions suggest a possibility of NATO/EU troop involvement in Ukraine, but no official announcements have been made.",
+          "facts": [
+            "Ongoing conflict between Ukraine and Russia.",
+            "NATO and EU have expressed support for Ukraine.",
+            "No official deployment of NATO/EU troops has been confirmed."
+          ],
+          "missing": [
+            "Official announcements from NATO or EU regarding troop deployments.",
+            "Details on military engagement rules for NATO/EU forces."
+          ]
+        },
+        "riskOfficer": {
+          "agent": "Risk Officer",
+          "riskLevel": "medium",
+          "flags": [
+            "High uncertainty regarding military decisions.",
+            "Potential for rapid changes in geopolitical landscape."
+          ]
+        },
+        "verdict": {
+          "agent": "Verdict Agent",
+          "ppVerdict": "watchlist",
+          "confidence": 65,
+          "edgeScore": null,
+          "status": "research_required"
+        },
+        "ui": {
+          "closedCardBadge": "Watchlist",
+          "warRoomAgents": [
+            "Priority Agent",
+            "News Scout",
+            "Risk Officer",
+            "Verdict Agent"
+          ],
+          "disclaimer": "Analysis only. Not financial advice."
+        }
+      }
+    },
+    {
+      "testNo": 6,
+      "tags": [
+        "hot",
+        "multi_market"
+      ],
+      "event": {
+        "id": "17725",
+        "slug": "starmer-out-in-2025",
+        "title": "Starmer out by...?",
+        "description": "This market will resolve to “Yes” if Keir Starmer ceases to be the Prime Minister of the United Kingdom for any period of time between February 2 and December 31, 2025, 11:59 PM ET. Otherwise, this market will resolve to “No”.\n\nAn announcement of Keir Starmer's resignation/removal before this market's end date will immediately resolve this market to \"Yes\", regardless of when the announced resignation/removal goes into effect.\n\nThe resolution source for this market will be the government of the UK, however a consensus of credible reporting will also suffice.",
+        "category": null,
+        "volume": 31100904.01984907,
+        "volume24hr": 125269.30110699989,
+        "liquidity": 240176.1841,
+        "startDate": "2025-02-03T18:45:44.284313Z",
+        "endDate": "2025-12-31T12:00:00Z",
+        "marketsCount": 11,
+        "markets": [
+          {
+            "id": "521532",
+            "question": "Starmer out in 2025?",
+            "conditionId": "0x8d0139c21a36eaf6aacda9ccac75f58a45a9f2209b336351bebcce4ab11b3b03",
+            "clobTokenIds": "[\"91444060894155880360155858596002879283571203215755535393227087768414226463866\", \"104208414994604728972267781791940504432793919643985560590060142037631110496465\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0\", \"1\"]",
+            "volume": "1321879.731075",
+            "liquidity": null
+          },
+          {
+            "id": "597967",
+            "question": "Starmer out by June 30, 2026?",
+            "conditionId": "0xbee2cd40473495f713c69b9dfbce9fc2837fa4011568222c83c83bb773e35053",
+            "clobTokenIds": "[\"34554555827438551101000555305203609600029621153428996114009350892614396532498\", \"64622848174080349355505680625481066249195809702245025265549356236367119746958\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0.125\", \"0.875\"]",
+            "volume": "5352551.159425021",
+            "liquidity": "60449.576"
+          },
+          {
+            "id": "666655",
+            "question": "Starmer out by December 31, 2026?",
+            "conditionId": "0x2bde6486e7067f48ee21344d8b5c1af458732536eb4d080932c88c3a7c2d2126",
+            "clobTokenIds": "[\"42498579290170525937803365597001189493798686141769429176410526295573824619073\", \"88902058027062214140177978007942040532071439710160833384602336149457247354303\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0.735\", \"0.265\"]",
+            "volume": "2953773.7985419827",
+            "liquidity": "76302.4408"
+          }
+        ],
+        "source": "polymarket_gamma",
+        "sourceUrl": "https://polymarket.com/event/starmer-out-in-2025"
+      },
+      "analysis": {
+        "eventId": "17725",
+        "source": "polymarket_gamma",
+        "priority": {
+          "agent": "Priority Agent",
+          "score": 75,
+          "decision": "accepted",
+          "reason": "High likelihood of political changes leading to Starmer's resignation."
+        },
+        "newsScout": {
+          "agent": "News Scout",
+          "summary": "Current political climate suggests potential instability for Starmer's leadership.",
+          "facts": [
+            "Keir Starmer is currently the Prime Minister of the UK.",
+            "Political analysts predict possible challenges to his leadership before 2025."
+          ],
+          "missing": [
+            "Recent polling data on Starmer's approval ratings.",
+            "Information on potential challengers within the Labour Party."
+          ]
+        },
+        "riskOfficer": {
+          "agent": "Risk Officer",
+          "riskLevel": "medium",
+          "flags": [
+            "Political volatility in the UK.",
+            "Potential for unexpected events affecting leadership."
+          ]
+        },
+        "verdict": {
+          "agent": "Verdict Agent",
+          "ppVerdict": "Yes",
+          "confidence": 70,
+          "edgeScore": null,
+          "status": "ready"
+        },
+        "ui": {
+          "closedCardBadge": "Accepted",
+          "warRoomAgents": [
+            "Priority Agent",
+            "News Scout",
+            "Risk Officer",
+            "Verdict Agent"
+          ],
+          "disclaimer": "Analysis only. Not financial advice."
+        }
+      }
+    },
+    {
+      "testNo": 7,
+      "tags": [
+        "hot",
+        "multi_market"
+      ],
+      "event": {
+        "id": "17858",
+        "slug": "ukraine-recognizes-russian-sovereignty-over-ukrainian-territory-in-2025",
+        "title": "Ukraine recognizes Russian sovereignty over its territory by...?",
+        "description": "This market will resolve to \"Yes\" if a deal in which Ukraine agrees to formally recognize Russian sovereignty over any UN-recognized Ukrainian territory is reached between the Russian Federation and Ukraine by December 31, 2025, 11:59 PM ET. Otherwise, this market will resolve to “No”.\n\nThe deal must be a publicly announced mutual agreement. \n\nIf such an agreement is officially reached before the resolution date, this market will resolve to \"Yes\", regardless of if/when the agreement goes into effect.\n\nAn agreement by Ukraine formally recognizing Russian sovereignty over any UN-recognized Ukrainian territory for any amount of time will count.\n\nAn agreement by Ukraine formally recognizing Russian sovereignty over any UN-recognized Ukrainian territory as a precondition of a more comprehensive peace process or deal will qualify, even if the agreement is not finalized or part of a formalized peace deal. The September 8, 1995, “Agreed Basic Principles” between Bosnia and Yugoslavia, which recognized the borders and sovereignty of Bosnia and Herzegovina, and was later formalized through the Dayton Peace Agreement, is an example of a qualifying agreement.\n\nAn official unilateral pledge by Ukraine formally recognizing Russian sovereignty over any UN-recognized Ukrainian territory will qualify for a “Yes” resolution even if not part of an agreement with Russia.\n\nThe April 19, 2013, Brussels Agreement between Serbia and Kosovo, in which Serbia recognized Kosovo’s de facto administration but did not formally grant de jure recognition, would not be considered a qualifying agreement under this market, as this market requires formal recognition of sovereignty rather than acknowledgment of administrative control.\n\nThe primary resolution source for this market will be an official announcement by Ukraine and/or the Russian Federation, however, an overwhelming consensus of credible reporting confirming an agreement has been reached will also qualify.\n",
+        "category": null,
+        "volume": 2612845.8854480004,
+        "volume24hr": null,
+        "liquidity": 35203.94915,
+        "startDate": "2025-02-06T23:19:09.390407Z",
+        "endDate": "2026-12-31T12:00:00Z",
+        "marketsCount": 3,
+        "markets": [
+          {
+            "id": "522057",
+            "question": "Ukraine recognizes Russian sovereignty over its territory by December 31, 2025?",
+            "conditionId": "0x591f785022238c7ea2563553d93c024e451a18ea74d9bbd79a6126c0267c588a",
+            "clobTokenIds": "[\"48477409091695386761559202853239391470463303066983260592312960625658563043275\", \"39073221701552764059446410725782004011128353041681427534414147663135223634260\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0\", \"1\"]",
+            "volume": "2130098.430134",
+            "liquidity": null
+          },
+          {
+            "id": "610379",
+            "question": "Ukraine recognizes Russian sovereignty over its territory by June 30, 2026?",
+            "conditionId": "0xbca45186bc1f8ad2912f79f22c6e37c0946f6619bbfbd0f97ad93d9b525a6293",
+            "clobTokenIds": "[\"3990636992955197269726492696316350470613735002003547307529304314694325536205\", \"96546182602923845565665333214247145480942442058633439074100378407858539142465\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0.0075\", \"0.9925\"]",
+            "volume": "416257.9638740003",
+            "liquidity": "11329.74485"
+          },
+          {
+            "id": "1323364",
+            "question": "Ukraine recognizes Russian sovereignty over its territory by December 31, 2026?",
+            "conditionId": "0x3e4e5225054ad5168e0b249164f643453ba97a8947f84d7aacb4c768275d48e9",
+            "clobTokenIds": "[\"111407906413483830198481741547621131014289190946534570245645667771579973364067\", \"112468620935063687606410022378078855998390735429551163191251582889945981781902\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0.09\", \"0.91\"]",
+            "volume": "66489.49144000001",
+            "liquidity": "22577.1054"
+          }
+        ],
+        "source": "polymarket_gamma",
+        "sourceUrl": "https://polymarket.com/event/ukraine-recognizes-russian-sovereignty-over-ukrainian-territory-in-2025"
+      },
+      "analysis": {
+        "eventId": "17858",
+        "source": "polymarket_gamma",
+        "priority": {
+          "agent": "Priority Agent",
+          "score": 75,
+          "decision": "watchlist",
+          "reason": "Potential for significant geopolitical developments affecting the outcome."
+        },
+        "newsScout": {
+          "agent": "News Scout",
+          "summary": "Current geopolitical tensions between Ukraine and Russia may influence the likelihood of recognition.",
+          "facts": [
+            "Ukraine has not recognized Russian sovereignty over its territory as of now.",
+            "The market resolves based on a formal agreement or announcement.",
+            "Historical precedents exist for similar agreements."
+          ],
+          "missing": [
+            "Recent diplomatic communications between Ukraine and Russia.",
+            "Public sentiment in Ukraine regarding recognition of Russian sovereignty."
+          ]
+        },
+        "riskOfficer": {
+          "agent": "Risk Officer",
+          "riskLevel": "high",
+          "flags": [
+            "Geopolitical instability",
+            "Potential for sudden changes in policy"
+          ]
+        },
+        "verdict": {
+          "agent": "Verdict Agent",
+          "ppVerdict": "pending",
+          "confidence": 60,
+          "edgeScore": null,
+          "status": "research_required"
+        },
+        "ui": {
+          "closedCardBadge": "Watchlist",
+          "warRoomAgents": [
+            "Priority Agent",
+            "News Scout",
+            "Risk Officer",
+            "Verdict Agent"
+          ],
+          "disclaimer": "Analysis only. Not financial advice."
+        }
+      }
+    },
+    {
+      "testNo": 8,
+      "tags": [
+        "multi_market",
+        "news_driven"
+      ],
+      "event": {
+        "id": "18558",
+        "slug": "ukraine-election-called-in-2025",
+        "title": "Ukraine election called by...?",
+        "description": "This market will resolve to \"Yes\" if the next Ukrainian presidential election is scheduled in 2025. Otherwise, this market will resolve to \"No\".\n\nThis market is about whether a date for the next Ukrainian election is announced between February 14 and December 31, 2025, 11:59 PM ET. Whether the election is supposed to take place in 2025 or later will have no effect on the resolution to this market.\n\nThe primary resolution source for this market is official information from the Government of Ukraine however a consensus of credible reporting may also be used.\n",
+        "category": null,
+        "volume": 1550760.3679609993,
+        "volume24hr": 108.45915,
+        "liquidity": 34715.76403,
+        "startDate": "2025-02-14T19:30:42.775652Z",
+        "endDate": "2026-12-31T12:00:00Z",
+        "marketsCount": 4,
+        "markets": [
+          {
+            "id": "523343",
+            "question": "Ukraine election called in 2025?",
+            "conditionId": "0xf3d74c153a35436ff82a5f78200104975c5841140ace763f2954adb340cca511",
+            "clobTokenIds": "[\"22255463452594162709449800579658835371746668793825841462318307382376621533755\", \"57160884655103428512814247631012981773015723019889832549493437551469480061242\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0\", \"1\"]",
+            "volume": "982716.694339",
+            "liquidity": null
+          },
+          {
+            "id": "610380",
+            "question": "Ukraine election called by June 30, 2026?",
+            "conditionId": "0x707125b175feb87a7d28c1e3b0e8e834f11c0dff65edac8c4fe5d1e12bf8fc33",
+            "clobTokenIds": "[\"46392352440640691691403913163796829338832584619874037984805155658143745393622\", \"38746974225100760605049476871091018825176822620072388068043468416649080453478\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0.0315\", \"0.9685\"]",
+            "volume": "276110.7350839998",
+            "liquidity": "21319.6023"
+          },
+          {
+            "id": "734115",
+            "question": "Ukraine election called by March 31, 2026?",
+            "conditionId": "0xdab71ad1d7d7661435f2556eb8e29473d322d9d8af2705a9732c4872629de090",
+            "clobTokenIds": "[\"21820831062008538748141247411218227574369608245896609859008771625480147552641\", \"66322896688384299574504337711710693470719761654756732668481875262656827467708\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0\", \"1\"]",
+            "volume": "269086.32246999943",
+            "liquidity": null
+          }
+        ],
+        "source": "polymarket_gamma",
+        "sourceUrl": "https://polymarket.com/event/ukraine-election-called-in-2025"
+      },
+      "analysis": {
+        "eventId": "18558",
+        "source": "polymarket_gamma",
+        "priority": {
+          "agent": "Priority Agent",
+          "score": 85,
+          "decision": "accepted",
+          "reason": "High likelihood of an election announcement based on current political climate."
+        },
+        "newsScout": {
+          "agent": "News Scout",
+          "summary": "There is ongoing discussion regarding the scheduling of the next Ukrainian presidential election, with indications that it may be set for 2025.",
+          "facts": [
+            "The Ukrainian government has not officially announced the election date yet.",
+            "Political analysts expect an election announcement due to the current political situation."
+          ],
+          "missing": [
+            "Official announcement from the Government of Ukraine regarding the election date."
+          ]
+        },
+        "riskOfficer": {
+          "agent": "Risk Officer",
+          "riskLevel": "medium",
+          "flags": [
+            "Uncertainty regarding the official announcement timeline."
+          ]
+        },
+        "verdict": {
+          "agent": "Verdict Agent",
+          "ppVerdict": "Yes",
+          "confidence": 75,
+          "edgeScore": null,
+          "status": "ready"
+        },
+        "ui": {
+          "closedCardBadge": "Accepted",
+          "warRoomAgents": [
+            "Priority Agent",
+            "News Scout",
+            "Risk Officer",
+            "Verdict Agent"
+          ],
+          "disclaimer": "Analysis only. Not financial advice."
+        }
+      }
+    },
+    {
+      "testNo": 9,
+      "tags": [
+        "multi_market"
+      ],
+      "event": {
+        "id": "18571",
+        "slug": "will-any-country-leave-nato-in-2025",
+        "title": "Will any country leave NATO by...?",
+        "description": "This market will resolve to \"Yes\" if any member state formally withdraws from NATO or provides an official notice of denunciation to NATO by December 31, 2025, 11:59 PM ET. Otherwise, this market will resolve to \"No\".\n\nA notice of denunciation refers to the submission of a notice of withdrawal as per Article 13 of the North Atlantic Treaty.\n\nA country's exit from NATO’s integrated military command structure will not be sufficient to resolve this market to \"Yes\". That country must either withdraw or submit a notice of denunciation to trigger a \"Yes\" resolution.\n\nThe resolution source will be official information from the relevant government and NATO, however a consensus of credible reporting may also be used.",
+        "category": null,
+        "volume": 1143734.367961001,
+        "volume24hr": 118.8675,
+        "liquidity": 47042.30119,
+        "startDate": "2025-02-13T23:08:41.618074Z",
+        "endDate": "2026-12-31T12:00:00Z",
+        "marketsCount": 3,
+        "markets": [
+          {
+            "id": "523413",
+            "question": "Will any country leave NATO in 2025?",
+            "conditionId": "0x1b74c3efe140a09049e0eb6b6a2112e00fa4d199cdc718c1a58af1abf6d9e49d",
+            "clobTokenIds": "[\"46975241878566226675389813084558441099978633579735672808077735156890286559886\", \"4274339277583331170231436480507835882687434608350779078862983050349942696879\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0\", \"1\"]",
+            "volume": "277041.272422",
+            "liquidity": null
+          },
+          {
+            "id": "629267",
+            "question": "Will any country leave NATO by June 30, 2026?",
+            "conditionId": "0x663ab202c03a5e1d399578d44a3b124307db73caba79b2ead36c52ce6094b2d4",
+            "clobTokenIds": "[\"96777037696114848391766419517574922007344115888940813113872692623013070089375\", \"13087547955543223651509733304346768461677455960394532927963165254525635891443\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0.0085\", \"0.9915\"]",
+            "volume": "704750.647739001",
+            "liquidity": "22368.85222"
+          },
+          {
+            "id": "1807912",
+            "question": "Will any country leave NATO by December 31, 2026?",
+            "conditionId": "0x523959b6256674318eb34755789fffd8c62cd652e5fa11ffd332402361d058e9",
+            "clobTokenIds": "[\"97672112380588518658859221422581522664938121648778223046012006536512218182756\", \"111540681317740103557967262084337258765868556750780059317482948108124337120382\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0.059\", \"0.941\"]",
+            "volume": "161942.4478",
+            "liquidity": "23047.21195"
+          }
+        ],
+        "source": "polymarket_gamma",
+        "sourceUrl": "https://polymarket.com/event/will-any-country-leave-nato-in-2025"
+      },
+      "analysis": {
+        "eventId": "18571",
+        "source": "polymarket_gamma",
+        "priority": {
+          "agent": "Priority Agent",
+          "score": 75,
+          "decision": "watchlist",
+          "reason": "Potential geopolitical shifts could lead to a country considering withdrawal, but no formal announcements have been made."
+        },
+        "newsScout": {
+          "agent": "News Scout",
+          "summary": "No current indications of any NATO member state planning to leave by 2025.",
+          "facts": [
+            "NATO has been a stable alliance since its formation.",
+            "Recent discussions among member states focus on strengthening NATO rather than withdrawal."
+          ],
+          "missing": [
+            "Official statements from member countries regarding potential withdrawal.",
+            "Analysis of political trends in NATO member states."
+          ]
+        },
+        "riskOfficer": {
+          "agent": "Risk Officer",
+          "riskLevel": "medium",
+          "flags": [
+            "Geopolitical tensions may influence member states' decisions."
+          ]
+        },
+        "verdict": {
+          "agent": "Verdict Agent",
+          "ppVerdict": "No",
+          "confidence": 80,
+          "edgeScore": null,
+          "status": "ready"
+        },
+        "ui": {
+          "closedCardBadge": "Watchlist",
+          "warRoomAgents": [
+            "Priority Agent",
+            "News Scout",
+            "Risk Officer",
+            "Verdict Agent"
+          ],
+          "disclaimer": "Analysis only. Not financial advice."
+        }
+      }
+    },
+    {
+      "testNo": 10,
+      "tags": [
+        "multi_market",
+        "news_driven"
+      ],
+      "event": {
+        "id": "18576",
+        "slug": "ukraine-election-held-in-2025",
+        "title": "Ukraine election held by...?",
+        "description": "This market will resolve to \"Yes\" if national elections for the parliament and/or presidency of Ukraine are held between February 12 and December 31, 2025, 11:59 PM ET. Otherwise, this market will resolve to \"No\".\n\nThis market is based on whether national elections are actually held in Ukraine within the specified dates. Merely scheduling an election will not be sufficient to resolve this market to \"Yes\".\n\nIf elections are officially scheduled for a date outside of 2025, this market will immediately resolve to \"No\".\n\nThe primary resolution source for this market will be official information from the government of Ukraine, however a consensus of credible reporting will also be used.",
+        "category": null,
+        "volume": 2443527.983175,
+        "volume24hr": 202.201361,
+        "liquidity": 31471.9513,
+        "startDate": "2025-02-14T00:02:53.059603Z",
+        "endDate": "2025-12-31T12:00:00Z",
+        "marketsCount": 3,
+        "markets": [
+          {
+            "id": "523420",
+            "question": "Ukraine election held by December 31, 2025?",
+            "conditionId": "0x9388fd0115ced362ce81ba2d3433903f2ae5c78263355d7038ae74ac96c85ac1",
+            "clobTokenIds": "[\"110303218457795832861589414223072133732424840017074962598980991451216787898529\", \"110513468504414111967623727967802735681305040958967125800368195228103949451183\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0\", \"1\"]",
+            "volume": "1589428.067032",
+            "liquidity": null
+          },
+          {
+            "id": "610381",
+            "question": "Ukraine election held by June 30, 2026?",
+            "conditionId": "0x24caca44a9ec5c344bd5f57c547f466dc0452e147d264a626afbffe3b5a0b55f",
+            "clobTokenIds": "[\"25154489359138656189676305295740648019872226167505418084009121941823239444658\", \"15941169207766483447414689399123153340714132932920187738030167528134553690538\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0.0065\", \"0.9935\"]",
+            "volume": "643334.0592960002",
+            "liquidity": "13815.64985"
+          },
+          {
+            "id": "677358",
+            "question": "Ukraine election held by December 31, 2026?",
+            "conditionId": "0xe29c8bf245ab35d14c722503922e6086da7dcfb08f357d1e8012331573d9e633",
+            "clobTokenIds": "[\"109439459397675447272341488571573598040211823291452380402543262182060250075424\", \"65651447697756505945607381171434271908621057725573696706081861343152172944468\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0.105\", \"0.895\"]",
+            "volume": "210765.85684699987",
+            "liquidity": "15960.9887"
+          }
+        ],
+        "source": "polymarket_gamma",
+        "sourceUrl": "https://polymarket.com/event/ukraine-election-held-in-2025"
+      },
+      "analysis": {
+        "eventId": "18576",
+        "source": "polymarket_gamma",
+        "priority": {
+          "agent": "Priority Agent",
+          "score": 75,
+          "decision": "watchlist",
+          "reason": "Elections are expected but not officially scheduled yet."
+        },
+        "newsScout": {
+          "agent": "News Scout",
+          "summary": "There is speculation about elections in Ukraine, but no official schedule has been announced.",
+          "facts": [
+            "Ukraine has not officially scheduled elections for 2025.",
+            "Current political climate may affect the timing of elections."
+          ],
+          "missing": [
+            "Official announcements regarding election dates.",
+            "Consensus from credible news sources confirming election plans."
+          ]
+        },
+        "riskOfficer": {
+          "agent": "Risk Officer",
+          "riskLevel": "medium",
+          "flags": [
+            "Uncertainty regarding the political situation in Ukraine.",
+            "Potential for changes in election schedules."
+          ]
+        },
+        "verdict": {
+          "agent": "Verdict Agent",
+          "ppVerdict": "pending",
+          "confidence": 60,
+          "edgeScore": null,
+          "status": "research_required"
+        },
+        "ui": {
+          "closedCardBadge": "Watchlist",
+          "warRoomAgents": [
+            "Priority Agent",
+            "News Scout",
+            "Risk Officer",
+            "Verdict Agent"
+          ],
+          "disclaimer": "Analysis only. Not financial advice."
+        }
+      }
+    }
+  ]
+}

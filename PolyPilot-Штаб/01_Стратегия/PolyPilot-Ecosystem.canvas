@@ -1,0 +1,12 @@
+{
+	"nodes":[
+		{"id":"004d83d15e9c3a4d","type":"text","text":"POLYPILOT","x":-380,"y":-240,"width":140,"height":80},
+		{"id":"f693bfeb9e042a5e","type":"text","text":"Продукт","x":-780,"y":-190,"width":161,"height":60},
+		{"id":"76893c1ca2307a1f","type":"text","text":"Платформа","x":-27,"y":-240,"width":172,"height":60},
+		{"id":"f3792bc733430dba","type":"text","text":"Монетизация","x":-460,"y":-460,"width":250,"height":60},
+		{"id":"e0842e03ec7cf195","type":"text","text":"Маркетинг","x":-420,"y":91,"width":250,"height":60},
+		{"id":"917ff98bc57ea3c3","type":"text","text":"AI - система","x":0,"y":-59,"width":250,"height":60},
+		{"id":"7b984a3b52935a2e","type":"text","text":"Контент","x":-744,"y":-29,"width":250,"height":60}
+	],
+	"edges":[]
+}

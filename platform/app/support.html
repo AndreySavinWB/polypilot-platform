@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Поддержка — PolyPilot</title>
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <style>
+    .sup-page { padding: 0 40px 80px; }
+
+    /* ── primitives ── */
+    .sup-eyebrow {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 10px; font-weight: 700; letter-spacing: 1.4px;
+      text-transform: uppercase; color: #60a5fa; margin-bottom: 12px;
+    }
+    .sup-h2 {
+      font-size: 26px; font-weight: 800; letter-spacing: -0.5px;
+      line-height: 1.2; color: #fff; margin-bottom: 10px;
+    }
+    .sup-h2 span {
+      background: linear-gradient(90deg,#3b82f6,#7b2fff);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+    .sup-lead {
+      font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.7; margin-bottom: 28px;
+    }
+    .sup-section { margin-bottom: 60px; }
+
+    /* ══════════════════════════════════════
+       HERO
+    ══════════════════════════════════════ */
+    .sup-hero {
+      padding: 44px 0 52px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 52px;
+    }
+    .sup-hero-h1 {
+      font-size: 42px; font-weight: 800; letter-spacing: -1px;
+      line-height: 1.08; margin-bottom: 16px; white-space: nowrap;
+    }
+    .sup-hero-h1 span {
+      background: linear-gradient(90deg,#3b82f6 0%,#7b2fff 55%,#22d3a6 100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+    .sup-hero-sub {
+      font-size: 15px; color: rgba(255,255,255,0.45);
+      line-height: 1.7; max-width: 560px;
+    }
+
+    /* ══════════════════════════════════════
+       CONTACT CARDS
+    ══════════════════════════════════════ */
+    .sup-contacts {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 16px;
+    }
+    .sup-contact {
+      background: linear-gradient(145deg,#080c1a,#0a0f1e);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 18px; padding: 28px 24px;
+      display: flex; flex-direction: column; gap: 0;
+      transition: border-color 0.18s, transform 0.18s;
+      text-decoration: none; color: inherit; cursor: pointer;
+    }
+    .sup-contact:hover { border-color: rgba(255,255,255,0.13); transform: translateY(-2px); }
+    .sup-contact.featured {
+      border-color: rgba(26,111,255,0.3);
+      background: linear-gradient(145deg,rgba(26,111,255,0.07),#080c1a);
+    }
+    .sup-contact.featured:hover { border-color: rgba(26,111,255,0.45); }
+    .sup-contact-ico {
+      width: 48px; height: 48px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 18px; flex-shrink: 0;
+    }
+    .sup-contact-ico svg { width: 22px; height: 22px; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .sup-contact-title { font-size: 16px; font-weight: 800; color: #fff; margin-bottom: 6px; }
+    .sup-contact-desc  { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6; flex: 1; margin-bottom: 20px; }
+    .sup-contact-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11.5px; font-weight: 700;
+      padding: 6px 14px; border-radius: 9999px; width: fit-content;
+    }
+    .sup-contact-badge.tg  { background: rgba(37,195,255,0.10); color: #29c9ff; border: 1px solid rgba(37,195,255,0.22); }
+    .sup-contact-badge.email { background: rgba(139,92,246,0.10); color: #c4b5fd; border: 1px solid rgba(139,92,246,0.22); }
+    .sup-contact-badge.faq { background: rgba(74,222,128,0.10); color: #4ade80; border: 1px solid rgba(74,222,128,0.22); }
+    .sup-contact-response {
+      margin-top: 10px; font-size: 11px; color: rgba(255,255,255,0.25);
+    }
+
+    /* Status dot */
+    .sup-status-row {
+      display: flex; align-items: center; gap: 8px; margin-bottom: 28px;
+    }
+    .sup-status-dot {
+      width: 8px; height: 8px; border-radius: 50%; background: #4ade80;
+      box-shadow: 0 0 7px rgba(74,222,128,0.7);
+      animation: sup-pulse 2.5s ease-in-out infinite;
+    }
+    @keyframes sup-pulse { 0%,100%{opacity:1} 50%{opacity:0.45} }
+    .sup-status-txt { font-size: 12.5px; color: rgba(255,255,255,0.45); }
+    .sup-status-txt strong { color: #4ade80; }
+
+    /* ══════════════════════════════════════
+       FAQ
+    ══════════════════════════════════════ */
+    .sup-faq-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .sup-faq-col { display: flex; flex-direction: column; gap: 3px; }
+    .sup-faq-item {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px; overflow: hidden; cursor: pointer;
+      transition: border-color 0.18s;
+    }
+    .sup-faq-item:hover { border-color: rgba(255,255,255,0.12); }
+    .sup-faq-item.open { border-color: rgba(96,165,250,0.25); background: rgba(26,111,255,0.04); }
+    .sup-faq-q {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 15px 18px; gap: 14px;
+    }
+    .sup-faq-q-text { font-size: 13.5px; font-weight: 700; color: #fff; line-height: 1.35; }
+    .sup-faq-arrow {
+      width: 18px; height: 18px; flex-shrink: 0;
+      color: rgba(255,255,255,0.28); transition: transform 0.2s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .sup-faq-item.open .sup-faq-arrow { transform: rotate(180deg); color: #60a5fa; }
+    .sup-faq-a {
+      display: none; padding: 0 18px 15px;
+      font-size: 13px; color: rgba(255,255,255,0.50); line-height: 1.7;
+    }
+    .sup-faq-item.open .sup-faq-a { display: block; }
+
+    /* ══════════════════════════════════════
+       CONTACT FORM
+    ══════════════════════════════════════ */
+    .sup-form-wrap {
+      display: grid; grid-template-columns: 1fr 1.2fr; gap: 20px;
+      align-items: start;
+    }
+    .sup-form-info {
+      background: linear-gradient(145deg,rgba(79,70,229,0.08),rgba(124,58,237,0.05));
+      border: 1px solid rgba(139,92,246,0.22);
+      border-radius: 18px; padding: 32px 28px;
+      position: relative; overflow: hidden;
+    }
+    .sup-form-info::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:2px;
+      background: linear-gradient(90deg,#4f46e5,#7c3aed,#a855f7);
+    }
+    .sup-form-info-title { font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 10px; }
+    .sup-form-info-text  { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.7; margin-bottom: 24px; }
+    .sup-form-items { display: flex; flex-direction: column; gap: 14px; }
+    .sup-form-item {
+      display: flex; align-items: flex-start; gap: 12px;
+    }
+    .sup-form-item-ico {
+      width: 34px; height: 34px; border-radius: 10px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px;
+    }
+    .sup-form-item-title { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+    .sup-form-item-val   { font-size: 12px; color: rgba(255,255,255,0.40); }
+
+    .sup-form {
+      background: linear-gradient(145deg,#080c1a,#0a0f1e);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px; padding: 32px 28px;
+    }
+    .sup-form-title { font-size: 17px; font-weight: 800; color: #fff; margin-bottom: 6px; }
+    .sup-form-sub   { font-size: 13px; color: rgba(255,255,255,0.40); margin-bottom: 22px; }
+
+    .sup-field { margin-bottom: 14px; }
+    .sup-label {
+      display: block; font-size: 12px; font-weight: 600;
+      color: rgba(255,255,255,0.45); margin-bottom: 7px;
+    }
+    .sup-input, .sup-select, .sup-textarea {
+      width: 100%; box-sizing: border-box;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 11px;
+      color: #fff; font-size: 13.5px; font-family: var(--font-main);
+      outline: none; transition: border-color 0.18s;
+    }
+    .sup-input  { padding: 11px 14px; }
+    .sup-select { padding: 11px 14px; cursor: pointer; }
+    .sup-textarea { padding: 12px 14px; min-height: 100px; resize: vertical; line-height: 1.6; }
+    .sup-input::placeholder, .sup-textarea::placeholder { color: rgba(255,255,255,0.22); }
+    .sup-input:focus, .sup-select:focus, .sup-textarea:focus {
+      border-color: rgba(124,58,237,0.55);
+      background: rgba(124,58,237,0.04);
+    }
+    .sup-select option { background: #0a0f1e; }
+    .sup-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .sup-submit {
+      width: 100%; padding: 13px;
+      background: linear-gradient(135deg,#1a6fff,#7b2fff); color: #fff;
+      font-size: 14px; font-weight: 700; border: none; border-radius: 12px;
+      cursor: pointer; transition: opacity 0.18s, transform 0.18s;
+      font-family: var(--font-main); margin-top: 6px;
+    }
+    .sup-submit:hover { opacity: 0.9; transform: translateY(-1px); }
+    .sup-submit-note {
+      text-align: center; margin-top: 10px;
+      font-size: 11px; color: rgba(255,255,255,0.22);
+    }
+
+    /* Success state */
+    .sup-form-success {
+      display: none; text-align: center; padding: 32px 20px;
+    }
+    .sup-form-success.show { display: block; }
+    .sup-form-success-ico { font-size: 40px; margin-bottom: 14px; }
+    .sup-form-success-title { font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+    .sup-form-success-sub   { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6; }
+
+    /* ══════════════════════════════════════
+       STATUS
+    ══════════════════════════════════════ */
+    .sup-status-grid {
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 12px;
+    }
+    .sup-svc {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px; padding: 18px 20px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .sup-svc-dot {
+      width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0;
+    }
+    .sup-svc-dot.ok      { background: #4ade80; box-shadow: 0 0 7px rgba(74,222,128,0.5); }
+    .sup-svc-dot.warn    { background: #fb923c; box-shadow: 0 0 7px rgba(251,146,60,0.5); }
+    .sup-svc-dot.down    { background: #f87171; box-shadow: 0 0 7px rgba(248,113,113,0.5); }
+    .sup-svc-name  { font-size: 13px; font-weight: 700; color: #fff; }
+    .sup-svc-state { font-size: 11px; color: rgba(255,255,255,0.35); margin-top: 2px; }
+
+    .sup-uptime {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 20px; margin-top: 12px;
+      background: rgba(74,222,128,0.05);
+      border: 1px solid rgba(74,222,128,0.15);
+      border-radius: 12px;
+    }
+    .sup-uptime-txt { font-size: 13px; color: rgba(255,255,255,0.55); }
+    .sup-uptime-val { font-size: 18px; font-weight: 800; color: #4ade80; }
+  </style>
+</head>
+<body>
+<div class="app-layout">
+  <aside id="sidebar"></aside>
+  <main class="main-content">
+  <div class="sup-page">
+
+    <!-- ══ HERO ══ -->
+    <div class="sup-hero">
+      <div class="sup-eyebrow">Поддержка</div>
+      <h1 class="sup-hero-h1">Мы здесь — <span>ответим быстро</span></h1>
+      <p class="sup-hero-sub">Найдите ответ в FAQ, напишите в Telegram или оставьте запрос — команда PolyPilot на связи.</p>
+
+      <div class="sup-status-row" style="margin-top:24px">
+        <div class="sup-status-dot"></div>
+        <div class="sup-status-txt">Все системы работают нормально · <strong>Онлайн</strong></div>
+      </div>
+    </div>
+
+    <!-- ══ CONTACTS ══ -->
+    <div class="sup-section">
+      <div class="sup-eyebrow">Связаться</div>
+      <h2 class="sup-h2">Выберите удобный способ</h2>
+      <p class="sup-lead" style="margin-bottom:24px">Большинство вопросов решаются в FAQ. Если не нашли — пишите напрямую.</p>
+      <div class="sup-contacts">
+
+        <a class="sup-contact featured" href="#faq-section" onclick="document.getElementById('faq-section').scrollIntoView({behavior:'smooth'});return false;">
+          <div class="sup-contact-ico" style="background:rgba(74,222,128,0.15)">
+            <svg stroke="#4ade80" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <div class="sup-contact-title">Частые вопросы</div>
+          <div class="sup-contact-desc">Ответы на 90% вопросов уже здесь. Найдите свой — быстро и без ожидания.</div>
+          <div class="sup-contact-badge faq">↓ Смотреть FAQ</div>
+          <div class="sup-contact-response">Мгновенно · Всегда доступно</div>
+        </a>
+
+        <a class="sup-contact" href="https://t.me/polypilot_support" target="_blank" rel="noopener">
+          <div class="sup-contact-ico" style="background:rgba(37,195,255,0.12)">
+            <svg stroke="#29c9ff" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </div>
+          <div class="sup-contact-title">Telegram</div>
+          <div class="sup-contact-desc">Напишите в наш чат поддержки. Живые люди — не боты. Отвечаем по делу.</div>
+          <div class="sup-contact-badge tg">→ Написать в Telegram</div>
+          <div class="sup-contact-response">Ответ в течение 2–4 часов</div>
+        </a>
+
+        <div class="sup-contact" onclick="document.getElementById('sup-form-wrap').scrollIntoView({behavior:'smooth'})" style="cursor:pointer">
+          <div class="sup-contact-ico" style="background:rgba(139,92,246,0.15)">
+            <svg stroke="#a78bfa" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="sup-contact-title">Форма обратной связи</div>
+          <div class="sup-contact-desc">Опишите проблему подробно — укажите тариф и что именно не работает. Разберёмся.</div>
+          <div class="sup-contact-badge email">↓ Заполнить форму</div>
+          <div class="sup-contact-response">Ответ в течение 24 часов</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══ STATUS ══ -->
+    <div class="sup-section">
+      <div class="sup-eyebrow">Статус системы</div>
+      <h2 class="sup-h2">Всё работает <span>штатно</span></h2>
+      <p class="sup-lead" style="margin-bottom:20px">Проверьте состояние сервисов прежде чем писать в поддержку.</p>
+      <div class="sup-status-grid">
+        <div class="sup-svc">
+          <div class="sup-svc-dot ok"></div>
+          <div>
+            <div class="sup-svc-name">PP AI · War Room</div>
+            <div class="sup-svc-state">Работает</div>
+          </div>
+        </div>
+        <div class="sup-svc">
+          <div class="sup-svc-dot ok"></div>
+          <div>
+            <div class="sup-svc-name">Лента событий</div>
+            <div class="sup-svc-state">Работает</div>
+          </div>
+        </div>
+        <div class="sup-svc">
+          <div class="sup-svc-dot ok"></div>
+          <div>
+            <div class="sup-svc-name">Polymarket API</div>
+            <div class="sup-svc-state">Работает</div>
+          </div>
+        </div>
+        <div class="sup-svc">
+          <div class="sup-svc-dot ok"></div>
+          <div>
+            <div class="sup-svc-name">Edge Score Engine</div>
+            <div class="sup-svc-state">Работает</div>
+          </div>
+        </div>
+      </div>
+      <div class="sup-uptime">
+        <div class="sup-uptime-txt">Uptime за последние 30 дней</div>
+        <div class="sup-uptime-val">99.8%</div>
+      </div>
+    </div>
+
+    <!-- ══ FAQ ══ -->
+    <div class="sup-section" id="faq-section">
+      <div class="sup-eyebrow">FAQ</div>
+      <h2 class="sup-h2">Частые вопросы</h2>
+      <p class="sup-lead" style="margin-bottom:24px">Если не нашли ответ — напишите нам.</p>
+      <div class="sup-faq-grid">
+
+        <!-- LEFT -->
+        <div class="sup-faq-col">
+          <div class="sup-faq-item open">
+            <div class="sup-faq-q" onclick="toggleFaq(this)">
+              <span class="sup-faq-q-text">Почему я не вижу Edge Score у события?</span>
+              <span class="sup-faq-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+            </div>
+            <div class="sup-faq-a">Edge Score доступен для тарифов <strong>Pulse и PRO</strong>. На тарифе Гость вы видите событие и краткое описание, но значение потенциала скрыто. Перейдите на Pulse, чтобы разблокировать Edge Score для всех событий.</div>
+          </div>
+          <div class="sup-faq-item">
+            <div class="sup-faq-q" onclick="toggleFaq(this)">
+              <span class="sup-faq-q-text">PP AI сам делает ставки за меня?</span>
+              <span class="sup-faq-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+            </div>
+            <div class="sup-faq-a">Нет. PolyPilot — аналитический инструмент. Мы не берём деньги, не подключаемся к кошельку и не совершаем сделок. Все решения принимаете вы — мы даём данные и рекомендации. Ставку вы делаете самостоятельно на Polymarket.</div>
+          </div>
+          <div class="sup-faq-item">
+            <div class="sup-faq-q" onclick="toggleFaq(this)">
+              <span class="sup-faq-q-text">Как отменить подписку?</span>
+              <span class="sup-faq-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+            </div>
+            <div class="sup-faq-a">Напишите в поддержку через Telegram или форму на этой странице. Укажите email или Telegram аккаунт, привязанный к подписке. Отменим в течение 24 часов. До конца оплаченного периода доступ сохраняется.</div>
+          </div>
+          <div class="sup-faq-item">
+            <div class="sup-faq-q" onclick="toggleFaq(this)">
+              <span class="sup-faq-q-text">Почему данные в событии устарели?</span>
+              <span class="sup-faq-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+            </div>
+            <div class="sup-faq-a">PP AI обновляет данные каждые 6 часов для большинства событий, и каждый час для «горячих» событий. Время последнего обновления указано в карточке события. Если данные явно устарели — сообщите нам через форму.</div>
+          </div>
+          <div class="sup-faq-item">
+            <div class="sup-faq-q" onclick="toggleFaq(this)">
+              <span class="sup-faq-q-text">Что такое PP Trial и как он работает?</span>
+              <span class="sup-faq-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+            </div>
+            <div class="sup-faq-a">PP Trial — 7 дней полного PRO-доступа бесплатно. Без привязки карты. После окончания Trial аккаунт переходит на тариф Гость автоматически. Никаких скрытых списаний.</div>
+          </div>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="sup-faq-col">
+          <div class="sup-faq-item">
+            <div class="sup-faq-q" onclick="toggleFaq(this)">
+              <span class="sup-faq-q-text">War Room показывает ошибку / не загружается</span>
+              <span class="sup-faq-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+            </div>
+            <div class="sup-faq-a">Попробуйте обновить страницу (F5). Если ошибка сохраняется — проверьте статус системы выше. При ошибке «Анализ недоступен» — это значит, что PP AI ещё не обработал это событие. Обновление придёт в течение 6 часов.</div>
+          </div>
+          <div class="sup-faq-item">
+            <div class="sup-faq-q" onclick="toggleFaq(this)">
+              <span class="sup-faq-q-text">Можно ли получить возврат средств?</span>
+              <span class="sup-faq-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+            </div>
+            <div class="sup-faq-a">Да, в течение <strong>3 дней</strong> с момента оплаты — полный возврат без вопросов. Напишите в поддержку с темой «Возврат». После 3 дней — рассматриваем индивидуально, если была техническая неисправность.</div>
+          </div>
+          <div class="sup-faq-item">
+            <div class="sup-faq-q" onclick="toggleFaq(this)">
+              <span class="sup-faq-q-text">Как PP AI считает Edge Score?</span>
+              <span class="sup-faq-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+            </div>
+            <div class="sup-faq-a">Edge = разница между рыночной ценой (Polymarket) и оценкой PP AI. PP AI агрегируют данные из 140+ источников: on-chain метрики, макроданные, новости, исторические паттерны. Итоговая оценка — взвешенный консенсус агентов War Room.</div>
+          </div>
+          <div class="sup-faq-item">
+            <div class="sup-faq-q" onclick="toggleFaq(this)">
+              <span class="sup-faq-q-text">Почему одно событие исчезло из ленты?</span>
+              <span class="sup-faq-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+            </div>
+            <div class="sup-faq-a">Событие могло быть закрыто (резолвировано) на Polymarket, или PP AI снял его с мониторинга из-за слишком низкого Edge. Закрытые события отображаются в разделе «Закрытые события» на странице ленты.</div>
+          </div>
+          <div class="sup-faq-item">
+            <div class="sup-faq-q" onclick="toggleFaq(this)">
+              <span class="sup-faq-q-text">Как работает PP Check?</span>
+              <span class="sup-faq-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+            </div>
+            <div class="sup-faq-a">PP Check позволяет проверить <strong>любое</strong> событие Polymarket — вставьте ссылку или опишите тезис. PP AI проведёт анализ и вернёт Edge Score, вердикт War Room и риск-матрицу. Доступно на тарифе PRO (20 проверок в месяц).</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══ FORM ══ -->
+    <div class="sup-section" id="sup-form-wrap">
+      <div class="sup-eyebrow">Обратная связь</div>
+      <h2 class="sup-h2">Не нашли ответ? <span>Напишите нам</span></h2>
+      <p class="sup-lead" style="margin-bottom:24px">Опишите проблему подробно — это поможет решить её быстрее.</p>
+
+      <div class="sup-form-wrap">
+        <!-- Info left -->
+        <div class="sup-form-info">
+          <div class="sup-form-info-title">Как мы работаем с запросами</div>
+          <div class="sup-form-info-text">Каждый запрос обрабатывается живым человеком. Мы не используем автоответы для сложных вопросов — только если это действительно FAQ.</div>
+          <div class="sup-form-items">
+            <div class="sup-form-item">
+              <div class="sup-form-item-ico" style="background:rgba(74,222,128,0.12)">⚡</div>
+              <div>
+                <div class="sup-form-item-title">Быстрые вопросы</div>
+                <div class="sup-form-item-val">Telegram · ответ 2–4 часа</div>
+              </div>
+            </div>
+            <div class="sup-form-item">
+              <div class="sup-form-item-ico" style="background:rgba(139,92,246,0.12)">📋</div>
+              <div>
+                <div class="sup-form-item-title">Технические и платёжные</div>
+                <div class="sup-form-item-val">Форма · ответ до 24 часов</div>
+              </div>
+            </div>
+            <div class="sup-form-item">
+              <div class="sup-form-item-ico" style="background:rgba(251,146,60,0.12)">💎</div>
+              <div>
+                <div class="sup-form-item-title">PRO-пользователи</div>
+                <div class="sup-form-item-val">Приоритетная очередь · до 2 часов</div>
+              </div>
+            </div>
+            <div class="sup-form-item">
+              <div class="sup-form-item-ico" style="background:rgba(60,165,250,0.12)">🕐</div>
+              <div>
+                <div class="sup-form-item-title">Время работы поддержки</div>
+                <div class="sup-form-item-val">Пн–Пт 10:00–22:00 МСК</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form right -->
+        <div class="sup-form">
+          <div id="sup-form-inner">
+            <div class="sup-form-title">Форма обратной связи</div>
+            <div class="sup-form-sub">Ответим на email или в Telegram, как удобнее.</div>
+
+            <div class="sup-form-row">
+              <div class="sup-field">
+                <label class="sup-label">Ваше имя</label>
+                <input class="sup-input" id="sup-name" type="text" placeholder="Как к вам обращаться">
+              </div>
+              <div class="sup-field">
+                <label class="sup-label">Telegram / Email</label>
+                <input class="sup-input" id="sup-contact" type="text" placeholder="@username или email">
+              </div>
+            </div>
+
+            <div class="sup-field">
+              <label class="sup-label">Тема обращения</label>
+              <select class="sup-select" id="sup-topic">
+                <option value="">Выберите тему</option>
+                <option value="tech">Техническая проблема</option>
+                <option value="billing">Оплата и подписка</option>
+                <option value="refund">Возврат средств</option>
+                <option value="data">Данные или анализ некорректны</option>
+                <option value="feature">Предложение по функции</option>
+                <option value="other">Другое</option>
+              </select>
+            </div>
+
+            <div class="sup-field">
+              <label class="sup-label">Опишите ситуацию</label>
+              <textarea class="sup-textarea" id="sup-message" placeholder="Что именно произошло? Какой тариф? Какой раздел приложения? Чем подробнее — тем быстрее поможем."></textarea>
+            </div>
+
+            <button class="sup-submit" onclick="submitForm()">Отправить запрос →</button>
+            <div class="sup-submit-note">Отвечаем в течение 24 часов · PRO-пользователям приоритет</div>
+          </div>
+
+          <div class="sup-form-success" id="sup-success">
+            <div class="sup-form-success-ico">✅</div>
+            <div class="sup-form-success-title">Запрос отправлен!</div>
+            <div class="sup-form-success-sub">Мы получили ваше сообщение и ответим в течение 24 часов.<br>PRO-пользователи получают ответ быстрее.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </main>
+</div>
+
+<script src="../assets/js/state.js"></script>
+<script src="../assets/js/sidebar.js"></script>
+<script>
+function toggleFaq(el) {
+  const item = el.closest('.sup-faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.sup-faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+function submitForm() {
+  const name    = document.getElementById('sup-name').value.trim();
+  const contact = document.getElementById('sup-contact').value.trim();
+  const topic   = document.getElementById('sup-topic').value;
+  const message = document.getElementById('sup-message').value.trim();
+
+  if (!contact || !message) {
+    const inp = !contact
+      ? document.getElementById('sup-contact')
+      : document.getElementById('sup-message');
+    inp.style.borderColor = 'rgba(248,113,113,0.6)';
+    inp.focus();
+    setTimeout(() => inp.style.borderColor = '', 2000);
+    return;
+  }
+
+  document.getElementById('sup-form-inner').style.display = 'none';
+  document.getElementById('sup-success').classList.add('show');
+}
+</script>
+</body>
+</html>

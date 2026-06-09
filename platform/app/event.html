@@ -1,0 +1,1875 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Событие — PolyPilot</title>
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/event-card.css">
+  <style>
+    * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+    .ev-page { display: flex; flex-direction: column; }
+
+    /* ── Back link ─────────────────────────────────────── */
+    .ev-back {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; color: rgba(255,255,255,0.38);
+      padding: 16px 32px 0; text-decoration: none;
+      transition: color 0.2s; width: fit-content;
+    }
+    .ev-back:hover { color: rgba(255,255,255,0.75); }
+
+    /* ═══════════════════════════════════════════════════
+       BLOCK 1 · HERO
+    ═══════════════════════════════════════════════════ */
+    .ev-hero {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      min-height: 320px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    /* Left: atmospheric image */
+    .ev-hero-img {
+      position: relative;
+      overflow: hidden;
+      min-height: 280px;
+      background-size: cover !important;
+      background-position: center !important;
+    }
+    /* Dark vignette so text on the right stays readable */
+    .ev-hero-img-overlay {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(90deg, rgba(8,10,20,0.20) 0%, rgba(8,10,20,0.92) 100%),
+        linear-gradient(180deg, rgba(8,10,20,0.15) 0%, rgba(8,10,20,0.55) 100%);
+    }
+    .ev-hero-img-label {
+      position: absolute; bottom: 14px; left: 16px;
+      font-size: 10px; color: rgba(255,255,255,0.35); letter-spacing: 0.4px;
+      z-index: 1;
+    }
+
+    /* Right: content */
+    .ev-hero-content {
+      padding: 24px 32px 24px 24px;
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .ev-hero-topbar {
+      display: flex; align-items: center; gap: 8px;
+      flex-wrap: nowrap; overflow: hidden;
+    }
+    .ev-badge-hot {
+      background: linear-gradient(90deg, #5b21b6, #7c3aed);
+      color: #fff; font-size: 10px; font-weight: 800;
+      letter-spacing: 0.7px; text-transform: uppercase;
+      padding: 4px 12px; border-radius: 9999px;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .ev-badge-cat {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: rgba(255,255,255,0.60); font-size: 10px; font-weight: 700;
+      letter-spacing: 0.4px; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 6px;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .ev-hero-meta {
+      margin-left: auto; display: flex; align-items: center;
+      gap: 10px; flex-shrink: 0;
+    }
+    .ev-watchers { font-size: 12px; color: rgba(255,255,255,0.35); }
+    .ev-bookmark { font-size: 14px; color: rgba(255,255,255,0.25); cursor: pointer; }
+
+    .ev-hero-title {
+      font-size: 26px; font-weight: 800; line-height: 1.25;
+      letter-spacing: -0.5px; color: #fff;
+    }
+    .ev-hero-summary {
+      font-size: 13.5px; color: rgba(255,255,255,0.50); line-height: 1.65;
+    }
+
+    /* 6-stat horizontal row — same style as closed card */
+    .ev-hero-stats {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-top: auto;
+    }
+    .ev-hstat {
+      display: flex; align-items: center; gap: 12px;
+      padding: 16px 18px;
+      border-right: 1px solid rgba(255,255,255,0.07);
+      min-width: 0;
+    }
+    .ev-hstat:last-child { border-right: none; }
+
+    /* Icon */
+    .ev-hstat-icon {
+      width: 46px; height: 46px; border-radius: 13px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .ev-hstat-icon svg { width: 22px; height: 22px; display: block; }
+    .ehi-purple { background: rgba(124,58,237,0.18); }
+    .ehi-purple svg { stroke: #a855f7; }
+    .ehi-violet { background: rgba(99,102,241,0.18); }
+    .ehi-violet svg { stroke: #818cf8; }
+    .ehi-green  { background: rgba(22,163,74,0.18); }
+    .ehi-green  svg { stroke: #22c55e; }
+    .ehi-blue   { background: rgba(37,99,235,0.18); }
+    .ehi-blue   svg { stroke: #60a5fa; }
+    .ehi-teal   { background: rgba(20,184,166,0.18); }
+    .ehi-teal   svg { stroke: #2dd4bf; }
+    .ehi-pink   { background: rgba(219,39,119,0.18); }
+    .ehi-pink   svg { stroke: #f472b6; }
+
+    /* Text body */
+    .ev-hstat-body { display: flex; flex-direction: column; gap: 3px; min-width: 0; overflow: hidden; }
+    .ev-hstat-lbl {
+      font-size: 11px; font-weight: 400; color: rgba(255,255,255,0.38);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .ev-hstat-val {
+      font-size: 26px; font-weight: 700; line-height: 1.1; letter-spacing: -0.5px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .ev-hstat-sub {
+      font-size: 11px; color: rgba(255,255,255,0.28); margin-top: 1px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    /* value colors */
+    .ehv-purple { color: #a855f7; }
+    .ehv-green  { color: #22c55e; }
+    .ehv-teal   { color: #2dd4bf; }
+    .ehv-white  { color: #fff; }
+    .ehv-pos    { color: #34d399; }
+    .ehv-neg    { color: #f87171; }
+    .ehv-pink   { color: #f472b6; }
+
+    /* ═══════════════════════════════════════════════════
+       BLOCK 2 · AI TIMELINE PANEL
+    ═══════════════════════════════════════════════════ */
+    .ev-ai-panel {
+      margin: 0 24px 24px;
+      border-radius: 16px;
+      background:
+        radial-gradient(ellipse at 50% 120%, rgba(34,197,255,0.05) 0%, transparent 55%),
+        radial-gradient(ellipse at 15% 50%, rgba(139,92,246,0.07) 0%, transparent 45%),
+        linear-gradient(150deg, rgba(9,12,28,0.98) 0%, rgba(5,8,18,0.98) 100%);
+      border: 1px solid rgba(139,92,246,0.16);
+      box-shadow: 0 4px 36px rgba(0,0,0,0.55), 0 0 60px rgba(139,92,246,0.06),
+                  inset 0 1px 0 rgba(255,255,255,0.035);
+      overflow: visible;
+      position: relative;
+      padding: 30px 32px 26px;
+    }
+    /* Subtle top glow line */
+    .ev-ai-panel::before {
+      content: '';
+      position: absolute; top: 0; left: 8%; right: 8%; height: 1px;
+      background: linear-gradient(90deg, transparent,
+        rgba(139,92,246,0.40) 35%, rgba(34,197,255,0.30) 65%, transparent);
+    }
+
+    /* ── Top 3-column row ── */
+    .ev-ai-top {
+      display: flex; align-items: flex-start; gap: 0;
+      margin-bottom: 30px;
+    }
+    .ev-ai-col       { flex: 1; min-width: 0; }
+    .ev-ai-col-mid   { flex: 1; min-width: 0; text-align: center; }
+    .ev-ai-col-right { flex: 1; min-width: 0; text-align: right; }
+
+    .ev-ai-lbl {
+      font-size: 13px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.2px; margin-bottom: 11px;
+      display: flex; align-items: center; gap: 7px;
+      color: rgba(148,163,184,0.65);
+    }
+    .ev-ai-col-mid   .ev-ai-lbl { justify-content: center; }
+    .ev-ai-col-right .ev-ai-lbl { justify-content: flex-end; }
+    .ev-ai-lbl-icon { width: 16px; height: 16px; flex-shrink: 0; opacity: 0.70; }
+
+    .ev-ai-num {
+      font-size: 62px; font-weight: 900; letter-spacing: -3.5px; line-height: 1;
+      color: #a78bfa;
+    }
+    .ev-ai-num-mid {
+      font-size: 62px; font-weight: 900; letter-spacing: -3.5px; line-height: 1;
+      color: #22D3A6;
+      text-shadow: 0 0 36px rgba(34,211,166,0.35), 0 0 70px rgba(34,211,166,0.14);
+    }
+    .ev-ai-num-right {
+      font-size: 58px; font-weight: 900; letter-spacing: -3px; line-height: 1;
+      color: #22C5FF;
+      text-shadow: 0 0 30px rgba(34,197,255,0.28);
+    }
+    .ev-ai-sub {
+      font-size: 13px; color: rgba(148,163,184,0.55); margin-top: 8px;
+    }
+    .ev-ai-chg {
+      font-size: 13px; margin-top: 6px; font-weight: 600;
+      display: flex; align-items: center; gap: 4px;
+    }
+    .ev-ai-col-mid   .ev-ai-chg { justify-content: center; }
+    .ev-ai-col-right .ev-ai-chg { justify-content: flex-end; }
+
+    /* Arrow badge */
+    .ev-ai-arrow {
+      flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.11);
+      background: rgba(255,255,255,0.025);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 17px; color: rgba(255,255,255,0.28);
+      margin: 38px 22px 0;
+    }
+
+    /* ── Timeline ── */
+    .ev-ai-tl { position: relative; }
+    .ev-ai-tl-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 12px;
+    }
+    .ev-ai-tl-hdr-l {
+      font-size: 8px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.2px; color: rgba(148,163,184,0.35);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .ev-ai-tl-hdr-l::after {
+      content: ''; display: inline-block; width: 55px; height: 1px;
+      background: linear-gradient(90deg, rgba(148,163,184,0.22), transparent);
+    }
+    .ev-ai-tl-hdr-r {
+      font-size: 8px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.2px; color: rgba(148,163,184,0.25);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .ev-ai-tl-hdr-r::before {
+      content: ''; display: inline-block; width: 55px; height: 1px;
+      background: linear-gradient(270deg, rgba(148,163,184,0.22), transparent);
+    }
+
+    /* Track + line */
+    .ev-ai-tl-track {
+      position: relative;
+      padding: 26px 0 52px;
+    }
+    .ev-ai-tl-line {
+      position: absolute; top: 26px; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg,
+        #8B5CF6  0%,
+        #7A8EF5 18%,
+        #4DBEF5 38%,
+        #22C5FF 58%,
+        #22D3A6 82%,
+        #1CF5C2 100%
+      );
+      border-radius: 1px;
+      box-shadow: 0 0 8px rgba(34,211,166,0.18);
+    }
+
+    /* Ruler tick marks on the timeline */
+    .ev-ai-tl-ticks { position: absolute; top: 26px; left: 0; right: 0; }
+    .ev-ai-tick {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      background: rgba(139,92,246,0.75);
+      width: 2px; height: 16px;
+      border-radius: 1px;
+      box-shadow: 0 0 4px rgba(139,92,246,0.35);
+    }
+    .ev-ai-pct {
+      font-size: 13px; font-weight: 700; color: rgba(241,245,249,0.65);
+      margin-top: 3px; text-align: center;
+    }
+    .ev-ai-pt.is-h .ev-ai-day {
+      color: #22D3A6; font-size: 9px; font-weight: 800;
+      text-shadow: 0 0 8px rgba(34,211,166,0.55);
+    }
+    .ev-ai-pt.is-h .ev-ai-pct {
+      color: #22D3A6; font-size: 16px;
+      text-shadow: 0 0 12px rgba(34,211,166,0.45);
+    }
+    .ev-ai-badge {
+      font-size: 7.5px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.9px; color: rgba(34,211,166,0.80);
+      background: rgba(34,211,166,0.09);
+      border: 1px solid rgba(34,211,166,0.22);
+      border-radius: 4px; padding: 3px 8px; margin-top: 5px;
+      white-space: nowrap;
+    }
+
+    /* ── Draggable exit slider ── */
+    .ev-ai-slider-wrap {
+      position: absolute; inset: 0;
+      pointer-events: none; z-index: 10; overflow: visible;
+    }
+    .ev-ai-slider {
+      position: absolute;
+      top: 26px;                    /* same as line top */
+      transform: translate(-50%, -50%);
+      cursor: ew-resize;
+      pointer-events: all;
+      user-select: none;
+    }
+    .ev-ai-slider-handle {
+      width: 26px; height: 26px; border-radius: 50%;
+      background: radial-gradient(circle, #22D3A6 0%, #17a884 100%);
+      border: 2px solid rgba(255,255,255,0.35);
+      box-shadow: 0 0 18px rgba(34,211,166,0.80), 0 0 36px rgba(34,211,166,0.35);
+      position: relative; z-index: 2;
+      transition: box-shadow 0.15s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    /* Two-bar drag icon on the handle */
+    .ev-ai-slider-handle::before {
+      content: '';
+      display: block;
+      width: 2px; height: 10px;
+      border-left: 2px solid rgba(255,255,255,0.65);
+      border-right: 2px solid rgba(255,255,255,0.65);
+      box-sizing: border-box;
+    }
+    .ev-ai-slider:active .ev-ai-slider-handle,
+    .ev-ai-slider.is-dragging .ev-ai-slider-handle {
+      box-shadow: 0 0 28px rgba(34,211,166,1), 0 0 56px rgba(34,211,166,0.55);
+    }
+    /* Pulsing ring around handle — universal "interactive" affordance */
+    .ev-ai-slider-ring {
+      position: absolute;
+      width: 46px; height: 46px; border-radius: 50%;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      border: 1.5px solid rgba(34,211,166,0.55);
+      pointer-events: none; z-index: 1;
+      animation: sliderRingPulse 2s ease-out infinite;
+    }
+    @keyframes sliderRingPulse {
+      0%   { transform: translate(-50%,-50%) scale(0.88); opacity: 0.8; }
+      70%  { transform: translate(-50%,-50%) scale(1.55); opacity: 0;   }
+      100% { transform: translate(-50%,-50%) scale(0.88); opacity: 0;   }
+    }
+    /* Drag hint below the vertical line */
+    .ev-ai-drag-hint {
+      position: absolute;
+      top: 60px; left: 50%; transform: translateX(-50%);
+      font-size: 18px; font-weight: 900; letter-spacing: 8px;
+      color: #22D3A6; pointer-events: none; white-space: nowrap;
+      text-shadow: 0 0 10px rgba(34,211,166,0.80);
+      animation: dragHintPulse 1.6s ease-in-out infinite;
+    }
+    @keyframes dragHintPulse {
+      0%, 100% { opacity: 0.35; }
+      50%       { opacity: 1.00; }
+    }
+    .ev-ai-slider.is-dragging .ev-ai-slider-ring,
+    .ev-ai-slider.is-dragging .ev-ai-drag-hint { display: none; }
+    .ev-ai-slider-vline {
+      position: absolute; top: 11px; left: 50%;
+      transform: translateX(-50%);
+      width: 1px; height: 42px;
+      background: linear-gradient(to bottom, rgba(34,211,166,0.55), transparent);
+    }
+    .ev-ai-slider-tip {
+      position: absolute; bottom: calc(100% + 6px);
+      left: 50%; transform: translateX(-50%);
+      background: rgba(8,11,24,0.96);
+      border: 1px solid rgba(34,211,166,0.32);
+      border-radius: 10px; padding: 8px 14px;
+      white-space: nowrap; text-align: center;
+      pointer-events: none;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.50), 0 0 20px rgba(34,211,166,0.10);
+    }
+    .ev-ai-slider-tip::after {
+      content: ''; position: absolute; top: 100%; left: 50%;
+      transform: translateX(-50%);
+      border: 5px solid transparent;
+      border-top-color: rgba(34,211,166,0.30);
+    }
+    .ev-ai-tip-day {
+      font-size: 9px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1px; color: rgba(148,163,184,0.55);
+      margin-bottom: 3px;
+    }
+    .ev-ai-tip-pct {
+      font-size: 22px; font-weight: 900; letter-spacing: -1px; line-height: 1;
+      color: #22D3A6;
+      text-shadow: 0 0 14px rgba(34,211,166,0.55);
+    }
+    .ev-ai-tip-edge {
+      font-size: 11px; color: rgba(148,163,184,0.50); margin-top: 3px;
+      font-weight: 600;
+    }
+
+    /* Bottom note */
+    .ev-ai-note {
+      display: flex; align-items: center; gap: 8px; margin-top: 4px;
+      font-size: 11px; color: rgba(148,163,184,0.38);
+    }
+    .ev-ai-note-star { color: #22D3A6; font-size: 13px; flex-shrink: 0; }
+
+    /* ═══════════════════════════════════════════════════
+       BLOCK 3 · КРАТКИЙ ВЫВОД
+    ═══════════════════════════════════════════════════ */
+    .ev-verdict {
+      margin: 20px 32px;
+      border-radius: 16px;
+      border: 1px solid rgba(124,58,237,0.22);
+      background: linear-gradient(135deg,
+        rgba(91,33,182,0.16) 0%,
+        rgba(109,40,217,0.09) 55%,
+        rgba(79,70,229,0.06) 100%);
+      display: flex; gap: 20px; padding: 20px 24px; align-items: flex-start;
+      position: relative; overflow: hidden;
+    }
+    .ev-verdict::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 8% 50%, rgba(124,58,237,0.14) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .ev-verdict-icon {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; flex-shrink: 0;
+      box-shadow: 0 0 22px rgba(124,58,237,0.40);
+    }
+    .ev-verdict-body { flex: 1; position: relative; z-index: 1; }
+    .ev-verdict-hdr {
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.2px; color: rgba(196,181,253,0.65); margin-bottom: 7px;
+    }
+    .ev-verdict-stmt {
+      font-size: 17px; font-weight: 700; color: #fff; line-height: 1.35; margin-bottom: 10px;
+    }
+    .ev-verdict-txt { font-size: 13.5px; color: rgba(255,255,255,0.55); line-height: 1.75; }
+
+    /* Confidence bar inside verdict */
+    .ev-confidence {
+      display: flex; align-items: center; gap: 10px; margin-top: 14px;
+    }
+    .ev-conf-bar-bg {
+      flex: 1; height: 4px; background: rgba(255,255,255,0.10); border-radius: 2px; overflow: hidden;
+    }
+    .ev-conf-bar-fill {
+      height: 100%; background: linear-gradient(90deg, #6d28d9, #a855f7); border-radius: 2px;
+    }
+    .ev-conf-label { font-size: 11px; color: rgba(255,255,255,0.40); white-space: nowrap; }
+
+    /* ═══════════════════════════════════════════════════
+       SHARED SECTION WRAPPER
+    ═══════════════════════════════════════════════════ */
+    .ev-section { padding: 0 32px 20px; }
+    .ev-section-title {
+      font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.72);
+      margin-bottom: 14px; letter-spacing: -0.1px;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       BLOCK 4 · ПОЧЕМУ МЫ ВИДИМ ВОЗМОЖНОСТЬ
+    ═══════════════════════════════════════════════════ */
+    .ev-opp-grid {
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px;
+    }
+    @media (max-width: 900px) { .ev-opp-grid { grid-template-columns: repeat(3,1fr); } }
+    @media (max-width: 600px) { .ev-opp-grid { grid-template-columns: 1fr 1fr; } }
+    .ev-opp-tile {
+      background: rgba(255,255,255,0.028);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px; padding: 16px 16px 14px;
+      display: flex; flex-direction: column; gap: 0;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .ev-opp-tile:hover {
+      background: rgba(255,255,255,0.045);
+      border-color: rgba(255,255,255,0.13);
+    }
+    /* Header row: icon left, big value right */
+    .ev-opp-head {
+      display: flex; justify-content: space-between;
+      align-items: flex-start; margin-bottom: 10px;
+    }
+    .ev-opp-icon-wrap {
+      width: 34px; height: 34px; border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .ev-opp-icon-wrap svg { width: 17px; height: 17px; }
+    .ev-opp-icon-wrap.c-purple { background: rgba(139,92,246,0.15); color: #a78bfa; }
+    .ev-opp-icon-wrap.c-green  { background: rgba(34,211,166,0.13); color: #22D3A6; }
+    .ev-opp-icon-wrap.c-orange { background: rgba(251,146,60,0.13);  color: #fb923c; }
+    .ev-opp-icon-wrap.c-blue   { background: rgba(34,197,254,0.13);  color: #22C5FF; }
+    .ev-opp-icon-wrap.c-teal   { background: rgba(52,211,153,0.13);  color: #34d399; }
+    /* Value block (top-right) */
+    .ev-opp-val-wrap { text-align: right; }
+    .ev-opp-val {
+      font-size: 26px; font-weight: 900;
+      letter-spacing: -0.8px; line-height: 1;
+    }
+    .ev-opp-val.c-purple { color: #a78bfa; }
+    .ev-opp-val.c-green  { color: #22D3A6; }
+    .ev-opp-val.c-orange { color: #fb923c; }
+    .ev-opp-val.c-blue   { color: #22C5FF; }
+    .ev-opp-val.c-teal   { color: #34d399; }
+    .ev-opp-sub { font-size: 10px; color: rgba(255,255,255,0.28); margin-top: 2px; }
+    .ev-opp-lbl {
+      font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.55);
+      line-height: 1.4; margin-bottom: 8px;
+    }
+    .ev-opp-divider {
+      height: 1px; background: rgba(255,255,255,0.07); margin-bottom: 12px;
+    }
+    .ev-opp-desc {
+      font-size: 12px; line-height: 1.65;
+      color: rgba(255,255,255,0.38); flex-grow: 1;
+    }
+    .ev-opp-sources {
+      display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px;
+    }
+    .ev-opp-src {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.4px;
+      padding: 2px 7px; border-radius: 4px;
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.35);
+    }
+
+    /* ═══════════════════════════════════════════════════
+       BLOCK 5 · ЧТО АНАЛИЗИРУЕТ СИСТЕМА
+    ═══════════════════════════════════════════════════ */
+    .ev-src-grid {
+      display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px;
+    }
+    .ev-src-tile {
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 10px; padding: 14px 10px;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 5px; text-align: center;
+    }
+    .ev-src-icon { font-size: 20px; }
+    .ev-src-name { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.72); }
+    .ev-src-sub { font-size: 10px; color: rgba(255,255,255,0.30); }
+    .ev-src-status {
+      display: flex; align-items: center; gap: 4px;
+      font-size: 10px; font-weight: 600; color: #4ade80; margin-top: 2px;
+    }
+    .ev-src-dot { width: 5px; height: 5px; border-radius: 50%; background: #4ade80; }
+
+    /* ═══════════════════════════════════════════════════
+       BLOCK 6 · МЫ ПРОДОЛЖАЕМ СЛЕДИТЬ
+    ═══════════════════════════════════════════════════ */
+    .ev-watch-grid {
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 10px;
+    }
+    @media (max-width: 800px) { .ev-watch-grid { grid-template-columns: 1fr 1fr; } }
+    .ev-watch-item {
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px; padding: 14px 15px;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .ev-watch-top {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .ev-watch-name {
+      font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.80);
+    }
+    .ev-watch-status {
+      display: flex; align-items: center; gap: 5px;
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+    .ev-watch-dot {
+      width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+    }
+    .ev-watch-dot.live   { background: #22D3A6; animation: wdPulse 1.8s ease-in-out infinite; }
+    .ev-watch-dot.alert  { background: #fb923c; animation: wdPulse 1.0s ease-in-out infinite; }
+    .ev-watch-dot.calm   { background: rgba(148,163,184,0.40); }
+    @keyframes wdPulse {
+      0%,100% { box-shadow: 0 0 0 0 currentColor; opacity: 1; }
+      50%      { box-shadow: 0 0 0 4px transparent; opacity: 0.6; }
+    }
+    .ev-watch-status.live  { color: #22D3A6; }
+    .ev-watch-status.alert { color: #fb923c; }
+    .ev-watch-status.calm  { color: rgba(148,163,184,0.45); }
+    .ev-watch-desc {
+      font-size: 11px; color: rgba(255,255,255,0.32);
+      line-height: 1.55;
+    }
+    .ev-watch-meta {
+      font-size: 10px; color: rgba(255,255,255,0.22);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 8px; margin-top: 0;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       WAR ROOM
+    ═══════════════════════════════════════════════════ */
+    .ev-warroom {
+      margin: 0 32px 24px;
+      border-radius: 16px; overflow: hidden;
+      position: relative;
+      /* Gradient border via box-shadow layering */
+      border: 1px solid transparent;
+      background-clip: padding-box;
+      box-shadow:
+        0 0 0 1px rgba(139,92,246,0.30),
+        0 0 0 2px rgba(26,111,255,0.12),
+        0 0 32px rgba(139,92,246,0.10),
+        0 8px 32px rgba(0,0,0,0.40);
+    }
+    /* Accent line at the top */
+    .ev-warroom::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, #1a6fff 0%, #8b5cf6 50%, #22d3a6 100%);
+      z-index: 2;
+    }
+    .ev-warroom-hdr {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 18px; border-bottom: 1px solid rgba(139,92,246,0.12);
+      background: linear-gradient(135deg, rgba(26,111,255,0.07) 0%, rgba(139,92,246,0.06) 100%);
+    }
+    .ev-warroom-title {
+      font-size: 14px; font-weight: 700;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .ev-warroom-badge {
+      font-size: 11px; padding: 3px 10px; border-radius: 9999px;
+      background: rgba(74,222,128,0.12); color: #4ade80;
+      border: 1px solid rgba(74,222,128,0.25);
+    }
+    .ev-agents { padding: 10px; display: flex; flex-direction: column; gap: 6px; }
+    .ev-agent {
+      background: rgba(255,255,255,0.025); border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.06);
+      overflow: hidden; cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .ev-agent:hover { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.12); }
+    .ev-agent.is-open { border-color: rgba(139,92,246,0.25); }
+    .ev-agent-row {
+      display: flex; gap: 12px; padding: 13px 14px; align-items: center;
+    }
+    .ev-agent-av { font-size: 18px; flex-shrink: 0; }
+    .ev-agent-info { flex: 1; min-width: 0; }
+    .ev-agent-header { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap; }
+    .ev-agent-name { font-size: 13px; font-weight: 700; }
+    .ev-agent-role { font-size: 11px; color: rgba(255,255,255,0.35); font-weight: 400; }
+    .ev-agent-verdict {
+      font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+      padding: 4px 12px; border-radius: 6px; flex-shrink: 0; white-space: nowrap;
+      display: inline-flex; align-items: center; justify-content: center;
+      text-align: center; line-height: 1; min-width: 130px;
+    }
+    .ev-agent-verdict.green  { background: rgba(34,211,166,0.12); color: #22D3A6; }
+    .ev-agent-verdict.red    { background: rgba(248,113,113,0.12); color: #f87171; }
+    .ev-agent-verdict.orange { background: rgba(251,146,60,0.12);  color: #fb923c; }
+    .ev-agent-verdict.purple { background: rgba(139,92,246,0.12);  color: #a78bfa; }
+    .ev-agent-msg { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.65; }
+    .ev-agent-chevron {
+      display: flex; flex-direction: column; align-items: center; gap: 3px;
+      flex-shrink: 0;
+      color: rgba(255,255,255,0.25);
+      transition: color 0.25s;
+      min-width: 44px;
+    }
+    .ev-agent-chevron-arrow {
+      font-size: 18px; line-height: 1;
+      display: inline-block;
+      transition: transform 0.25s;
+    }
+    .ev-agent-chevron-lbl {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.4px;
+      text-transform: uppercase; color: inherit; white-space: nowrap;
+    }
+    .ev-agent.is-open .ev-agent-chevron { color: rgba(139,92,246,0.80); }
+    .ev-agent.is-open .ev-agent-chevron-arrow { transform: rotate(180deg); }
+
+    /* Expandable detail panel */
+    .ev-agent-detail {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.35s ease, opacity 0.25s;
+      opacity: 0;
+    }
+    .ev-agent.is-open .ev-agent-detail { max-height: 600px; opacity: 1; }
+    .ev-agent-detail-inner {
+      padding: 0 14px 16px 44px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .ev-agent-detail-text {
+      font-size: 13px; color: rgba(255,255,255,0.60); line-height: 1.75;
+      margin: 12px 0 14px;
+    }
+    .ev-agent-evidence {
+      display: flex; flex-direction: column; gap: 5px; margin-bottom: 14px;
+    }
+    .ev-agent-ev-item {
+      display: flex; align-items: flex-start; gap: 8px;
+      font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.5;
+    }
+    .ev-agent-ev-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: rgba(139,92,246,0.70); flex-shrink: 0; margin-top: 5px;
+    }
+    .ev-agent-footer {
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    }
+    .ev-agent-conf {
+      display: flex; align-items: center; gap: 8px; flex: 1; min-width: 160px;
+    }
+    .ev-agent-conf-lbl { font-size: 11px; color: rgba(255,255,255,0.30); white-space: nowrap; }
+    .ev-agent-conf-bar-bg {
+      flex: 1; height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden;
+    }
+    .ev-agent-conf-fill {
+      height: 100%; border-radius: 2px;
+      background: linear-gradient(90deg, #8B5CF6, #22D3A6);
+    }
+    .ev-agent-conf-val { font-size: 11px; font-weight: 700; color: #22D3A6; white-space: nowrap; }
+    .ev-agent-sources { display: flex; gap: 5px; flex-wrap: wrap; }
+    .ev-agent-src-tag {
+      font-size: 10px; padding: 2px 7px; border-radius: 4px;
+      background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.30);
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+
+    /* ═══════════════════════════════════════════════════
+       BLOCK 7 · BOTTOM
+    ═══════════════════════════════════════════════════ */
+    .ev-bottom {
+      padding: 0 32px 32px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+      align-items: stretch;
+      border-top: 1px solid rgba(255,255,255,0.07); padding-top: 24px;
+    }
+    .ev-bottom-card {
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px; padding: 20px 22px;
+      display: flex; flex-direction: column;
+    }
+    .ev-bottom-title {
+      font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.78); margin-bottom: 16px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .ev-curr-toggle {
+      display: flex; background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10); border-radius: 8px; overflow: hidden;
+    }
+    .ev-curr-btn {
+      padding: 5px 14px; font-size: 13px; font-weight: 700;
+      cursor: pointer; border: none; background: transparent;
+      color: rgba(255,255,255,0.35); font-family: inherit;
+      transition: background 0.15s, color 0.15s;
+    }
+    .ev-curr-btn.active {
+      background: rgba(139,92,246,0.25);
+      color: #c4b5fd;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       CHANGES MAP
+    ═══════════════════════════════════════════════════ */
+    .ev-changes {
+      margin: 0 32px 24px;
+    }
+    .ev-changes-hdr {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .ev-changes-title {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 15px; font-weight: 700; color: #fff;
+    }
+    .ev-changes-live {
+      display: flex; align-items: center; gap: 5px;
+      font-size: 11px; font-weight: 600; color: #4ade80;
+    }
+    .ev-changes-live-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #4ade80;
+      box-shadow: 0 0 6px rgba(74,222,128,0.7);
+      animation: chg-pulse 2s ease-in-out infinite;
+    }
+    @keyframes chg-pulse {
+      0%,100% { opacity:1; }
+      50%      { opacity:0.4; }
+    }
+    .ev-changes-count {
+      font-size: 12px; color: var(--text-muted);
+    }
+
+    /* Timeline */
+    .ev-changes-list {
+      display: flex; flex-direction: column; gap: 0;
+      background: linear-gradient(145deg,#060b18,#090e1e);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .ev-change-item {
+      display: flex; align-items: stretch; gap: 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      transition: background 0.15s;
+      cursor: default;
+      position: relative;
+    }
+    .ev-change-item:last-child { border-bottom: none; }
+    .ev-change-item:hover { background: rgba(255,255,255,0.02); }
+
+    /* Left indicator bar */
+    .ev-change-bar {
+      width: 3px;
+      flex-shrink: 0;
+    }
+    .ev-change-bar.positive { background: linear-gradient(180deg, #4ade80, #22c55e); }
+    .ev-change-bar.negative { background: linear-gradient(180deg, #f87171, #ef4444); }
+    .ev-change-bar.neutral  { background: linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0.08)); }
+
+    /* Type icon */
+    .ev-change-type-col {
+      display: flex; align-items: flex-start;
+      padding: 14px 10px 14px 14px;
+      flex-shrink: 0;
+    }
+    .ev-change-ico {
+      width: 32px; height: 32px; border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; flex-shrink: 0;
+    }
+    .ev-change-ico.news     { background: rgba(96,165,250,0.12); }
+    .ev-change-ico.data     { background: rgba(124,58,237,0.12); }
+    .ev-change-ico.market   { background: rgba(20,184,166,0.12); }
+    .ev-change-ico.signal   { background: rgba(251,146,60,0.12); }
+
+    /* Content */
+    .ev-change-content {
+      flex: 1; padding: 14px 14px 14px 4px; min-width: 0;
+    }
+    .ev-change-meta {
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 5px;
+    }
+    .ev-change-date {
+      font-size: 11px; color: var(--text-muted);
+      white-space: nowrap;
+    }
+    .ev-change-source {
+      font-size: 10.5px; font-weight: 600;
+      color: rgba(255,255,255,0.30);
+      background: rgba(255,255,255,0.05);
+      border-radius: 4px; padding: 1px 7px;
+    }
+    .ev-change-heading {
+      font-size: 13.5px; font-weight: 700; color: #fff;
+      line-height: 1.35; margin-bottom: 4px;
+    }
+    .ev-change-desc {
+      font-size: 12px; color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* Impact badge */
+    .ev-change-impact-col {
+      display: flex; align-items: center;
+      padding: 0 16px 0 12px; flex-shrink: 0;
+    }
+    .ev-change-impact {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 5px 12px; border-radius: 9999px;
+      font-size: 11px; font-weight: 700;
+      white-space: nowrap;
+    }
+    .ev-change-impact.positive {
+      background: rgba(74,222,128,0.10);
+      border: 1px solid rgba(74,222,128,0.25);
+      color: #4ade80;
+    }
+    .ev-change-impact.negative {
+      background: rgba(248,113,113,0.10);
+      border: 1px solid rgba(248,113,113,0.25);
+      color: #f87171;
+    }
+    .ev-change-impact.neutral {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: rgba(255,255,255,0.45);
+    }
+    .ev-change-impact svg {
+      width: 11px; height: 11px;
+      fill: none; stroke: currentColor; stroke-width: 2.5;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    /* Calculator */
+    .ev-calc-inputs {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px;
+    }
+    .ev-inp-group { display: flex; flex-direction: column; gap: 7px; }
+    .ev-inp-lbl { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.55); }
+    .ev-inp {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 8px; padding: 10px 14px; color: #fff; font-size: 16px;
+      font-family: inherit; outline: none; width: 100%; box-sizing: border-box;
+    }
+    .ev-inp:focus { border-color: rgba(124,58,237,0.50); }
+    .ev-range {
+      -webkit-appearance: none; appearance: none;
+      width: 100%; height: 4px; border-radius: 2px; outline: none; cursor: pointer;
+      background: linear-gradient(90deg, #8B5CF6 0%, #22D3A6 100%);
+    }
+    .ev-range::-webkit-slider-thumb {
+      -webkit-appearance: none; appearance: none;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: #22D3A6; border: 2px solid rgba(255,255,255,0.30);
+      box-shadow: 0 0 10px rgba(34,211,166,0.60);
+      cursor: ew-resize;
+    }
+    .ev-range::-moz-range-thumb {
+      width: 18px; height: 18px; border-radius: 50%;
+      background: #22D3A6; border: 2px solid rgba(255,255,255,0.30);
+      box-shadow: 0 0 10px rgba(34,211,166,0.60); cursor: ew-resize;
+    }
+    .ev-calc-out {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;
+      margin-top: auto; margin-bottom: auto;
+    }
+    .ev-calc-item-annual {
+      background: rgba(34,211,166,0.07);
+      border: 1px solid rgba(34,211,166,0.2);
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+    .ev-calc-item { display: flex; flex-direction: column; gap: 5px; }
+    .ev-calc-item-lbl { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.42); }
+    .ev-calc-item-val { font-size: 32px; font-weight: 900; letter-spacing: -0.8px; }
+    .ev-calc-item-sub { font-size: 12px; color: rgba(255,255,255,0.30); }
+    .ev-calc-note { font-size: 12px; color: rgba(255,255,255,0.28); line-height: 1.6; padding-top: 12px; }
+    .ev-calc-note a { color: rgba(168,85,247,0.65); }
+
+    /* Follow */
+    .ev-follow-desc { font-size: 13px; color: rgba(255,255,255,0.42); line-height: 1.65; margin-bottom: 14px; }
+    .ev-follow-btn {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%; padding: 13px;
+      background: linear-gradient(90deg, #5b21b6, #7c3aed);
+      color: #fff; font-size: 14px; font-weight: 700;
+      border: none; border-radius: 10px; cursor: pointer; margin-bottom: 8px;
+      transition: opacity 0.2s; box-sizing: border-box;
+    }
+    .ev-follow-btn:hover { opacity: 0.88; }
+    .ev-follow-note { font-size: 11px; text-align: center; color: rgba(255,255,255,0.22); margin-bottom: 14px; }
+    .ev-disclaimer {
+      margin-top: 12px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .ev-disclaimer-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .ev-disclaimer-icon {
+      width: 32px; height: 32px; border-radius: 9px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px;
+    }
+    .ev-disclaimer-icon.blue  { background: rgba(26,111,255,0.12); }
+    .ev-disclaimer-icon.green { background: rgba(34,211,166,0.10); }
+    .ev-disclaimer-icon.gray  { background: rgba(255,255,255,0.06); }
+    .ev-disclaimer-text { font-size: 12px; color: rgba(255,255,255,0.38); line-height: 1.65; padding-top: 6px; }
+    .ev-disclaimer-text strong { color: rgba(255,255,255,0.60); font-weight: 600; }
+    .ev-disclaimer-divider { height: 1px; background: rgba(255,255,255,0.05); }
+    .ev-pm-btn {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; padding: 12px 16px;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 10px; color: rgba(255,255,255,0.55); font-size: 13px;
+      font-weight: 500; cursor: pointer; text-decoration: none;
+      transition: border-color 0.2s, color 0.2s; box-sizing: border-box;
+    }
+    .ev-pm-btn:hover { border-color: rgba(255,255,255,0.22); color: rgba(255,255,255,0.80); }
+    .ev-pm-sub { font-size: 11px; color: rgba(255,255,255,0.25); margin-top: 2px; }
+
+    /* Footer */
+    .ev-footer {
+      padding: 12px 32px 20px;
+      display: flex; align-items: center; gap: 10px;
+      font-size: 11px; color: rgba(255,255,255,0.20);
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .ev-footer-sep { color: rgba(255,255,255,0.12); }
+
+    /* Color helpers */
+    .c-purple { color: #a855f7; }
+    .c-green  { color: #22c55e; }
+    .c-orange { color: #f97316; }
+    .c-red    { color: #f87171; }
+    .c-teal   { color: #2dd4bf; }
+    .c-white  { color: #fff; }
+  </style>
+</head>
+<body>
+<div class="app-layout">
+  <aside id="sidebar"></aside>
+  <main class="main-content" id="main-content">
+    <div style="display:flex;align-items:center;justify-content:center;height:100vh;color:var(--text-muted);">
+      Загрузка...
+    </div>
+  </main>
+</div>
+
+<script src="../data/events-live.js"></script>
+<script src="../data/events-data.js"></script>
+<script src="../assets/js/events-store.js"></script>
+<script src="../assets/js/state.js"></script>
+<script src="../assets/js/sidebar.js"></script>
+<script>
+(async function () {
+  const params    = new URLSearchParams(window.location.search);
+  const eventId   = params.get('id');
+  const main      = document.getElementById('main-content');
+  const tier      = PP.getTier();
+  const canSeeEdge    = PP.getMeta().canSeeEdge;
+  const canSeeWarRoom = PP.getMeta().canSeeWarRoom;
+
+  try {
+    const res = await fetch('../data/events.json');
+    window.__PP_EVENTS_JSON__ = await res.json();
+  } catch (e) { /* events-data.js fallback */ }
+
+  const ev = PP_EVENTS_STORE.getEventById(eventId);
+  if (!ev) {
+    main.innerHTML = '<p style="padding:40px;color:var(--text-muted)">Событие не найдено. <a href="events.html" style="color:#a855f7">← Назад</a></p>';
+    return;
+  }
+
+  document.title = ev.title + ' — PolyPilot';
+
+  /* ── helpers ── */
+  /* ── SVG icons (same as closed card) ── */
+  const ICON = {
+    trending: `<svg viewBox="0 0 22 22" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,16 7,10 11,14 17,7"/><polyline points="13,7 17,7 17,11"/></svg>`,
+    brain:    `<svg viewBox="0 0 22 22" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 3a4 4 0 0 1 4 4c0 .6-.1 1.2-.4 1.7A4 4 0 0 1 11 19a4 4 0 0 1-3.6-5.3A4 4 0 0 1 11 3z"/><path d="M7 9H5a2 2 0 0 0 0 4h2"/><path d="M15 9h2a2 2 0 0 1 0 4h-2"/></svg>`,
+    calendar: `<svg viewBox="0 0 22 22" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="18" height="16" rx="2"/><line x1="7" y1="2" x2="7" y2="6"/><line x1="15" y1="2" x2="15" y2="6"/><line x1="2" y1="10" x2="20" y2="10"/></svg>`,
+    database: `<svg viewBox="0 0 22 22" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="11" cy="5.5" rx="7" ry="2.5"/><path d="M4 5.5v5c0 1.38 3.13 2.5 7 2.5s7-1.12 7-2.5v-5"/><path d="M4 10.5v5c0 1.38 3.13 2.5 7 2.5s7-1.12 7-2.5v-5"/></svg>`,
+    trendUp:  `<svg viewBox="0 0 22 22" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,18 7,12 11,15 16,8 20,5"/><polyline points="15,5 20,5 20,10"/></svg>`,
+    bars:     `<svg viewBox="0 0 22 22" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="14" width="5" height="6" rx="1.5"/><rect x="8.5" y="9" width="5" height="11" rx="1.5"/><rect x="15" y="4" width="5" height="16" rx="1.5"/></svg>`,
+  };
+
+  const riskLabel = { low: 'Низкий', medium: 'Средний', high: 'Высокий' }[ev.riskLevel] || ev.riskLevel;
+  const riskClass = { low: 'c-green', medium: 'c-orange', high: 'c-red' }[ev.riskLevel] || 'c-white';
+  const potClass  = (ev.potential || '').startsWith('-') ? 'c-red' : 'c-purple';
+  const vol24Cls  = ev.volume24hPositive ? 'c-green' : 'c-red';
+  const edgeSign     = ev.edgeScore >= 0 ? '+' : '';
+  const intColor  = ev.interestPositive ? '#4ade80' : '#f87171';
+  const intArrow  = ev.interestPositive ? '↑' : '↓';
+  const intPct    = ev.interestPositive ? '+240%' : '−15%';
+
+  /* ── AI Timeline Panel ── */
+  const hDay = parseInt(ev.horizon) || 7;
+
+  // Core logic: edge = AI prediction of market re-pricing
+  // Entry: ev.marketOdds (e.g. 29%)
+  // Target: ev.marketOdds + edge (e.g. 29 + 12 = 41%)
+  // Edge = ev.potential (e.g. +12%)
+  const potentialNum  = parseFloat(ev.potential) || 0;         // e.g. 12
+  const aiTargetOdds  = Math.round(ev.marketOdds + Math.abs(potentialNum)); // e.g. 41
+
+  const dayLbl = (d) => {
+    if (d === 0) return 'СЕЙЧАС';
+    const l2 = d % 100, l1 = d % 10;
+    if (l2 >= 11 && l2 <= 14) return d + ' ДНЕЙ';
+    if (l1 === 1) return d + ' ДЕНЬ';
+    if (l1 >= 2 && l1 <= 4) return d + ' ДНЯ';
+    return d + ' ДНЕЙ';
+  };
+
+  // Ruler tick marks: thin every 10 days, thick every 30 days
+  const ticksHtml = (() => {
+    let h = '';
+    for (let d = 10; d < hDay; d += 10) {
+      const pct = (d / hDay * 100).toFixed(2);
+      h += `<div class="ev-ai-tick ${d % 30 === 0 ? 'is-30' : ''}" style="left:${pct}%"></div>`;
+    }
+    return h;
+  })();
+
+  /* ── Local AI-generated images per category ── */
+  const localImgMap = {
+    macro:    '../assets/img/events/event-macro.jpg',
+    crypto:   '../assets/img/events/event-crypto.jpg',
+    politics: '../assets/img/events/event-politics.jpg',
+  };
+  const imgUrl = localImgMap[ev.categoryTag] || localImgMap.macro;
+
+  /* ── CSS gradient fallback (if image fails to load) ── */
+  const imgFallback = {
+    macro:    `radial-gradient(ellipse at 45% 35%, rgba(37,99,235,0.55) 0%, transparent 55%), radial-gradient(ellipse at 75% 75%, rgba(124,58,237,0.35) 0%, transparent 50%), linear-gradient(155deg, #04060f 0%, #0a1228 100%)`,
+    crypto:   `radial-gradient(ellipse at 50% 40%, rgba(251,146,60,0.45) 0%, transparent 55%), radial-gradient(ellipse at 25% 70%, rgba(124,58,237,0.30) 0%, transparent 50%), linear-gradient(155deg, #080600 0%, #140e04 100%)`,
+    politics: `radial-gradient(ellipse at 50% 40%, rgba(239,68,68,0.40) 0%, transparent 55%), radial-gradient(ellipse at 70% 70%, rgba(124,58,237,0.25) 0%, transparent 50%), linear-gradient(155deg, #0a0606 0%, #130a0c 100%)`,
+  }[ev.categoryTag] || `radial-gradient(ellipse at 50% 50%, rgba(124,58,237,0.40) 0%, transparent 60%), linear-gradient(155deg, #06080f 0%, #0e0f1e 100%)`;
+
+  const imgBg = `url('${imgUrl}'), ${imgFallback}`;
+
+  /* ── opportunity tiles ── */
+  const OPP_SVG = {
+    chat:    `<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4h16v10H2z" rx="2"/><path d="M6 8h8M6 11h5"/></svg>`,
+    play:    `<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="16" height="14" rx="2"/><polygon points="8,7 14,10 8,13" fill="currentColor" stroke="none"/></svg>`,
+    fire:    `<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2c0 4-5 5-5 9a5 5 0 0 0 10 0c0-3-2-5-2-7-1 1.5-1.5 2-3 2z"/><path d="M10 14a1.5 1.5 0 0 1 0-3"/></svg>`,
+    coins:   `<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="8" cy="7" rx="5" ry="2.5"/><path d="M3 7v3c0 1.4 2.2 2.5 5 2.5s5-1.1 5-2.5V7"/><path d="M13 9.5c1.7.4 4 1.3 4 2.5v3c0 1.4-2.2 2.5-5 2.5-2 0-3.7-.6-4.5-1.5"/></svg>`,
+    target:  `<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7.5"/><circle cx="10" cy="10" r="4"/><circle cx="10" cy="10" r="1.5" fill="currentColor" stroke="none"/></svg>`,
+  };
+  const oppTiles = [
+    {
+      iconKey: 'chat', iconCls: 'c-purple',
+      lbl: 'Обсуждения выросли',
+      val: '+340%', valCls: 'c-purple', sub: 'за неделю',
+      desc: 'Резкий рост упоминаний в X (Twitter) и Reddit после последних новостей. Органический интерес без рекламной накачки — признак реального сдвига настроений.',
+      sources: ['X / Twitter', 'Reddit', 'Telegram'],
+    },
+    {
+      iconKey: 'play', iconCls: 'c-blue',
+      lbl: 'Просмотры материалов',
+      val: '128M+', valCls: 'c-blue', sub: 'за 30 дней',
+      desc: 'Суммарный охват публикаций, видео и новостных материалов по теме события. Рост аудитории опережает аналогичные события прошлых лет.',
+      sources: ['YouTube', 'TikTok', 'СМИ'],
+    },
+    {
+      iconKey: 'fire', iconCls: 'c-orange',
+      lbl: 'Позитивный сентимент',
+      val: '82%', valCls: 'c-orange', sub: 'уровень позитива',
+      desc: 'Анализ тональности 14 000+ постов и комментариев. Негативные нарративы составляют менее 18% и в основном касаются не самого события.',
+      sources: ['NLP-анализ', 'X', 'Reddit'],
+    },
+    {
+      iconKey: 'coins', iconCls: 'c-green',
+      lbl: 'Деньги в событии растут',
+      val: ev.volume24h, valCls: 'c-green', sub: 'за 24 часа',
+      desc: 'Нетто-приток новых ставок на исход «Да». Крупные игроки начали занимать позиции — обычно это опережает движение рыночной вероятности на 3–5 дней.',
+      sources: ['Полимаркет', 'Kalshi'],
+    },
+    {
+      iconKey: 'target', iconCls: 'c-teal',
+      lbl: 'Рынок не догнал реальность',
+      val: edgeSign + ev.edgeScore + ' пп', valCls: 'c-teal', sub: 'разрыв рынок / AI',
+      desc: 'На основе всех сигналов PolyPilot оценивает вероятность выше рыночной. Такой разрыв исторически закрывается в течение горизонта прогноза.',
+      sources: ['PP AI', 'Исторические данные'],
+    },
+  ];
+
+  /* ── data sources ── */
+  const sources = [
+    { icon: '📊', name: 'Рынки',    sub: 'Полимаркет и др.' },
+    { icon: '📰', name: 'Новости',  sub: 'СМИ и блоги' },
+    { icon: '💬', name: 'Соцсети', sub: 'X, Reddit, TikTok' },
+    { icon: '▶',  name: 'Видео',   sub: 'YouTube, трейлеры' },
+    { icon: '🔍', name: 'Поиск',   sub: 'Google Trends' },
+    { icon: '🕐', name: 'История', sub: 'Похожие события' },
+  ];
+
+  /* ── war room ── */
+  const agents = ev.warRoom?.agents || [];
+  let warRoomHTML;
+  if (!canSeeWarRoom) {
+    warRoomHTML = `
+      <div class="ev-agents">
+        ${agents.slice(0, 2).map(agentRow).join('')}
+        <div style="padding:16px;text-align:center;border:1px dashed rgba(255,255,255,0.10);border-radius:10px;margin-top:2px;">
+          <div style="font-size:13px;color:rgba(255,255,255,0.32);margin-bottom:12px">🔒 Полный анализ PP AI — доступно в Pulse и PRO</div>
+          <a href="pricing.html" class="btn btn-primary" style="font-size:12px;">Разблокировать</a>
+        </div>
+      </div>`;
+  } else {
+    warRoomHTML = `<div class="ev-agents">${agents.map(agentRow).join('')}</div>`;
+  }
+
+  function agentRow(a) {
+    const evidenceHtml = (a.evidence || []).map(e =>
+      `<div class="ev-agent-ev-item"><div class="ev-agent-ev-dot"></div><span>${e}</span></div>`
+    ).join('');
+    const sourcesHtml = (a.sources || []).map(s =>
+      `<span class="ev-agent-src-tag">${s}</span>`
+    ).join('');
+    const conf = a.confidence || 65;
+    const verdictCls = a.verdictColor || 'green';
+
+    return `
+      <div class="ev-agent">
+        <div class="ev-agent-row">
+          <div class="ev-agent-av">${a.avatar}</div>
+          <div class="ev-agent-info">
+            <div class="ev-agent-header">
+              <span class="ev-agent-name">${a.name}</span>
+              <span class="ev-agent-role">— ${a.role}</span>
+            </div>
+            <div class="ev-agent-msg">${a.message}</div>
+          </div>
+          ${a.verdict ? `<span class="ev-agent-verdict ${verdictCls}">${a.verdict}</span>` : ''}
+          <div class="ev-agent-chevron">
+            <span class="ev-agent-chevron-arrow">↓</span>
+            <span class="ev-agent-chevron-lbl">Подробнее</span>
+          </div>
+        </div>
+        <div class="ev-agent-detail">
+          <div class="ev-agent-detail-inner">
+            ${a.detail ? `<div class="ev-agent-detail-text">${a.detail}</div>` : ''}
+            ${evidenceHtml ? `<div class="ev-agent-evidence">${evidenceHtml}</div>` : ''}
+            <div class="ev-agent-footer">
+              <div class="ev-agent-conf">
+                <span class="ev-agent-conf-lbl">Уверенность</span>
+                <div class="ev-agent-conf-bar-bg">
+                  <div class="ev-agent-conf-fill" style="width:${conf}%"></div>
+                </div>
+                <span class="ev-agent-conf-val">${conf}%</span>
+              </div>
+              <div class="ev-agent-sources">${sourcesHtml}</div>
+            </div>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  /* ── first sentence for verdict statement ── */
+  const stmtEnd = ev.verdictText.indexOf('.');
+  const verdictStmt = stmtEnd > 0 ? ev.verdictText.slice(0, stmtEnd + 1) : ev.verdictText;
+  const verdictRest = stmtEnd > 0 ? ev.verdictText.slice(stmtEnd + 1).trim() : '';
+
+  const sourceBanner = ev.isDemo
+    ? `<div style="margin:0 0 16px;padding:10px 16px;border-radius:10px;font-size:13px;color:#9ca3af;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1)">Демо-пример — вымышленные данные для демонстрации интерфейса</div>`
+    : ev.isLive
+    ? `<div style="margin:0 0 16px;padding:10px 16px;border-radius:10px;font-size:13px;color:#4ade80;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.25)">ОНЛАЙН · Полимаркет — реальные рыночные данные${ev.marketUrl ? ` · <a href="${ev.marketUrl}" target="_blank" style="color:#86efac">открыть на Полимаркете</a>` : ''}</div>`
+    : '';
+
+  const marketLabel = ev.isDemo ? 'Демо' : (ev.market || 'Полимаркет');
+
+  /* ══════════════════════════════════════════════
+     RENDER
+  ══════════════════════════════════════════════ */
+  main.innerHTML = `
+  <div class="ev-page">
+
+    <!-- Back -->
+    <a href="events.html" class="ev-back">← Назад к событиям</a>
+    ${sourceBanner}
+
+    <!-- ═══ BLOCK 1: HERO ═══ -->
+    <div class="ev-hero">
+      <div class="ev-hero-img" style="background: ${imgBg}">
+        <div class="ev-hero-img-overlay"></div>
+        <div class="ev-hero-img-label">${ev.category} · ${marketLabel}</div>
+      </div>
+      <div class="ev-hero-content">
+        <div class="ev-hero-topbar">
+          ${ev.hot ? '<span class="ev-badge-hot">Возможность дня</span>' : ''}
+          <span class="ev-badge-cat">${ev.category}</span>
+          <div class="ev-hero-meta">
+            <span class="ev-watchers">👁 ${ev.watchers} следят</span>
+            <span class="ev-bookmark">🔖</span>
+          </div>
+        </div>
+        <h1 class="ev-hero-title">${ev.title}</h1>
+        <p class="ev-hero-summary">${ev.summary}</p>
+        <div class="ev-hero-stats">
+          <div class="ev-hstat">
+            <div class="ev-hstat-icon ehi-purple">${ICON.trending}</div>
+            <div class="ev-hstat-body">
+              <span class="ev-hstat-lbl">Потенциал</span>
+              <span class="ev-hstat-val ehv-purple">${ev.potential}</span>
+              <span class="ev-hstat-sub">Возможный рост</span>
+            </div>
+          </div>
+          <div class="ev-hstat">
+            <div class="ev-hstat-icon ehi-violet">${ICON.brain}</div>
+            <div class="ev-hstat-body">
+              <span class="ev-hstat-lbl">Вероятность</span>
+              <span class="ev-hstat-val ehv-purple">${canSeeEdge ? ev.aiOdds + '%' : '??%'}</span>
+              <span class="ev-hstat-sub">Оценка PP AI</span>
+            </div>
+          </div>
+          <div class="ev-hstat">
+            <div class="ev-hstat-icon ehi-green">${ICON.calendar}</div>
+            <div class="ev-hstat-body">
+              <span class="ev-hstat-lbl">Горизонт</span>
+              <span class="ev-hstat-val ehv-teal">${ev.horizon}</span>
+              <span class="ev-hstat-sub">Ожидаемое движение</span>
+            </div>
+          </div>
+          <div class="ev-hstat">
+            <div class="ev-hstat-icon ehi-blue">${ICON.database}</div>
+            <div class="ev-hstat-body">
+              <span class="ev-hstat-lbl">Денег в событии</span>
+              <span class="ev-hstat-val ehv-white">${ev.volumeTotal}</span>
+              <span class="ev-hstat-sub">Всего за всё время</span>
+            </div>
+          </div>
+          <div class="ev-hstat">
+            <div class="ev-hstat-icon ehi-teal">${ICON.trendUp}</div>
+            <div class="ev-hstat-body">
+              <span class="ev-hstat-val ${ev.volume24hPositive ? 'ehv-pos' : 'ehv-neg'}">${ev.volume24h}</span>
+              <span class="ev-hstat-sub">за 24 часа</span>
+            </div>
+          </div>
+          <div class="ev-hstat">
+            <div class="ev-hstat-icon ehi-pink">${ICON.bars}</div>
+            <div class="ev-hstat-body">
+              <span class="ev-hstat-lbl">Интерес</span>
+              <span class="ev-hstat-val ehv-pink">${ev.interestPositive ? 'Растёт' : 'Падает'}</span>
+              <span class="ev-hstat-sub">${ev.interestPositive ? 'Рынок активен' : 'Рынок остывает'}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ BLOCK 2: AI TIMELINE PANEL ═══ -->
+    <div class="ev-ai-panel">
+
+      <!-- Top: 3 sections -->
+      <div class="ev-ai-top">
+
+        <!-- Left: market -->
+        <div class="ev-ai-col">
+          <div class="ev-ai-lbl">
+            <svg class="ev-ai-lbl-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="7" cy="6" r="2.5"/><circle cx="13" cy="6" r="2.5"/>
+              <path d="M1 17c0-2.8 2.2-4.5 6-4.5M13 12.5c3.8 0 6 1.7 6 4.5"/>
+            </svg>
+            Рынок сейчас
+          </div>
+          <div class="ev-ai-num">${ev.marketOdds}%</div>
+        </div>
+
+        <!-- Center: AI forecast -->
+        <div class="ev-ai-col ev-ai-col-mid">
+          <div class="ev-ai-lbl">
+            <svg class="ev-ai-lbl-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M10 2a3.5 3.5 0 0 1 3.5 3.5c0 .5-.1 1-.3 1.4A3.5 3.5 0 0 1 10 12a3.5 3.5 0 0 1-3.2-5.1A3.5 3.5 0 0 1 10 2z"/>
+              <path d="M6.5 7.5H5a1.5 1.5 0 0 0 0 3h1.5M13.5 7.5H15a1.5 1.5 0 0 1 0 3h-1.5"/>
+              <line x1="10" y1="12" x2="10" y2="17"/>
+            </svg>
+            PolyPilot AI видит потенциал
+          </div>
+          <div class="ev-ai-num-mid">${canSeeEdge ? ev.potential : '??%'}</div>
+          <div class="ev-ai-sub">возможный рост</div>
+        </div>
+
+        <!-- Right: AI target price -->
+        <div class="ev-ai-col ev-ai-col-right">
+          <div class="ev-ai-lbl" style="justify-content:flex-end">
+            рынок через ${ev.horizon}
+          </div>
+          <div class="ev-ai-num-right">${canSeeEdge ? aiTargetOdds + '%' : '??%'}</div>
+        </div>
+
+      </div>
+
+      <!-- Timeline -->
+      <div class="ev-ai-tl">
+        <div class="ev-ai-tl-header">
+          <div class="ev-ai-tl-hdr-l">Прогноз PolyPilot AI</div>
+          <div class="ev-ai-tl-hdr-r">Горизонт: ${ev.horizon}</div>
+        </div>
+
+        <div class="ev-ai-tl-track">
+          <div class="ev-ai-tl-line"></div>
+
+          <!-- Draggable exit-timing slider -->
+          <div class="ev-ai-slider-wrap">
+            <div class="ev-ai-slider" id="ev-ai-slider" style="left:0%">
+              <div class="ev-ai-slider-ring"></div>
+              <div class="ev-ai-slider-handle"></div>
+              <div class="ev-ai-slider-vline"></div>
+              <div class="ev-ai-drag-hint">← →</div>
+              <div class="ev-ai-slider-tip">
+                <div class="ev-ai-tip-day">СЕЙЧАС</div>
+                <div class="ev-ai-tip-pct">+0%</div>
+                <div class="ev-ai-tip-edge">рынок: ${ev.marketOdds}% · вход: ${ev.marketOdds}%</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ev-ai-tl-ticks">${ticksHtml}</div>
+        </div>
+
+        <div class="ev-ai-note">
+          <span class="ev-ai-note-star">✦</span>
+          PolyPilot AI строит прогноз до ${ev.horizon}. Это горизонт максимальной точности анализа.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ═══ BLOCK 4: ПОЧЕМУ МЫ ВИДИМ ВОЗМОЖНОСТЬ ═══ -->
+    <div class="ev-section">
+      <div class="ev-section-title">Почему мы видим возможность</div>
+      <div class="ev-opp-grid">
+        ${oppTiles.map(t => `
+          <div class="ev-opp-tile">
+            <div class="ev-opp-head">
+              <div class="ev-opp-icon-wrap ${t.iconCls}">${OPP_SVG[t.iconKey]}</div>
+              <div class="ev-opp-val-wrap">
+                <div class="ev-opp-val ${t.valCls}">${t.val}</div>
+                <div class="ev-opp-sub">${t.sub}</div>
+              </div>
+            </div>
+            <div class="ev-opp-lbl">${t.lbl}</div>
+            <div class="ev-opp-divider"></div>
+            <div class="ev-opp-desc">${t.desc}</div>
+            <div class="ev-opp-sources">${t.sources.map(s => `<span class="ev-opp-src">${s}</span>`).join('')}</div>
+          </div>`).join('')}
+      </div>
+    </div>
+
+    <!-- ═══ BLOCK 6: МЫ ПРОДОЛЖАЕМ СЛЕДИТЬ ═══ -->
+    <div class="ev-section" style="padding-top:0">
+      <div class="ev-section-title">Мы продолжаем следить</div>
+      <div class="ev-watch-grid">
+
+        <div class="ev-watch-item">
+          <div class="ev-watch-top">
+            <div class="ev-watch-name">Объём ставок</div>
+            <div class="ev-watch-status alert">
+              <div class="ev-watch-dot alert"></div>Изменение
+            </div>
+          </div>
+          <div class="ev-watch-desc">За последние 6 часов зафиксирован нетто-приток на исход «Да». Крупные игроки занимают позиции.</div>
+          <div class="ev-watch-meta">Обновлено: 14 мин. назад · Полимаркет</div>
+        </div>
+
+        <div class="ev-watch-item">
+          <div class="ev-watch-top">
+            <div class="ev-watch-name">Движение вероятностей</div>
+            <div class="ev-watch-status live">
+              <div class="ev-watch-dot live"></div>Активно
+            </div>
+          </div>
+          <div class="ev-watch-desc">Рыночная вероятность стабильна, но модель фиксирует давление на рост. Ожидаем сдвига в течение 48ч.</div>
+          <div class="ev-watch-meta">Обновлено: 2 мин. назад · Live</div>
+        </div>
+
+        <div class="ev-watch-item">
+          <div class="ev-watch-top">
+            <div class="ev-watch-name">Новости и утечки</div>
+            <div class="ev-watch-status live">
+              <div class="ev-watch-dot live"></div>Активно
+            </div>
+          </div>
+          <div class="ev-watch-desc">Мониторинг 140+ источников. Новых материалов за последние 3 часа: 12. Тональность — позитивная.</div>
+          <div class="ev-watch-meta">Обновлено: 8 мин. назад · NewsRadar</div>
+        </div>
+
+        <div class="ev-watch-item">
+          <div class="ev-watch-top">
+            <div class="ev-watch-name">Комментарии и соцсети</div>
+            <div class="ev-watch-status calm">
+              <div class="ev-watch-dot calm"></div>Спокойно
+            </div>
+          </div>
+          <div class="ev-watch-desc">Всплеск обсуждений прошёл пик. Органический интерес сохраняется, новых вирусных нарративов нет.</div>
+          <div class="ev-watch-meta">Обновлено: 31 мин. назад · X, Reddit</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ═══ WAR ROOM ═══ -->
+    <div class="ev-section" style="padding-top:8px">
+      <div class="ev-section-title">⚡ Штаб PP AI</div>
+    </div>
+    <div class="ev-warroom">
+      <div class="ev-warroom-hdr">
+        <div class="ev-warroom-title">
+          Что говорит PP AI
+          <span style="font-size:12px;font-weight:400;color:rgba(255,255,255,0.30)">— анализ завершён за ${ev.warRoom?.duration || 6} часов</span>
+        </div>
+      </div>
+      ${warRoomHTML}
+    </div>
+
+    <!-- ═══ CHANGES MAP ═══ -->
+    <div class="ev-section" style="padding-top:8px">
+      <div class="ev-section-title">📡 Карта изменений</div>
+    </div>
+    <div class="ev-changes" id="ev-changes-block">
+      <div class="ev-changes-hdr">
+        <div class="ev-changes-title">
+          PP AI мониторит событие
+          <div class="ev-changes-live">
+            <div class="ev-changes-live-dot"></div>
+            Активно
+          </div>
+        </div>
+        <div class="ev-changes-count" id="ev-changes-count"></div>
+      </div>
+      <div class="ev-changes-list" id="ev-changes-list">
+        <!-- JS fills -->
+      </div>
+    </div>
+
+    <!-- ═══ BLOCK 7: BOTTOM ═══ -->
+    <div class="ev-bottom">
+      <!-- Calculator -->
+      <div class="ev-bottom-card">
+        <div class="ev-bottom-title">
+          Ваш потенциальный результат
+        </div>
+        <div class="ev-calc-inputs" style="grid-template-columns:1fr 1.6fr;align-items:center;">
+
+          <!-- LEFT: число + валюта -->
+          <div class="ev-inp-group" style="justify-content:center;">
+            <label class="ev-inp-lbl">Сумма входа</label>
+            <input type="number" id="calc-amount" class="ev-inp"
+              value="500" min="1" style="font-size:22px;font-weight:800;letter-spacing:-0.5px;padding:12px 14px;">
+            <div class="ev-curr-toggle" style="margin-top:8px;align-self:flex-start;">
+              <button class="ev-curr-btn active" id="curr-usd">$ USD</button>
+              <button class="ev-curr-btn"        id="curr-rub">₽ RUB</button>
+            </div>
+          </div>
+
+          <!-- RIGHT: два слайдера -->
+          <div class="ev-inp-group" style="gap:16px;justify-content:center;transform:translateY(-20%);">
+            <div>
+              <label class="ev-inp-lbl" style="display:flex;justify-content:space-between;margin-bottom:10px;">
+                <span>Сумма входа</span>
+                <span id="calc-amount-lbl" style="color:#22D3A6;font-weight:700;">$500</span>
+              </label>
+              <input type="range" id="calc-amount-range" class="ev-range"
+                min="100" max="10000" value="500" step="100">
+            </div>
+            <div>
+              <label class="ev-inp-lbl" style="display:flex;justify-content:space-between;margin-bottom:10px;">
+                <span>Срок выхода</span>
+                <span id="calc-days-lbl" style="color:#22D3A6;font-weight:700;">${hDay} дн. (полный горизонт)</span>
+              </label>
+              <input type="range" id="calc-days" class="ev-range"
+                min="1" max="${hDay}" value="${hDay}" step="1">
+            </div>
+          </div>
+
+        </div>
+        <div class="ev-calc-out">
+          <div class="ev-calc-item">
+            <div class="ev-calc-item-lbl">Эдж на выбранный срок</div>
+            <div class="ev-calc-item-val c-purple" id="calc-edge">${ev.potential}</div>
+            <div class="ev-calc-item-sub">Пропорционально сроку</div>
+          </div>
+          <div class="ev-calc-item">
+            <div class="ev-calc-item-lbl">Возможный результат</div>
+            <div class="ev-calc-item-val c-green" id="calc-result">+$0</div>
+            <div class="ev-calc-item-sub">При текущих данных</div>
+          </div>
+          <div class="ev-calc-item">
+            <div class="ev-calc-item-lbl">% годовых</div>
+            <div class="ev-calc-item-val c-teal" id="calc-annual">—</div>
+            <div class="ev-calc-item-sub">В пересчёте на год</div>
+          </div>
+        </div>
+        <div class="ev-calc-note">
+          Чем раньше выйти — тем меньше эдж. Полный потенциал достигается к горизонту прогноза (${ev.horizon}).<br>
+          Это не гарантированный доход. Результат зависит от множества факторов.
+        </div>
+      </div>
+
+      <!-- Follow / CTA -->
+      <div class="ev-bottom-card">
+        <div class="ev-bottom-title">Следить за событием</div>
+        <div class="ev-follow-desc">Получайте уведомления об изменениях и новых сигналах по этому событию.</div>
+        <button class="ev-follow-btn">🔔 Следить за событием</button>
+        <div class="ev-follow-note">Вы всегда можете отключить уведомления</div>
+        <a href="${ev.marketUrl}" target="_blank" class="ev-pm-btn">
+          <div>
+            <div>↗ Перейти на Полимаркет</div>
+            <div class="ev-pm-sub">Смотреть торговлю и ставить на исход на Полимаркете</div>
+          </div>
+          <span style="font-size:16px;opacity:0.35">›</span>
+        </a>
+
+        <div class="ev-disclaimer">
+          <div class="ev-disclaimer-row">
+            <div class="ev-disclaimer-icon blue">🔒</div>
+            <div class="ev-disclaimer-text">
+              <strong>PolyPilot не берёт ваши деньги.</strong>
+              Мы — аналитический инструмент. Все сделки совершаются лично вами напрямую на платформе Полимаркет. Мы не являемся брокером, посредником или управляющим активами.
+            </div>
+          </div>
+          <div class="ev-disclaimer-divider"></div>
+          <div class="ev-disclaimer-row">
+            <div class="ev-disclaimer-icon green">📊</div>
+            <div class="ev-disclaimer-text">
+              <strong>Как это работает:</strong>
+              PolyPilot анализирует событие, рассчитывает потенциал и объясняет логику. Дальше вы сами переходите на Полимаркет, создаёте аккаунт (если ещё нет) и самостоятельно ставите на исход.
+            </div>
+          </div>
+          <div class="ev-disclaimer-divider"></div>
+          <div class="ev-disclaimer-row">
+            <div class="ev-disclaimer-icon gray">⚠️</div>
+            <div class="ev-disclaimer-text">
+              Это не финансовая консультация. Prediction markets — это рынок, результат не гарантирован. Вкладывайте только то, что готовы потерять.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="ev-footer">
+      <span>Обновлено 1ч назад</span>
+      <span class="ev-footer-sep">|</span>
+      <span>Данные: Полимаркет, соцсети, новостные источники</span>
+      <span class="ev-footer-sep">|</span>
+      <span>ID: ${ev.id}</span>
+    </div>
+
+  </div>`;
+
+  /* ── Smooth image fade-in ── */
+  const heroImg = document.querySelector('.ev-hero-img');
+  if (heroImg) {
+    heroImg.style.opacity = '0';
+    heroImg.style.transition = 'opacity 0.55s ease';
+    const probe = new Image();
+    probe.onload = () => { heroImg.style.opacity = '1'; };
+    probe.onerror = () => { heroImg.style.opacity = '1'; };
+    probe.src = imgUrl;
+    // Show fallback immediately, then fade to photo
+    setTimeout(() => { heroImg.style.opacity = '1'; }, 200);
+  }
+
+  /* ── Changes Map ── */
+  (function () {
+    const changes = ev.changes || [];
+    const listEl  = main.querySelector('#ev-changes-list');
+    const cntEl   = main.querySelector('#ev-changes-count');
+    if (!listEl) return;
+
+    if (cntEl) {
+      const pos = changes.filter(c => c.impact === 'positive').length;
+      const neg = changes.filter(c => c.impact === 'negative').length;
+      cntEl.textContent = `${changes.length} изменений · ${pos} позитивных · ${neg} негативных`;
+    }
+
+    const TYPE_ICO = {
+      news:   `<svg viewBox="0 0 20 20" fill="none" stroke="rgba(96,165,250,0.9)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><rect x="3" y="3" width="14" height="14" rx="2"/><line x1="6" y1="7" x2="14" y2="7"/><line x1="6" y1="10" x2="14" y2="10"/><line x1="6" y1="13" x2="10" y2="13"/></svg>`,
+      data:   `<svg viewBox="0 0 20 20" fill="none" stroke="rgba(139,92,246,0.9)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><polyline points="4 14 7 9 10 11 13 6 16 8"/><line x1="4" y1="16" x2="16" y2="16"/></svg>`,
+      market: `<svg viewBox="0 0 20 20" fill="none" stroke="rgba(20,184,166,0.9)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><circle cx="10" cy="10" r="7"/><polyline points="10 6 10 10 13 12"/></svg>`,
+      signal: `<svg viewBox="0 0 20 20" fill="none" stroke="rgba(251,146,60,0.9)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M4 16 Q5 8 10 4 Q15 8 16 16"/><path d="M7 16 Q8 11 10 8 Q12 11 13 16"/><line x1="10" y1="13" x2="10" y2="16"/></svg>`,
+    };
+
+    const IMPACT_LABELS = {
+      positive: { label: 'Позитивно для «Да»', icon: `<svg viewBox="0 0 12 12"><polyline points="2 7 5 10 10 3"/></svg>` },
+      negative: { label: 'Негативно для «Да»', icon: `<svg viewBox="0 0 12 12"><line x1="2" y1="2" x2="10" y2="10"/><line x1="10" y1="2" x2="2" y2="10"/></svg>` },
+      neutral:  { label: 'Нейтрально',        icon: `<svg viewBox="0 0 12 12"><line x1="2" y1="6" x2="10" y2="6"/></svg>` },
+    };
+
+    if (!changes.length) {
+      listEl.innerHTML = `<div style="padding:24px;text-align:center;color:rgba(255,255,255,0.30);font-size:13px;">
+        PP AI ещё не зафиксировал изменений по этому событию
+      </div>`;
+      return;
+    }
+
+    listEl.innerHTML = changes.map(c => {
+      const imp   = IMPACT_LABELS[c.impact] || IMPACT_LABELS.neutral;
+      const ico   = TYPE_ICO[c.type]        || TYPE_ICO.news;
+      const dateStr = c.date ? c.date.split('-').reverse().slice(0,2).join('.') : '';
+      return `
+      <div class="ev-change-item">
+        <div class="ev-change-bar ${c.impact}"></div>
+        <div class="ev-change-type-col">
+          <div class="ev-change-ico ${c.type}">${ico}</div>
+        </div>
+        <div class="ev-change-content">
+          <div class="ev-change-meta">
+            <span class="ev-change-date">${dateStr} · ${c.time || ''}</span>
+            <span class="ev-change-source">${c.source}</span>
+          </div>
+          <div class="ev-change-heading">${c.title}</div>
+          <div class="ev-change-desc">${c.desc}</div>
+        </div>
+        <div class="ev-change-impact-col">
+          <div class="ev-change-impact ${c.impact}">${imp.icon}${imp.label}</div>
+        </div>
+      </div>`;
+    }).join('');
+  })();
+
+  /* ── War Room accordion ── */
+  main.querySelectorAll('.ev-agent').forEach(el => {
+    el.addEventListener('click', () => {
+      const isOpen = el.classList.contains('is-open');
+      // Close all others
+      main.querySelectorAll('.ev-agent.is-open').forEach(o => o.classList.remove('is-open'));
+      if (!isOpen) el.classList.add('is-open');
+    });
+  });
+
+  /* ── Draggable + auto ping-pong slider ── */
+  (function () {
+    const sliderEl = main.querySelector('#ev-ai-slider');
+    const trackEl  = main.querySelector('.ev-ai-tl-track');
+    if (!sliderEl || !trackEl) return;
+
+    const tipDay  = sliderEl.querySelector('.ev-ai-tip-day');
+    const tipPct  = sliderEl.querySelector('.ev-ai-tip-pct');
+    const tipEdge = sliderEl.querySelector('.ev-ai-tip-edge');
+
+    let drag    = false;
+    let animPos = 0;        // 0..1, starts at left
+    let animDir = 1;        // +1 = going right, -1 = going left
+    const SPEED = 1 / (30 * 60); // covers 0→1 in 30s at 60fps
+
+    const applyPos = (t) => {
+      sliderEl.style.left = (t * 100) + '%';
+      const d           = Math.round(hDay * t);
+      const marketPrice = Math.round(ev.marketOdds + Math.abs(potentialNum) * t);
+      const edge        = marketPrice - ev.marketOdds;
+      tipDay.textContent  = d === 0 ? 'СЕЙЧАС' : dayLbl(d);
+      tipPct.textContent  = (edge > 0 ? '+' : '') + edge + '%';
+      tipEdge.textContent = 'рынок: ' + marketPrice + '% · вход: ' + ev.marketOdds + '%';
+    };
+
+    const tick = () => {
+      if (!drag) {
+        animPos += animDir * SPEED;
+        if (animPos >= 1) { animPos = 1; animDir = -1; }
+        if (animPos <= 0) { animPos = 0; animDir =  1; }
+        applyPos(animPos);
+      }
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+
+    const startDrag = (clientX) => {
+      drag = true;
+      sliderEl.classList.add('is-dragging');
+    };
+    const moveDrag = (clientX) => {
+      if (!drag) return;
+      const rect = trackEl.getBoundingClientRect();
+      animPos = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+      applyPos(animPos);
+    };
+    const endDrag = () => {
+      drag = false;
+      sliderEl.classList.remove('is-dragging');
+    };
+
+    sliderEl.addEventListener('mousedown',  e => { startDrag(e.clientX); e.preventDefault(); });
+    document.addEventListener('mousemove',  e => moveDrag(e.clientX));
+    document.addEventListener('mouseup',    endDrag);
+    sliderEl.addEventListener('touchstart', e => { startDrag(e.touches[0].clientX); e.preventDefault(); }, { passive: false });
+    document.addEventListener('touchmove',  e => moveDrag(e.touches[0].clientX));
+    document.addEventListener('touchend',   endDrag);
+  })();
+
+  /* ── Calculator logic ── */
+  const calcInput    = document.getElementById('calc-amount');       // number input
+  const calcAmtRange = document.getElementById('calc-amount-range'); // amount slider
+  const calcAmtLbl   = document.getElementById('calc-amount-lbl');   // amount label in slider row
+  const calcDays     = document.getElementById('calc-days');
+  const calcDaysLbl  = document.getElementById('calc-days-lbl');
+  const calcResult   = document.getElementById('calc-result');
+  const calcEdge     = document.getElementById('calc-edge');
+  const calcAnnual   = document.getElementById('calc-annual');
+  const btnUSD       = document.getElementById('curr-usd');
+  const btnRUB       = document.getElementById('curr-rub');
+
+  const RANGES = {
+    USD: { min: 100,   max: 10000,  step: 100  },
+    RUB: { min: 1000,  max: 500000, step: 1000 }
+  };
+  let currency = 'USD';
+
+  function syncAmtSlider(amount) {
+    const r = RANGES[currency];
+    if (!calcAmtRange) return;
+    calcAmtRange.min  = r.min;
+    calcAmtRange.max  = r.max;
+    calcAmtRange.step = r.step;
+    const clamped = Math.min(Math.max(amount, r.min), r.max);
+    calcAmtRange.value = clamped;
+    const pct = ((clamped - r.min) / Math.max(1, r.max - r.min)) * 100;
+    calcAmtRange.style.background = `linear-gradient(90deg, #8B5CF6 0%, #22D3A6 ${pct}%, rgba(255,255,255,0.10) ${pct}%)`;
+  }
+
+  function updateCalc() {
+    const amount  = parseFloat(calcInput?.value) || 0;
+    const days    = parseInt(calcDays?.value) || hDay;
+    const t       = days / hDay;
+    const edgePct = Math.round(Math.abs(potentialNum) * t * 10) / 10;
+    const gain    = Math.round(amount * edgePct / 100);
+    const sym     = currency === 'RUB' ? '₽' : '$';
+
+    // Sync amount slider & its label
+    syncAmtSlider(amount);
+    if (calcAmtLbl) calcAmtLbl.textContent = sym + amount.toLocaleString('ru-RU');
+
+    // Days slider fill & label
+    const isMax = days >= hDay;
+    if (calcDaysLbl) calcDaysLbl.textContent = isMax
+      ? `${days} дн. (полный горизонт)`
+      : `${days} дн. — ранний выход`;
+    if (calcDays) {
+      const pct = ((days - 1) / Math.max(1, hDay - 1)) * 100;
+      calcDays.style.background = `linear-gradient(90deg, #8B5CF6 0%, #22D3A6 ${pct}%, rgba(255,255,255,0.10) ${pct}%)`;
+    }
+
+    if (calcEdge) calcEdge.textContent = '+' + edgePct + '%';
+
+    if (calcResult) {
+      const sign = gain >= 0 ? '+' : '−';
+      calcResult.textContent = sign + sym + Math.abs(gain).toLocaleString('ru-RU');
+    }
+
+    if (calcAnnual) {
+      if (days > 0 && edgePct > 0) {
+        const annual = Math.round(edgePct / days * 365 * 10) / 10;
+        calcAnnual.textContent = '+' + annual + '%';
+      } else {
+        calcAnnual.textContent = '—';
+      }
+    }
+  }
+
+  // Amount slider → update number input
+  if (calcAmtRange) {
+    calcAmtRange.addEventListener('input', () => {
+      if (calcInput) calcInput.value = calcAmtRange.value;
+      updateCalc();
+    });
+  }
+
+  // Number input → update slider
+  if (calcInput) calcInput.addEventListener('input', updateCalc);
+
+  if (calcDays) calcDays.addEventListener('input', updateCalc);
+
+  const setCurrency = (cur) => {
+    currency = cur;
+    btnUSD?.classList.toggle('active', cur === 'USD');
+    btnRUB?.classList.toggle('active', cur === 'RUB');
+    if (calcInput) calcInput.placeholder = cur === 'RUB' ? '45 000' : '500';
+    updateCalc();
+  };
+
+  btnUSD?.addEventListener('click', () => setCurrency('USD'));
+  btnRUB?.addEventListener('click', () => setCurrency('RUB'));
+
+  updateCalc();
+
+})();
+</script>
+</body>
+</html>

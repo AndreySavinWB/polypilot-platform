@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Настройки — PolyPilot</title>
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <style>
+    .settings-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+    .settings-section-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .demo-tile {
+      padding: 14px;
+      border-radius: var(--radius-md);
+      border: 2px solid var(--border);
+      cursor: pointer;
+      text-align: center;
+      transition: all var(--transition);
+      background: transparent;
+    }
+    .demo-tile:hover { border-color: var(--accent-blue); }
+    .demo-tile.active {
+      border-color: var(--accent-blue);
+      background: rgba(26,111,255,0.1);
+    }
+    .demo-tile-name { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+    .demo-tile-desc { font-size: 11px; color: var(--text-muted); }
+    .current-tier-display {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      background: rgba(255,255,255,0.04);
+      border-radius: var(--radius-md);
+      margin-top: 16px;
+    }
+    .settings-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .settings-item:last-child { border-bottom: none; }
+    .settings-item-label { font-size: 14px; color: var(--text-primary); }
+    .settings-item-sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+    .settings-item-value { font-size: 13px; color: var(--text-secondary); }
+  </style>
+</head>
+<body>
+<div class="app-layout">
+  <aside id="sidebar"></aside>
+  <main class="main-content">
+
+    <div class="page-header">
+      <div class="page-title">Настройки</div>
+      <div class="page-subtitle">Управление аккаунтом и демо-режим для тестирования</div>
+    </div>
+
+    <div class="page-body">
+
+      <!-- Demo switcher (moderator tool) -->
+      <div class="settings-section" style="border-color: rgba(139,92,246,0.3); background: rgba(139,92,246,0.05);">
+        <div class="settings-section-title">🎛️ Демо-режим <span style="font-size:11px;font-weight:400;color:var(--text-muted);">— переключатель tier для тестирования</span></div>
+        <div class="demo-grid" id="demo-grid">
+          <!-- JS -->
+        </div>
+        <div class="current-tier-display">
+          <span style="font-size:13px;color:var(--text-muted);">Текущий tier:</span>
+          <span id="current-tier-label" class="tier-badge"></span>
+          <span style="font-size:12px;color:var(--text-muted);margin-left:auto;" id="trial-days-label"></span>
+        </div>
+      </div>
+
+      <!-- Account info -->
+      <div class="settings-section">
+        <div class="settings-section-title">👤 Аккаунт</div>
+        <div class="settings-item">
+          <div>
+            <div class="settings-item-label">Метод входа</div>
+            <div class="settings-item-sub">Telegram авторизация</div>
+          </div>
+          <div class="settings-item-value">@demo_user</div>
+        </div>
+        <div class="settings-item">
+          <div>
+            <div class="settings-item-label">Подписка</div>
+          </div>
+          <div>
+            <span id="sub-badge" class="tier-badge"></span>
+          </div>
+        </div>
+        <div class="settings-item">
+          <div>
+            <div class="settings-item-label">Язык интерфейса</div>
+          </div>
+          <div class="settings-item-value">Русский</div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="../assets/js/state.js"></script>
+<script src="../assets/js/sidebar.js"></script>
+<script>
+const DEMO_TIERS = [
+  { id: 'guest', name: 'Гость',      desc: 'Без аккаунта, blur edge' },
+  { id: 'pulse', name: 'Pulse',      desc: '5 событий/день' },
+  { id: 'trial', name: 'PRO Trial',  desc: '7 дней PRO' },
+  { id: 'pro',   name: 'PRO',        desc: 'Всё открыто' },
+];
+
+function refresh() {
+  const tier = PP.getTier();
+  const meta = PP.getMeta(tier);
+
+  // Demo grid
+  document.getElementById('demo-grid').innerHTML = DEMO_TIERS.map(t => `
+    <button class="demo-tile ${tier === t.id ? 'active' : ''}" onclick="switchTier('${t.id}')">
+      <div class="demo-tile-name">${t.name}</div>
+      <div class="demo-tile-desc">${t.desc}</div>
+    </button>`).join('');
+
+  // Current tier label
+  const label = document.getElementById('current-tier-label');
+  label.textContent = meta.label;
+  label.className = 'tier-badge ' + meta.badgeClass;
+
+  // Trial days
+  const trialEl = document.getElementById('trial-days-label');
+  const days = PP.getTrialDaysLeft();
+  trialEl.textContent = days !== null ? `Осталось ${days} дней` : '';
+
+  // Sub badge
+  const sub = document.getElementById('sub-badge');
+  sub.textContent = meta.label;
+  sub.className = 'tier-badge ' + meta.badgeClass;
+}
+
+function switchTier(tier) {
+  PP.setTier(tier);
+  refresh();
+  // Перезагрузить sidebar
+  window.dispatchEvent(new CustomEvent('pp:tierChange'));
+}
+
+window.switchTier = switchTier;
+refresh();
+</script>
+</body>
+</html>

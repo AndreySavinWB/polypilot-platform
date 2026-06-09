@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Как это работает — PolyPilot</title>
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <style>
+    .hiw-page { max-width: 100%; padding: 0 40px 80px; }
+
+    /* ── Section primitives ── */
+    .hiw-section { margin-bottom: 72px; }
+    .hiw-eyebrow {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 11px; font-weight: 700; letter-spacing: 1.4px;
+      text-transform: uppercase; color: #60a5fa; margin-bottom: 12px;
+    }
+    .hiw-h2 {
+      font-size: 28px; font-weight: 800; letter-spacing: -0.6px;
+      line-height: 1.2; color: #fff; margin-bottom: 10px;
+    }
+    .hiw-h2 span {
+      background: linear-gradient(90deg, #3b82f6, #7b2fff);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hiw-lead {
+      font-size: 14px; color: rgba(255,255,255,0.50); line-height: 1.7;
+      max-width: 720px; margin-bottom: 36px;
+    }
+
+    /* ══════════════════════════════════════════
+       HERO
+    ══════════════════════════════════════════ */
+    .hiw-hero {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 48px;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      margin-bottom: 20px;
+      padding: 40px 0 48px;
+      position: relative;
+    }
+    .hiw-hero::after {
+      content: '';
+      position: absolute; right: -80px; top: -80px;
+      width: 360px; height: 360px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hiw-hero-left {
+      flex: 1; min-width: 0;
+    }
+    .hiw-hero-right { display: none; }
+    .hiw-hero-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 10px; font-weight: 700; letter-spacing: 1.4px;
+      text-transform: uppercase; color: #60a5fa; margin-bottom: 20px;
+    }
+    .hiw-hero-label-dot { width: 6px; height: 6px; border-radius: 50%; background: #60a5fa; }
+    .hiw-hero-h1 {
+      font-size: 52px; font-weight: 800; letter-spacing: -1.2px;
+      line-height: 1.05; margin-bottom: 22px; text-align: left;
+      white-space: nowrap;
+    }
+    .hiw-hero-h1 span {
+      background: linear-gradient(90deg, #3b82f6 0%, #7b2fff 60%, #22d3a6 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hiw-hero-sub {
+      font-size: 16px; color: rgba(255,255,255,0.45); line-height: 1.75;
+      max-width: 680px; text-align: left;
+    }
+
+    /* Chain — vertical on the right */
+    .hiw-chain {
+      display: flex; flex-direction: column;
+      align-items: stretch; gap: 0; width: 100%;
+    }
+    .hiw-chain-step {
+      display: flex; align-items: center; gap: 18px;
+      padding: 14px 18px; border-radius: 14px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: border-color 0.18s, background 0.18s;
+    }
+    .hiw-chain-step:hover {
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.11);
+    }
+    .hiw-chain-ico {
+      width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hiw-chain-ico svg { width: 24px; height: 24px; }
+    .hiw-chain-text { flex: 1; }
+    .hiw-chain-lbl {
+      font-size: 14px; font-weight: 700; color: #fff;
+    }
+    .hiw-chain-desc {
+      font-size: 12px; color: rgba(255,255,255,0.38); margin-top: 2px; line-height: 1.5;
+    }
+    .hiw-chain-arrow {
+      display: flex; align-items: center; justify-content: center;
+      padding: 5px 0 5px 18px;
+      color: rgba(255,255,255,0.12);
+    }
+    .hiw-chain-arrow svg {
+      width: 16px; height: 16px;
+    }
+
+    /* ══════════════════════════════════════════
+       STEPS DETAIL
+    ══════════════════════════════════════════ */
+    .hiw-steps { display: flex; flex-direction: column; gap: 20px; }
+    .hiw-step {
+      background: linear-gradient(145deg, #080c1a, #0a0f1e);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 20px; overflow: hidden;
+      display: grid; grid-template-columns: 1.1fr 0.9fr;
+      transition: border-color 0.2s;
+    }
+    .hiw-step:hover { border-color: rgba(255,255,255,0.12); }
+    .hiw-step-left { padding: 36px 36px 36px 44px; border-right: 1px solid rgba(255,255,255,0.06); }
+    .hiw-step-right { padding: 36px 44px 36px 36px; display: flex; flex-direction: column; justify-content: center; }
+
+    .hiw-step-num {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.2px; color: rgba(255,255,255,0.30);
+      margin-bottom: 14px;
+    }
+    .hiw-step-num-badge {
+      width: 22px; height: 22px; border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 800; color: #fff;
+    }
+    .hiw-step-title {
+      font-size: 21px; font-weight: 800; letter-spacing: -0.3px;
+      color: #fff; margin-bottom: 12px; line-height: 1.25;
+    }
+    .hiw-step-desc {
+      font-size: 13.5px; color: rgba(255,255,255,0.50);
+      line-height: 1.7; margin-bottom: 20px;
+    }
+    .hiw-step-tags {
+      display: flex; flex-wrap: wrap; gap: 6px;
+    }
+    .hiw-step-tag {
+      font-size: 11px; font-weight: 600;
+      padding: 4px 11px; border-radius: 9999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: rgba(255,255,255,0.55);
+    }
+
+    /* Visual box */
+    .hiw-step-visual {
+      background: rgba(255,255,255,0.025);
+      border-radius: 14px; padding: 24px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .hiw-step-visual-title {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.8px;
+      text-transform: uppercase; color: rgba(255,255,255,0.25);
+      margin-bottom: 4px;
+    }
+
+    /* Scan visual */
+    .hiw-scan-row {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 14px; border-radius: 10px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .hiw-scan-dot {
+      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+    }
+    .hiw-scan-text { font-size: 12px; color: rgba(255,255,255,0.55); flex: 1; }
+    .hiw-scan-badge {
+      font-size: 10px; font-weight: 700;
+      padding: 2px 8px; border-radius: 9999px; flex-shrink: 0;
+    }
+
+    /* Agents visual */
+    .hiw-agent-row {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 10px 12px; border-radius: 10px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .hiw-agent-ico {
+      width: 28px; height: 28px; border-radius: 8px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px;
+    }
+    .hiw-agent-name { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.75); }
+    .hiw-agent-role { font-size: 10.5px; color: rgba(255,255,255,0.30); margin-top: 1px; }
+
+    /* Verdict visual */
+    .hiw-verdict-box {
+      background: rgba(26,111,255,0.08);
+      border: 1px solid rgba(26,111,255,0.2);
+      border-radius: 12px; padding: 16px 18px;
+    }
+    .hiw-verdict-label {
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1px; color: rgba(96,165,250,0.7); margin-bottom: 8px;
+    }
+    .hiw-verdict-yes {
+      font-size: 22px; font-weight: 800; color: #4ade80; margin-bottom: 5px;
+    }
+    .hiw-verdict-desc { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.5; }
+    .hiw-verdict-metrics {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px;
+    }
+    .hiw-verdict-metric {
+      background: rgba(255,255,255,0.04); border-radius: 9px; padding: 10px 12px;
+    }
+    .hiw-verdict-metric-val { font-size: 18px; font-weight: 800; }
+    .hiw-verdict-metric-val.green { color: #4ade80; }
+    .hiw-verdict-metric-val.blue { color: #60a5fa; }
+    .hiw-verdict-metric-lbl { font-size: 10px; color: rgba(255,255,255,0.35); margin-top: 2px; }
+
+    /* ══════════════════════════════════════════
+       WAR ROOM SECTION
+    ══════════════════════════════════════════ */
+    .hiw-warroom {
+      background: linear-gradient(145deg, rgba(79,70,229,0.08) 0%, rgba(124,58,237,0.06) 100%);
+      border: 1px solid rgba(139,92,246,0.25);
+      border-radius: 20px; padding: 44px 48px; position: relative; overflow: hidden;
+    }
+    .hiw-warroom::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, #4f46e5, #7c3aed, #a855f7);
+    }
+    .hiw-warroom-head {
+      display: grid; grid-template-columns: 1fr auto; gap: 24px;
+      align-items: start; margin-bottom: 28px;
+    }
+    .hiw-warroom-agents {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;
+    }
+    .hiw-wa {
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px; padding: 16px 18px;
+      display: flex; align-items: flex-start; gap: 12px;
+      transition: border-color 0.2s;
+    }
+    .hiw-wa:hover { border-color: rgba(139,92,246,0.25); }
+    .hiw-wa-ico {
+      width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hiw-wa-ico svg { width: 16px; height: 16px; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .hiw-wa-name { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 3px; }
+    .hiw-wa-role { font-size: 11px; color: rgba(255,255,255,0.35); margin-bottom: 6px; }
+    .hiw-wa-desc { font-size: 12px; color: rgba(255,255,255,0.50); line-height: 1.55; }
+
+    /* ══════════════════════════════════════════
+       VS COMPARISON
+    ══════════════════════════════════════════ */
+    .hiw-vs { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .hiw-vs-col {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 18px; padding: 36px 40px;
+    }
+    .hiw-vs-col.pp {
+      border-color: rgba(26,111,255,0.35);
+      background: linear-gradient(145deg, rgba(26,111,255,0.07) 0%, rgba(123,47,255,0.04) 100%);
+    }
+    .hiw-vs-label {
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1px; color: rgba(255,255,255,0.30); margin-bottom: 6px;
+    }
+    .hiw-vs-col.pp .hiw-vs-label { color: #60a5fa; }
+    .hiw-vs-title { font-size: 20px; font-weight: 800; margin-bottom: 22px; }
+    .hiw-vs-rows { display: flex; flex-direction: column; gap: 14px; }
+    .hiw-vs-row { display: flex; align-items: flex-start; gap: 12px; }
+    .hiw-vs-ico {
+      width: 28px; height: 28px; border-radius: 8px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; margin-top: 1px;
+    }
+    .hiw-vs-ico.no  { background: rgba(239,68,68,0.12); color: #f87171; }
+    .hiw-vs-ico.yes { background: rgba(52,211,153,0.12); color: #34d399; }
+    .hiw-vs-text {
+      font-size: 13.5px; color: rgba(255,255,255,0.55); line-height: 1.55; padding-top: 4px;
+    }
+    .hiw-vs-text strong { color: #fff; font-weight: 700; }
+
+    /* ══════════════════════════════════════════
+       PROOF STATS
+    ══════════════════════════════════════════ */
+    .hiw-proof {
+      background: linear-gradient(145deg, rgba(26,111,255,0.07) 0%, rgba(123,47,255,0.04) 100%);
+      border: 1px solid rgba(26,111,255,0.2);
+      border-radius: 20px; padding: 40px 48px;
+    }
+    .hiw-proof-grid {
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 1px;
+      background: rgba(255,255,255,0.07); border-radius: 14px; overflow: hidden;
+      margin-bottom: 24px;
+      width: 100%;
+    }
+    .hiw-ps {
+      background: rgba(255,255,255,0.03); padding: 20px 22px;
+    }
+    .hiw-ps-val {
+      font-size: 30px; font-weight: 800; letter-spacing: -0.5px;
+      background: linear-gradient(135deg,#3b82f6,#7b2fff);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; margin-bottom: 5px;
+    }
+    .hiw-ps-lbl { font-size: 11.5px; color: rgba(255,255,255,0.40); line-height: 1.5; }
+    .hiw-proof-disc {
+      font-size: 11.5px; color: rgba(255,255,255,0.30); line-height: 1.7; text-align: center;
+    }
+
+    /* ══════════════════════════════════════════
+       FAQ
+    ══════════════════════════════════════════ */
+    .hiw-faq { display: flex; flex-direction: column; gap: 2px; }
+    .hiw-faq-item {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px; overflow: hidden;
+      cursor: pointer; transition: border-color 0.18s;
+    }
+    .hiw-faq-item:hover { border-color: rgba(255,255,255,0.12); }
+    .hiw-faq-item.open { border-color: rgba(96,165,250,0.25); }
+    .hiw-faq-q {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 20px; gap: 16px;
+    }
+    .hiw-faq-q-text { font-size: 14px; font-weight: 700; color: #fff; }
+    .hiw-faq-arrow {
+      width: 20px; height: 20px; flex-shrink: 0;
+      color: rgba(255,255,255,0.30);
+      transition: transform 0.2s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hiw-faq-item.open .hiw-faq-arrow { transform: rotate(180deg); }
+    .hiw-faq-a {
+      display: none; padding: 0 20px 16px;
+      font-size: 13px; color: rgba(255,255,255,0.50); line-height: 1.7;
+    }
+    .hiw-faq-item.open .hiw-faq-a { display: block; }
+
+    /* ══════════════════════════════════════════
+       BOTTOM CTA
+    ══════════════════════════════════════════ */
+    .hiw-cta {
+      background: linear-gradient(135deg, rgba(26,111,255,0.12) 0%, rgba(123,47,255,0.09) 100%);
+      border: 1px solid rgba(26,111,255,0.22); border-radius: 24px;
+      padding: 48px 56px; text-align: center; position: relative; overflow: hidden;
+    }
+    .hiw-cta-glow {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 500px; height: 260px;
+      background: radial-gradient(ellipse, rgba(100,80,255,0.13) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hiw-cta-title {
+      position: relative; font-size: 28px; font-weight: 800;
+      letter-spacing: -0.6px; line-height: 1.2; margin-bottom: 12px;
+    }
+    .hiw-cta-title span {
+      background: linear-gradient(135deg,#3b82f6,#7b2fff);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hiw-cta-sub {
+      position: relative; font-size: 14px; color: rgba(255,255,255,0.45);
+      max-width: 400px; margin: 0 auto 28px; line-height: 1.7;
+    }
+    .hiw-cta-acts {
+      position: relative; display: flex; align-items: center;
+      justify-content: center; gap: 12px;
+    }
+    .hiw-cta-note {
+      position: relative; margin-top: 14px;
+      font-size: 11px; color: rgba(255,255,255,0.25);
+    }
+    .btn-hiw {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 24px; border-radius: 12px;
+      font-size: 14px; font-weight: 700; cursor: pointer;
+      transition: all 0.2s; text-decoration: none;
+      font-family: var(--font-main); border: none;
+    }
+    .btn-hiw-primary {
+      background: linear-gradient(135deg,#1a6fff,#7b2fff); color: #fff;
+      box-shadow: 0 0 24px rgba(100,80,255,0.35);
+    }
+    .btn-hiw-primary:hover { opacity:0.9; transform:translateY(-1px); }
+    .btn-hiw-ghost {
+      background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.8);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .btn-hiw-ghost:hover { background: rgba(255,255,255,0.10); }
+  </style>
+</head>
+<body>
+<div class="app-layout">
+  <aside id="sidebar"></aside>
+  <main class="main-content">
+  <div class="hiw-page">
+
+    <!-- ══════════ HERO ══════════ -->
+    <div class="hiw-hero">
+      <div class="hiw-hero-left">
+        <div class="hiw-hero-label">
+          <div class="hiw-hero-label-dot"></div>
+          Как это работает
+        </div>
+        <h1 class="hiw-hero-h1">От события к решению — <span>за минуты</span></h1>
+        <p class="hiw-hero-sub">Раньше анализ одного события занимал часы: читать новости, считать вероятности, оценивать риски. PolyPilot делает это автоматически — и объясняет понятным языком.</p>
+      </div>
+    </div>
+
+    <!-- ══════════ STEPS ══════════ -->
+    <div class="hiw-section">
+      <div class="hiw-eyebrow">Процесс</div>
+      <h2 class="hiw-h2">Три шага, которые <span>меняют всё</span></h2>
+      <p class="hiw-lead">Каждый шаг автоматический. Вы видите только готовый результат — без лишнего шума.</p>
+
+      <div class="hiw-steps">
+
+        <!-- Step 1 -->
+        <div class="hiw-step">
+          <div class="hiw-step-left">
+            <div class="hiw-step-num">
+              <div class="hiw-step-num-badge" style="background:rgba(59,130,246,0.2);color:#60a5fa">01</div>
+              Шаг первый
+            </div>
+            <div class="hiw-step-title">Сканируем тысячи событий</div>
+            <div class="hiw-step-desc">PolyPilot непрерывно мониторит рынки на Polymarket — политику, экономику, спорт, технологии. Отбираем только события с реальным расхождением между рыночной оценкой и фактическими данными. Обычно это 3–8% от всех рынков.</div>
+            <div class="hiw-step-tags">
+              <span class="hiw-step-tag">Polymarket API</span>
+              <span class="hiw-step-tag">Новостные источники</span>
+              <span class="hiw-step-tag">On-chain данные</span>
+              <span class="hiw-step-tag">Макро-индикаторы</span>
+            </div>
+          </div>
+          <div class="hiw-step-right">
+            <div class="hiw-step-visual">
+              <div class="hiw-step-visual-title">Отбор событий · сейчас</div>
+              <div class="hiw-scan-row">
+                <div class="hiw-scan-dot" style="background:#4ade80;box-shadow:0 0 6px rgba(74,222,128,0.6)"></div>
+                <div class="hiw-scan-text">ФРС снизит ставку в июле?</div>
+                <div class="hiw-scan-badge" style="background:rgba(74,222,128,0.1);color:#4ade80;border:1px solid rgba(74,222,128,0.25)">+22% Edge</div>
+              </div>
+              <div class="hiw-scan-row">
+                <div class="hiw-scan-dot" style="background:#4ade80;box-shadow:0 0 6px rgba(74,222,128,0.6)"></div>
+                <div class="hiw-scan-text">BTC выше $150k до конца 2026?</div>
+                <div class="hiw-scan-badge" style="background:rgba(74,222,128,0.1);color:#4ade80;border:1px solid rgba(74,222,128,0.25)">+12% Edge</div>
+              </div>
+              <div class="hiw-scan-row">
+                <div class="hiw-scan-dot" style="background:rgba(255,255,255,0.2)"></div>
+                <div class="hiw-scan-text" style="color:rgba(255,255,255,0.25)">Пропущено: Edge &lt; 5%</div>
+                <div class="hiw-scan-badge" style="background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.07)">Пропуск</div>
+              </div>
+              <div class="hiw-scan-row">
+                <div class="hiw-scan-dot" style="background:rgba(255,255,255,0.2)"></div>
+                <div class="hiw-scan-text" style="color:rgba(255,255,255,0.25)">Пропущено: нет данных</div>
+                <div class="hiw-scan-badge" style="background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.07)">Пропуск</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="hiw-step">
+          <div class="hiw-step-left">
+            <div class="hiw-step-num">
+              <div class="hiw-step-num-badge" style="background:rgba(139,92,246,0.2);color:#a78bfa">02</div>
+              Шаг второй
+            </div>
+            <div class="hiw-step-title">PP AI проводят глубокий анализ</div>
+            <div class="hiw-step-desc">Каждое отобранное событие разбирают специализированные PP AI параллельно. Один смотрит on-chain данные, другой — макроиндикаторы, третий — новостной фон, четвёртый — считает риски. Итог — взвешенный сигнал с уровнем уверенности.</div>
+            <div class="hiw-step-tags">
+              <span class="hiw-step-tag">War Room</span>
+              <span class="hiw-step-tag">Edge Score</span>
+              <span class="hiw-step-tag">Риск-матрица</span>
+              <span class="hiw-step-tag">Параллельный анализ</span>
+            </div>
+          </div>
+          <div class="hiw-step-right">
+            <div class="hiw-step-visual">
+              <div class="hiw-step-visual-title">War Room · PP AI</div>
+              <div class="hiw-agent-row">
+                <div class="hiw-agent-ico" style="background:rgba(96,165,250,0.15)">
+                  <svg stroke="#60a5fa" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 2a14.5 14.5 0 0 0 0 20A14.5 14.5 0 0 0 12 2"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+                </div>
+                <div>
+                  <div class="hiw-agent-name">OnChainBot</div>
+                  <div class="hiw-agent-role">On-chain анализ блокчейнов</div>
+                </div>
+              </div>
+              <div class="hiw-agent-row">
+                <div class="hiw-agent-ico" style="background:rgba(139,92,246,0.15)">
+                  <svg stroke="#a78bfa" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                </div>
+                <div>
+                  <div class="hiw-agent-name">MacroScout</div>
+                  <div class="hiw-agent-role">Макроэкономика и ставки</div>
+                </div>
+              </div>
+              <div class="hiw-agent-row">
+                <div class="hiw-agent-ico" style="background:rgba(251,146,60,0.15)">
+                  <svg stroke="#fb923c" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                </div>
+                <div>
+                  <div class="hiw-agent-name">RiskGuard</div>
+                  <div class="hiw-agent-role">Анализ рисков и сценариев</div>
+                </div>
+              </div>
+              <div class="hiw-agent-row">
+                <div class="hiw-agent-ico" style="background:rgba(34,211,166,0.15)">
+                  <svg stroke="#22d3a6" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                </div>
+                <div>
+                  <div class="hiw-agent-name">EdgeCalc</div>
+                  <div class="hiw-agent-role">Расчёт потенциала и Edge</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="hiw-step">
+          <div class="hiw-step-left">
+            <div class="hiw-step-num">
+              <div class="hiw-step-num-badge" style="background:rgba(74,222,128,0.2);color:#4ade80">03</div>
+              Шаг третий
+            </div>
+            <div class="hiw-step-title">Получаете готовый вердикт</div>
+            <div class="hiw-step-desc">Чёткий вывод: стоит ли входить, с каким риском и на какой срок. Плюс калькулятор — введите сумму и посмотрите потенциальную прибыль. Всё объяснено понятным языком, без биржевого жаргона.</div>
+            <div class="hiw-step-tags">
+              <span class="hiw-step-tag">Вердикт YES / NO</span>
+              <span class="hiw-step-tag">Калькулятор прибыли</span>
+              <span class="hiw-step-tag">Уровень уверенности</span>
+              <span class="hiw-step-tag">Карта рисков</span>
+            </div>
+          </div>
+          <div class="hiw-step-right">
+            <div class="hiw-step-visual">
+              <div class="hiw-step-visual-title">Вердикт PP AI</div>
+              <div class="hiw-verdict-box">
+                <div class="hiw-verdict-label">Edge Score · ФРС июль 2026</div>
+                <div class="hiw-verdict-yes">YES — войти</div>
+                <div class="hiw-verdict-desc">Рынок недооценивает вероятность снижения. PCE и NFP указывают на готовность ФРС действовать.</div>
+                <div class="hiw-verdict-metrics">
+                  <div class="hiw-verdict-metric">
+                    <div class="hiw-verdict-metric-val green">+22%</div>
+                    <div class="hiw-verdict-metric-lbl">Потенциал</div>
+                  </div>
+                  <div class="hiw-verdict-metric">
+                    <div class="hiw-verdict-metric-val blue">71%</div>
+                    <div class="hiw-verdict-metric-lbl">Уверенность PP AI</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══════════ WAR ROOM ══════════ -->
+    <div class="hiw-section">
+      <div class="hiw-warroom">
+        <div class="hiw-warroom-head">
+          <div>
+            <div class="hiw-eyebrow">⚡ War Room</div>
+            <h2 class="hiw-h2">Команда PP AI<br><span>работает круглосуточно</span></h2>
+            <p class="hiw-lead" style="margin-bottom:0">Каждый PP AI — специалист в своей области. Они работают параллельно и проверяют выводы друг друга. Именно это даёт точность выше рынка.</p>
+          </div>
+        </div>
+        <div class="hiw-warroom-agents">
+          <div class="hiw-wa">
+            <div class="hiw-wa-ico" style="background:rgba(96,165,250,0.15)">
+              <svg stroke="#60a5fa" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 2a14.5 14.5 0 0 0 0 20A14.5 14.5 0 0 0 12 2"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+            </div>
+            <div>
+              <div class="hiw-wa-name">OnChainBot</div>
+              <div class="hiw-wa-role">On-chain анализ</div>
+              <div class="hiw-wa-desc">Следит за движением монет на блокчейне: накопление, отток с бирж, активность китов. Незаменим для крипто-событий.</div>
+            </div>
+          </div>
+          <div class="hiw-wa">
+            <div class="hiw-wa-ico" style="background:rgba(139,92,246,0.15)">
+              <svg stroke="#a78bfa" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <div>
+              <div class="hiw-wa-name">MacroScout</div>
+              <div class="hiw-wa-role">Макроэкономика</div>
+              <div class="hiw-wa-desc">Анализирует ставки, инфляцию, занятость. Даёт контекст по ФРС, ЕЦБ и глобальным трендам. Ключевой для финансовых событий.</div>
+            </div>
+          </div>
+          <div class="hiw-wa">
+            <div class="hiw-wa-ico" style="background:rgba(251,146,60,0.15)">
+              <svg stroke="#fb923c" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/></svg>
+            </div>
+            <div>
+              <div class="hiw-wa-name">RiskGuard</div>
+              <div class="hiw-wa-role">Анализ рисков</div>
+              <div class="hiw-wa-desc">Строит матрицу рисков: что может пойти не так, с какой вероятностью и насколько сильно это повлияет на результат.</div>
+            </div>
+          </div>
+          <div class="hiw-wa">
+            <div class="hiw-wa-ico" style="background:rgba(34,211,166,0.15)">
+              <svg stroke="#22d3a6" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <div>
+              <div class="hiw-wa-name">EdgeCalc</div>
+              <div class="hiw-wa-role">Расчёт Edge</div>
+              <div class="hiw-wa-desc">Считает реальный Edge: разницу между рыночной ценой и справедливой вероятностью. Даёт конкретные числа — без воды.</div>
+            </div>
+          </div>
+          <div class="hiw-wa">
+            <div class="hiw-wa-ico" style="background:rgba(244,114,182,0.15)">
+              <svg stroke="#f472b6" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <div class="hiw-wa-name">NewsRadar</div>
+              <div class="hiw-wa-role">Новостной мониторинг</div>
+              <div class="hiw-wa-desc">Непрерывно обрабатывает 140+ источников: Bloomberg, Reuters, Twitter, Telegram-каналы. Выявляет значимые сигналы раньше рынка.</div>
+            </div>
+          </div>
+          <div class="hiw-wa">
+            <div class="hiw-wa-ico" style="background:rgba(250,204,21,0.12)">
+              <svg stroke="#facc15" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </div>
+            <div>
+              <div class="hiw-wa-name">SentimentAI</div>
+              <div class="hiw-wa-role">Анализ тональности</div>
+              <div class="hiw-wa-desc">Оценивает настроения рынка и медиапространства. Находит расхождения между информационным фоном и рыночной ценой.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ VS ══════════ -->
+    <div class="hiw-section">
+      <div class="hiw-eyebrow">Чем мы отличаемся</div>
+      <h2 class="hiw-h2">PolyPilot — это <span>не Polymarket</span></h2>
+      <p class="hiw-lead">Polymarket — площадка для торговли. PolyPilot — AI-аналитик, который объясняет, где именно выгодно ставить.</p>
+      <div class="hiw-vs">
+        <div class="hiw-vs-col">
+          <div class="hiw-vs-label">Без PolyPilot</div>
+          <div class="hiw-vs-title">Просто Polymarket</div>
+          <div class="hiw-vs-rows">
+            <div class="hiw-vs-row">
+              <div class="hiw-vs-ico no">✕</div>
+              <div class="hiw-vs-text"><strong>Тысячи событий</strong> — непонятно, с чего начать</div>
+            </div>
+            <div class="hiw-vs-row">
+              <div class="hiw-vs-ico no">✕</div>
+              <div class="hiw-vs-text"><strong>Только цифра</strong> — без объяснений, почему именно столько</div>
+            </div>
+            <div class="hiw-vs-row">
+              <div class="hiw-vs-ico no">✕</div>
+              <div class="hiw-vs-text"><strong>Нет аналитики</strong> — читать новости и считать риски самому</div>
+            </div>
+            <div class="hiw-vs-row">
+              <div class="hiw-vs-ico no">✕</div>
+              <div class="hiw-vs-text"><strong>Нет истории</strong> — нельзя проверить точность прогнозов</div>
+            </div>
+            <div class="hiw-vs-row">
+              <div class="hiw-vs-ico no">✕</div>
+              <div class="hiw-vs-text"><strong>Часы работы</strong> — чтобы разобраться в одном событии</div>
+            </div>
+          </div>
+        </div>
+        <div class="hiw-vs-col pp">
+          <div class="hiw-vs-label">С PolyPilot</div>
+          <div class="hiw-vs-title">AI на борту</div>
+          <div class="hiw-vs-rows">
+            <div class="hiw-vs-row">
+              <div class="hiw-vs-ico yes">✓</div>
+              <div class="hiw-vs-text"><strong>Отобраны лучшие</strong> — только события с реальным потенциалом</div>
+            </div>
+            <div class="hiw-vs-row">
+              <div class="hiw-vs-ico yes">✓</div>
+              <div class="hiw-vs-text"><strong>AI объясняет почему</strong> — анализ с доказательствами и источниками</div>
+            </div>
+            <div class="hiw-vs-row">
+              <div class="hiw-vs-ico yes">✓</div>
+              <div class="hiw-vs-text"><strong>Готовый вывод и риски</strong> — понятным языком, без жаргона</div>
+            </div>
+            <div class="hiw-vs-row">
+              <div class="hiw-vs-ico yes">✓</div>
+              <div class="hiw-vs-text"><strong>Открытый трек-рекорд</strong> — все прогнозы можно проверить</div>
+            </div>
+            <div class="hiw-vs-row">
+              <div class="hiw-vs-ico yes">✓</div>
+              <div class="hiw-vs-text"><strong>Минуты, не часы</strong> — полный анализ готов сразу</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ PROOF ══════════ -->
+    <div class="hiw-section">
+      <div class="hiw-eyebrow">Трек-рекорд</div>
+      <h2 class="hiw-h2">Цифры говорят <span>сами за себя</span></h2>
+      <p class="hiw-lead">Открытая история прогнозов — проверьте каждый. Мы не скрываем ошибки.</p>
+      <div class="hiw-proof">
+        <div class="hiw-proof-grid">
+          <div class="hiw-ps">
+            <div class="hiw-ps-val">78%</div>
+            <div class="hiw-ps-lbl">Точность прогнозов за 12 месяцев</div>
+          </div>
+          <div class="hiw-ps">
+            <div class="hiw-ps-val">+8.3%</div>
+            <div class="hiw-ps-lbl">Средняя доходность на событие</div>
+          </div>
+          <div class="hiw-ps">
+            <div class="hiw-ps-val">340+</div>
+            <div class="hiw-ps-lbl">Закрытых событий в архиве</div>
+          </div>
+          <div class="hiw-ps">
+            <div class="hiw-ps-val">100%</div>
+            <div class="hiw-ps-lbl">Прогнозов открыты для проверки</div>
+          </div>
+        </div>
+        <div class="hiw-proof-disc">
+          Данные основаны на исторических симуляциях и закрытых событиях Polymarket. Прошлые результаты не гарантируют будущих. Это не финансовая консультация.
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ FAQ ══════════ -->
+    <div class="hiw-section">
+      <div class="hiw-eyebrow">Вопросы</div>
+      <h2 class="hiw-h2">Часто задают</h2>
+      <p class="hiw-lead" style="margin-bottom:24px">Если вопрос не нашли — напишите в поддержку.</p>
+      <div class="hiw-faq" id="hiw-faq">
+        <div class="hiw-faq-item open">
+          <div class="hiw-faq-q" onclick="toggleFaq(this)">
+            <span class="hiw-faq-q-text">Что такое Polymarket и как он работает?</span>
+            <span class="hiw-faq-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+          </div>
+          <div class="hiw-faq-a">Polymarket — это decentralized prediction market на блокчейне Polygon. Пользователи ставят реальные деньги (USDC) на исход событий. Рыночная цена (%) отражает коллективную оценку вероятности события. Если ставите на YES при цене 40% и событие происходит — получаете 100%, то есть +150% прибыли.</div>
+        </div>
+        <div class="hiw-faq-item">
+          <div class="hiw-faq-q" onclick="toggleFaq(this)">
+            <span class="hiw-faq-q-text">Что такое Edge Score и почему он важен?</span>
+            <span class="hiw-faq-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+          </div>
+          <div class="hiw-faq-a">Edge Score — разница между рыночной ценой события и реальной вероятностью, рассчитанной PP AI. Например: рынок оценивает событие в 35%, PP AI считает реальную вероятность 57%. Edge = +22%. Это и есть ваше преимущество. Чем выше Edge, тем больше рынок ошибается — и тем выгоднее позиция.</div>
+        </div>
+        <div class="hiw-faq-item">
+          <div class="hiw-faq-q" onclick="toggleFaq(this)">
+            <span class="hiw-faq-q-text">PolyPilot сам делает ставки за меня?</span>
+            <span class="hiw-faq-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+          </div>
+          <div class="hiw-faq-a">Нет. PolyPilot — аналитический инструмент. Мы не берём ваши деньги, не подключаемся к кошельку и не совершаем сделок. Всё решение принимаете вы — мы даём данные, анализ и рекомендацию. Для ставки вы переходите на Polymarket самостоятельно.</div>
+        </div>
+        <div class="hiw-faq-item">
+          <div class="hiw-faq-q" onclick="toggleFaq(this)">
+            <span class="hiw-faq-q-text">Откуда берутся данные для анализа?</span>
+            <span class="hiw-faq-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+          </div>
+          <div class="hiw-faq-a">PP AI агрегируют данные из множества источников: Polymarket API (рыночные цены), Bloomberg и Reuters (новости), Glassnode и Nansen (on-chain), BLS и ФРС (макроиндикаторы), Twitter/X и Telegram (сентимент). Все источники проверяются на достоверность и актуальность.</div>
+        </div>
+        <div class="hiw-faq-item">
+          <div class="hiw-faq-q" onclick="toggleFaq(this)">
+            <span class="hiw-faq-q-text">Это финансовая консультация?</span>
+            <span class="hiw-faq-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+          </div>
+          <div class="hiw-faq-a">Нет. PolyPilot — информационный и аналитический сервис. Prediction markets — это рынок, результат не гарантирован. Мы рекомендуем ставить только то, что вы готовы потерять. Принимайте решения самостоятельно, опираясь на собственный анализ и риск-профиль.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ CTA ══════════ -->
+    <div class="hiw-cta">
+      <div class="hiw-cta-glow"></div>
+      <h2 class="hiw-cta-title">Готов попробовать?<br><span>Первые 7 дней бесплатно.</span></h2>
+      <p class="hiw-cta-sub">Зарегистрируйся и получи полный доступ к PP AI, War Room и Edge Score на неделю.</p>
+      <div class="hiw-cta-acts">
+        <a href="events.html" class="btn-hiw btn-hiw-ghost">Смотреть события</a>
+        <a href="events.html" class="btn-hiw btn-hiw-primary">Начать бесплатно →</a>
+      </div>
+      <p class="hiw-cta-note">Без привязки карты · Отменить в любой момент</p>
+    </div>
+
+  </div>
+  </main>
+</div>
+
+<script src="../assets/js/state.js"></script>
+<script src="../assets/js/sidebar.js"></script>
+<script>
+function toggleFaq(el) {
+  const item = el.closest('.hiw-faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.hiw-faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+</script>
+</body>
+</html>

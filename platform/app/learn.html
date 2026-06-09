@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Обучение — PolyPilot</title>
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <style>
+    .learn-page { padding: 0 40px 80px; }
+
+    /* ── primitives ── */
+    .learn-eyebrow {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 10px; font-weight: 700; letter-spacing: 1.4px;
+      text-transform: uppercase; color: #60a5fa; margin-bottom: 12px;
+    }
+    .learn-h2 {
+      font-size: 28px; font-weight: 800; letter-spacing: -0.5px;
+      line-height: 1.2; color: #fff; margin-bottom: 10px;
+    }
+    .learn-h2 span {
+      background: linear-gradient(90deg,#3b82f6,#7b2fff);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+    .learn-lead {
+      font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.7; margin-bottom: 28px;
+    }
+    .learn-section { margin-bottom: 64px; }
+
+    /* ══════════════════════════════════════
+       HERO
+    ══════════════════════════════════════ */
+    .learn-hero {
+      padding: 44px 0 52px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 56px;
+    }
+    .learn-hero-h1 {
+      font-size: 46px; font-weight: 800; letter-spacing: -1px;
+      line-height: 1.08; margin-bottom: 18px; white-space: nowrap;
+    }
+    .learn-hero-h1 span {
+      background: linear-gradient(90deg,#3b82f6 0%,#7b2fff 55%,#22d3a6 100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+    .learn-hero-sub {
+      font-size: 16px; color: rgba(255,255,255,0.45);
+      line-height: 1.7; max-width: 620px; margin-bottom: 32px;
+    }
+    .learn-hero-chips {
+      display: flex; gap: 10px; flex-wrap: wrap;
+    }
+    .learn-hero-chip {
+      display: flex; align-items: center; gap: 7px;
+      padding: 7px 16px; border-radius: 9999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.09);
+      font-size: 12.5px; font-weight: 600; color: rgba(255,255,255,0.60);
+    }
+    .learn-hero-chip span { color: #60a5fa; }
+
+    /* ══════════════════════════════════════
+       PROGRESS PATH
+    ══════════════════════════════════════ */
+    .learn-path {
+      display: flex; flex-direction: column; gap: 3px;
+    }
+    .learn-path-item {
+      display: grid; grid-template-columns: 52px 1fr auto;
+      align-items: center; gap: 20px;
+      padding: 18px 22px; border-radius: 14px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      cursor: pointer; transition: all 0.18s;
+      text-decoration: none; color: inherit;
+    }
+    .learn-path-item:hover { background: rgba(255,255,255,0.055); border-color: rgba(255,255,255,0.11); }
+    .learn-path-item.active {
+      background: rgba(26,111,255,0.07);
+      border-color: rgba(26,111,255,0.25);
+    }
+    .learn-path-item.done {
+      background: rgba(74,222,128,0.04);
+      border-color: rgba(74,222,128,0.15);
+    }
+    .learn-path-num {
+      width: 36px; height: 36px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 800; flex-shrink: 0;
+    }
+    .learn-path-item.active .learn-path-num { background: rgba(26,111,255,0.2); color: #60a5fa; }
+    .learn-path-item.done   .learn-path-num { background: rgba(74,222,128,0.15); color: #4ade80; }
+    .learn-path-item:not(.active):not(.done) .learn-path-num { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.4); }
+    .learn-path-title { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+    .learn-path-sub   { font-size: 12px; color: rgba(255,255,255,0.35); }
+    .learn-path-badge {
+      font-size: 10.5px; font-weight: 700; padding: 4px 11px;
+      border-radius: 9999px; white-space: nowrap; flex-shrink: 0;
+    }
+    .badge-active  { background: rgba(26,111,255,0.12); color: #60a5fa; border: 1px solid rgba(26,111,255,0.25); }
+    .badge-done    { background: rgba(74,222,128,0.10); color: #4ade80; border: 1px solid rgba(74,222,128,0.22); }
+    .badge-locked  { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.28); border: 1px solid rgba(255,255,255,0.08); }
+    .badge-free    { background: rgba(168,85,247,0.10); color: #c4b5fd; border: 1px solid rgba(168,85,247,0.22); }
+
+    /* ══════════════════════════════════════
+       ARTICLE CARDS
+    ══════════════════════════════════════ */
+    .learn-cards {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 16px;
+    }
+    .learn-card {
+      background: linear-gradient(145deg,#080c1a,#0a0f1e);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 18px; padding: 24px;
+      display: flex; flex-direction: column; gap: 0;
+      transition: border-color 0.18s, transform 0.18s;
+      cursor: pointer;
+    }
+    .learn-card:hover { border-color: rgba(255,255,255,0.13); transform: translateY(-2px); }
+    .learn-card-ico {
+      width: 44px; height: 44px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px; flex-shrink: 0;
+    }
+    .learn-card-ico svg { width: 20px; height: 20px; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .learn-card-tag {
+      display: inline-flex; align-items: center;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.6px;
+      text-transform: uppercase; padding: 2px 9px; border-radius: 9999px;
+      margin-bottom: 10px; width: fit-content;
+    }
+    .learn-card-title {
+      font-size: 15px; font-weight: 700; color: #fff;
+      line-height: 1.35; margin-bottom: 8px;
+    }
+    .learn-card-desc {
+      font-size: 12.5px; color: rgba(255,255,255,0.45);
+      line-height: 1.65; flex: 1; margin-bottom: 18px;
+    }
+    .learn-card-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .learn-card-time { font-size: 11px; color: rgba(255,255,255,0.28); }
+    .learn-card-arrow { font-size: 13px; color: rgba(255,255,255,0.25); }
+
+    /* ══════════════════════════════════════
+       BIG LESSON (expanded card)
+    ══════════════════════════════════════ */
+    .learn-lesson {
+      background: linear-gradient(145deg,#080c1a,#0a0f1e);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 20px; overflow: hidden;
+    }
+    .learn-lesson-header {
+      display: grid; grid-template-columns: 1fr auto;
+      align-items: center; gap: 24px;
+      padding: 28px 32px 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: linear-gradient(135deg,rgba(26,111,255,0.05),transparent);
+    }
+    .learn-lesson-num {
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.2px; color: rgba(255,255,255,0.28); margin-bottom: 6px;
+    }
+    .learn-lesson-title { font-size: 20px; font-weight: 800; color: #fff; }
+    .learn-lesson-meta {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .learn-lesson-min {
+      font-size: 11.5px; color: rgba(255,255,255,0.30);
+    }
+    .learn-lesson-body { padding: 28px 32px; }
+    .learn-lesson-p {
+      font-size: 14px; color: rgba(255,255,255,0.60);
+      line-height: 1.8; margin-bottom: 20px;
+    }
+    .learn-lesson-p strong { color: #fff; font-weight: 700; }
+    .learn-highlight {
+      background: rgba(26,111,255,0.07);
+      border-left: 3px solid #3b82f6;
+      border-radius: 0 10px 10px 0;
+      padding: 14px 18px; margin: 20px 0;
+      font-size: 13.5px; color: rgba(255,255,255,0.65); line-height: 1.7;
+    }
+    .learn-highlight strong { color: #60a5fa; }
+    .learn-example {
+      background: rgba(74,222,128,0.05);
+      border: 1px solid rgba(74,222,128,0.15);
+      border-radius: 12px; padding: 16px 20px; margin: 16px 0;
+    }
+    .learn-example-label {
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1px; color: rgba(74,222,128,0.7); margin-bottom: 8px;
+    }
+    .learn-example-text {
+      font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.65;
+    }
+    .learn-example-text strong { color: #4ade80; }
+
+    /* ══════════════════════════════════════
+       GLOSSARY
+    ══════════════════════════════════════ */
+    .learn-glossary {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+    }
+    .learn-gterm {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px; padding: 18px 20px;
+      transition: border-color 0.18s;
+    }
+    .learn-gterm:hover { border-color: rgba(255,255,255,0.12); }
+    .learn-gterm-word {
+      font-size: 14px; font-weight: 800; color: #fff; margin-bottom: 6px;
+    }
+    .learn-gterm-def {
+      font-size: 12.5px; color: rgba(255,255,255,0.45); line-height: 1.6;
+    }
+    .learn-gterm-def strong { color: rgba(255,255,255,0.70); }
+
+    /* ══════════════════════════════════════
+       MISTAKES
+    ══════════════════════════════════════ */
+    .learn-mistakes {
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .learn-mistake {
+      display: flex; align-items: flex-start; gap: 16px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px; padding: 18px 20px;
+    }
+    .learn-mistake-ico {
+      width: 34px; height: 34px; border-radius: 10px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+    }
+    .learn-mistake-title { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .learn-mistake-text  { font-size: 12.5px; color: rgba(255,255,255,0.45); line-height: 1.6; }
+    .learn-mistake-fix {
+      margin-top: 8px; font-size: 12px;
+      color: rgba(74,222,128,0.80); font-weight: 600;
+    }
+    .learn-mistake-fix::before { content: '✓ Как правильно: '; }
+
+    /* ══════════════════════════════════════
+       CHECKLIST
+    ══════════════════════════════════════ */
+    .learn-checklist {
+      background: linear-gradient(145deg,rgba(79,70,229,0.08),rgba(124,58,237,0.05));
+      border: 1px solid rgba(139,92,246,0.22);
+      border-radius: 20px; padding: 32px 36px;
+      position: relative; overflow: hidden;
+    }
+    .learn-checklist::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:2px;
+      background: linear-gradient(90deg,#4f46e5,#7c3aed,#a855f7);
+    }
+    .learn-checklist-title {
+      font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 6px;
+    }
+    .learn-checklist-sub {
+      font-size: 13px; color: rgba(255,255,255,0.40); margin-bottom: 24px; line-height: 1.6;
+    }
+    .learn-checks {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+    }
+    .learn-check {
+      display: flex; align-items: flex-start; gap: 12px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px; padding: 14px 16px;
+    }
+    .learn-check-box {
+      width: 20px; height: 20px; border-radius: 6px;
+      border: 2px solid rgba(139,92,246,0.4);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+      background: rgba(139,92,246,0.08);
+    }
+    .learn-check-box svg { width: 11px; height: 11px; stroke: #a78bfa; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .learn-check-text { font-size: 13px; color: rgba(255,255,255,0.60); line-height: 1.5; }
+    .learn-check-text strong { color: #fff; font-weight: 700; }
+
+    /* ══════════════════════════════════════
+       CTA
+    ══════════════════════════════════════ */
+    .learn-cta {
+      background: linear-gradient(135deg,rgba(26,111,255,0.12),rgba(123,47,255,0.09));
+      border: 1px solid rgba(26,111,255,0.22); border-radius: 24px;
+      padding: 48px 56px; text-align: center; position: relative; overflow: hidden;
+    }
+    .learn-cta-glow {
+      position: absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+      width:500px; height:260px;
+      background: radial-gradient(ellipse,rgba(100,80,255,0.13) 0%,transparent 70%);
+      pointer-events: none;
+    }
+    .learn-cta-title {
+      position:relative; font-size:28px; font-weight:800; letter-spacing:-0.6px;
+      line-height:1.2; margin-bottom:12px;
+    }
+    .learn-cta-title span {
+      background: linear-gradient(135deg,#3b82f6,#7b2fff);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+    .learn-cta-sub {
+      position:relative; font-size:14px; color:rgba(255,255,255,0.45);
+      max-width:400px; margin:0 auto 28px; line-height:1.7;
+    }
+    .learn-cta-acts {
+      position:relative; display:flex; align-items:center;
+      justify-content:center; gap:12px;
+    }
+    .learn-cta-note {
+      position:relative; margin-top:14px;
+      font-size:11px; color:rgba(255,255,255,0.25);
+    }
+    .btn-learn {
+      display:inline-flex; align-items:center; gap:8px;
+      padding:13px 24px; border-radius:12px;
+      font-size:14px; font-weight:700; cursor:pointer;
+      transition:all 0.2s; text-decoration:none;
+      font-family:var(--font-main); border:none;
+    }
+    .btn-learn-primary {
+      background:linear-gradient(135deg,#1a6fff,#7b2fff); color:#fff;
+      box-shadow:0 0 24px rgba(100,80,255,0.35);
+    }
+    .btn-learn-primary:hover { opacity:0.9; transform:translateY(-1px); }
+    .btn-learn-ghost {
+      background:rgba(255,255,255,0.06); color:rgba(255,255,255,0.8);
+      border:1px solid rgba(255,255,255,0.12);
+    }
+    .btn-learn-ghost:hover { background:rgba(255,255,255,0.10); }
+  </style>
+</head>
+<body>
+<div class="app-layout">
+  <aside id="sidebar"></aside>
+  <main class="main-content">
+  <div class="learn-page">
+
+    <!-- ══ HERO ══ -->
+    <div class="learn-hero">
+      <div class="learn-eyebrow">Обучение</div>
+      <h1 class="learn-hero-h1">От нуля до первого решения — <span>без потерь</span></h1>
+      <p class="learn-hero-sub">Prediction markets пугают новичков. Здесь вы узнаете всё, что нужно: что такое Edge, как читать сигналы PP AI и как принять первое решение — уверенно, не вслепую.</p>
+      <div class="learn-hero-chips">
+        <div class="learn-hero-chip"><span>6</span> уроков</div>
+        <div class="learn-hero-chip"><span>~25 мин</span> на всё</div>
+        <div class="learn-hero-chip"><span>✓</span> Без финансового жаргона</div>
+        <div class="learn-hero-chip"><span>✓</span> Примеры из реальных событий</div>
+      </div>
+    </div>
+
+    <!-- ══ PATH ══ -->
+    <div class="learn-section">
+      <div class="learn-eyebrow">Путь обучения</div>
+      <h2 class="learn-h2">6 шагов — и вы готовы</h2>
+      <p class="learn-lead">Рекомендуем проходить по порядку. Каждый урок занимает 3–5 минут.</p>
+      <div class="learn-path">
+        <div class="learn-path-item done">
+          <div class="learn-path-num">✓</div>
+          <div>
+            <div class="learn-path-title">Что такое Prediction Markets?</div>
+            <div class="learn-path-sub">Принцип работы, откуда берётся цена, как зарабатывают участники</div>
+          </div>
+          <div class="learn-path-badge badge-done">Пройдено</div>
+        </div>
+        <div class="learn-path-item active">
+          <div class="learn-path-num">2</div>
+          <div>
+            <div class="learn-path-title">Что такое Edge и почему он важен</div>
+            <div class="learn-path-sub">Edge Score, расхождение с рынком, как PP AI его считает</div>
+          </div>
+          <div class="learn-path-badge badge-active">Читать сейчас</div>
+        </div>
+        <div class="learn-path-item">
+          <div class="learn-path-num">3</div>
+          <div>
+            <div class="learn-path-title">War Room — что говорят PP AI</div>
+            <div class="learn-path-sub">Как читать вердикты агентов, что значат их оценки</div>
+          </div>
+          <div class="learn-path-badge badge-free">Бесплатно</div>
+        </div>
+        <div class="learn-path-item">
+          <div class="learn-path-num">4</div>
+          <div>
+            <div class="learn-path-title">Управление рисками: сколько ставить</div>
+            <div class="learn-path-sub">Правило 2%, диверсификация, горизонт события</div>
+          </div>
+          <div class="learn-path-badge badge-free">Бесплатно</div>
+        </div>
+        <div class="learn-path-item">
+          <div class="learn-path-num">5</div>
+          <div>
+            <div class="learn-path-title">Как поставить на Polymarket</div>
+            <div class="learn-path-sub">Кошелёк, USDC, первая транзакция — пошагово</div>
+          </div>
+          <div class="learn-path-badge badge-locked">Pulse</div>
+        </div>
+        <div class="learn-path-item">
+          <div class="learn-path-num">6</div>
+          <div>
+            <div class="learn-path-title">Чеклист перед первым решением</div>
+            <div class="learn-path-sub">10 вопросов, которые стоит задать себе перед входом</div>
+          </div>
+          <div class="learn-path-badge badge-locked">Pulse</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ FEATURED LESSON ══ -->
+    <div class="learn-section">
+      <div class="learn-eyebrow">Урок · сейчас</div>
+      <h2 class="learn-h2">Что такое <span>Edge Score</span></h2>
+      <p class="learn-lead">Самая важная концепция в PolyPilot — и почему рынок почти всегда ошибается.</p>
+
+      <div class="learn-lesson">
+        <div class="learn-lesson-header">
+          <div>
+            <div class="learn-lesson-num">Урок 2 из 6</div>
+            <div class="learn-lesson-title">Что такое Edge и почему рынок ошибается</div>
+          </div>
+          <div class="learn-lesson-meta">
+            <div class="learn-lesson-min">⏱ 4 минуты</div>
+          </div>
+        </div>
+        <div class="learn-lesson-body">
+          <p class="learn-lesson-p">
+            На Polymarket у каждого события есть цена — например, <strong>42%</strong>. Это значит: рынок считает, что событие произойдёт с вероятностью 42%. Если вы покупаете YES по 42 цента и событие происходит — получаете $1. Прибыль: <strong>+138%</strong>.
+          </p>
+          <div class="learn-highlight">
+            <strong>Edge</strong> — это разница между тем, что думает рынок, и тем, что думает PP AI на основе реальных данных. Если рынок даёт 42%, а PP AI считает реальную вероятность 64% — <strong>Edge = +22%</strong>.
+          </div>
+          <p class="learn-lesson-p">
+            Откуда берётся этот разрыв? Рынок — это толпа. Она реагирует на эмоции, новостной шум, страх. PP AI реагирует на <strong>фактические данные</strong>: инфляцию, on-chain метрики, исторические паттерны, риск-модели. Эти два взгляда расходятся — и в этом зазоре живёт ваша прибыль.
+          </p>
+          <div class="learn-example">
+            <div class="learn-example-label">Реальный пример · ФРС декабрь 2025</div>
+            <div class="learn-example-text">
+              Рынок давал <strong>44%</strong> на снижение ставки. PP AI видел данные PCE (2.6%) и NFP (115k) и оценил вероятность в <strong>72%</strong>. Edge = <strong>+28%</strong>. 18 декабря 2025 ФРС снизил ставку. Те, кто вошёл по 44%, получили +127% прибыли.
+            </div>
+          </div>
+          <p class="learn-lesson-p">
+            Важно: <strong>Edge не гарантирует результат</strong>. Он показывает, что у вас статистическое преимущество. Как в покере — сильная рука не означает победы в каждой раздаче, но в долгосроке она выигрывает. Именно поэтому управление рисками так важно (урок 4).
+          </p>
+          <div class="learn-highlight" style="border-color:#8b5cf6; background:rgba(139,92,246,0.06)">
+            <strong style="color:#c4b5fd">Правило PolyPilot:</strong> входить только в события с Edge выше <strong style="color:#c4b5fd">+10%</strong>. Ниже этого порога статистическое преимущество слишком мало, чтобы покрыть транзакционные издержки и погрешность модели.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ ARTICLE CARDS ══ -->
+    <div class="learn-section">
+      <div class="learn-eyebrow">Все уроки</div>
+      <h2 class="learn-h2">Читайте в любом порядке</h2>
+      <p class="learn-lead">Каждый урок самодостаточен. Не знаете с чего начать — начните с основ.</p>
+      <div class="learn-cards">
+        <div class="learn-card">
+          <div class="learn-card-ico" style="background:rgba(59,130,246,0.15)">
+            <svg stroke="#3b82f6" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 2a14.5 14.5 0 0 0 0 20A14.5 14.5 0 0 0 12 2"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+          </div>
+          <div class="learn-card-tag" style="background:rgba(59,130,246,0.10);color:#60a5fa;border:1px solid rgba(59,130,246,0.20)">Основы</div>
+          <div class="learn-card-title">Что такое Prediction Markets?</div>
+          <div class="learn-card-desc">Как работает рынок вероятностей, кто участвует и откуда берётся цена события. Всё это за 3 минуты.</div>
+          <div class="learn-card-footer">
+            <div class="learn-card-time">3 мин · Бесплатно</div>
+            <div class="learn-card-arrow">→</div>
+          </div>
+        </div>
+        <div class="learn-card" style="border-color:rgba(26,111,255,0.2);background:linear-gradient(145deg,rgba(26,111,255,0.05),#080c1a)">
+          <div class="learn-card-ico" style="background:rgba(139,92,246,0.15)">
+            <svg stroke="#8b5cf6" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <div class="learn-card-tag" style="background:rgba(139,92,246,0.10);color:#c4b5fd;border:1px solid rgba(139,92,246,0.20)">★ Читать сейчас</div>
+          <div class="learn-card-title">Что такое Edge и почему он важен</div>
+          <div class="learn-card-desc">Edge Score — главная метрика PolyPilot. Узнайте, как PP AI находит расхождения и почему рынок систематически ошибается.</div>
+          <div class="learn-card-footer">
+            <div class="learn-card-time">4 мин · Бесплатно</div>
+            <div class="learn-card-arrow" style="color:#a78bfa">→</div>
+          </div>
+        </div>
+        <div class="learn-card">
+          <div class="learn-card-ico" style="background:rgba(20,184,166,0.15)">
+            <svg stroke="#14b8a6" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+          </div>
+          <div class="learn-card-tag" style="background:rgba(20,184,166,0.10);color:#2dd4bf;border:1px solid rgba(20,184,166,0.20)">War Room</div>
+          <div class="learn-card-title">War Room — что говорят PP AI</div>
+          <div class="learn-card-desc">OnChainBot, MacroScout, RiskGuard — зачем их несколько и как читать их вердикты, не теряясь в деталях.</div>
+          <div class="learn-card-footer">
+            <div class="learn-card-time">4 мин · Бесплатно</div>
+            <div class="learn-card-arrow">→</div>
+          </div>
+        </div>
+        <div class="learn-card">
+          <div class="learn-card-ico" style="background:rgba(251,146,60,0.15)">
+            <svg stroke="#fb923c" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="learn-card-tag" style="background:rgba(251,146,60,0.10);color:#fb923c;border:1px solid rgba(251,146,60,0.20)">Риски</div>
+          <div class="learn-card-title">Управление рисками: сколько ставить</div>
+          <div class="learn-card-desc">Правило 2%, диверсификация позиций, как горизонт события влияет на риск. Не теряйте больше, чем планировали.</div>
+          <div class="learn-card-footer">
+            <div class="learn-card-time">5 мин · Бесплатно</div>
+            <div class="learn-card-arrow">→</div>
+          </div>
+        </div>
+        <div class="learn-card">
+          <div class="learn-card-ico" style="background:rgba(74,222,128,0.15)">
+            <svg stroke="#4ade80" viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+          </div>
+          <div class="learn-card-tag" style="background:rgba(74,222,128,0.10);color:#4ade80;border:1px solid rgba(74,222,128,0.20)">Практика</div>
+          <div class="learn-card-title">Как поставить на Polymarket</div>
+          <div class="learn-card-desc">Кошелёк, USDC, первая транзакция — пошаговое руководство без технических сложностей. Для тех, кто никогда не работал с крипто.</div>
+          <div class="learn-card-footer">
+            <div class="learn-card-time">5 мин · Pulse</div>
+            <div class="learn-card-arrow">→</div>
+          </div>
+        </div>
+        <div class="learn-card">
+          <div class="learn-card-ico" style="background:rgba(244,114,182,0.15)">
+            <svg stroke="#f472b6" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          </div>
+          <div class="learn-card-tag" style="background:rgba(244,114,182,0.10);color:#f472b6;border:1px solid rgba(244,114,182,0.20)">Чеклист</div>
+          <div class="learn-card-title">10 вопросов перед первым решением</div>
+          <div class="learn-card-desc">Распечатайте или сохраните. Ответьте на каждый вопрос перед входом — это убережёт от эмоциональных решений.</div>
+          <div class="learn-card-footer">
+            <div class="learn-card-time">3 мин · Pulse</div>
+            <div class="learn-card-arrow">→</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ MISTAKES ══ -->
+    <div class="learn-section">
+      <div class="learn-eyebrow">Осторожно</div>
+      <h2 class="learn-h2">5 ошибок, которые <span>стоят денег</span></h2>
+      <p class="learn-lead">Большинство новичков совершают одни и те же ошибки. Прочитайте — и не повторяйте.</p>
+      <div class="learn-mistakes">
+        <div class="learn-mistake">
+          <div class="learn-mistake-ico" style="background:rgba(248,113,113,0.12)">🎲</div>
+          <div>
+            <div class="learn-mistake-title">Ставить на «интуицию», игнорируя данные</div>
+            <div class="learn-mistake-text">«Я чувствую, что это произойдёт» — не аргумент. На prediction markets побеждает тот, кто работает с информацией, а не с эмоциями.</div>
+            <div class="learn-mistake-fix">Всегда проверяйте Edge Score перед решением. Если Edge &lt; +10% — пропустите.</div>
+          </div>
+        </div>
+        <div class="learn-mistake">
+          <div class="learn-mistake-ico" style="background:rgba(248,113,113,0.12)">💸</div>
+          <div>
+            <div class="learn-mistake-title">Ставить слишком много на одно событие</div>
+            <div class="learn-mistake-text">Даже при Edge +30% событие может не произойти. Концентрация в одной позиции — быстрый путь к потере капитала.</div>
+            <div class="learn-mistake-fix">Не более 3–5% от капитала на одно событие. Диверсифицируйте по категориям.</div>
+          </div>
+        </div>
+        <div class="learn-mistake">
+          <div class="learn-mistake-ico" style="background:rgba(248,113,113,0.12)">⏰</div>
+          <div>
+            <div class="learn-mistake-title">Игнорировать горизонт события</div>
+            <div class="learn-mistake-text">Событие с разрешением через 8 месяцев — не то же самое, что через 2 недели. Длинный горизонт = больше неопределённости = другой расчёт риска.</div>
+            <div class="learn-mistake-fix">Учитывайте срок в калькуляторе. Короткий горизонт даёт меньший Edge, но быстрее высвобождает капитал.</div>
+          </div>
+        </div>
+        <div class="learn-mistake">
+          <div class="learn-mistake-ico" style="background:rgba(248,113,113,0.12)">📰</div>
+          <div>
+            <div class="learn-mistake-title">Реагировать на новости, а не на данные</div>
+            <div class="learn-mistake-text">Громкий заголовок уже отражён в рыночной цене. Реальный Edge — в данных, которые рынок ещё не «переварил».</div>
+            <div class="learn-mistake-fix">Читайте War Room. PP AI обрабатывают сигналы раньше, чем они становятся новостями.</div>
+          </div>
+        </div>
+        <div class="learn-mistake">
+          <div class="learn-mistake-ico" style="background:rgba(248,113,113,0.12)">🔄</div>
+          <div>
+            <div class="learn-mistake-title">Закрывать позицию при первом движении цены</div>
+            <div class="learn-mistake-text">Цена на рынке волатильна. Если фундаментальный тезис не изменился — движение цены не повод выходить из позиции.</div>
+            <div class="learn-mistake-fix">Следите за «Картой изменений» в карточке события. Выходите только если изменился фундаментальный фактор.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ GLOSSARY ══ -->
+    <div class="learn-section">
+      <div class="learn-eyebrow">Словарь</div>
+      <h2 class="learn-h2">Ключевые термины <span>простыми словами</span></h2>
+      <p class="learn-lead">Встретили незнакомое слово — загляните сюда.</p>
+      <div class="learn-glossary">
+        <div class="learn-gterm">
+          <div class="learn-gterm-word">Edge / Edge Score</div>
+          <div class="learn-gterm-def">Разница между рыночной ценой и реальной вероятностью по оценке PP AI. <strong>Edge +22%</strong> значит: рынок ошибается на 22 процентных пункта в вашу пользу.</div>
+        </div>
+        <div class="learn-gterm">
+          <div class="learn-gterm-word">Polymarket</div>
+          <div class="learn-gterm-def">Decentralized prediction market на блокчейне Polygon. Пользователи ставят <strong>USDC</strong> на исход реальных событий. PolyPilot анализирует эти рынки.</div>
+        </div>
+        <div class="learn-gterm">
+          <div class="learn-gterm-word">YES / NO рынок</div>
+          <div class="learn-gterm-def">Каждое событие имеет два исхода. <strong>YES</strong> — событие произойдёт, <strong>NO</strong> — нет. Цена YES + цена NO всегда = $1 (100 центов).</div>
+        </div>
+        <div class="learn-gterm">
+          <div class="learn-gterm-word">USDC</div>
+          <div class="learn-gterm-def">Stablecoin, привязанный к доллару США. Именно в нём делаются ставки на Polymarket. <strong>1 USDC = ~1 USD</strong>. Хранится в крипто-кошельке.</div>
+        </div>
+        <div class="learn-gterm">
+          <div class="learn-gterm-word">War Room</div>
+          <div class="learn-gterm-def">Раздел PolyPilot, где работают специализированные PP AI. Каждый анализирует своё направление: данные, риски, новости, on-chain. Итог — взвешенный сигнал.</div>
+        </div>
+        <div class="learn-gterm">
+          <div class="learn-gterm-word">Горизонт события</div>
+          <div class="learn-gterm-def">Дата, когда станет известен исход. <strong>Короткий горизонт</strong> (2–4 нед.) — меньше неопределённости. <strong>Длинный</strong> (6+ мес.) — выше риск изменения ситуации.</div>
+        </div>
+        <div class="learn-gterm">
+          <div class="learn-gterm-word">Объём рынка</div>
+          <div class="learn-gterm-def">Суммарная сумма всех ставок в событии. <strong>Высокий объём</strong> ($1M+) = ликвидный рынок, легко войти и выйти. Низкий — могут быть проблемы с исполнением.</div>
+        </div>
+        <div class="learn-gterm">
+          <div class="learn-gterm-word">Карта изменений</div>
+          <div class="learn-gterm-def">Блок в карточке события, где PP AI фиксирует все значимые новости и данные. Каждое изменение помечено: <strong>позитивно</strong> или <strong>негативно</strong> для прогноза.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ CHECKLIST ══ -->
+    <div class="learn-section">
+      <div class="learn-checklist">
+        <div class="learn-checklist-title">⚡ Чеклист перед первым решением</div>
+        <div class="learn-checklist-sub">Ответьте честно на каждый вопрос. Если хотя бы три ответа «нет» — подождите.</div>
+        <div class="learn-checks">
+          <div class="learn-check">
+            <div class="learn-check-box"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+            <div class="learn-check-text"><strong>Edge ≥ +10%</strong> по оценке PP AI?</div>
+          </div>
+          <div class="learn-check">
+            <div class="learn-check-box"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+            <div class="learn-check-text"><strong>War Room</strong> в большинстве дал сигнал YES?</div>
+          </div>
+          <div class="learn-check">
+            <div class="learn-check-box"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+            <div class="learn-check-text">Сумма — не более <strong>3–5%</strong> от капитала?</div>
+          </div>
+          <div class="learn-check">
+            <div class="learn-check-box"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+            <div class="learn-check-text">Я <strong>понимаю суть</strong> события и почему оно может произойти?</div>
+          </div>
+          <div class="learn-check">
+            <div class="learn-check-box"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+            <div class="learn-check-text">Я готов потерять эту сумму <strong>без ущерба</strong> для бюджета?</div>
+          </div>
+          <div class="learn-check">
+            <div class="learn-check-box"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+            <div class="learn-check-text">Объём рынка достаточный — <strong>нет проблем с ликвидностью</strong>?</div>
+          </div>
+          <div class="learn-check">
+            <div class="learn-check-box"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+            <div class="learn-check-text">Горизонт события мне <strong>подходит</strong> по срокам?</div>
+          </div>
+          <div class="learn-check">
+            <div class="learn-check-box"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+            <div class="learn-check-text">Я принимаю решение на основе <strong>данных, а не эмоций</strong>?</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ CTA ══ -->
+    <div class="learn-cta">
+      <div class="learn-cta-glow"></div>
+      <h2 class="learn-cta-title">Готов применить знания?<br><span>Смотри события прямо сейчас.</span></h2>
+      <p class="learn-cta-sub">PP AI уже отобрал события с реальным Edge. Посмотри — и примени всё, что узнал.</p>
+      <div class="learn-cta-acts">
+        <a href="how-it-works.html" class="btn-learn btn-learn-ghost">Как это работает</a>
+        <a href="events.html" class="btn-learn btn-learn-primary">Смотреть события →</a>
+      </div>
+      <p class="learn-cta-note">Не нужна регистрация · Лента событий открыта бесплатно</p>
+    </div>
+
+  </div>
+  </main>
+</div>
+<script src="../assets/js/state.js"></script>
+<script src="../assets/js/sidebar.js"></script>
+</body>
+</html>
