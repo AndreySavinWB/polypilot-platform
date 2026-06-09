@@ -20,6 +20,17 @@ PolyPilot/
 | **backend/** | Priority Agent, harvest, sync live-данных на сайт |
 | **PolyPilot-Штаб/** | Стратегия, архитектура, дорожная карта (Obsidian) |
 
+## Сайт онлайн
+
+После включения GitHub Pages (Source: **GitHub Actions**, см. [[ДОРОЖНАЯ_КАРТА_ОНЛАЙН]]):
+
+| Страница | URL |
+|----------|-----|
+| Лента событий | https://andreysavinwb.github.io/polypilot-platform/app/events.html |
+| Маркетинг | https://andreysavinwb.github.io/polypilot-platform/index.html |
+
+Дорожная карта онлайн: `PolyPilot-Штаб/07_Архитектура/ДОРОЖНАЯ_КАРТА_ОНЛАЙН.md`
+
 ## Быстрый старт
 
 ### Сайт (локально)

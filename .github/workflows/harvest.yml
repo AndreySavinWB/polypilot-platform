@@ -1,0 +1,47 @@
+# Этап 2: scan Polymarket → агенты → platform/data/events-live.js
+name: Harvest live events
+
+on:
+  schedule:
+    # 00:00, 06:00, 12:00, 18:00 UTC
+    - cron: "0 0,6,12,18 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  harvest:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    env:
+      LLM_PROVIDER: polza
+      PP_SCAN_LIMIT: "300"
+      PP_TOP_N: "10"
+      POLZA_API_KEY: ${{ secrets.POLZA_API_KEY }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run harvest
+        run: python scripts/harvest_test_events.py
+
+      - name: Commit live data if changed
+        working-directory: ${{ github.workspace }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add platform/data/events-live.js backend/data/priority_scan.json backend/data/test_events.json backend/data/test_events_summary.json
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "chore: auto harvest live events"
+          git push
