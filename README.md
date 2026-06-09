@@ -20,7 +20,8 @@ PolyPilot/
 | Куда | URL |
 |------|-----|
 | **Сейчас (Pages)** | https://andreysavinwb.github.io/polypilot-platform/app/events.html |
-| **Цель (Vercel)** | https://polypilot.pro/app/events.html |
+| **Сейчас (Vercel)** | https://polypilot-platform.vercel.app/app/events.html |
+| **Цель (домен)** | https://polypilot.pro/app/events.html |
 
 ## Инфраструктура (целевая)
 
