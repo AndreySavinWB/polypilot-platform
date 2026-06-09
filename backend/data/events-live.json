@@ -1,5 +1,4 @@
-/** Auto-generated from backend/data/test_events.json */
-window.EVENTS_LIVE = {
+{
   "events": [
     {
       "id": "live-51456",
@@ -944,4 +943,4 @@ window.EVENTS_LIVE = {
     }
   ],
   "generatedAt": "2026-06-09T12:19:48.676512+00:00"
-};
+}
