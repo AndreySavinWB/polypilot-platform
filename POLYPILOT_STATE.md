@@ -6,17 +6,17 @@
 
 ## Последний коммит
 
-**SHA:** `177c06c5d4b8bb70f3fd3f150f16635f962c0429`  
-**Дата:** 2026-06-10 11:11:37 +03:00
+**SHA:** `ce144611ca071d9a97c9ca40afff5f77d850ec2b`  
+**Дата:** 2026-06-10 17:33:45 +03:00
 
 ---
 
 ## Текущий этап
 
-**Текущая фаза:** backend-срез PIE v1.0d реализован, готовимся к checkpoint-коммиту.  
+**Текущая фаза:** checkpoint PIE v1.0d опубликован на GitHub, Vercel деплоит UI-каркас.  
 **Текущий владелец:** `01_CEO`
 
-Главное узкое место сейчас: нужно зафиксировать накопленный UI + backend + операционную систему в checkpoint-коммите и опубликовать изменения.
+Главное узкое место сейчас: UI пока на mock-данных — нужен следующий backend-срез или подключение PIE-output к `event.html`.
 
 ---
 
@@ -64,8 +64,8 @@
 
 ## Что в работе
 
-- Подготовка checkpoint-коммита.
-- Проверка git diff перед публикацией.
+- Ожидание деплоя Vercel после checkpoint-коммита.
+- Решение CEO: следующий backend-срез (Market Structure Analyzer v0) или wiring UI ↔ backend.
 - Формирование привычки команды: перед началом работы читать `POLYPILOT_STATE.md`.
 
 ---
@@ -86,14 +86,14 @@
 
 ## Следующий шаг
 
-Следующий шаг:
+Checkpoint-коммит выполнен и опубликован (`ce14461`).
+
+Следующий шаг CEO:
 
 ```text
-Checkpoint-коммит:
-- UI-каркас PIE v1.3
-- Project Operating System
-- Backend PIE v1.0b/v1.0c/v1.0d
-- Evidence Collector v0
+Выбрать один из двух путей:
+A) Backend: Market Structure Analyzer v0
+B) Integration: подключить PIE v1.0d output к UI-каркасу event.html
 ```
 
 Последний принятый backend-output:
@@ -172,6 +172,8 @@ Checkpoint-коммит:
 ---
 
 ## Последнее решение CEO
+
+Checkpoint-коммит опубликован на GitHub/Vercel: UI-каркас PIE v1.3 + Project Operating System + Backend PIE v1.0b–v1.0d.
 
 Backend-срез PIE v1.0d принят: Event Normalizer v0 + Event Type Classifier v0 + Market Intelligence v0 + Evidence Collector v0.
 
