@@ -91,10 +91,18 @@ def horizon_days(end_date):
         return "—"
 
 
-def build_agents(analysis, localized):
+def _risk_block(item):
+    package = item.get("pipelinePackage") or {}
+    pie_risk = package.get("risk") or {}
+    if pie_risk:
+        return pie_risk
+    return (item.get("analysis") or {}).get("riskOfficer") or {}
+
+
+def build_agents(analysis, localized, pie_risk=None):
     priority = analysis.get("priority") or {}
     news = analysis.get("newsScout") or {}
-    risk = analysis.get("riskOfficer") or {}
+    risk = pie_risk or analysis.get("riskOfficer") or {}
     verdict = analysis.get("verdict") or {}
 
     flags = localized.get("riskFlags") or risk.get("flags") or ["Нет критических флагов"]
@@ -148,17 +156,26 @@ def build_agents(analysis, localized):
 def convert_item(item):
     event = item["event"]
     analysis = item["analysis"]
+    package = item.get("pipelinePackage") or {}
+    normalized_event = package.get("normalizedEvent") or {}
+    market_snapshot = normalized_event.get("marketSnapshot") or {}
+    pie_risk = package.get("risk") or {}
     tags = item.get("tags") or []
     markets = event.get("markets") or []
     first_market = markets[0] if markets else {}
     event_id = str(event.get("id"))
-    title_ru = translate_title(event_id, event.get("title"))
+    title_ru = normalized_event.get("titleRu") or translate_title(event_id, event.get("title"))
     localized = localize_analysis_texts(analysis)
     category, category_tag = guess_category(title_ru, tags, event.get("title"))
 
-    market_odds = parse_prices(first_market.get("outcomePrices"))
+    # marketProb is 0.0–1.0 in PIE v1.0b; convert to integer % for display
+    raw_prob = market_snapshot.get("marketProb")
+    if raw_prob is not None:
+        market_odds = int(round(raw_prob * 100))
+    else:
+        market_odds = parse_prices(first_market.get("outcomePrices"))
     confidence = (analysis.get("verdict") or {}).get("confidence") or 50
-    risk_level = (analysis.get("riskOfficer") or {}).get("riskLevel") or "medium"
+    risk_level = pie_risk.get("riskLevel") or (analysis.get("riskOfficer") or {}).get("riskLevel") or "medium"
     priority_decision = (analysis.get("priority") or {}).get("decision")
     volume24 = float(event.get("volume24hr") or 0)
     volume_total = float(event.get("volume") or 0)
@@ -173,7 +190,7 @@ def convert_item(item):
         edge = max(0, confidence - market_odds)
 
     summary_ru = localize_description(event.get("description"), title_ru)
-    risk_tags_ru = localized.get("riskFlags") or (analysis.get("riskOfficer") or {}).get("flags") or []
+    risk_tags_ru = pie_risk.get("flags") or localized.get("riskFlags") or (analysis.get("riskOfficer") or {}).get("flags") or []
     facts_ru = localized.get("newsFacts") or (analysis.get("newsScout") or {}).get("facts") or []
 
     return {
@@ -209,7 +226,7 @@ def convert_item(item):
         "verdict": "НАБЛЮДЕНИЕ",
         "verdictText": verdict_text,
         "summary": summary_ru,
-        "warRoom": {"duration": 6, "agents": build_agents(analysis, localized)},
+        "warRoom": {"duration": 6, "agents": build_agents(analysis, localized, pie_risk=pie_risk)},
         "arguments": {
             "yes": facts_ru,
             "no": risk_tags_ru,

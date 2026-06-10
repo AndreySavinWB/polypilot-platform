@@ -1018,6 +1018,266 @@
     .c-red    { color: #f87171; }
     .c-teal   { color: #2dd4bf; }
     .c-white  { color: #fff; }
+    .c-violet { color: #818cf8; }
+    .c-blue   { color: #60a5fa; }
+
+    /* ═══════════════════════════════════════════════════
+       PIE ANALYSIS SECTION — обёртка + блоки 1–7
+    ═══════════════════════════════════════════════════ */
+    .pie-section { margin: 0 24px; }
+    /* Block 0 внутри секции — сброс внешних отступов */
+    .pie-section .ev-pie-panel { margin: 0 0 10px; }
+
+    /* Секционный заголовок */
+    .pie-sec-hdr {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      padding: 20px 4px 14px;
+    }
+    .pie-sec-badge {
+      display: inline-block; margin-bottom: 5px;
+      font-size: 9px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase;
+      padding: 3px 9px; border-radius: 5px;
+      background: rgba(34,211,166,0.10); border: 1px solid rgba(34,211,166,0.22);
+      color: rgba(34,211,166,0.75);
+    }
+    .pie-sec-title { font-size: 16px; font-weight: 700; color: rgba(255,255,255,0.85); }
+    .pie-sec-sub   { font-size: 12px; color: rgba(255,255,255,0.28); }
+
+    /* Сетка 2×2 для блоков 1–4 */
+    .pie-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+
+    /* 2-колонки для блоков 6–7 */
+    .pie-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+
+    /* Базовая карточка */
+    .pie-card, .pie-card-wide {
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px; overflow: hidden;
+    }
+
+    /* Шапка карточки */
+    .pie-card-hdr {
+      display: flex; align-items: center; gap: 11px;
+      padding: 13px 15px 11px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .pie-card-icon {
+      width: 32px; height: 32px; border-radius: 9px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .pie-card-icon svg { width: 16px; height: 16px; display: block; }
+    .pie-card-title { font-size: 12.5px; font-weight: 700; color: rgba(255,255,255,0.72); margin-bottom: 2px; }
+    .pie-card-badge-row { display: flex; gap: 4px; }
+    .pie-block-badge {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase;
+      padding: 2px 7px; border-radius: 4px;
+      background: rgba(139,92,246,0.08); border: 1px solid rgba(139,92,246,0.18);
+      color: rgba(167,139,250,0.60);
+    }
+    .pie-stub-badge {
+      background: rgba(255,255,255,0.04) !important; border-color: rgba(255,255,255,0.08) !important;
+      color: rgba(255,255,255,0.22) !important;
+    }
+
+    /* Тело карточки */
+    .pie-card-body { padding: 11px 15px 13px; display: flex; flex-direction: column; gap: 7px; }
+
+    /* Строки ключ-значение */
+    .pie-kv { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+    .pie-kv-lbl {
+      font-size: 11.5px; color: rgba(255,255,255,0.32);
+      flex-shrink: 0; max-width: 52%; line-height: 1.4;
+    }
+    .pie-kv-val { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.65); text-align: right; line-height: 1.4; }
+
+    /* Блок 5 · Противоречия */
+    .pie-contradiction {
+      display: flex; align-items: center; justify-content: center;
+      padding: 18px 28px 10px; gap: 10px;
+    }
+    .pie-contra-col { text-align: center; flex: 1; }
+    .pie-contra-lbl {
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.8px; color: rgba(255,255,255,0.28); margin-bottom: 8px;
+    }
+    .pie-contra-val { font-size: 46px; font-weight: 900; letter-spacing: -2.5px; line-height: 1; }
+    .pie-contra-sub { font-size: 11px; color: rgba(255,255,255,0.20); margin-top: 6px; }
+    .pie-contra-arrow {
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      padding: 0 16px; flex-shrink: 0;
+    }
+    .pie-contra-gap {
+      font-size: 13px; font-weight: 800; color: #22D3A6; letter-spacing: -0.3px;
+      background: rgba(34,211,166,0.09); border: 1px solid rgba(34,211,166,0.22);
+      padding: 4px 12px; border-radius: 20px; white-space: nowrap;
+    }
+    .pie-contra-desc {
+      padding: 10px 15px 14px;
+      font-size: 12px; color: rgba(255,255,255,0.38); line-height: 1.65;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* Блок 7 · заглушка */
+    .pie-card-stub { opacity: 0.65; }
+    .pie-stub-msg { display: flex; align-items: flex-start; gap: 12px; padding: 4px 0; }
+
+    /* ═══════════════════════════════════════════════════
+       PIE PROBABILITY BREAKDOWN
+    ═══════════════════════════════════════════════════ */
+    .ev-pie-panel {
+      margin: 0 24px 24px;
+      border-radius: 16px;
+      background:
+        radial-gradient(ellipse at 80% 15%, rgba(34,197,94,0.04) 0%, transparent 50%),
+        radial-gradient(ellipse at 15% 80%, rgba(139,92,246,0.07) 0%, transparent 45%),
+        linear-gradient(150deg, rgba(9,12,28,0.98) 0%, rgba(5,8,18,0.98) 100%);
+      border: 1px solid rgba(139,92,246,0.16);
+      box-shadow: 0 4px 36px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.035);
+      position: relative; overflow: hidden;
+    }
+    /* Gradient top accent line */
+    .ev-pie-panel::before {
+      content: '';
+      position: absolute; top: 0; left: 8%; right: 8%; height: 1px;
+      background: linear-gradient(90deg, transparent,
+        rgba(34,197,94,0.45) 30%, rgba(139,92,246,0.35) 70%, transparent);
+    }
+
+    /* ── Header (always visible, clickable) ── */
+    .ev-pie-hdr {
+      display: flex; align-items: center; gap: 16px;
+      padding: 18px 24px; cursor: pointer; user-select: none;
+      transition: background 0.15s;
+    }
+    .ev-pie-hdr:hover { background: rgba(255,255,255,0.015); }
+    .ev-pie-hdr-left { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
+    .ev-pie-hdr-icon {
+      width: 40px; height: 40px; border-radius: 11px; flex-shrink: 0;
+      background: rgba(34,211,166,0.10);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .ev-pie-hdr-icon svg { width: 20px; height: 20px; stroke: #22D3A6; fill: none;
+      stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    .ev-pie-hdr-title { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 3px; }
+    .ev-pie-hdr-sub   { font-size: 12px; color: rgba(255,255,255,0.35); }
+    .ev-pie-hdr-badge {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase;
+      padding: 3px 9px; border-radius: 6px; white-space: nowrap; flex-shrink: 0;
+      background: rgba(139,92,246,0.12); border: 1px solid rgba(139,92,246,0.25);
+      color: #a78bfa;
+    }
+    .ev-pie-hdr-prob {
+      display: flex; flex-direction: column; align-items: flex-end; gap: 1px; flex-shrink: 0;
+    }
+    .ev-pie-prob-val {
+      font-size: 28px; font-weight: 900; letter-spacing: -1px; line-height: 1;
+      color: #22D3A6; text-shadow: 0 0 20px rgba(34,211,166,0.30);
+    }
+    .ev-pie-prob-lbl {
+      font-size: 10px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.8px; color: rgba(34,211,166,0.50);
+    }
+    .ev-pie-edge-pill {
+      margin-left: 10px; padding: 5px 12px; border-radius: 8px; flex-shrink: 0;
+      background: rgba(34,211,166,0.08); border: 1px solid rgba(34,211,166,0.18);
+      display: flex; flex-direction: column; align-items: center; gap: 1px;
+    }
+    .ev-pie-edge-val {
+      font-size: 15px; font-weight: 800; color: #22D3A6; letter-spacing: -0.5px; line-height: 1;
+    }
+    .ev-pie-edge-lbl { font-size: 9px; color: rgba(34,211,166,0.45); text-transform: uppercase; letter-spacing: 0.6px; }
+    .ev-pie-chevron {
+      display: flex; flex-direction: column; align-items: center; gap: 2px;
+      color: rgba(255,255,255,0.25); flex-shrink: 0; transition: color 0.2s; min-width: 32px;
+    }
+    .ev-pie-chevron-arrow {
+      font-size: 16px; line-height: 1; display: inline-block; transition: transform 0.3s;
+    }
+    .ev-pie-chevron-lbl {
+      font-size: 9px; font-weight: 600; letter-spacing: 0.4px; text-transform: uppercase;
+      color: inherit; white-space: nowrap;
+    }
+    .ev-pie-panel.is-open .ev-pie-chevron { color: rgba(34,211,166,0.65); }
+    .ev-pie-panel.is-open .ev-pie-chevron-arrow { transform: rotate(180deg); }
+
+    /* ── Expandable body ── */
+    .ev-pie-body {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.40s ease, opacity 0.30s;
+      opacity: 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .ev-pie-panel.is-open .ev-pie-body { max-height: 900px; opacity: 1; }
+    .ev-pie-body-inner { padding: 22px 24px 24px; }
+
+    /* ── Component rows ── */
+    .ev-pie-comps { display: flex; flex-direction: column; gap: 9px; margin-bottom: 18px; }
+    .ev-pie-row {
+      display: grid; grid-template-columns: 26px 1fr 60px;
+      align-items: center; gap: 12px;
+    }
+    .ev-pie-row-num {
+      width: 26px; height: 26px; border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 800; flex-shrink: 0;
+    }
+    .ev-pie-row-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px; }
+    .ev-pie-row-labels {
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+    }
+    .ev-pie-row-name { font-size: 12.5px; font-weight: 600; color: rgba(255,255,255,0.78); white-space: nowrap; }
+    .ev-pie-row-meta { display: flex; align-items: center; gap: 5px; flex-shrink: 0; }
+    .ev-pie-row-w { font-size: 11px; color: rgba(255,255,255,0.35); font-weight: 600; }
+    .ev-pie-row-mult {
+      padding: 1px 6px; border-radius: 4px; font-size: 10px; font-weight: 700;
+      background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.30);
+    }
+    .ev-pie-row-mult.full { background: rgba(34,211,166,0.08); color: rgba(34,211,166,0.65); }
+    .ev-pie-row-mult.partial { background: rgba(251,146,60,0.08); color: rgba(251,146,60,0.65); }
+    .ev-pie-row-raw { font-size: 10.5px; color: rgba(255,255,255,0.22); }
+    .ev-pie-row-bar-bg {
+      height: 5px; border-radius: 3px;
+      background: rgba(255,255,255,0.06); overflow: hidden;
+    }
+    .ev-pie-row-bar-fill { height: 100%; border-radius: 3px; transition: width 0.55s ease; }
+    .ev-pie-row-val {
+      font-size: 13px; font-weight: 700; text-align: right;
+      white-space: nowrap; padding-left: 4px;
+    }
+
+    /* ── Summary ── */
+    .ev-pie-sum {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding: 14px 18px;
+      background: rgba(34,211,166,0.05);
+      border: 1px solid rgba(34,211,166,0.14);
+      border-radius: 11px; margin-bottom: 16px;
+    }
+    .ev-pie-sum-left { display: flex; flex-direction: column; gap: 3px; }
+    .ev-pie-sum-lbl { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.60); }
+    .ev-pie-sum-formula { font-size: 11px; color: rgba(34,211,166,0.45); font-family: monospace; }
+    .ev-pie-sum-val {
+      font-size: 32px; font-weight: 900; letter-spacing: -1.5px;
+      color: #22D3A6; text-shadow: 0 0 18px rgba(34,211,166,0.35); line-height: 1;
+    }
+    .ev-pie-sum-market {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 12px; color: rgba(255,255,255,0.30); margin-top: 4px;
+    }
+    .ev-pie-sum-mkt-val { color: #a78bfa; font-weight: 700; }
+    .ev-pie-sum-edge { color: #22D3A6; font-weight: 700; }
+
+    /* ── Flags ── */
+    .ev-pie-flags-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .ev-pie-flags-lbl { font-size: 11px; color: rgba(255,255,255,0.28); flex-shrink: 0; }
+    .ev-pie-flag {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.3px;
+      padding: 3px 9px; border-radius: 5px;
+      background: rgba(251,146,60,0.08); border: 1px solid rgba(251,146,60,0.22);
+      color: rgba(251,146,60,0.80);
+    }
+    .ev-pie-no-flags { font-size: 11px; color: rgba(34,211,166,0.50); font-style: italic; }
   </style>
 </head>
 <body>
@@ -1499,6 +1759,226 @@
       ${warRoomHTML}
     </div>
 
+    <!-- ═══ PIE v1.3 · АНАЛИТИКА 8 СЛОЁВ ═══ -->
+    <div class="pie-section" id="pie-analysis">
+
+      <div class="pie-sec-hdr">
+        <div>
+          <span class="pie-sec-badge">PIE v1.3</span>
+          <div class="pie-sec-title">Как PP AI считал прогноз</div>
+        </div>
+        <div class="pie-sec-sub">8 слоёв анализа · демонстрационные данные</div>
+      </div>
+
+      <!-- ── БЛОК 0: Разбивка вероятности (коллапсируемый) ── -->
+      <div class="ev-pie-panel" id="ev-pie-panel">
+        <div class="ev-pie-hdr" id="ev-pie-toggle">
+          <div class="ev-pie-hdr-left">
+            <div class="ev-pie-hdr-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            </div>
+            <div>
+              <div class="ev-pie-hdr-title">Блок 0 · Разбивка вероятности PP AI</div>
+              <div class="ev-pie-hdr-sub">7 компонентов формулы v1.1 · нажмите чтобы раскрыть</div>
+            </div>
+            <span class="ev-pie-hdr-badge">Формула v1.1</span>
+          </div>
+          <div class="ev-pie-hdr-prob">
+            <div class="ev-pie-prob-val">74%</div>
+            <div class="ev-pie-prob-lbl">PP AI</div>
+          </div>
+          <div class="ev-pie-edge-pill">
+            <div class="ev-pie-edge-val">+18 пп</div>
+            <div class="ev-pie-edge-lbl">Edge</div>
+          </div>
+          <div class="ev-pie-chevron">
+            <span class="ev-pie-chevron-arrow">↓</span>
+            <span class="ev-pie-chevron-lbl">Открыть</span>
+          </div>
+        </div>
+        <div class="ev-pie-body">
+          <div class="ev-pie-body-inner">
+            <div class="ev-pie-comps" id="ev-pie-comps"></div>
+            <div class="ev-pie-sum">
+              <div class="ev-pie-sum-left">
+                <div class="ev-pie-sum-lbl">Вероятность PP AI</div>
+                <div class="ev-pie-sum-formula">Итог считается как сумма взвешенных сигналов с ограничением от 2% до 98%</div>
+                <div class="ev-pie-sum-market">
+                  Рынок: <span class="ev-pie-sum-mkt-val">56%</span>
+                  · Edge PP: <span class="ev-pie-sum-edge">+18 пп</span>
+                </div>
+              </div>
+              <div class="ev-pie-sum-val">74%</div>
+            </div>
+            <div class="ev-pie-flags-row" id="ev-pie-flags"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── БЛОКИ 1–4: сетка 2×2 ── -->
+      <div class="pie-grid">
+
+        <!-- Блок 1: Тип события -->
+        <div class="pie-card">
+          <div class="pie-card-hdr">
+            <div class="pie-card-icon" style="background:rgba(99,102,241,0.12)">
+              <svg viewBox="0 0 20 20" fill="none" stroke="#818cf8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="14" height="14" rx="2.5"/><line x1="7" y1="7" x2="13" y2="7"/><line x1="7" y1="10" x2="11" y2="10"/><line x1="7" y1="13" x2="9" y2="13"/></svg>
+            </div>
+            <div>
+              <div class="pie-card-title">Блок 1 · Тип события</div>
+              <div class="pie-card-badge-row"><span class="pie-block-badge">Классификатор типа события</span></div>
+            </div>
+          </div>
+          <div class="pie-card-body">
+            <div class="pie-kv"><span class="pie-kv-lbl">Тип события</span><span class="pie-kv-val c-violet">Макро / ДКП</span></div>
+            <div class="pie-kv"><span class="pie-kv-lbl">Подтип</span><span class="pie-kv-val">Решение регулятора</span></div>
+            <div class="pie-kv"><span class="pie-kv-lbl">Профиль анализа</span><span class="pie-kv-val" style="font-size:11px;font-family:monospace">macro_economic</span></div>
+            <div class="pie-kv"><span class="pie-kv-lbl">Уверенность классификации</span><span class="pie-kv-val c-green">92%</span></div>
+          </div>
+        </div>
+
+        <!-- Блок 2: Разведка рынка -->
+        <div class="pie-card">
+          <div class="pie-card-hdr">
+            <div class="pie-card-icon" style="background:rgba(34,211,166,0.10)">
+              <svg viewBox="0 0 20 20" fill="none" stroke="#22D3A6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><polyline points="10 7 10 10 13 12"/></svg>
+            </div>
+            <div>
+              <div class="pie-card-title">Блок 2 · Разведка рынка</div>
+              <div class="pie-card-badge-row"><span class="pie-block-badge">Разведка рынка</span></div>
+            </div>
+          </div>
+          <div class="pie-card-body">
+            <div class="pie-kv"><span class="pie-kv-lbl">Сигнал китов</span><span class="pie-kv-val c-green">накопление YES</span></div>
+            <div class="pie-kv"><span class="pie-kv-lbl">Направление денег</span><span class="pie-kv-val c-green">+$2.4M за 24ч</span></div>
+            <div class="pie-kv"><span class="pie-kv-lbl">Уверенность</span><span class="pie-kv-val">78%</span></div>
+            <div class="pie-kv"><span class="pie-kv-lbl">Аномалии</span><span class="pie-kv-val c-orange">объём ×2.3 нормы</span></div>
+          </div>
+        </div>
+
+        <!-- Блок 3: Структура рынка -->
+        <div class="pie-card">
+          <div class="pie-card-hdr">
+            <div class="pie-card-icon" style="background:rgba(96,165,250,0.10)">
+              <svg viewBox="0 0 20 20" fill="none" stroke="#60a5fa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="12" width="4" height="6" rx="1"/><rect x="8" y="8" width="4" height="10" rx="1"/><rect x="14" y="3" width="4" height="15" rx="1"/></svg>
+            </div>
+            <div>
+              <div class="pie-card-title">Блок 3 · Структура рынка</div>
+              <div class="pie-card-badge-row"><span class="pie-block-badge">Анализ структуры рынка</span></div>
+            </div>
+          </div>
+          <div class="pie-card-body">
+            <div class="pie-kv"><span class="pie-kv-lbl">Здоровье рынка</span><span class="pie-kv-val c-orange">72 / 100</span></div>
+            <div class="pie-kv"><span class="pie-kv-lbl">Концентрация кошельков</span><span class="pie-kv-val">средняя</span></div>
+            <div class="pie-kv"><span class="pie-kv-lbl">Риск манипуляции</span><span class="pie-kv-val c-green">низкий</span></div>
+            <div class="pie-kv"><span class="pie-kv-lbl">Надёжность цены</span><span class="pie-kv-val c-orange">×0.85</span></div>
+          </div>
+        </div>
+
+        <!-- Блок 4: Качество источников -->
+        <div class="pie-card">
+          <div class="pie-card-hdr">
+            <div class="pie-card-icon" style="background:rgba(251,146,60,0.10)">
+              <svg viewBox="0 0 20 20" fill="none" stroke="#fb923c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7.5"/><polyline points="7 10 9 12 13 8"/></svg>
+            </div>
+            <div>
+              <div class="pie-card-title">Блок 4 · Качество источников</div>
+              <div class="pie-card-badge-row"><span class="pie-block-badge">Оценка источников</span></div>
+            </div>
+          </div>
+          <div class="pie-card-body">
+            <div class="pie-kv"><span class="pie-kv-lbl">Качество доказательств (EQS)</span><span class="pie-kv-val c-green">84 / 100</span></div>
+            <div class="pie-kv"><span class="pie-kv-lbl">Проверенных источников</span><span class="pie-kv-val">12 (Tier A: 4, B: 8)</span></div>
+            <div class="pie-kv"><span class="pie-kv-lbl">Свежесть данных</span><span class="pie-kv-val c-green">4 часа назад</span></div>
+            <div class="pie-kv"><span class="pie-kv-lbl">Дублей удалено</span><span class="pie-kv-val">7</span></div>
+          </div>
+        </div>
+
+      </div><!-- /pie-grid -->
+
+      <!-- ── БЛОК 5: Карта противоречий (full width) ── -->
+      <div class="pie-card-wide">
+        <div class="pie-card-hdr" style="border-bottom:none;padding-bottom:0">
+          <div class="pie-card-icon" style="background:rgba(248,113,113,0.10)">
+            <svg viewBox="0 0 20 20" fill="none" stroke="#f87171" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3l1.5 4.5h4.5l-3.5 2.7 1.3 4.3L10 12l-3.8 2.5 1.3-4.3L4 7.5h4.5L10 3z"/></svg>
+          </div>
+          <div class="pie-card-title" style="font-size:13px">Блок 5 · Карта противоречий</div>
+          <span class="pie-block-badge" style="margin-left:auto;flex-shrink:0">Карта противоречий</span>
+        </div>
+        <div class="pie-contradiction">
+          <div class="pie-contra-col">
+            <div class="pie-contra-lbl">Рынок говорит</div>
+            <div class="pie-contra-val" style="color:#a78bfa">56%</div>
+            <div class="pie-contra-sub">Полимаркет · участники</div>
+          </div>
+          <div class="pie-contra-arrow">
+            <svg viewBox="0 0 60 20" fill="none" width="60" height="20">
+              <line x1="4" y1="10" x2="56" y2="10" stroke="rgba(255,255,255,0.14)" stroke-width="1.5"/>
+              <polyline points="46,4 56,10 46,16" stroke="rgba(255,255,255,0.14)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+            <div class="pie-contra-gap">+18 пп</div>
+          </div>
+          <div class="pie-contra-col">
+            <div class="pie-contra-lbl">PolyPilot видит</div>
+            <div class="pie-contra-val" style="color:#22D3A6">74%</div>
+            <div class="pie-contra-sub">Формула PIE v1.1</div>
+          </div>
+        </div>
+        <div class="pie-contra-desc">
+          Объём ставок и поведение китов (накопление YES) опережают рыночную цену.
+          Исторически такой разрыв закрывается в течение горизонта прогноза.
+          Сила противоречия: <span style="color:#fb923c;font-weight:700">средняя</span> · Коррекция в формуле: −2 пп
+        </div>
+      </div>
+
+      <!-- ── БЛОКИ 6–7: две колонки ── -->
+      <div class="pie-2col">
+
+        <!-- Блок 6: Исторические аналоги -->
+        <div class="pie-card">
+          <div class="pie-card-hdr">
+            <div class="pie-card-icon" style="background:rgba(139,92,246,0.10)">
+              <svg viewBox="0 0 20 20" fill="none" stroke="#a78bfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><polyline points="10 7 10 10 12.5 11.5"/><path d="M5.5 5.5l.7.7M14.5 5.5l-.7.7"/></svg>
+            </div>
+            <div>
+              <div class="pie-card-title">Блок 6 · Исторические аналоги</div>
+              <div class="pie-card-badge-row"><span class="pie-block-badge">Исторические аналоги</span></div>
+            </div>
+          </div>
+          <div class="pie-card-body">
+            <div class="pie-kv"><span class="pie-kv-lbl">Найдено аналогов</span><span class="pie-kv-val c-green">5 событий</span></div>
+            <div class="pie-kv"><span class="pie-kv-lbl">Средний исход YES</span><span class="pie-kv-val c-violet">63%</span></div>
+            <div class="pie-kv"><span class="pie-kv-lbl">Средняя схожесть</span><span class="pie-kv-val c-green">0.68 · высокая</span></div>
+            <div class="pie-kv"><span class="pie-kv-lbl">Лучший аналог</span><span class="pie-kv-val" style="font-size:11px">Снижение ставки ФРС, январь 2024 → Да</span></div>
+          </div>
+        </div>
+
+        <!-- Блок 7: История точности PP (заглушка) -->
+        <div class="pie-card pie-card-stub">
+          <div class="pie-card-hdr">
+            <div class="pie-card-icon" style="background:rgba(255,255,255,0.04)">
+              <svg viewBox="0 0 20 20" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 14 7 9 10 11 13 6 17 8"/><line x1="2" y1="16.5" x2="18" y2="16.5"/></svg>
+            </div>
+            <div>
+              <div class="pie-card-title" style="color:rgba(255,255,255,0.38)">Блок 7 · История точности PP</div>
+              <div class="pie-card-badge-row"><span class="pie-block-badge pie-stub-badge">История точности · скоро</span></div>
+            </div>
+          </div>
+          <div class="pie-card-body">
+            <div class="pie-stub-msg">
+              <svg viewBox="0 0 20 20" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" stroke-linecap="round" width="22" height="22" style="flex-shrink:0;margin-top:1px"><circle cx="10" cy="10" r="7"/><line x1="10" y1="7" x2="10" y2="11"/><circle cx="10" cy="13.5" r="0.5" fill="rgba(255,255,255,0.18)"/></svg>
+              <div>
+                <div style="font-size:12px;color:rgba(255,255,255,0.32);font-weight:600;margin-bottom:5px">Появится после первых закрытых событий</div>
+                <div style="font-size:11px;color:rgba(255,255,255,0.18);line-height:1.6">Точность по категории, Brier Score, трек-рекорд прогнозов — модуль памяти в разработке</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /pie-2col -->
+
+    </div><!-- /pie-section -->
+
     <!-- ═══ CHANGES MAP ═══ -->
     <div class="ev-section" style="padding-top:8px">
       <div class="ev-section-title">📡 Карта изменений</div>
@@ -1634,6 +2114,73 @@
     </div>
 
   </div>`;
+
+  /* ── PIE v1.3 Analysis Section ── */
+  (function () {
+    // Мок-данные PIE v1.3 согласно PROBABILITY_FORMULA_V1_1.md
+    // ppProb = 74%, marketProb = 56%, edge = +18 пп
+    // weighted = вклад компонента в пп (сумма = 74)
+    const PIE = {
+      components: [
+        { num:1, id:'market_base',       name:'Рыночная база',          desc:'Рынок 56% · market_reliability_mult 0.85 (health 72)',              w:0.28, raw:0.56, mult:0.85, weighted:42, color:'#a78bfa' },
+        { num:2, id:'whale_signal',      name:'Сигнал китов',           desc:'accumulation_yes · confidence 78% · объём ×2.3',                    w:0.15, raw:0.75, mult:1.0,  weighted:8,  color:'#22D3A6' },
+        { num:3, id:'news_signal',       name:'Новостной сигнал',       desc:'EQS=84 · mult 0.8 · 12 источников Tier A/B · 5 уникальных фактов', w:0.22, raw:0.65, mult:0.80, weighted:6,  color:'#60a5fa' },
+        { num:4, id:'social_signal',     name:'Соцсети / X',            desc:'Умеренный сентимент · дубли снижают EQS_mult до 0.55',              w:0.08, raw:0.55, mult:0.55, weighted:3,  color:'#fb923c' },
+        { num:5, id:'trends_signal',     name:'Google Trends',          desc:'delta +68% за 7 дней · тема совпадает · EQS_mult = 1.0',            w:0.12, raw:0.70, mult:1.0,  weighted:5,  color:'#f472b6' },
+        { num:6, id:'historical_rate',   name:'Исторический базис',     desc:'5 аналогов · similarity 0.68 (высокая) · средний исход YES 63%',    w:0.08, raw:0.63, mult:0.50, weighted:12, color:'#818cf8' },
+        { num:7, id:'contradiction_adj', name:'Корр. противоречий',     desc:'Сила противоречия: средняя → −2 пп · корректировка всегда ≤ 0',     w:0.07, raw:-0.02,mult:1.0,  weighted:-2, color:'#f87171' },
+      ],
+      flags: ['low_analog_weight'],
+    };
+
+    const compsEl = main.querySelector('#ev-pie-comps');
+    const flagsEl = main.querySelector('#ev-pie-flags');
+    if (!compsEl) return;
+
+    const maxAbs = Math.max(...PIE.components.map(c => Math.abs(c.weighted)));
+
+    compsEl.innerHTML = PIE.components.map(c => {
+      const isNeg   = c.weighted < 0;
+      const barPct  = Math.round(Math.abs(c.weighted / maxAbs) * 100);
+      const multCls = c.mult === 1.0 ? 'full' : (c.mult <= 0.55 ? 'partial' : '');
+      const rawDisp = c.raw < 0 ? Math.round(c.raw * 100) + ' пп' : Math.round(c.raw * 100) + '%';
+      const valStr  = (isNeg ? '−' : '+') + Math.abs(c.weighted) + ' пп';
+
+      return `
+        <div class="ev-pie-row" title="${c.desc}">
+          <div class="ev-pie-row-num" style="background:${c.color}1A;color:${c.color}">${c.num}</div>
+          <div class="ev-pie-row-main">
+            <div class="ev-pie-row-labels">
+              <span class="ev-pie-row-name">${c.name}</span>
+              <div class="ev-pie-row-meta">
+                <span class="ev-pie-row-w">w=${c.w}</span>
+                <span class="ev-pie-row-mult ${multCls}">×${c.mult}</span>
+                <span class="ev-pie-row-raw">${rawDisp}</span>
+              </div>
+            </div>
+            <div class="ev-pie-row-bar-bg">
+              <div class="ev-pie-row-bar-fill"
+                   style="width:${barPct}%;background:${isNeg ? '#f87171' : c.color};opacity:${isNeg ? 0.55 : 0.72}">
+              </div>
+            </div>
+          </div>
+          <div class="ev-pie-row-val" style="color:${isNeg ? '#f87171' : c.color}">${valStr}</div>
+        </div>`;
+    }).join('');
+
+    if (flagsEl) {
+      flagsEl.innerHTML = PIE.flags.length
+        ? `<span class="ev-pie-flags-lbl">Флаги:</span>`
+          + PIE.flags.map(f => `<span class="ev-pie-flag">${f}</span>`).join('')
+        : `<span class="ev-pie-no-flags">Флагов нет — полные данные</span>`;
+    }
+
+    const hdrEl   = main.querySelector('#ev-pie-toggle');
+    const panelEl = main.querySelector('#ev-pie-panel');
+    if (hdrEl && panelEl) {
+      hdrEl.addEventListener('click', () => panelEl.classList.toggle('is-open'));
+    }
+  })();
 
   /* ── Smooth image fade-in ── */
   const heroImg = document.querySelector('.ev-hero-img');

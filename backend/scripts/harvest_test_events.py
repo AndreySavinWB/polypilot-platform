@@ -9,6 +9,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 
 from src.agents.pipeline import analyze_event
+from src.agents.pie import run_pie
 from src.agents.priority import scan_and_rank
 from src.services.llm import has_llm_key
 from src.services.polymarket import scan_active_events
@@ -84,12 +85,14 @@ def main():
         event = row["event"]
         priority = row["priority"]
         print(f"Analyzing #{index} [score={priority.get('score')}] {event.get('title')}")
+        pipeline_package = run_pie(event, priority_result=priority)
         analysis = analyze_event(event, priority_result=priority)
         dataset.append(
             {
                 "testNo": index,
                 "tags": classify_event(event, priority),
                 "event": event,
+                "pipelinePackage": pipeline_package,
                 "analysis": analysis,
             }
         )
@@ -122,7 +125,13 @@ def main():
             "priorityScore": (item["analysis"].get("priority") or {}).get("score"),
             "priorityDecision": (item["analysis"].get("priority") or {}).get("decision"),
             "priorityRank": (item["analysis"].get("priority") or {}).get("rank"),
-            "riskLevel": (item["analysis"].get("riskOfficer") or {}).get("riskLevel"),
+            "riskLevel": (
+                (item.get("pipelinePackage") or {}).get("risk") or {}
+            ).get("riskLevel")
+            or (item["analysis"].get("riskOfficer") or {}).get("riskLevel"),
+            "pipelineStatus": (item.get("pipelinePackage") or {}).get("pipelineStatus"),
+            "titleRu": ((item.get("pipelinePackage") or {}).get("normalizedEvent") or {}).get("titleRu"),
+            "eventType": ((item.get("pipelinePackage") or {}).get("eventClassification") or {}).get("eventType"),
             "ppVerdict": (item["analysis"].get("verdict") or {}).get("ppVerdict", "")[:120],
             "confidence": (item["analysis"].get("verdict") or {}).get("confidence"),
             "sourceUrl": item["event"].get("sourceUrl"),

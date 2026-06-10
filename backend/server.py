@@ -10,6 +10,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import parse_qs, urlparse
 
 from src.agents.pipeline import analyze_event
+from src.agents.pie import run_pie
 from src.agents.priority import scan_and_rank, score_event
 from src.services.polymarket import list_active_events, scan_active_events
 
@@ -103,6 +104,16 @@ class Handler(BaseHTTPRequestHandler):
                     return
                 analysis = analyze_event(event)
                 self._send_json(200, analysis)
+                return
+
+            if parsed.path == "/api/pie/process":
+                event = body.get("event")
+                if not event:
+                    self._send_json(400, {"error": "Expected JSON body: { \"event\": {...} }"})
+                    return
+                priority = body.get("priority")
+                package = run_pie(event, priority_result=priority)
+                self._send_json(200, package)
                 return
 
             self._send_json(404, {"error": "Not found"})
