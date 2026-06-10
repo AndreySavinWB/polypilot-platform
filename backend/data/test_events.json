@@ -26,9 +26,9 @@
         "title": "Balance of Power: 2026 Midterms",
         "description": "This market will resolve according to the result of the 2026 United States midterm elections.\n\nA party will be considered to have 'control' of the House of Representatives, if they win a majority of voting seats.\n\nA party will be considered to have 'control' of the Senate if they have more than half of the voting Senate members, or half of the voting Senate members and the Vice President.\n\nA candidate's party is determined by their ballot-listed or otherwise identifiable affiliation with that party at the time the 2026 United States midterm elections are conclusively called by this market's resolution sources. A candidate without a ballot-listed affiliation to either the Democrat or Republican Parties will be considered a member of one of these parties based on the party that they most recently expressed their intent to caucus with at the time the 2026 United States midterm elections are conclusively called by this market's resolution sources.\n\nIf control of the House is ambiguous given the above rules, this market will resolve according to the party affiliation of the first Speaker of the US House who is selected following the 2026 United States midterm elections. \n\nIf control of the Senate is ambiguous given the above rules, this market will resolve according to the party affiliation of the first Majority Leader of the US Senate who is selected following the 2026 United States midterm elections.\n\nThe resolution source for this market is the Associated Press, Fox News, and NBC. This market will resolve once all three sources have conclusively called winners of the House and Senate in the 2026 United States midterm elections. If all three sources do not achieve consensus in calling the relevant races for this market, it will resolve based on the official certification.\n",
         "category": null,
-        "volume": 7629560.599049023,
-        "volume24hr": 23133.52348,
-        "liquidity": 844518.60594,
+        "volume": 7631777.643672023,
+        "volume24hr": 19055.204686999998,
+        "liquidity": 871593.02653,
         "startDate": "2025-07-11T21:15:44.724213Z",
         "endDate": "2026-11-03T00:00:00Z",
         "marketsCount": 5,
@@ -40,8 +40,8 @@
             "clobTokenIds": "[\"34722410608062854697106861099776685947172185964394483545370684749662285977831\", \"24483563228660028121020430722896740519524131851526579619586176931221901842798\"]",
             "outcomes": "[\"Yes\", \"No\"]",
             "outcomePrices": "[\"0.435\", \"0.565\"]",
-            "volume": "1974281.2799110035",
-            "liquidity": "154846.7425"
+            "volume": "1975739.9848780038",
+            "liquidity": "163708.3962"
           },
           {
             "id": "562829",
@@ -51,7 +51,7 @@
             "outcomes": "[\"Yes\", \"No\"]",
             "outcomePrices": "[\"0.0195\", \"0.9805\"]",
             "volume": "1129685.1131960088",
-            "liquidity": "187094.39618"
+            "liquidity": "187343.07026"
           },
           {
             "id": "562830",
@@ -60,8 +60,8 @@
             "clobTokenIds": "[\"6302359956133594764084277082169634158291609371270652093164054687145970756151\", \"558600218792430158020964384658762756367786275998757133304987611939841005404\"]",
             "outcomes": "[\"Yes\", \"No\"]",
             "outcomePrices": "[\"0.365\", \"0.635\"]",
-            "volume": "1481597.288233988",
-            "liquidity": "125336.9936"
+            "volume": "1482163.6395809879",
+            "liquidity": "145519.5516"
           }
         ],
         "source": "polymarket_gamma",
@@ -72,11 +72,11 @@
         "source": "polymarket_gamma",
         "newsScout": {
           "agent": "News Scout",
-          "summary": "Событие связано с выборами в Конгресс США, что является важным политическим событием.",
+          "summary": "Событие связано с выборами в Конгресс США в 2026 году, что является важным политическим событием.",
           "facts": [
             "Выборы в Конгресс США состоятся 3 ноября 2026 года.",
             "Контроль над Палатой представителей определяется по большинству голосов.",
-            "Контроль над Сенатом определяется по количеству голосов сенаторов и вице-президента."
+            "Контроль над Сенатом определяется по количеству голосов, превышающему половину."
           ],
           "missing": [
             "Анализ текущих политических тенденций и опросов общественного мнения."
@@ -86,15 +86,15 @@
           "agent": "Risk Officer",
           "riskLevel": "medium",
           "flags": [
-            "Политическая неопределенность может повлиять на исход выборов."
+            "Неопределенность в политической ситуации может повлиять на результаты выборов."
           ]
         },
         "verdict": {
           "agent": "Verdict Agent",
-          "ppVerdict": "Событие имеет высокий потенциал для анализа, но требует дальнейшего исследования.",
+          "ppVerdict": "Событие имеет высокую вероятность значительного влияния на политическую ситуацию в США.",
           "confidence": 75,
           "edgeScore": null,
-          "status": "research_required"
+          "status": "ready"
         },
         "ui": {
           "closedCardBadge": "Accepted",
@@ -104,45 +104,45 @@
             "Risk Officer",
             "Verdict Agent"
           ],
-          "disclaimer": "Анализ только. Не финансовый совет."
+          "disclaimer": "Анализ только. Не является финансовым советом."
         },
         "priority": {
           "agent": "Priority Agent",
-          "score": 81.5,
+          "score": 80.3,
           "decision": "accepted",
-          "reason": "Событие связано с предстоящими выборами в Конгресс США, что является явным новостным драйвером. Критерии резолва четко определены, что делает его понятным для анализа.",
+          "reason": "Событие связано с предстоящими выборами в Конгресс США, что является явным новостным драйвером. Критерии резолва четко определены, что позволяет уверенно оценить результаты по окончании выборов.",
           "rubric": {
             "volume": {
-              "score": 89.7,
+              "score": 88.8,
               "weight": 25,
-              "weighted": 22.41,
-              "note": "объём всего $7,629,561, за 24ч $23,134"
+              "weighted": 22.2,
+              "note": "объём всего $7,631,778, за 24ч $19,055"
             },
             "liquidity": {
               "score": 100,
               "weight": 20,
               "weighted": 20.0,
-              "note": "ликвидность $844,519"
+              "note": "ликвидность $871,593"
             },
             "news_driver": {
               "score": 63.1,
               "weight": 25,
-              "weighted": 15.79,
-              "note": "ключевых тем: 2, активность 24ч/всего: 0.30% + LLM",
+              "weighted": 15.78,
+              "note": "ключевых тем: 2, активность 24ч/всего: 0.25% + LLM",
               "llmScore": 80.0
             },
             "resolution_clarity": {
-              "score": 85.5,
+              "score": 78.5,
               "weight": 15,
-              "weighted": 12.82,
+              "weighted": 11.78,
               "note": "развёрнутое описание, есть правила резолва, бинарный исход, есть дедлайн, много подрынков — сложнее + LLM",
-              "llmScore": 90.0
+              "llmScore": 80.0
             },
             "time_to_money": {
               "score": 55,
               "weight": 10,
               "weighted": 5.5,
-              "note": "до резолва ~146 дн."
+              "note": "до резолва ~145 дн."
             },
             "price_quality": {
               "score": 100,
@@ -173,166 +173,14 @@
         "news_driven"
       ],
       "event": {
-        "id": "51456",
-        "slug": "how-many-fed-rate-cuts-in-2026",
-        "title": "How many Fed rate cuts in 2026?",
-        "description": "This market will resolve according to the exact amount of cuts of 25 basis points in 2026 by the Fed (including any cuts made during the December meeting).\n\nEmergency rate cuts outside of scheduled FOMC meetings will also count toward the total number of cuts in 2026. This market will remain open until December 31, 2026, 11:59 PM ET, to account for any such emergency actions.\n\nFor example, if the Fed cuts rates by 50 bps after a meeting, it would be considered 2 cuts (of 25 bps each).\n\nThis market will resolve early to \"No\" if the specified number of cuts becomes impossible — i.e., if more cuts have already occurred than the strike in question.\n\nNote that cuts between 1–24 bps (inclusive) will also be considered 1 rate cut.\n\nThe resolution source for this market will be FOMC statements after meetings scheduled in 2026 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm. The level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.",
-        "category": null,
-        "volume": 33417149.91024284,
-        "volume24hr": 174760.84421999997,
-        "liquidity": 1954971.50086,
-        "startDate": "2025-09-29T22:29:04.30848Z",
-        "endDate": "2026-12-31T00:00:00Z",
-        "marketsCount": 13,
-        "markets": [
-          {
-            "id": "616902",
-            "question": "Will no Fed rate cuts happen in 2026?",
-            "conditionId": "0xd4e77ba6f29fc093509d24f508631abd445ecf506bbdc9c4c80e60256a318527",
-            "clobTokenIds": "[\"12403602920039269077597917340921667997547115084613238528792639013246536343316\", \"21294592205022969346730955103773391901993330222644504059576935265667917187903\"]",
-            "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.7985\", \"0.2015\"]",
-            "volume": "4911929.910899041",
-            "liquidity": "108647.75853"
-          },
-          {
-            "id": "616903",
-            "question": "Will 1 Fed rate cut happen in 2026?",
-            "conditionId": "0x5e082f0b57f47a29044aa35b4c5658393122e659d5feae521c06b57cdd7f905c",
-            "clobTokenIds": "[\"113379839734351069617987084078322474966003108854908079701423911002443710490196\", \"48058805012599375970268777474956242772204241523361869981040579395242001094965\"]",
-            "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.125\", \"0.875\"]",
-            "volume": "1451533.8007119924",
-            "liquidity": "105863.8443"
-          },
-          {
-            "id": "616904",
-            "question": "Will 2 Fed rate cuts happen in 2026?",
-            "conditionId": "0xe0d9f508a249e0070db06eb7d1e1fb17eb23c963f6fb722c4c3f81e23240c1cd",
-            "clobTokenIds": "[\"72535544017897924722695722172278828562733090748474862987195303914909938482758\", \"81407142104509110921187520775072626840789848613047331773172953370174825669358\"]",
-            "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.0325\", \"0.9675\"]",
-            "volume": "1410738.5222999905",
-            "liquidity": "125617.4903"
-          }
-        ],
-        "source": "polymarket_gamma",
-        "sourceUrl": "https://polymarket.com/event/how-many-fed-rate-cuts-in-2026"
-      },
-      "analysis": {
-        "eventId": "51456",
-        "source": "polymarket_gamma",
-        "newsScout": {
-          "agent": "News Scout",
-          "summary": "��обытие связано с возможными изменениями процентных ставок Федеральной резервной системы в 2026 году.",
-          "facts": [
-            "ФРС может проводить экстренные сокращения ставок вне запланированных заседаний.",
-            "Рынок будет закрыт 31 декабря 2026 года.",
-            "Сокращения ставок на 1-24 базисных пункта будут считаться как одно сокращение."
-          ],
-          "missing": [
-            "Отсутствие текущих э��ономических данных, которые могут повлиять на решения ФРС."
-          ]
-        },
-        "riskOfficer": {
-          "agent": "Risk Officer",
-          "riskLevel": "medium",
-          "flags": [
-            "Неопределенность в экономической ситуации может повлиять на решения ФРС."
-          ]
-        },
-        "verdict": {
-          "agent": "Verdict Agent",
-          "ppVerdict": "Существует высокая вероятность, что ФРС проведет несколько сокращений ставок в 2026 году.",
-          "confidence": 85,
-          "edgeScore": null,
-          "status": "ready"
-        },
-        "ui": {
-          "closedCardBadge": "Accepted",
-          "warRoomAgents": [
-            "Priority Agent",
-            "News Scout",
-            "Risk Officer",
-            "Verdict Agent"
-          ],
-          "disclaimer": "Анализ только. Не является финансовым советом."
-        },
-        "priority": {
-          "agent": "Priority Agent",
-          "score": 81.4,
-          "decision": "accepted",
-          "reason": "Событие связано с действиями Федеральной резервно�� системы, что является явным новостным драйвером. Критерии резолва четкие и основаны на официальных заявлениях ФРС, что обеспечивает высокую степень ясности.",
-          "rubric": {
-            "volume": {
-              "score": 98.4,
-              "weight": 25,
-              "weighted": 24.61,
-              "note": "объём всего $33,417,150, за 24ч $174,761"
-            },
-            "liquidity": {
-              "score": 100,
-              "weight": 20,
-              "weighted": 20.0,
-              "note": "ликвидность $1,954,972"
-            },
-            "news_driver": {
-              "score": 66.7,
-              "weight": 25,
-              "weighted": 16.68,
-              "note": "ключевых тем: 3, активность 24ч/всего: 0.52% + LLM",
-              "llmScore": 80.0
-            },
-            "resolution_clarity": {
-              "score": 85.5,
-              "weight": 15,
-              "weighted": 12.82,
-              "note": "развёрнутое описание, есть правила резолва, бинарный исход, есть дедлайн, много подрынков — сложнее + LLM",
-              "llmScore": 90.0
-            },
-            "time_to_money": {
-              "score": 35,
-              "weight": 10,
-              "weighted": 3.5,
-              "note": "до резолва ~204 дн."
-            },
-            "price_quality": {
-              "score": 75,
-              "weight": 5,
-              "weighted": 3.75,
-              "note": "лидирующая вероятность ~80%"
-            }
-          },
-          "hardGates": {
-            "passed": true,
-            "failed": []
-          },
-          "scoringMode": "rubric_v1_llm",
-          "thresholds": {
-            "accepted": 70,
-            "watchlist": 55
-          },
-          "rank": 2,
-          "scannedTotal": 300
-        }
-      }
-    },
-    {
-      "testNo": 3,
-      "tags": [
-        "hot",
-        "multi_market",
-        "news_driven"
-      ],
-      "event": {
         "id": "32225",
         "slug": "which-party-will-win-the-house-in-2026",
         "title": "Which party will win the House in 2026?",
         "description": "This market will resolve according to the party that controls the House of Representatives following the 2026 U.S. House elections scheduled for November 3, 2026.\n\nHouse control is defined as having more than half of the voting members of the U.S. House of Representatives.\n\nIf the outcome of this election is ambiguous given the above rules, this market will remain open until the Speaker of the House is selected following the 2026 U.S. general election, at which point it will resolve to the party the Speaker is affiliated with at the time of their election to that position. If the elected Speaker does not caucus with any listed party this market will resolve “Other”.\n\nDetermination of which party controls the House after the 2026 U.S. House elections will be based on a consensus of credible reporting, or if there is ambiguity, final federal and/or state election authority certification or other final official determination of the 2026 election results.",
         "category": "House Odds Deriv",
-        "volume": 7052420.620140914,
-        "volume24hr": 29292.204842,
-        "liquidity": 558356.1573,
+        "volume": 7064446.482250912,
+        "volume24hr": 31822.309919,
+        "liquidity": 581734.8649,
         "startDate": "2025-07-11T19:53:05.123813Z",
         "endDate": "2026-11-03T00:00:00Z",
         "marketsCount": 9,
@@ -354,8 +202,8 @@
             "clobTokenIds": "[\"83247781037352156539108067944461291821683755894607244160607042790356561625563\", \"33156410999665902694791064431724433042010245771106314074312009703157423879038\"]",
             "outcomes": "[\"Yes\", \"No\"]",
             "outcomePrices": "[\"0.815\", \"0.185\"]",
-            "volume": "3836510.5369019676",
-            "liquidity": "263978.736"
+            "volume": "3842530.3890709667",
+            "liquidity": "281278.5894"
           },
           {
             "id": "562803",
@@ -363,9 +211,9 @@
             "conditionId": "0x4e4f77e7dbf4cab666e9a1943674d7ae66348e862df03ea6f44b11eb95731928",
             "clobTokenIds": "[\"65139230827417363158752884968303867495725894165574887635816574090175320800482\", \"17371217118862125782438074585166210555214661810823929795910191856905580975576\"]",
             "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.185\", \"0.815\"]",
-            "volume": "3215910.083238946",
-            "liquidity": "295982.3664"
+            "outcomePrices": "[\"0.195\", \"0.805\"]",
+            "volume": "3221919.6931799455",
+            "liquidity": "302206.0547"
           }
         ],
         "source": "polymarket_gamma",
@@ -376,15 +224,15 @@
         "source": "polymarket_gamma",
         "newsScout": {
           "agent": "News Scout",
-          "summary": "Событие связано с выборами в Конгресс США в 2026 году, что является важным новостным событием.",
+          "summary": "Событие связано с выборами в Конгресс США, что является важным новостным событием.",
           "facts": [
             "Выборы в Конгресс США запланированы на 3 ноября 2026 года.",
             "Контроль над Палатой представителей определяется как наличие более половины голосующих членов.",
             "Рынок будет разрешен на основе официальных результатов выборов."
           ],
           "missing": [
-            "Нет текущих опросов общественного мнения о предпочтениях избирателей.",
-            "Отсутствие информации о возможных кандидатах на пост спикера."
+            "Нет информации о текущих опросах общественного мнения.",
+            "Нет данных о возможных кандидатах на пост спикера."
           ]
         },
         "riskOfficer": {
@@ -394,8 +242,160 @@
         },
         "verdict": {
           "agent": "Verdict Agent",
-          "ppVerdict": "Существует высокая степень неопределенности в отношении того, какая партия получит контроль над Палатой представителей после выборов в 2026 году.",
-          "confidence": 70,
+          "ppVerdict": "Исход выборов в Конгресс США в 2026 году будет зависеть от официальных результатов голосования.",
+          "confidence": 75,
+          "edgeScore": null,
+          "status": "ready"
+        },
+        "ui": {
+          "closedCardBadge": "Accepted",
+          "warRoomAgents": [
+            "Priority Agent",
+            "News Scout",
+            "Risk Officer",
+            "Verdict Agent"
+          ],
+          "disclaimer": "Анализ только. Не финансовый совет."
+        },
+        "priority": {
+          "agent": "Priority Agent",
+          "score": 79.6,
+          "decision": "accepted",
+          "reason": "Событие связано с предстоящими выборами в Конгресс США, что является явным новостным драйвером. Критерии резолва четкие, основаны на официальных результатах выборов и определении спикера Палаты представителей.",
+          "rubric": {
+            "volume": {
+              "score": 91.0,
+              "weight": 25,
+              "weighted": 22.76,
+              "note": "объём всего $7,064,446, за 24ч $31,822"
+            },
+            "liquidity": {
+              "score": 100,
+              "weight": 20,
+              "weighted": 20.0,
+              "note": "ликвидность $581,735"
+            },
+            "news_driver": {
+              "score": 63.2,
+              "weight": 25,
+              "weighted": 15.8,
+              "note": "ключевых тем: 2, активность 24ч/всего: 0.45% + LLM",
+              "llmScore": 80.0
+            },
+            "resolution_clarity": {
+              "score": 78.5,
+              "weight": 15,
+              "weighted": 11.78,
+              "note": "развёрнутое описание, есть правила резолва, бинарный исход, есть дедлайн, много подрынков — сложнее + LLM",
+              "llmScore": 80.0
+            },
+            "time_to_money": {
+              "score": 55,
+              "weight": 10,
+              "weighted": 5.5,
+              "note": "до резолва ~145 дн."
+            },
+            "price_quality": {
+              "score": 75,
+              "weight": 5,
+              "weighted": 3.75,
+              "note": "лидирующая вероятность ~20%"
+            }
+          },
+          "hardGates": {
+            "passed": true,
+            "failed": []
+          },
+          "scoringMode": "rubric_v1_llm",
+          "thresholds": {
+            "accepted": 70,
+            "watchlist": 55
+          },
+          "rank": 2,
+          "scannedTotal": 300
+        }
+      }
+    },
+    {
+      "testNo": 3,
+      "tags": [
+        "hot",
+        "multi_market"
+      ],
+      "event": {
+        "id": "51456",
+        "slug": "how-many-fed-rate-cuts-in-2026",
+        "title": "How many Fed rate cuts in 2026?",
+        "description": "This market will resolve according to the exact amount of cuts of 25 basis points in 2026 by the Fed (including any cuts made during the December meeting).\n\nEmergency rate cuts outside of scheduled FOMC meetings will also count toward the total number of cuts in 2026. This market will remain open until December 31, 2026, 11:59 PM ET, to account for any such emergency actions.\n\nFor example, if the Fed cuts rates by 50 bps after a meeting, it would be considered 2 cuts (of 25 bps each).\n\nThis market will resolve early to \"No\" if the specified number of cuts becomes impossible — i.e., if more cuts have already occurred than the strike in question.\n\nNote that cuts between 1–24 bps (inclusive) will also be considered 1 rate cut.\n\nThe resolution source for this market will be FOMC statements after meetings scheduled in 2026 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm. The level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.",
+        "category": null,
+        "volume": 33548309.01894484,
+        "volume24hr": 159332.216377,
+        "liquidity": 2039438.39379,
+        "startDate": "2025-09-29T22:29:04.30848Z",
+        "endDate": "2026-12-31T00:00:00Z",
+        "marketsCount": 13,
+        "markets": [
+          {
+            "id": "616902",
+            "question": "Will no Fed rate cuts happen in 2026?",
+            "conditionId": "0xd4e77ba6f29fc093509d24f508631abd445ecf506bbdc9c4c80e60256a318527",
+            "clobTokenIds": "[\"12403602920039269077597917340921667997547115084613238528792639013246536343316\", \"21294592205022969346730955103773391901993330222644504059576935265667917187903\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0.8005\", \"0.1995\"]",
+            "volume": "4922248.871052042",
+            "liquidity": "118669.85192"
+          },
+          {
+            "id": "616903",
+            "question": "Will 1 Fed rate cut happen in 2026?",
+            "conditionId": "0x5e082f0b57f47a29044aa35b4c5658393122e659d5feae521c06b57cdd7f905c",
+            "clobTokenIds": "[\"113379839734351069617987084078322474966003108854908079701423911002443710490196\", \"48058805012599375970268777474956242772204241523361869981040579395242001094965\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0.125\", \"0.875\"]",
+            "volume": "1452162.1124529927",
+            "liquidity": "110275.3163"
+          },
+          {
+            "id": "616904",
+            "question": "Will 2 Fed rate cuts happen in 2026?",
+            "conditionId": "0xe0d9f508a249e0070db06eb7d1e1fb17eb23c963f6fb722c4c3f81e23240c1cd",
+            "clobTokenIds": "[\"72535544017897924722695722172278828562733090748474862987195303914909938482758\", \"81407142104509110921187520775072626840789848613047331773172953370174825669358\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0.0305\", \"0.9695\"]",
+            "volume": "1416598.8863919892",
+            "liquidity": "129240.52626"
+          }
+        ],
+        "source": "polymarket_gamma",
+        "sourceUrl": "https://polymarket.com/event/how-many-fed-rate-cuts-in-2026"
+      },
+      "analysis": {
+        "eventId": "51456",
+        "source": "polymarket_gamma",
+        "newsScout": {
+          "agent": "News Scout",
+          "summary": "Событие связано с возможными сокращениями процентной ставки ФРС в 2026 году.",
+          "facts": [
+            "Рынок будет разрешен в соответствии с количеством сокращений на 25 базисных пунктов в 2026 году.",
+            "Сокращения вне запланированных заседаний FOMC также будут учитываться.",
+            "Рынок останется открытым до 31 декабря 2026 года."
+          ],
+          "missing": [
+            "Отсутствие конкретных прогнозов по экономической ситуации в 2026 году.",
+            "Нет информации о возможных внешних факторах, влияющих на решения ФРС."
+          ]
+        },
+        "riskOfficer": {
+          "agent": "Risk Officer",
+          "riskLevel": "medium",
+          "flags": [
+            "Неопределенность в экономической ситуации может повлиять на решения ФРС."
+          ]
+        },
+        "verdict": {
+          "agent": "Verdict Agent",
+          "ppVerdict": "Существует высокая вероятность того, что ФРС проведет сокращения ставок в 2026 году.",
+          "confidence": 75,
           "edgeScore": null,
           "status": "ready"
         },
@@ -413,45 +413,45 @@
           "agent": "Priority Agent",
           "score": 79.5,
           "decision": "accepted",
-          "reason": "Событие связано с предстоящими выборами в Конгресс США, что является явным новостным драйвером. Критерии резолва четкие, основаны на официальных результатах выборов и определении спикера, что обеспечивает высокую степень ясности.",
+          "reason": "Событие связано с действиями ФРС, что делает его актуальным, но точные даты и количество сокращений остаются неопределёнными. Резолв будет основан на официальных заявлениях ФРС, что обеспечивает высокую ясность разрешения.",
           "rubric": {
             "volume": {
-              "score": 90.7,
+              "score": 98.0,
               "weight": 25,
-              "weighted": 22.67,
-              "note": "объём всего $7,052,421, за 24ч $29,292"
+              "weighted": 24.51,
+              "note": "объём всего $33,548,309, за 24ч $159,332"
             },
             "liquidity": {
               "score": 100,
               "weight": 20,
               "weighted": 20.0,
-              "note": "ликвидность $558,356"
+              "note": "ликвидность $2,039,438"
             },
             "news_driver": {
-              "score": 63.2,
+              "score": 59.7,
               "weight": 25,
-              "weighted": 15.8,
-              "note": "ключевых тем: 2, активность 24ч/всего: 0.42% + LLM",
-              "llmScore": 80.0
+              "weighted": 14.93,
+              "note": "ключевых тем: 3, активность 24ч/всего: 0.47% + LLM",
+              "llmScore": 70.0
             },
             "resolution_clarity": {
-              "score": 78.5,
+              "score": 85.5,
               "weight": 15,
-              "weighted": 11.78,
+              "weighted": 12.82,
               "note": "развёрнутое описание, есть правила резолва, бинарный исход, есть дедлайн, много подрынков — сложнее + LLM",
-              "llmScore": 80.0
+              "llmScore": 90.0
             },
             "time_to_money": {
-              "score": 55,
+              "score": 35,
               "weight": 10,
-              "weighted": 5.5,
-              "note": "до резолва ~146 дн."
+              "weighted": 3.5,
+              "note": "до резолва ~203 дн."
             },
             "price_quality": {
               "score": 75,
               "weight": 5,
               "weighted": 3.75,
-              "note": "лидирующая вероятность ~82%"
+              "note": "лидирующая вероятность ~80%"
             }
           },
           "hardGates": {
@@ -472,156 +472,6 @@
       "testNo": 4,
       "tags": [
         "hot",
-        "multi_market"
-      ],
-      "event": {
-        "id": "30615",
-        "slug": "world-cup-winner",
-        "title": "World Cup Winner ",
-        "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to “No”.\n\nIf the 2026 FIFA World Cup is permanently canceled or has not been completed by October 13, 2026, 11:59 PM this market will resolve to “Other”.\n\nThe primary resolution source will be official information from FIFA, however, a consensus of credible reporting may also be used.",
-        "category": null,
-        "volume": 1833414366.8951216,
-        "volume24hr": 87716191.08536293,
-        "liquidity": 358220046.73189,
-        "startDate": "2025-07-02T22:28:24.564603Z",
-        "endDate": "2026-07-20T00:00:00Z",
-        "marketsCount": 60,
-        "markets": [
-          {
-            "id": "558934",
-            "question": "Will Spain win the 2026 FIFA World Cup?",
-            "conditionId": "0x7976b8dbacf9077eb1453a62bcefd6ab2df199acd28aad276ff0d920d6992892",
-            "clobTokenIds": "[\"4394372887385518214471608448209527405727552777602031099972143344338178308080\", \"112680630004798425069810935278212000865453267506345451433803052322987302357330\"]",
-            "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.1605\", \"0.8395\"]",
-            "volume": "34465959.93435949",
-            "liquidity": "1123255.17964"
-          },
-          {
-            "id": "558957",
-            "question": "Will New Zealand win the 2026 FIFA World Cup?",
-            "conditionId": "0x9e5f9d8c384f8fe368b195fa9a780be58643dff7360588a4e577012df8af00a7",
-            "clobTokenIds": "[\"79609298644734030886284029462369514848707878622071495577618126141372199748974\", \"19300733445673111152563700067702596357686293159476142927049736146587326855017\"]",
-            "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.0005\", \"0.9995\"]",
-            "volume": "45293436.5626452",
-            "liquidity": "15492838.71351"
-          },
-          {
-            "id": "558974",
-            "question": "Will Switzerland win the 2026 FIFA World Cup?",
-            "conditionId": "0x3a26ca6425e2d98f14935670bc22cdb0744defc6f6d83c65f8c413a921c5c70c",
-            "clobTokenIds": "[\"62131913648515148266463816694306031394539656598501514114816028349608560215534\", \"45315272750116791836504013666029583517532908319286234834610455739871173419179\"]",
-            "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.0115\", \"0.9885\"]",
-            "volume": "35516121.222757585",
-            "liquidity": "2271868.01773"
-          }
-        ],
-        "source": "polymarket_gamma",
-        "sourceUrl": "https://polymarket.com/event/world-cup-winner"
-      },
-      "analysis": {
-        "eventId": "30615",
-        "source": "polymarket_gamma",
-        "newsScout": {
-          "agent": "News Scout",
-          "summary": "Чемпионат мира по футболу 2026 года вызывает активные обсуждения, но конкретные новости о командах отсутствуют.",
-          "facts": [
-            "Чемпионат мира по футболу пройдет с 2 июля по 20 июля 2026 года.",
-            "Рынок будет разрешен на основе официальной информации от FIFA."
-          ],
-          "missing": [
-            "Конкретные новости о командах-участниках чемпионата мира."
-          ]
-        },
-        "riskOfficer": {
-          "agent": "Risk Officer",
-          "riskLevel": "medium",
-          "flags": [
-            "Долгосрочное событие с неопределенностью в отношении команд."
-          ]
-        },
-        "verdict": {
-          "agent": "Verdict Agent",
-          "ppVerdict": "Событие имеет высокую степень неопределенности, но обсуждение чемпионата мира активно.",
-          "confidence": 75,
-          "edgeScore": null,
-          "status": "ready"
-        },
-        "ui": {
-          "closedCardBadge": "Accepted",
-          "warRoomAgents": [
-            "Priority Agent",
-            "News Scout",
-            "Risk Officer",
-            "Verdict Agent"
-          ],
-          "disclaimer": "Анализ только. Не является финансовым советом."
-        },
-        "priority": {
-          "agent": "Priority Agent",
-          "score": 78.3,
-          "decision": "accepted",
-          "reason": "Событие имеет долгосрочный характер и не имеет явного ближайшего катализатора, однако тема чемпионата мира активно обсуждается в новостях. Критерии резолва четкие, основаны на официальных источниках FIFA.",
-          "rubric": {
-            "volume": {
-              "score": 100,
-              "weight": 25,
-              "weighted": 25.0,
-              "note": "объём всего $1,833,414,367, за 24ч $87,716,191"
-            },
-            "liquidity": {
-              "score": 100,
-              "weight": 20,
-              "weighted": 20.0,
-              "note": "ликвидность $358,220,047"
-            },
-            "news_driver": {
-              "score": 37.0,
-              "weight": 25,
-              "weighted": 9.25,
-              "note": "ключевых тем: 0, активность 24ч/всего: 4.78% + LLM",
-              "llmScore": 50.0
-            },
-            "resolution_clarity": {
-              "score": 78.5,
-              "weight": 15,
-              "weighted": 11.78,
-              "note": "развёрнутое описание, есть правила резолва, бинарный исход, есть дедлайн, много подрынков — сложнее + LLM",
-              "llmScore": 80.0
-            },
-            "time_to_money": {
-              "score": 85,
-              "weight": 10,
-              "weighted": 8.5,
-              "note": "до резолва ~40 дн."
-            },
-            "price_quality": {
-              "score": 75,
-              "weight": 5,
-              "weighted": 3.75,
-              "note": "лидирующая вероятность ~16%"
-            }
-          },
-          "hardGates": {
-            "passed": true,
-            "failed": []
-          },
-          "scoringMode": "rubric_v1_llm",
-          "thresholds": {
-            "accepted": 70,
-            "watchlist": 55
-          },
-          "rank": 4,
-          "scannedTotal": 300
-        }
-      }
-    },
-    {
-      "testNo": 5,
-      "tags": [
-        "hot",
         "multi_market",
         "news_driven"
       ],
@@ -631,9 +481,9 @@
         "title": "Which party will win the Senate in 2026?",
         "description": "This market will resolve according to the party that controls the Senate following the 2026 U.S. Senate elections scheduled for November 3, 2026.\n\nSenate control is defined as having more than half of the voting Senate members, or half of the voting Senate members and the Vice Presidency.\n\nIf the outcome of this election is ambiguous given the above rules, this market will remain open until the Majority Leader of the US Senate is selected following the 2026 US general election, at which point it will resolve to the party the majority leader is affiliated with at the time of their election to that position. If the elected majority leader does not caucus with any listed party this market will resolve “Other”.\n\nDetermination of which party controls the Senate after the 2026 US Senate elections will be based on a consensus of credible reporting, or if there is ambiguity, final federal and/or state election authority certification or other final official determination of the 2026 election results.",
         "category": null,
-        "volume": 2705011.4105570205,
-        "volume24hr": 10285.575002000001,
-        "liquidity": 293676.1573,
+        "volume": 2708961.2153480207,
+        "volume24hr": 10834.519333,
+        "liquidity": 344385.1701,
         "startDate": "2025-07-11T19:53:05.106249Z",
         "endDate": "2026-11-03T00:00:00Z",
         "marketsCount": 9,
@@ -644,9 +494,9 @@
             "conditionId": "0x307a1ed89d60b61002dd5bbf00e1408c5ed2ab3fcdb056191ca7ef9bc34d38f3",
             "clobTokenIds": "[\"113287701564209339913693347405685749986285999146352375265161592243948562084773\", \"107118433685650702332040991454078902188473746599223732907923581436160160612542\"]",
             "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.455\", \"0.545\"]",
-            "volume": "1433440.335202009",
-            "liquidity": "158431.1033"
+            "outcomePrices": "[\"0.445\", \"0.555\"]",
+            "volume": "1434736.504980009",
+            "liquidity": "178790.5581"
           },
           {
             "id": "562794",
@@ -654,9 +504,9 @@
             "conditionId": "0x86bfb53af7250a40928975c551d12c185b762fa4ce0b40c6a64a50c946d72587",
             "clobTokenIds": "[\"51939490109676186832507970701169130490548061087912630009168726706475001411420\", \"108587038225191871355030577171066853142535232042155117887981453750193713427381\"]",
             "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.545\", \"0.455\"]",
-            "volume": "1271571.0753550113",
-            "liquidity": "144243.116"
+            "outcomePrices": "[\"0.555\", \"0.445\"]",
+            "volume": "1274224.7103680116",
+            "liquidity": "164389.7215"
           },
           {
             "id": "562795",
@@ -677,14 +527,14 @@
         "source": "polymarket_gamma",
         "newsScout": {
           "agent": "News Scout",
-          "summary": "Событие связано с выборами в Сенат США в 2026 году, что является важным политическим событием.",
+          "summary": "Событие связано с выборами в Сенат США в 2026 году, что создает значительный интерес на рынке.",
           "facts": [
             "Выборы в Сенат США запланированы на 3 ноября 2026 года.",
             "Контроль над Сенатом определяется как наличие более половины голосующих членов Сената.",
-            "Рынок будет разрешен на основе консенсуса достоверных отчетов."
+            "Рынок будет разрешен в зависимости от партии, контролирующей Сенат после выборов."
           ],
           "missing": [
-            "Нет свежих новостей о кандидатах и политических кампаниях."
+            "Нет текущих новостей о кандидатах или политических событиях, которые могут повлиять на выборы."
           ]
         },
         "riskOfficer": {
@@ -694,7 +544,7 @@
         },
         "verdict": {
           "agent": "Verdict Agent",
-          "ppVerdict": "Исход выборов в Сенат США в 2026 году будет зависеть от результатов голосования и окончательной сертификации выборов.",
+          "ppVerdict": "Исход выборов в Сенат США в 2026 году будет зависеть от официальных результатов выборов.",
           "confidence": 75,
           "edgeScore": null,
           "status": "ready"
@@ -707,31 +557,31 @@
             "Risk Officer",
             "Verdict Agent"
           ],
-          "disclaimer": "Анализ только. Не является финансовым советом."
+          "disclaimer": "Анализ только. Не финансовый совет."
         },
         "priority": {
           "agent": "Priority Agent",
-          "score": 78.1,
+          "score": 78.6,
           "decision": "accepted",
-          "reason": "Событие связано с предстоящими выборами в Сенат США, что является явным новостным драйвером. Критерии резолва четко определены, что позволяет уверенно оценить исход события.",
+          "reason": "Событие имеет четкий новостной драйвер — выборы в Сенат США в 2026 году, что создает интерес и активность на рынке. Критерии резолва также ясны, так как они зависят от официальных результатов выборов и назначения лидера большинства.",
           "rubric": {
             "volume": {
-              "score": 82.3,
+              "score": 82.5,
               "weight": 25,
-              "weighted": 20.58,
-              "note": "объём всего $2,705,011, за 24ч $10,286"
+              "weighted": 20.64,
+              "note": "объём всего $2,708,961, за 24ч $10,835"
             },
             "liquidity": {
-              "score": 93.1,
+              "score": 95.1,
               "weight": 20,
-              "weighted": 18.61,
-              "note": "ликвидность $293,676"
+              "weighted": 19.03,
+              "note": "ликвидность $344,385"
             },
             "news_driver": {
               "score": 66.7,
               "weight": 25,
-              "weighted": 16.67,
-              "note": "ключевых тем: 3, активность 24ч/всего: 0.38% + LLM",
+              "weighted": 16.68,
+              "note": "ключевых тем: 3, активность 24ч/всего: 0.40% + LLM",
               "llmScore": 80.0
             },
             "resolution_clarity": {
@@ -745,13 +595,164 @@
               "score": 55,
               "weight": 10,
               "weighted": 5.5,
-              "note": "до резолва ~146 дн."
+              "note": "до резолва ~145 дн."
             },
             "price_quality": {
               "score": 100,
               "weight": 5,
               "weighted": 5.0,
-              "note": "лидирующая вероятность ~46%"
+              "note": "лидирующая вероятность ~44%"
+            }
+          },
+          "hardGates": {
+            "passed": true,
+            "failed": []
+          },
+          "scoringMode": "rubric_v1_llm",
+          "thresholds": {
+            "accepted": 70,
+            "watchlist": 55
+          },
+          "rank": 4,
+          "scannedTotal": 300
+        }
+      }
+    },
+    {
+      "testNo": 5,
+      "tags": [
+        "hot",
+        "multi_market"
+      ],
+      "event": {
+        "id": "30615",
+        "slug": "world-cup-winner",
+        "title": "World Cup Winner ",
+        "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to “No”.\n\nIf the 2026 FIFA World Cup is permanently canceled or has not been completed by October 13, 2026, 11:59 PM this market will resolve to “Other”.\n\nThe primary resolution source will be official information from FIFA, however, a consensus of credible reporting may also be used.",
+        "category": null,
+        "volume": 1868913394.3659947,
+        "volume24hr": 87029124.82495205,
+        "liquidity": 365148808.20247,
+        "startDate": "2025-07-02T22:28:24.564603Z",
+        "endDate": "2026-07-20T00:00:00Z",
+        "marketsCount": 60,
+        "markets": [
+          {
+            "id": "558934",
+            "question": "Will Spain win the 2026 FIFA World Cup?",
+            "conditionId": "0x7976b8dbacf9077eb1453a62bcefd6ab2df199acd28aad276ff0d920d6992892",
+            "clobTokenIds": "[\"4394372887385518214471608448209527405727552777602031099972143344338178308080\", \"112680630004798425069810935278212000865453267506345451433803052322987302357330\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0.1625\", \"0.8375\"]",
+            "volume": "35407969.04140088",
+            "liquidity": "1321909.90345"
+          },
+          {
+            "id": "558957",
+            "question": "Will New Zealand win the 2026 FIFA World Cup?",
+            "conditionId": "0x9e5f9d8c384f8fe368b195fa9a780be58643dff7360588a4e577012df8af00a7",
+            "clobTokenIds": "[\"79609298644734030886284029462369514848707878622071495577618126141372199748974\", \"19300733445673111152563700067702596357686293159476142927049736146587326855017\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0.0005\", \"0.9995\"]",
+            "volume": "45343921.612645194",
+            "liquidity": "15989909.83248"
+          },
+          {
+            "id": "558974",
+            "question": "Will Switzerland win the 2026 FIFA World Cup?",
+            "conditionId": "0x3a26ca6425e2d98f14935670bc22cdb0744defc6f6d83c65f8c413a921c5c70c",
+            "clobTokenIds": "[\"62131913648515148266463816694306031394539656598501514114816028349608560215534\", \"45315272750116791836504013666029583517532908319286234834610455739871173419179\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0.0115\", \"0.9885\"]",
+            "volume": "36009506.442057654",
+            "liquidity": "2613774.79579"
+          }
+        ],
+        "source": "polymarket_gamma",
+        "sourceUrl": "https://polymarket.com/event/world-cup-winner"
+      },
+      "analysis": {
+        "eventId": "30615",
+        "source": "polymarket_gamma",
+        "newsScout": {
+          "agent": "News Scout",
+          "summary": "На данный момент нет значительных новостей о командах, участвующих в чемпионате мира.",
+          "facts": [
+            "Чемпионат мира по футболу пройдет с 2 июля по 20 июля 2026 года.",
+            "Рынок будет разрешен на основе официальной информации от FIFA."
+          ],
+          "missing": [
+            "Новости о подготовке команд к турниру.",
+            "Информация о травмах ключевых игроков."
+          ]
+        },
+        "riskOfficer": {
+          "agent": "Risk Officer",
+          "riskLevel": "medium",
+          "flags": [
+            "Долгосрочное событие с неопределенностью в отношении команд."
+          ]
+        },
+        "verdict": {
+          "agent": "Verdict Agent",
+          "ppVerdict": "Событие имеет высокую степень неопределенности до начала турнира.",
+          "confidence": 70,
+          "edgeScore": null,
+          "status": "research_required"
+        },
+        "ui": {
+          "closedCardBadge": "Watchlist",
+          "warRoomAgents": [
+            "Priority Agent",
+            "News Scout",
+            "Risk Officer",
+            "Verdict Agent"
+          ],
+          "disclaimer": "Анализ только. Не является финансовым советом."
+        },
+        "priority": {
+          "agent": "Priority Agent",
+          "score": 78.3,
+          "decision": "accepted",
+          "reason": "Событие имеет долгосрочную перспективу, но конкретные катализаторы и новости о командах будут появляться только ближе к турниру. Резолв четкий, основан на официальных правилах FIFA.",
+          "rubric": {
+            "volume": {
+              "score": 100,
+              "weight": 25,
+              "weighted": 25.0,
+              "note": "объём всего $1,868,913,394, за 24ч $87,029,125"
+            },
+            "liquidity": {
+              "score": 100,
+              "weight": 20,
+              "weighted": 20.0,
+              "note": "ликвидность $365,148,808"
+            },
+            "news_driver": {
+              "score": 37.0,
+              "weight": 25,
+              "weighted": 9.24,
+              "note": "ключевых тем: 0, активность 24ч/всего: 4.66% + LLM",
+              "llmScore": 50.0
+            },
+            "resolution_clarity": {
+              "score": 78.5,
+              "weight": 15,
+              "weighted": 11.78,
+              "note": "развёрнутое описание, есть правила резолва, бинарный исход, есть дедлайн, много подрынков — сложнее + LLM",
+              "llmScore": 80.0
+            },
+            "time_to_money": {
+              "score": 85,
+              "weight": 10,
+              "weighted": 8.5,
+              "note": "до резолва ~39 дн."
+            },
+            "price_quality": {
+              "score": 75,
+              "weight": 5,
+              "weighted": 3.75,
+              "note": "лидирующая вероятность ~16%"
             }
           },
           "hardGates": {
@@ -772,62 +773,81 @@
       "testNo": 6,
       "tags": [
         "hot",
-        "news_driven"
+        "multi_market"
       ],
       "event": {
-        "id": "73969",
-        "slug": "trump-out-as-president-before-2027",
-        "title": "Trump out as President before 2027?",
-        "description": "This market will resolve to “Yes” if Donald Trump resigns or is removed as President or otherwise ceases to be the President of the United States for any period of time by December 31, 2026, 11:59 PM ET. Otherwise, this market will resolve to “No”.\n\nAn announcement of Donald Trump's resignation/removal before this market's end date will immediately resolve this market to \"Yes\", regardless of when the announced resignation/removal goes into effect.\n\nOnly permanent removal from office will qualify. Temporary removal (e.g. temporary invocation of the 25th Amendment under Section 3 or a Section 4 invocation not sustained by both Houses of Congress) or impeachment without removal will not count.\n\nA sustained invocation of the Twenty-Fifth Amendment, Section 4 (i.e., if both Houses of Congress, by two-thirds vote, uphold the Vice President and Cabinet’s determination of presidential inability) will qualify for a \"Yes\" resolution. \n\nThe resolution source for this market will be a consensus of credible reporting.",
-        "category": "Trump out",
-        "volume": 8981349.353256214,
-        "volume24hr": 7022.244565,
-        "liquidity": 490379.7686,
-        "startDate": "2025-11-05T22:02:46.869817Z",
-        "endDate": "2026-12-31T00:00:00Z",
-        "marketsCount": 1,
+        "id": "57705",
+        "slug": "which-company-has-best-ai-model-end-of-june",
+        "title": "Which company has best AI model end of June?",
+        "description": "This market will resolve according to the company which owns the model which has the highest arena rank based off the Chatbot Arena LLM Leaderboard (https://lmarena.ai/) when the table under the \"Leaderboard\" tab is checked on June 30, 2026, 12:00 PM ET.\n\nResults from the \"Rank\" section on the Leaderboard tab of https://lmarena.ai/leaderboard/text with the style control off will be used to resolve this market.\n\nModels will be ordered primarily by their leaderboard rank at the market’s check time. If two or more models are tied on rank, they will be ordered by their Arena score, including any underlying, unrounded, granular values reflected in the data below the leaderboard. If a tie remains, alphabetical order of company names as listed in this market group will be used as a final tiebreaker (e.g., if the two models are tied by exact arena score, “Google” would be ranked ahead of “xAI”). This market will resolve based on the company that occupies first place under this ranking system.\n\nThe resolution source for this market is the Chatbot Arena LLM Leaderboard found at https://lmarena.ai/. If this resolution source is unavailable at check time, this market will remain open until the leaderboard comes back online and resolve based on the first check after it becomes available. If it becomes permanently unavailable, this market will resolve based on another resolution source.",
+        "category": "Best AI Company",
+        "volume": 12943263.605002018,
+        "volume24hr": 504730.5528279999,
+        "liquidity": 3805641.83829,
+        "startDate": "2025-10-10T21:54:22.492043Z",
+        "endDate": "2026-06-30T00:00:00Z",
+        "marketsCount": 19,
         "markets": [
           {
-            "id": "666861",
-            "question": "Trump out as President before 2027?",
-            "conditionId": "0x48b0b0bca515f68fccf95af4793dbd0edbfec1f8ec6e8df2c0f69ba74f8c4722",
-            "clobTokenIds": "[\"59252515735652674747158950210016502214756531287333895140318848923768750410355\", \"2849827372590072151380088930233312280478318575453624773762283369907909283027\"]",
+            "id": "631139",
+            "question": "Will Google have the best AI model at the end of June 2026?",
+            "conditionId": "0x0bd1b836a2494f80aaee62927cf01e5f6fceb19114e96fc517c6440aea4576e4",
+            "clobTokenIds": "[\"48636515238425021804591740157603774575693183581120073077366926452048719239424\", \"55343546711440719852073804567266677523610031228702521608443447223099518953270\"]",
             "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.105\", \"0.895\"]",
-            "volume": "8981349.353256214",
-            "liquidity": "491537.9286"
+            "outcomePrices": "[\"0.065\", \"0.935\"]",
+            "volume": "1091733.0290520007",
+            "liquidity": "61974.3921"
+          },
+          {
+            "id": "631141",
+            "question": "Will OpenAI have the best AI model at the end of June 2026?",
+            "conditionId": "0x734c6c32a62f8a27035a222e45fc388d59eeffe89bb31ab26054bc29bcc3eee7",
+            "clobTokenIds": "[\"80866595097163743756836544235158704187050842622501590485463390368127663845144\", \"59148378005891809491211416100126897026310179790411869168117833625964267167611\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0.0235\", \"0.9765\"]",
+            "volume": "937341.3299999947",
+            "liquidity": "82173.35223"
+          },
+          {
+            "id": "631143",
+            "question": "Will Z.ai have the best AI model at the end of June 2026?",
+            "conditionId": "0x9812b1740a7dc0ec0318f66577bd40305576ad43cfcd732399dc02a328035ef2",
+            "clobTokenIds": "[\"96960854506577913637827909727393368741530508565038173215850540697056617713094\", \"31722004522905291320816261931547127152600446925032713964065945137699274246281\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0.0015\", \"0.9985\"]",
+            "volume": "742396.298457014",
+            "liquidity": "338058.00032"
           }
         ],
         "source": "polymarket_gamma",
-        "sourceUrl": "https://polymarket.com/event/trump-out-as-president-before-2027"
+        "sourceUrl": "https://polymarket.com/event/which-company-has-best-ai-model-end-of-june"
       },
       "analysis": {
-        "eventId": "73969",
+        "eventId": "57705",
         "source": "polymarket_gamma",
         "newsScout": {
           "agent": "News Scout",
-          "summary": "Событие связано с возможным уходом Дональда Трампа с поста президента, что вызывает интерес и обсуждения в новостях.",
+          "summary": "На данный момент нет значительных новостей о компаниях, которые могут повлиять на результаты рынка.",
           "facts": [
-            "Трамп может уйти с поста президента до 2027 года.",
-            "Рынок разрешится на 'Да', если Трамп уйдет в отставку или будет удален.",
-            "Существуют четкие критерии для разрешения события."
+            "Событие будет разрешено на основе рейтинга моделей на Chatbot Arena LLM Leaderboard.",
+            "Рейтинг будет проверен 30 июня 2026 года.",
+            "Если источник разрешения недоступен, рынок останется открытым до его возвращения."
           ],
           "missing": [
-            "Отсутствие актуальных новостей о состоянии здоровья Трампа.",
-            "Нет информации о возможных политических маневрах в Конгрессе."
+            "Актуальные новости о разработках AI от компаний, участвующих в рынке."
           ]
         },
         "riskOfficer": {
           "agent": "Risk Officer",
           "riskLevel": "medium",
           "flags": [
-            "Политическая неопределенность мож��т повлиять на исход."
+            "Долгосрочное событие с неопределенностью в новостях."
           ]
         },
         "verdict": {
           "agent": "Verdict Agent",
-          "ppVerdict": "Существует вероятность, что Дональд Трамп может уйти с поста президента до конца 2026 года.",
-          "confidence": 65,
+          "ppVerdict": "Событие имеет четкие критерии разрешения, но существует риск неопределенности из-за длительного времени до разрешения.",
+          "confidence": 70,
           "edgeScore": null,
           "status": "ready"
         },
@@ -843,47 +863,47 @@
         },
         "priority": {
           "agent": "Priority Agent",
-          "score": 77.4,
+          "score": 76.4,
           "decision": "accepted",
-          "reason": "Событие связано с возможным уходом Трампа с поста президента, что является актуальной темой в новостях. Критерии резолва четкие, но зависят от политической ситуации, что может вызвать неопределенность.",
+          "reason": "Событие имеет четкую дату разрешения и критерии, но новостной драйвер не так очевиден, так как до конца июня 2026 года еще много времени. Результаты будут основаны на конкретном источнике, что обеспечивает ясность резолва.",
           "rubric": {
             "volume": {
-              "score": 84.5,
+              "score": 100,
               "weight": 25,
-              "weighted": 21.12,
-              "note": "объём всего $8,981,349, за 24ч $7,022"
+              "weighted": 25.0,
+              "note": "объём всего $12,943,264, за 24ч $504,731"
             },
             "liquidity": {
-              "score": 99.7,
+              "score": 100,
               "weight": 20,
-              "weighted": 19.95,
-              "note": "ликвидность $490,380"
+              "weighted": 20.0,
+              "note": "ликвидность $3,805,642"
             },
             "news_driver": {
-              "score": 66.6,
+              "score": 36.6,
               "weight": 25,
-              "weighted": 16.64,
-              "note": "ключевых тем: 5, активность 24ч/всего: 0.08% + LLM",
-              "llmScore": 70.0
+              "weighted": 9.16,
+              "note": "ключевых тем: 0, активность 24ч/всего: 3.90% + LLM",
+              "llmScore": 50.0
             },
             "resolution_clarity": {
-              "score": 83.0,
+              "score": 78.5,
               "weight": 15,
-              "weighted": 12.45,
-              "note": "развёрнутое описание, есть правила резолва, бинарный исход, есть дедлайн + LLM",
+              "weighted": 11.78,
+              "note": "развёрнутое описание, есть правила резолва, бинарный исход, есть дедлайн, много подрынков — сложнее + LLM",
               "llmScore": 80.0
             },
             "time_to_money": {
-              "score": 35,
+              "score": 85,
               "weight": 10,
-              "weighted": 3.5,
-              "note": "до резолва ~204 дн."
+              "weighted": 8.5,
+              "note": "до резолва ~19 дн."
             },
             "price_quality": {
-              "score": 75,
+              "score": 40,
               "weight": 5,
-              "weighted": 3.75,
-              "note": "лидирующая вероятность ~10%"
+              "weighted": 2.0,
+              "note": "лидирующая вероятность ~6%"
             }
           },
           "hardGates": {
@@ -903,62 +923,62 @@
     {
       "testNo": 7,
       "tags": [
-        "hot",
-        "news_driven"
+        "hot"
       ],
       "event": {
-        "id": "73056",
-        "slug": "ukraine-signs-peace-deal-with-russia-before-2027",
-        "title": "Ukraine signs peace deal with Russia before 2027?",
-        "description": "This market will resolve to “Yes”  if, Ukraine signs any written instrument (e.g., treaty, ceasefire/armistice, framework/“roadmap,” exchange of letters, or mediated agreement text) that: (i) includes both Ukraine and the Russian Federation as parties, and (ii) either ends hostilities/establishes a ceasefire or commits both sides to a defined process toward ending the war (i.e., stated objective of peace/normalization plus principles, steps, and/or a timetable) by December 31, 2026, 11:59 PM ET. Otherwise, this market will resolve to “No”. \n\nOnly Ukraine’s signature is required; Russia’s signature or ratification is not.\n\nLocalized, temporary, or issue-specific arrangements—such as airstrike-limitation or deconfliction protocols, humanitarian pauses, evacuation corridors, prisoner-exchange or trade/export arrangements, border/DMZ adjustments, or ceasefires limited to a particular sector/front/municipality—will not qualify.\n\nThe document must bear a wet-ink or officially issued electronic signature of an authorized Ukrainian representative. Unsigned agreements (e.g., the 2023 Ohrid arrangement) will not qualify regardless of if they are otherwise officially enacted. \n\nThe primary resolution source will be a consensus of credible reporting. \n",
-        "category": "Ukraine x Russia Peace Deal",
-        "volume": 2214625.270876001,
-        "volume24hr": 95673.422114,
-        "liquidity": 75721.2987,
-        "startDate": "2025-11-05T18:06:00.699378Z",
+        "id": "73106",
+        "slug": "us-iran-nuclear-deal-before-2027",
+        "title": "US-Iran nuclear deal before 2027?",
+        "description": "This market will resolve to \"Yes\" if an official agreement over Iranian nuclear research and/or nuclear weapon development, defined as a publicly announced mutual agreement, is reached between the United States and Iran by December 31, 2026, 11:59 PM ET. Otherwise, this market will resolve to “No”.\n\nIf such an agreement is officially reached before the resolution date, this market will resolve to \"Yes\", regardless of if/when the agreement goes into effect.\n\nAgreements that include the United States and Iran as parties, even if they also involve other countries (e.g., a multilateral deal like the JCPOA), will qualify for resolution.\n\nThe primary resolution source for this market will be an official announcement by the United States and/or the Islamic Republic of Iran, however an overwhelming consensus of credible reporting confirming an agreement has been reached will also qualify.",
+        "category": "nuclear deal",
+        "volume": 1999199.8160760142,
+        "volume24hr": 116707.44094900005,
+        "liquidity": 180542.1971,
+        "startDate": "2025-11-05T16:51:03.959729Z",
         "endDate": "2026-12-31T00:00:00Z",
         "marketsCount": 1,
         "markets": [
           {
-            "id": "665224",
-            "question": "Ukraine signs peace deal with Russia before 2027?",
-            "conditionId": "0x4167e22670f31e5f93d132f78108f3fae809bd15cadf78983eff096845ed1415",
-            "clobTokenIds": "[\"93579588306754356558129639371052358607099327699211232141859164590129536814208\", \"50854871681873904159181209043129993931106057788784391855429428220428495613305\"]",
+            "id": "665325",
+            "question": "US-Iran nuclear deal before 2027?",
+            "conditionId": "0x182390641d3b1b47cc64274b9da290efd04221c586651ba190880713da6347d9",
+            "clobTokenIds": "[\"102936224134271070189104847090829839924697394514566827387181305960175107677216\", \"45763018441764333771124945243746174684578244015331389396782339063349542289693\"]",
             "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.265\", \"0.735\"]",
-            "volume": "2214625.270876001",
-            "liquidity": "77682.1061"
+            "outcomePrices": "[\"0.645\", \"0.355\"]",
+            "volume": "2001284.7079660143",
+            "liquidity": "178956.9633"
           }
         ],
         "source": "polymarket_gamma",
-        "sourceUrl": "https://polymarket.com/event/ukraine-signs-peace-deal-with-russia-before-2027"
+        "sourceUrl": "https://polymarket.com/event/us-iran-nuclear-deal-before-2027"
       },
       "analysis": {
-        "eventId": "73056",
+        "eventId": "73106",
         "source": "polymarket_gamma",
         "newsScout": {
           "agent": "News Scout",
-          "summary": "Существуют обсуждения о возможности подписания мирного соглашения между Украиной и Россией, однако конкретные детали и сроки остаются неопределенными.",
+          "summary": "Существует вероятность достижения соглашения между США и Ираном по ядерной программе до конца 2026 года.",
           "facts": [
-            "Существует вероятность подписания мирного соглашения между Украиной и Россией до конца 2026 года.",
-            "Подписание мирного соглашения требует официальной подписи украинского представителя."
+            "Соглашение должно быть официально объявлено США и Ираном.",
+            "Соглашение может включать другие страны, но должно быть достигнуто между США и Ираном.",
+            "Срок для достижения соглашения - 31 декабря 2026 года."
           ],
           "missing": [
-            "Отсутствие конкретных новостей о текущих переговорах между Украиной и Россией.",
-            "Нет информации о возможных условиях, которые могут быть предложены Россией."
+            "Конкретные шаги или текущие переговоры между США и Ираном.",
+            "Недавние новости о прогрессе в переговорах."
           ]
         },
         "riskOfficer": {
           "agent": "Risk Officer",
           "riskLevel": "medium",
           "flags": [
-            "Неопределенность в политической ситуации.",
-            "Риск изменения условий переговоров."
+            "Неопределенность в сроках достижения соглашения.",
+            "Политическая нестабильность в регионе."
           ]
         },
         "verdict": {
           "agent": "Verdict Agent",
-          "ppVerdict": "Существует вероятность того, что Украина подпишет мирное соглашение с Россией до 2027 года, но это зависит от множества факторов.",
+          "ppVerdict": "Существует умеренная вероятность достижения соглашения между США и Ираном по ядерной программе до конца 2026 года.",
           "confidence": 65,
           "edgeScore": null,
           "status": "ready"
@@ -975,28 +995,28 @@
         },
         "priority": {
           "agent": "Priority Agent",
-          "score": 76.7,
+          "score": 74.8,
           "decision": "accepted",
-          "reason": "Событие имеет четкий временной рамки и критерии для резолва, что делает его привлекательным для анализа. Подписание мирного соглашения между Украиной и Россией является актуальной темой, которая активно обсуждается в новостях.",
+          "reason": "Событие имеет значимость в новостях, но конкретная дата достижения соглашения размыта. Критерии резолва ясны, с официальными источниками для подтверждения.",
           "rubric": {
             "volume": {
-              "score": 90.8,
+              "score": 91.0,
               "weight": 25,
-              "weighted": 22.69,
-              "note": "объём всего $2,214,625, за 24ч $95,673"
+              "weighted": 22.75,
+              "note": "объём всего $1,999,200, за 24ч $116,707"
             },
             "liquidity": {
-              "score": 75.4,
+              "score": 86.7,
               "weight": 20,
-              "weighted": 15.08,
-              "note": "ликвидность $75,721"
+              "weighted": 17.35,
+              "note": "ликвидность $180,542"
             },
             "news_driver": {
-              "score": 71.8,
+              "score": 55.0,
               "weight": 25,
-              "weighted": 17.96,
-              "note": "ключевых тем: 4, активность 24ч/всего: 4.32% + LLM",
-              "llmScore": 80.0
+              "weighted": 13.74,
+              "note": "ключевых тем: 1, активность 24ч/всего: 5.84% + LLM",
+              "llmScore": 70.0
             },
             "resolution_clarity": {
               "score": 83.0,
@@ -1009,13 +1029,13 @@
               "score": 35,
               "weight": 10,
               "weighted": 3.5,
-              "note": "до резолва ~204 дн."
+              "note": "до резолва ~203 дн."
             },
             "price_quality": {
               "score": 100,
               "weight": 5,
               "weighted": 5.0,
-              "note": "лидирующая вероятность ~26%"
+              "note": "лидирующая вероятность ~64%"
             }
           },
           "hardGates": {
@@ -1036,81 +1056,63 @@
       "testNo": 8,
       "tags": [
         "hot",
-        "multi_market"
+        "news_driven"
       ],
       "event": {
-        "id": "57705",
-        "slug": "which-company-has-best-ai-model-end-of-june",
-        "title": "Which company has best AI model end of June?",
-        "description": "This market will resolve according to the company which owns the model which has the highest arena rank based off the Chatbot Arena LLM Leaderboard (https://lmarena.ai/) when the table under the \"Leaderboard\" tab is checked on June 30, 2026, 12:00 PM ET.\n\nResults from the \"Rank\" section on the Leaderboard tab of https://lmarena.ai/leaderboard/text with the style control off will be used to resolve this market.\n\nModels will be ordered primarily by their leaderboard rank at the market’s check time. If two or more models are tied on rank, they will be ordered by their Arena score, including any underlying, unrounded, granular values reflected in the data below the leaderboard. If a tie remains, alphabetical order of company names as listed in this market group will be used as a final tiebreaker (e.g., if the two models are tied by exact arena score, “Google” would be ranked ahead of “xAI”). This market will resolve based on the company that occupies first place under this ranking system.\n\nThe resolution source for this market is the Chatbot Arena LLM Leaderboard found at https://lmarena.ai/. If this resolution source is unavailable at check time, this market will remain open until the leaderboard comes back online and resolve based on the first check after it becomes available. If it becomes permanently unavailable, this market will resolve based on another resolution source.",
-        "category": "Best AI Company",
-        "volume": 12705987.88744902,
-        "volume24hr": 690741.227853,
-        "liquidity": 3840302.66622,
-        "startDate": "2025-10-10T21:54:22.492043Z",
-        "endDate": "2026-06-30T00:00:00Z",
-        "marketsCount": 19,
+        "id": "73969",
+        "slug": "trump-out-as-president-before-2027",
+        "title": "Trump out as President before 2027?",
+        "description": "This market will resolve to “Yes” if Donald Trump resigns or is removed as President or otherwise ceases to be the President of the United States for any period of time by December 31, 2026, 11:59 PM ET. Otherwise, this market will resolve to “No”.\n\nAn announcement of Donald Trump's resignation/removal before this market's end date will immediately resolve this market to \"Yes\", regardless of when the announced resignation/removal goes into effect.\n\nOnly permanent removal from office will qualify. Temporary removal (e.g. temporary invocation of the 25th Amendment under Section 3 or a Section 4 invocation not sustained by both Houses of Congress) or impeachment without removal will not count.\n\nA sustained invocation of the Twenty-Fifth Amendment, Section 4 (i.e., if both Houses of Congress, by two-thirds vote, uphold the Vice President and Cabinet’s determination of presidential inability) will qualify for a \"Yes\" resolution. \n\nThe resolution source for this market will be a consensus of credible reporting.",
+        "category": "Trump out",
+        "volume": 8982165.769203216,
+        "volume24hr": 2664.497836,
+        "liquidity": 458542.6309,
+        "startDate": "2025-11-05T22:02:46.869817Z",
+        "endDate": "2026-12-31T00:00:00Z",
+        "marketsCount": 1,
         "markets": [
           {
-            "id": "631139",
-            "question": "Will Google have the best AI model at the end of June 2026?",
-            "conditionId": "0x0bd1b836a2494f80aaee62927cf01e5f6fceb19114e96fc517c6440aea4576e4",
-            "clobTokenIds": "[\"48636515238425021804591740157603774575693183581120073077366926452048719239424\", \"55343546711440719852073804567266677523610031228702521608443447223099518953270\"]",
+            "id": "666861",
+            "question": "Trump out as President before 2027?",
+            "conditionId": "0x48b0b0bca515f68fccf95af4793dbd0edbfec1f8ec6e8df2c0f69ba74f8c4722",
+            "clobTokenIds": "[\"59252515735652674747158950210016502214756531287333895140318848923768750410355\", \"2849827372590072151380088930233312280478318575453624773762283369907909283027\"]",
             "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.065\", \"0.935\"]",
-            "volume": "1069363.279110002",
-            "liquidity": "66839.0782"
-          },
-          {
-            "id": "631141",
-            "question": "Will OpenAI have the best AI model at the end of June 2026?",
-            "conditionId": "0x734c6c32a62f8a27035a222e45fc388d59eeffe89bb31ab26054bc29bcc3eee7",
-            "clobTokenIds": "[\"80866595097163743756836544235158704187050842622501590485463390368127663845144\", \"59148378005891809491211416100126897026310179790411869168117833625964267167611\"]",
-            "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.0265\", \"0.9735\"]",
-            "volume": "921708.0269899948",
-            "liquidity": "100570.31683"
-          },
-          {
-            "id": "631143",
-            "question": "Will Z.ai have the best AI model at the end of June 2026?",
-            "conditionId": "0x9812b1740a7dc0ec0318f66577bd40305576ad43cfcd732399dc02a328035ef2",
-            "clobTokenIds": "[\"96960854506577913637827909727393368741530508565038173215850540697056617713094\", \"31722004522905291320816261931547127152600446925032713964065945137699274246281\"]",
-            "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.0015\", \"0.9985\"]",
-            "volume": "727909.0534570136",
-            "liquidity": "349889.83981"
+            "outcomePrices": "[\"0.095\", \"0.905\"]",
+            "volume": "8984621.499203216",
+            "liquidity": "460595.0326"
           }
         ],
         "source": "polymarket_gamma",
-        "sourceUrl": "https://polymarket.com/event/which-company-has-best-ai-model-end-of-june"
+        "sourceUrl": "https://polymarket.com/event/trump-out-as-president-before-2027"
       },
       "analysis": {
-        "eventId": "57705",
+        "eventId": "73969",
         "source": "polymarket_gamma",
         "newsScout": {
           "agent": "News Scout",
-          "summary": "Событие связано с определением компании с лучшей моделью ИИ на основе рейтинга в Chatbot Arena.",
+          "summary": "Событие связано с возможной отставкой Дональда Трампа, что вызывает интерес в новостях.",
           "facts": [
-            "Решение будет основано на рейтинге моделей на Chatbot Arena LLM Leaderboard.",
-            "Рейтинг будет проверен 30 июня 2026 года в 12:00 по восточному времени.",
-            "В случае ничьей модели будут упорядочены по их Arena score."
+            "Трамп может уйти в отставку или быть удалённым с поста президента до 31 декабря 2026 года.",
+            "Рынок разрешится на 'Да', если Трамп уйдёт в отставку или будет удалён.",
+            "Существуют четкие критерии для разрешения события."
           ],
           "missing": [
-            "Нет актуальных новостей о текущем состоянии моделей ИИ."
+            "Конкретные новости о возможной отставке Трампа.",
+            "Официальные заявления от правительства или Трампа."
           ]
         },
         "riskOfficer": {
           "agent": "Risk Officer",
           "riskLevel": "medium",
           "flags": [
-            "Потенциальные изменения в индустрии ИИ до даты разрешения."
+            "Неопределённость в сроках.",
+            "Потенциальные политические риски."
           ]
         },
         "verdict": {
           "agent": "Verdict Agent",
-          "ppVerdict": "Событие имеет четкие критерии разрешения, но его предсказуемость может быть затруднена изменениями в индустрии ИИ.",
-          "confidence": 75,
+          "ppVerdict": "Существует вероятность того, что Трамп может уйти в отставку до конца 2026 года.",
+          "confidence": 65,
           "edgeScore": null,
           "status": "ready"
         },
@@ -1122,51 +1124,51 @@
             "Risk Officer",
             "Verdict Agent"
           ],
-          "disclaimer": "Анализ только. Не финансовый совет."
+          "disclaimer": "Анализ только. Не является финансовым советом."
         },
         "priority": {
           "agent": "Priority Agent",
-          "score": 76.6,
+          "score": 74.4,
           "decision": "accepted",
-          "reason": "Событие имеет четкую дату и источник для разрешения, однако до этого времени могут произойти изменения в индустрии ИИ, что делает его менее предсказуемым. Тем не менее, критерии разрешения ясны и основаны на объективных данных.",
+          "reason": "Событие связано с возможной отставкой Трампа, что является актуальной темой в новостях, но конкретные сроки остаются неопределёнными. Критерии резолва ясны, и есть возможность получения информации из официальных источников.",
           "rubric": {
             "volume": {
-              "score": 100,
+              "score": 80.3,
               "weight": 25,
-              "weighted": 25.0,
-              "note": "объём всего $12,705,988, за 24ч $690,741"
+              "weighted": 20.07,
+              "note": "объём всего $8,982,166, за 24ч $2,664"
             },
             "liquidity": {
-              "score": 100,
+              "score": 98.9,
               "weight": 20,
-              "weighted": 20.0,
-              "note": "ликвидность $3,840,303"
+              "weighted": 19.77,
+              "note": "ликвидность $458,543"
             },
             "news_driver": {
-              "score": 37.3,
+              "score": 66.5,
               "weight": 25,
-              "weighted": 9.32,
-              "note": "ключевых тем: 0, активность 24ч/всего: 5.44% + LLM",
-              "llmScore": 50.0
+              "weighted": 16.64,
+              "note": "ключевых тем: 5, активность 24ч/всего: 0.03% + LLM",
+              "llmScore": 70.0
             },
             "resolution_clarity": {
-              "score": 78.5,
+              "score": 83.0,
               "weight": 15,
-              "weighted": 11.78,
-              "note": "развёрнутое описание, есть правила резолва, бинарный исход, есть дедлайн, много подрынков — сложнее + LLM",
+              "weighted": 12.45,
+              "note": "развёрнутое описание, есть правила резолва, бинарный исход, есть дедлайн + LLM",
               "llmScore": 80.0
             },
             "time_to_money": {
-              "score": 85,
+              "score": 35,
               "weight": 10,
-              "weighted": 8.5,
-              "note": "до резолва ~20 дн."
+              "weighted": 3.5,
+              "note": "до резолва ~203 дн."
             },
             "price_quality": {
               "score": 40,
               "weight": 5,
               "weighted": 2.0,
-              "note": "лидирующая вероятность ~6%"
+              "note": "лидирующая вероятность ~10%"
             }
           },
           "hardGates": {
@@ -1195,9 +1197,9 @@
         "title": "Nobel Peace Prize Winner 2026",
         "description": "This market will resolve according to the winner of the 2026 Nobel Peace Prize, as announced by the Norwegian Nobel Committee.\n\nIf multiple listed individuals or entities jointly receive the prize, the market will resolve to a single winner. If Donald Trump, Volodymyr Zelenskyy,  Benjamin Netanyahu, Vladimir Putin, or Elon Musk are among the recipients, the market will resolve to the highest-ranked among them in that exact order of precedence. If none of those five are among the winners and the prize is awarded jointly to at least one listed individual and at least one listed organization, the market will resolve in favor of the individual. If no prioritized individuals are among the winners and all listed recipients are of the same type (all individuals or all organizations), the market will resolve to the person whose last name, or the entity’s name, comes first in alphabetical order as listed in this market.\n\nIf no official announcement regarding the 2026 Nobel Peace Prize has been made by March 31, 2027, 11:59 PM ET, this market will resolve to \"Other.\"\n\nThe resolution source for this market will be the first official announcement from the Norwegian Nobel Committee.",
         "category": null,
-        "volume": 19869936.374577034,
-        "volume24hr": 68333.635241,
-        "liquidity": 1385598.05745,
+        "volume": 19915808.873793032,
+        "volume24hr": 72624.12967200001,
+        "liquidity": 1413144.75005,
         "startDate": "2025-10-16T22:33:46.896383Z",
         "endDate": "2026-10-10T00:00:00Z",
         "marketsCount": 71,
@@ -1209,8 +1211,8 @@
             "clobTokenIds": "[\"96308556109755835434254900303426519652053230974356832970824534225192181988516\", \"75648553599758807820760400986240186978327005811004242427218252697572451485336\"]",
             "outcomes": "[\"Yes\", \"No\"]",
             "outcomePrices": "[\"0.075\", \"0.925\"]",
-            "volume": "3596245.7207420133",
-            "liquidity": "460244.8774"
+            "volume": "3597043.417084012",
+            "liquidity": "451074.8504"
           },
           {
             "id": "637004",
@@ -1219,8 +1221,8 @@
             "clobTokenIds": "[\"3494130919441794744300504897798612438496650716124466384425423765833752918969\", \"28096161697269491739201577018265114286225290564353204301878588204336630210171\"]",
             "outcomes": "[\"Yes\", \"No\"]",
             "outcomePrices": "[\"0.075\", \"0.925\"]",
-            "volume": "187779.2600549985",
-            "liquidity": "55893.8524"
+            "volume": "188658.08005499857",
+            "liquidity": "58279.2765"
           },
           {
             "id": "637006",
@@ -1228,9 +1230,9 @@
             "conditionId": "0xdd84a0f9830eb540be5cd7a22bcaaa27aedced37c7994c480f95669a341f1c4e",
             "clobTokenIds": "[\"110720206167890822616321575705807171983245849150110799188723045022216595670551\", \"88258427153334602839061103957324557393993316504272753015676420313968562088509\"]",
             "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.0125\", \"0.9875\"]",
-            "volume": "1296751.3053289976",
-            "liquidity": "53407.22366"
+            "outcomePrices": "[\"0.0145\", \"0.9855\"]",
+            "volume": "1307843.6446879974",
+            "liquidity": "52406.64461"
           }
         ],
         "source": "polymarket_gamma",
@@ -1241,13 +1243,14 @@
         "source": "polymarket_gamma",
         "newsScout": {
           "agent": "News Scout",
-          "summary": "Событие связано с награждением Нобелевской премией мира в 2026 году, но до объявления лауреата еще далеко.",
+          "summary": "Событие связано с присуждением Нобелевской премии мира 2026 года, что вызывает интерес, но до объявления лауреата ещё много времени.",
           "facts": [
             "Нобелевская премия мира 2026 года будет объявлена Норвежским Нобелевским комитетом.",
-            "Существует четкий порядок определения победителя в случае совместного награждения."
+            "Критерии резолва четко определены.",
+            "Существует множество подрынков для различных кандидатов."
           ],
           "missing": [
-            "Нет информации о возможных кандидатах на премию."
+            "Актуальные новости о кандидатах на Нобелевскую премию мира 2026 года."
           ]
         },
         "riskOfficer": {
@@ -1257,13 +1260,13 @@
         },
         "verdict": {
           "agent": "Verdict Agent",
-          "ppVerdict": "Событие имеет низкий уровень неопределенности, но необходимо учитывать, что до объявления лауреата еще далеко.",
-          "confidence": 75,
+          "ppVerdict": "Событие имеет низкую предсказуемость из-за неопределенности в выборе лауреата Нобелевской премии мира 2026 года.",
+          "confidence": 60,
           "edgeScore": null,
-          "status": "ready"
+          "status": "research_required"
         },
         "ui": {
-          "closedCardBadge": "Accepted",
+          "closedCardBadge": "Watchlist",
           "warRoomAgents": [
             "Priority Agent",
             "News Scout",
@@ -1274,27 +1277,27 @@
         },
         "priority": {
           "agent": "Priority Agent",
-          "score": 74.3,
+          "score": 74.4,
           "decision": "accepted",
-          "reason": "Событие имеет некоторую новостную активность, но до объявления лауреата Nobel Peace Prize 2026 еще далеко. Резолв четко определен через официальный источник, что делает его понятным.",
+          "reason": "Событие имеет определённый новостной драйвер, но до объявления лауреата Nobel Peace Prize 2026 остаётся много времени, что делает его менее актуальным. Критерии резолва чёткие, с указанием официального источника, что обеспечивает ясность в разрешении рынка.",
           "rubric": {
             "volume": {
-              "score": 94.4,
+              "score": 94.6,
               "weight": 25,
-              "weighted": 23.59,
-              "note": "объём всего $19,869,936, за 24ч $68,334"
+              "weighted": 23.66,
+              "note": "объём всего $19,915,809, за 24ч $72,624"
             },
             "liquidity": {
               "score": 100,
               "weight": 20,
               "weighted": 20.0,
-              "note": "ликвидность $1,385,598"
+              "note": "ликвидность $1,413,145"
             },
             "news_driver": {
               "score": 45.7,
               "weight": 25,
               "weighted": 11.42,
-              "note": "ключевых тем: 3, активность 24ч/всего: 0.34% + LLM",
+              "note": "ключевых тем: 3, активность 24ч/всего: 0.36% + LLM",
               "llmScore": 50.0
             },
             "resolution_clarity": {
@@ -1308,7 +1311,7 @@
               "score": 55,
               "weight": 10,
               "weighted": 5.5,
-              "note": "до резолва ~122 дн."
+              "note": "до резолва ~121 дн."
             },
             "price_quality": {
               "score": 40,
@@ -1334,65 +1337,66 @@
     {
       "testNo": 10,
       "tags": [
-        "hot"
+        "hot",
+        "news_driven"
       ],
       "event": {
-        "id": "34044",
-        "slug": "will-china-invade-taiwan-before-2027",
-        "title": "Will China invade Taiwan by end of 2026?",
-        "description": "This market will resolve to \"Yes\" if China commences a military offensive intended to establish control over any portion of the Republic of China (Taiwan) by December 31, 2026, 11:59 PM ET. Otherwise, this market will resolve to \"No\".\n\nTerritory under the administration of the Republic of China including any inhabited islands will qualify, however uninhabited islands will not qualify. \n\nThe resolution source for this market will be will be official confirmation by China, Taiwan, the United Nations, or any permanent member of the UN Security Council, however a consensus of credible reporting will also be used.",
-        "category": "China invade Taiwan",
-        "volume": 34055524.67144022,
-        "volume24hr": 150239.52417999992,
-        "liquidity": 517132.60469,
-        "startDate": "2025-07-24T23:47:38.785111Z",
+        "id": "73056",
+        "slug": "ukraine-signs-peace-deal-with-russia-before-2027",
+        "title": "Ukraine signs peace deal with Russia before 2027?",
+        "description": "This market will resolve to “Yes”  if, Ukraine signs any written instrument (e.g., treaty, ceasefire/armistice, framework/“roadmap,” exchange of letters, or mediated agreement text) that: (i) includes both Ukraine and the Russian Federation as parties, and (ii) either ends hostilities/establishes a ceasefire or commits both sides to a defined process toward ending the war (i.e., stated objective of peace/normalization plus principles, steps, and/or a timetable) by December 31, 2026, 11:59 PM ET. Otherwise, this market will resolve to “No”. \n\nOnly Ukraine’s signature is required; Russia’s signature or ratification is not.\n\nLocalized, temporary, or issue-specific arrangements—such as airstrike-limitation or deconfliction protocols, humanitarian pauses, evacuation corridors, prisoner-exchange or trade/export arrangements, border/DMZ adjustments, or ceasefires limited to a particular sector/front/municipality—will not qualify.\n\nThe document must bear a wet-ink or officially issued electronic signature of an authorized Ukrainian representative. Unsigned agreements (e.g., the 2023 Ohrid arrangement) will not qualify regardless of if they are otherwise officially enacted. \n\nThe primary resolution source will be a consensus of credible reporting. \n",
+        "category": "Ukraine x Russia Peace Deal",
+        "volume": 2216601.9507600022,
+        "volume24hr": 36117.377436999996,
+        "liquidity": 84156.2454,
+        "startDate": "2025-11-05T18:06:00.699378Z",
         "endDate": "2026-12-31T00:00:00Z",
         "marketsCount": 1,
         "markets": [
           {
-            "id": "567621",
-            "question": "Will China invade Taiwan by end of 2026?",
-            "conditionId": "0xd9fb1184af0064e5e34b129f5b79afa5a17b7e32f2953ab05efed82315fee6d4",
-            "clobTokenIds": "[\"94559586571241563470235664821564670251180951772614764383113614156422396181162\", \"90772332434487149264114862115632028379978765245278600275169585501290867536237\"]",
+            "id": "665224",
+            "question": "Ukraine signs peace deal with Russia before 2027?",
+            "conditionId": "0x4167e22670f31e5f93d132f78108f3fae809bd15cadf78983eff096845ed1415",
+            "clobTokenIds": "[\"93579588306754356558129639371052358607099327699211232141859164590129536814208\", \"50854871681873904159181209043129993931106057788784391855429428220428495613305\"]",
             "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.0715\", \"0.9285\"]",
-            "volume": "34055541.775228225",
-            "liquidity": "516878.57391"
+            "outcomePrices": "[\"0.265\", \"0.735\"]",
+            "volume": "2216601.9507600022",
+            "liquidity": "82931.7854"
           }
         ],
         "source": "polymarket_gamma",
-        "sourceUrl": "https://polymarket.com/event/will-china-invade-taiwan-before-2027"
+        "sourceUrl": "https://polymarket.com/event/ukraine-signs-peace-deal-with-russia-before-2027"
       },
       "analysis": {
-        "eventId": "34044",
+        "eventId": "73056",
         "source": "polymarket_gamma",
         "newsScout": {
           "agent": "News Scout",
-          "summary": "Событие вызывает значительный интерес в новостях, но конкретные действия Китая остаются неопределенными.",
+          "summary": "Существует неопределенность относительно подписания мирного соглашения между Украиной и Россией.",
           "facts": [
-            "Китай продолжает наращивать военное присутствие в регионе.",
-            "Тайвань усиливает свою оборону в ответ на угрозы.",
-            "Международное сообщество выражает обеспокоенность по поводу возможной агрессии Китая."
+            "Соглашение должно быть подписано Украиной до 31 декабря 2026 года.",
+            "Подписанное соглашение должно включать прекращение боевых действий или процесс к его завершению.",
+            "Требуется официальная подпись уполномоченного представителя Украины."
           ],
           "missing": [
-            "Отсутствие конкретных заявлений от официальных лиц Китая о планах вторжения.",
-            "Недостаток информации о возможных реакциях международного сообщества в случае конфликта."
+            "Конкретные новости о текущих переговорах между Украиной и Россией.",
+            "Информация о возможных условиях, которые могут быть предложены Россией."
           ]
         },
         "riskOfficer": {
           "agent": "Risk Officer",
           "riskLevel": "medium",
           "flags": [
-            "Неопределенность в действиях Китая.",
-            "Высокий уровень напряженности в регионе."
+            "Неопределенность в политической ситуации.",
+            "Вероятность изменения условий переговоров."
           ]
         },
         "verdict": {
           "agent": "Verdict Agent",
-          "ppVerdict": "Существует вероятность того, что Китай может начать военные действия против Тайваня до конца 2026 года.",
-          "confidence": 65,
+          "ppVerdict": "Вероятность подписания мирного соглашения между Украиной и Россией до 2027 года остается низкой.",
+          "confidence": 60,
           "edgeScore": null,
-          "status": "ready"
+          "status": "research_required"
         },
         "ui": {
           "closedCardBadge": "Accepted",
@@ -1402,51 +1406,51 @@
             "Risk Officer",
             "Verdict Agent"
           ],
-          "disclaimer": "Анализ только. Не является финансовым советом."
+          "disclaimer": "Analysis only. Not financial advice."
         },
         "priority": {
           "agent": "Priority Agent",
-          "score": 74.2,
+          "score": 73.9,
           "decision": "accepted",
-          "reason": "Событие активно обсуждается в новостях, но конкретные сроки и действия остаются неопределенными. Критерии резолва в целом понятны, но могут возникнуть нюансы в интерпретации официальных источников.",
+          "reason": "Событие имеет значимый новостной контекст, однако точная дата подписания соглашения не определена, что снижает его драйверную силу. Критерии резолва четкие, но зависят от интерпретации новостей и отчетов, что добавляет некоторую неопределенность.",
           "rubric": {
             "volume": {
-              "score": 97.8,
+              "score": 86.5,
               "weight": 25,
-              "weighted": 24.45,
-              "note": "объём всего $34,055,525, за 24ч $150,240"
+              "weighted": 21.63,
+              "note": "объём всего $2,216,602, за 24ч $36,117"
             },
             "liquidity": {
-              "score": 100,
+              "score": 76.8,
               "weight": 20,
-              "weighted": 20.0,
-              "note": "ликвидность $517,133"
+              "weighted": 15.36,
+              "note": "ликвидность $84,156"
             },
             "news_driver": {
-              "score": 49.2,
+              "score": 63.7,
               "weight": 25,
-              "weighted": 12.29,
-              "note": "ключевых тем: 0, активность 24ч/всего: 0.44% + LLM",
+              "weighted": 15.93,
+              "note": "ключевых тем: 4, активность 24ч/всего: 1.63% + LLM",
               "llmScore": 70.0
             },
             "resolution_clarity": {
-              "score": 79.5,
+              "score": 83.0,
               "weight": 15,
-              "weighted": 11.93,
+              "weighted": 12.45,
               "note": "развёрнутое описание, есть правила резолва, бинарный исход, есть дедлайн + LLM",
-              "llmScore": 75.0
+              "llmScore": 80.0
             },
             "time_to_money": {
               "score": 35,
               "weight": 10,
               "weighted": 3.5,
-              "note": "до резолва ~204 дн."
+              "note": "до резолва ~203 дн."
             },
             "price_quality": {
-              "score": 40,
+              "score": 100,
               "weight": 5,
-              "weighted": 2.0,
-              "note": "лидирующая вероятность ~7%"
+              "weighted": 5.0,
+              "note": "лидирующая вероятность ~26%"
             }
           },
           "hardGates": {
