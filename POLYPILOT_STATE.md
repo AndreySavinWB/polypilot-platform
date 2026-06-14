@@ -16,7 +16,7 @@
 **Текущая фаза:** dual-track monetization утверждён CEO; Funnel 1.0 + PolyPilot Starter (primary) + Polymarket referral (secondary после $10k gate).  
 **Текущий владелец:** `05_CRO / Monetization Manager` (исполнение) · `01_CEO` (контроль)
 
-Главное узкое место сейчас: нет проверенного paid offer (5–10 оплат Starter) и UI пока не показывает real PIE-output. Контент-машину строим сейчас, referral — второй слой, не core business.
+Главное узкое место сейчас: нет проверенного paid offer (5–10 оплат Starter). PIE v1.0g + Strategy Layer подключены к `event.html`; prod ждёт Railway Public URL в `pp-config.js`. Контент-машину строим сейчас, referral — второй слой, не core business.
 
 ---
 
@@ -114,7 +114,7 @@
 - **Funnel 1.0:** контент-машина Shorts/Reels/X → Telegram Hub → guest-event → PolyPilot Starter.
 - Minimal paid proof: `PolyPilot Starter: Polymarket + 3 live разбора событий` (цель: 5–10 оплат).
 - Product architecture: Strategy Intelligence Layer превращает ленту “интересных событий” в события, выбранные под конкретные trading setups.
-- Integration: подключить real PIE v1.0g output к UI-каркасу `event.html`.
+- Integration: **PIE v1.0g в event.html** — `pie-api.js` (API + render), Strategy badge/verdict, market structure, probability; prod: `usePieApi` + `PP_PROD_API_BASE` в `pp-config.js`.
 - План набора **$10k lifetime volume** на Polymarket для unlock referral link.
 - Финализация affiliate disclosure copy для Polymarket CTA (принцип утверждён CEO).
 - Offer page / copy для PolyPilot Starter.
@@ -123,7 +123,7 @@
 
 ## Блокеры
 
-- UI пока не подключён к реальному backend-output PIE v1.0g.
+- **Prod PIE:** на Vercel `usePieApi` включён для prod-хостов; нужен живой Railway Public URL в `PP_PROD_API_BASE` (`platform/assets/js/pp-config.js`). Пока URL не совпадает с деплоем — mock fallback.
 - `titleRu` в smoke-test остаётся на английском без LLM-ключа.
 - Event Type Classifier v0 даёт rule-based misfire на edge cases: 2 из 10 тестовых событий.
 - Market Intelligence работает только на данных Polymarket, без whale API.
@@ -145,25 +145,25 @@
 
 ## Следующий шаг
 
-Checkpoint-коммит PIE v1.0g выполнен локально (`36afd4e`). Следующий publish — push на GitHub/Railway.
+Checkpoint UI + PIE integration опубликован.
 
 Следующий шаг (утверждён CEO, dual-track):
 
 ```text
 Track A (primary):
-  Funnel 1.0 → PolyPilot Starter → Early Access
+  05_CRO → Event Content Pack #1 (live PIE) → Shorts/TG → Starter (5–10 оплат)
 
 Track B (secondary, после $10k volume gate):
   разбор события → мягкий CTA «Open on Polymarket» + disclosure
 
 Track C (later):
-  PP platform → real PIE-output → PRO subscription
+  PP platform PRO subscription
 
 Порядок исполнения:
-1) CRO/Marketing: запуск Funnel 1.0 + offer copy для Starter
-2) Backend/UI: real PIE v1.0g output в event.html
-3) CRO: план $10k volume + disclosure copy
-4) UI: soft locked-state + Polymarket CTA после разбора (не в hooks Shorts)
+1) CRO: первый Event Content Pack + публикация Funnel 1.0
+2) CEO: Railway Public URL → PP_PROD_API_BASE (если ещё не задеплоен backend)
+3) UI: guest-event + strategy badge в ленте events.html
+4) CRO: план $10k volume + disclosure copy
 ```
 
 Последний принятый backend-output:
@@ -285,20 +285,12 @@ PIE v1.3 утверждён как основа дальнейшей разра�
 
 ## Последнее изменение UI
 
-`03_UX/UI Designer` добавил и доработал UI-каркас PIE v1.3 в открытой карточке события `platform/app/event.html`.
+`03_UX/UI Designer` + `04_Backend Dev` — PIE v1.0g + Strategy Layer в `event.html`:
 
-Приняты 8 блоков:
-
-1. Разбивка вероятности PP AI
-2. Тип события
-3. Разведка рынка
-4. Структура рынка
-5. Качество источников
-6. Карта противоречий
-7. Исторические аналоги
-8. История точности PP
-
-Статус: принято CEO.
+- `platform/assets/js/pie-api.js` — `loadPiePackage`, `mapStoreEventToPieInput`, `renderPieFromPackage`
+- `platform/assets/js/pp-config.js` — prod auto-config (`usePieApi`, `PP_PROD_API_BASE`)
+- Strategy badge, Strategy verdict, Market Structure, Probability — real data или mock fallback
+- Globals: `window.__PP_PIE_PACKAGE__`, `__PP_PIE_META__`, `__PP_PIE_STRATEGY__`, `__PP_PIE_VERDICT__`
 
 ---
 

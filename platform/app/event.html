@@ -1278,6 +1278,108 @@
       color: rgba(251,146,60,0.80);
     }
     .ev-pie-no-flags { font-size: 11px; color: rgba(34,211,166,0.50); font-style: italic; }
+
+    /* ── Strategy Intelligence Layer ── */
+    .pie-strategy-badge {
+      margin-bottom: 10px; padding: 18px 20px; border-radius: 14px;
+      background: linear-gradient(135deg, rgba(26,111,255,0.08), rgba(123,47,255,0.05));
+      border: 1px solid rgba(26,111,255,0.22);
+    }
+    .pie-strategy-badge-hdr {
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+      margin-bottom: 10px;
+    }
+    .pie-strategy-badge-eyebrow {
+      font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      color: rgba(96,165,250,0.75);
+    }
+    .pie-strategy-status {
+      font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 9999px;
+      text-transform: uppercase; letter-spacing: 0.4px; flex-shrink: 0;
+    }
+    .pie-strategy-status.candidate { background: rgba(34,211,166,0.12); color: #22D3A6; border: 1px solid rgba(34,211,166,0.25); }
+    .pie-strategy-status.watchlist { background: rgba(251,146,60,0.10); color: #fb923c; border: 1px solid rgba(251,146,60,0.22); }
+    .pie-strategy-status.not_a_fit { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.35); border: 1px solid rgba(255,255,255,0.10); }
+    .pie-strategy-name { font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 8px; letter-spacing: -0.3px; }
+    .pie-strategy-why { font-size: 13px; color: rgba(255,255,255,0.52); line-height: 1.65; }
+
+    .pie-strategy-verdict {
+      margin-bottom: 10px; padding: 20px 22px; border-radius: 14px;
+      background: rgba(255,255,255,0.025); border: 1px solid rgba(139,92,246,0.18);
+    }
+    .pie-strategy-verdict-hdr {
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;
+      margin-bottom: 12px; flex-wrap: wrap;
+    }
+    .pie-strategy-verdict-title {
+      font-size: 12.5px; font-weight: 700; color: rgba(255,255,255,0.72);
+    }
+    .pie-strategy-verdict-metrics {
+      display: flex; gap: 8px; flex-wrap: wrap;
+    }
+    .pie-verdict-metric {
+      font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 8px;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.55);
+    }
+    .pie-verdict-metric strong { color: #fff; font-weight: 700; }
+    .pie-strategy-verdict-summary {
+      font-size: 13.5px; color: rgba(255,255,255,0.58); line-height: 1.7; margin: 0 0 16px;
+    }
+    .pie-strategy-verdict-cols {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;
+    }
+    @media (max-width: 700px) { .pie-strategy-verdict-cols { grid-template-columns: 1fr; } }
+    .pie-verdict-col-title {
+      font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px;
+      color: rgba(255,255,255,0.30); margin-bottom: 8px;
+    }
+    .pie-verdict-list {
+      margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px;
+    }
+    .pie-verdict-list li {
+      font-size: 12px; color: rgba(255,255,255,0.50); line-height: 1.5;
+      padding-left: 14px; position: relative;
+    }
+    .pie-verdict-list li::before {
+      content: '·'; position: absolute; left: 0; color: rgba(255,255,255,0.25);
+    }
+    .pie-verdict-list.invalidation li::before { color: rgba(248,113,113,0.55); }
+    .pie-strategy-verdict-disclaimer {
+      font-size: 10.5px; color: rgba(255,255,255,0.22); line-height: 1.55; margin: 0;
+      padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .pie-risk-low, .pie-risk-green { color: #22c55e !important; }
+    .pie-risk-medium, .pie-risk-orange { color: #f97316 !important; }
+    .pie-risk-high, .pie-risk-red { color: #f87171 !important; }
+    .pie-risk-unknown { color: rgba(255,255,255,0.40) !important; }
+
+    .pie-prob-badge {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;
+      padding: 2px 7px; border-radius: 4px; margin-left: 6px;
+    }
+    .pie-prob-badge.ok { background: rgba(34,211,166,0.10); color: #22D3A6; border: 1px solid rgba(34,211,166,0.22); }
+    .pie-prob-badge.preliminary { background: rgba(251,146,60,0.10); color: #fb923c; border: 1px solid rgba(251,146,60,0.22); }
+    .pie-prob-badge.insufficient { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.35); border: 1px solid rgba(255,255,255,0.10); }
+
+    .pie-locked-wrap { position: relative; display: inline-block; }
+    .pie-locked-wrap.is-locked .pie-locked-val { filter: blur(6px); user-select: none; pointer-events: none; }
+    .pie-locked-overlay {
+      display: none; position: absolute; inset: 0;
+      align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase;
+      color: rgba(196,181,253,0.85);
+    }
+    .pie-locked-wrap.is-locked .pie-locked-overlay { display: flex; }
+
+    .pie-evidence-items { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+    .pie-evidence-item {
+      font-size: 11px; color: rgba(255,255,255,0.45); line-height: 1.45;
+      padding: 8px 10px; border-radius: 8px;
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+    }
+    .pie-evidence-item strong { color: rgba(255,255,255,0.72); font-weight: 600; }
   </style>
 </head>
 <body>
@@ -1294,6 +1396,7 @@
 <script src="../data/events-live.js"></script>
 <script src="../data/events-data.js"></script>
 <script src="../assets/js/events-store.js"></script>
+<script src="../assets/js/pie-api.js"></script>
 <script src="../assets/js/state.js"></script>
 <script src="../assets/js/sidebar.js"></script>
 <script>
@@ -1764,10 +1867,40 @@
 
       <div class="pie-sec-hdr">
         <div>
-          <span class="pie-sec-badge">PIE v1.3</span>
+          <span class="pie-sec-badge" id="pie-sec-badge">PIE</span>
           <div class="pie-sec-title">Как PP AI считал прогноз</div>
         </div>
-        <div class="pie-sec-sub">8 слоёв анализа · демонстрационные данные</div>
+        <div class="pie-sec-sub" id="pie-sec-sub">Загрузка анализа…</div>
+      </div>
+
+      <!-- Strategy Badge -->
+      <div class="pie-strategy-badge" id="pie-strategy-badge">
+        <div class="pie-strategy-badge-hdr">
+          <span class="pie-strategy-badge-eyebrow">Почему PP выбрал это событие</span>
+          <span class="pie-strategy-status watchlist" id="pie-strategy-status">—</span>
+        </div>
+        <div class="pie-strategy-name" id="pie-strategy-name">Анализ стратегии…</div>
+        <div class="pie-strategy-why" id="pie-strategy-why">Загрузка данных PIE…</div>
+      </div>
+
+      <!-- Strategy Verdict -->
+      <div class="pie-strategy-verdict" id="pie-strategy-verdict">
+        <div class="pie-strategy-verdict-hdr">
+          <div class="pie-strategy-verdict-title">Вывод по стратегии</div>
+          <div class="pie-strategy-verdict-metrics" id="pie-verdict-metrics"></div>
+        </div>
+        <p class="pie-strategy-verdict-summary" id="pie-verdict-summary"></p>
+        <div class="pie-strategy-verdict-cols">
+          <div>
+            <div class="pie-verdict-col-title">Что проверить</div>
+            <ul class="pie-verdict-list" id="pie-verdict-checks"></ul>
+          </div>
+          <div>
+            <div class="pie-verdict-col-title">Когда setup ломается</div>
+            <ul class="pie-verdict-list invalidation" id="pie-verdict-invalidation"></ul>
+          </div>
+        </div>
+        <p class="pie-strategy-verdict-disclaimer" id="pie-verdict-disclaimer"></p>
       </div>
 
       <!-- ── БЛОК 0: Разбивка вероятности (коллапсируемый) ── -->
@@ -1779,16 +1912,22 @@
             </div>
             <div>
               <div class="ev-pie-hdr-title">Блок 0 · Разбивка вероятности PP AI</div>
-              <div class="ev-pie-hdr-sub">7 компонентов формулы v1.1 · нажмите чтобы раскрыть</div>
+              <div class="ev-pie-hdr-sub" id="pie-prob-sub">7 компонентов · нажмите чтобы раскрыть</div>
             </div>
-            <span class="ev-pie-hdr-badge">Формула v1.1</span>
+            <span class="ev-pie-hdr-badge" id="pie-prob-mode-badge">rules_v0</span>
           </div>
           <div class="ev-pie-hdr-prob">
-            <div class="ev-pie-prob-val">74%</div>
+            <div class="pie-locked-wrap" id="pie-hdr-pp-wrap">
+              <div class="ev-pie-prob-val pie-locked-val" id="pie-hdr-pp-val">—</div>
+              <div class="pie-locked-overlay">PRO</div>
+            </div>
             <div class="ev-pie-prob-lbl">PP AI</div>
           </div>
           <div class="ev-pie-edge-pill">
-            <div class="ev-pie-edge-val">+18 пп</div>
+            <div class="pie-locked-wrap" id="pie-hdr-edge-wrap">
+              <div class="ev-pie-edge-val pie-locked-val" id="pie-hdr-edge-val">—</div>
+              <div class="pie-locked-overlay">PRO</div>
+            </div>
             <div class="ev-pie-edge-lbl">Edge</div>
           </div>
           <div class="ev-pie-chevron">
@@ -1801,14 +1940,17 @@
             <div class="ev-pie-comps" id="ev-pie-comps"></div>
             <div class="ev-pie-sum">
               <div class="ev-pie-sum-left">
-                <div class="ev-pie-sum-lbl">Вероятность PP AI</div>
+                <div class="ev-pie-sum-lbl">Вероятность PP AI <span class="pie-prob-badge preliminary" id="pie-prob-status-badge"></span></div>
                 <div class="ev-pie-sum-formula">Итог считается как сумма взвешенных сигналов с ограничением от 2% до 98%</div>
                 <div class="ev-pie-sum-market">
-                  Рынок: <span class="ev-pie-sum-mkt-val">56%</span>
-                  · Edge PP: <span class="ev-pie-sum-edge">+18 пп</span>
+                  Рынок: <span class="ev-pie-sum-mkt-val" id="pie-sum-mkt-val">—</span>
+                  · Edge PP: <span class="ev-pie-sum-edge" id="pie-sum-edge-val">—</span>
                 </div>
               </div>
-              <div class="ev-pie-sum-val">74%</div>
+              <div class="pie-locked-wrap" id="pie-sum-pp-wrap">
+                <div class="ev-pie-sum-val pie-locked-val" id="pie-sum-pp-val">—</div>
+                <div class="pie-locked-overlay">PRO</div>
+              </div>
             </div>
             <div class="ev-pie-flags-row" id="ev-pie-flags"></div>
           </div>
@@ -1818,8 +1960,7 @@
       <!-- ── БЛОКИ 1–4: сетка 2×2 ── -->
       <div class="pie-grid">
 
-        <!-- Блок 1: Тип события -->
-        <div class="pie-card">
+        <div class="pie-card" id="pie-card-classification">
           <div class="pie-card-hdr">
             <div class="pie-card-icon" style="background:rgba(99,102,241,0.12)">
               <svg viewBox="0 0 20 20" fill="none" stroke="#818cf8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="14" height="14" rx="2.5"/><line x1="7" y1="7" x2="13" y2="7"/><line x1="7" y1="10" x2="11" y2="10"/><line x1="7" y1="13" x2="9" y2="13"/></svg>
@@ -1829,16 +1970,10 @@
               <div class="pie-card-badge-row"><span class="pie-block-badge">Классификатор типа события</span></div>
             </div>
           </div>
-          <div class="pie-card-body">
-            <div class="pie-kv"><span class="pie-kv-lbl">Тип события</span><span class="pie-kv-val c-violet">Макро / ДКП</span></div>
-            <div class="pie-kv"><span class="pie-kv-lbl">Подтип</span><span class="pie-kv-val">Решение регулятора</span></div>
-            <div class="pie-kv"><span class="pie-kv-lbl">Профиль анализа</span><span class="pie-kv-val" style="font-size:11px;font-family:monospace">macro_economic</span></div>
-            <div class="pie-kv"><span class="pie-kv-lbl">Уверенность классификации</span><span class="pie-kv-val c-green">92%</span></div>
-          </div>
+          <div class="pie-card-body" id="pie-body-classification"></div>
         </div>
 
-        <!-- Блок 2: Разведка рынка -->
-        <div class="pie-card">
+        <div class="pie-card" id="pie-card-mi">
           <div class="pie-card-hdr">
             <div class="pie-card-icon" style="background:rgba(34,211,166,0.10)">
               <svg viewBox="0 0 20 20" fill="none" stroke="#22D3A6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><polyline points="10 7 10 10 13 12"/></svg>
@@ -1848,16 +1983,10 @@
               <div class="pie-card-badge-row"><span class="pie-block-badge">Разведка рынка</span></div>
             </div>
           </div>
-          <div class="pie-card-body">
-            <div class="pie-kv"><span class="pie-kv-lbl">Сигнал китов</span><span class="pie-kv-val c-green">накопление YES</span></div>
-            <div class="pie-kv"><span class="pie-kv-lbl">Направление денег</span><span class="pie-kv-val c-green">+$2.4M за 24ч</span></div>
-            <div class="pie-kv"><span class="pie-kv-lbl">Уверенность</span><span class="pie-kv-val">78%</span></div>
-            <div class="pie-kv"><span class="pie-kv-lbl">Аномалии</span><span class="pie-kv-val c-orange">объём ×2.3 нормы</span></div>
-          </div>
+          <div class="pie-card-body" id="pie-body-mi"></div>
         </div>
 
-        <!-- Блок 3: Структура рынка -->
-        <div class="pie-card">
+        <div class="pie-card" id="pie-card-structure">
           <div class="pie-card-hdr">
             <div class="pie-card-icon" style="background:rgba(96,165,250,0.10)">
               <svg viewBox="0 0 20 20" fill="none" stroke="#60a5fa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="12" width="4" height="6" rx="1"/><rect x="8" y="8" width="4" height="10" rx="1"/><rect x="14" y="3" width="4" height="15" rx="1"/></svg>
@@ -1867,16 +1996,10 @@
               <div class="pie-card-badge-row"><span class="pie-block-badge">Анализ структуры рынка</span></div>
             </div>
           </div>
-          <div class="pie-card-body">
-            <div class="pie-kv"><span class="pie-kv-lbl">Здоровье рынка</span><span class="pie-kv-val c-orange">72 / 100</span></div>
-            <div class="pie-kv"><span class="pie-kv-lbl">Концентрация кошельков</span><span class="pie-kv-val">средняя</span></div>
-            <div class="pie-kv"><span class="pie-kv-lbl">Риск манипуляции</span><span class="pie-kv-val c-green">низкий</span></div>
-            <div class="pie-kv"><span class="pie-kv-lbl">Надёжность цены</span><span class="pie-kv-val c-orange">×0.85</span></div>
-          </div>
+          <div class="pie-card-body" id="pie-body-structure"></div>
         </div>
 
-        <!-- Блок 4: Качество источников -->
-        <div class="pie-card">
+        <div class="pie-card" id="pie-card-evidence">
           <div class="pie-card-hdr">
             <div class="pie-card-icon" style="background:rgba(251,146,60,0.10)">
               <svg viewBox="0 0 20 20" fill="none" stroke="#fb923c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7.5"/><polyline points="7 10 9 12 13 8"/></svg>
@@ -1886,18 +2009,13 @@
               <div class="pie-card-badge-row"><span class="pie-block-badge">Оценка источников</span></div>
             </div>
           </div>
-          <div class="pie-card-body">
-            <div class="pie-kv"><span class="pie-kv-lbl">Качество доказательств (EQS)</span><span class="pie-kv-val c-green">84 / 100</span></div>
-            <div class="pie-kv"><span class="pie-kv-lbl">Проверенных источников</span><span class="pie-kv-val">12 (Tier A: 4, B: 8)</span></div>
-            <div class="pie-kv"><span class="pie-kv-lbl">Свежесть данных</span><span class="pie-kv-val c-green">4 часа назад</span></div>
-            <div class="pie-kv"><span class="pie-kv-lbl">Дублей удалено</span><span class="pie-kv-val">7</span></div>
-          </div>
+          <div class="pie-card-body" id="pie-body-evidence"></div>
         </div>
 
       </div><!-- /pie-grid -->
 
       <!-- ── БЛОК 5: Карта противоречий (full width) ── -->
-      <div class="pie-card-wide">
+      <div class="pie-card-wide" id="pie-card-contradiction">
         <div class="pie-card-hdr" style="border-bottom:none;padding-bottom:0">
           <div class="pie-card-icon" style="background:rgba(248,113,113,0.10)">
             <svg viewBox="0 0 20 20" fill="none" stroke="#f87171" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3l1.5 4.5h4.5l-3.5 2.7 1.3 4.3L10 12l-3.8 2.5 1.3-4.3L4 7.5h4.5L10 3z"/></svg>
@@ -1908,27 +2026,26 @@
         <div class="pie-contradiction">
           <div class="pie-contra-col">
             <div class="pie-contra-lbl">Рынок говорит</div>
-            <div class="pie-contra-val" style="color:#a78bfa">56%</div>
-            <div class="pie-contra-sub">Полимаркет · участники</div>
+            <div class="pie-contra-val" id="pie-contra-mkt" style="color:#a78bfa">—</div>
+            <div class="pie-contra-sub">Polymarket · участники</div>
           </div>
           <div class="pie-contra-arrow">
             <svg viewBox="0 0 60 20" fill="none" width="60" height="20">
               <line x1="4" y1="10" x2="56" y2="10" stroke="rgba(255,255,255,0.14)" stroke-width="1.5"/>
               <polyline points="46,4 56,10 46,16" stroke="rgba(255,255,255,0.14)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
             </svg>
-            <div class="pie-contra-gap">+18 пп</div>
+            <div class="pie-contra-gap" id="pie-contra-gap">—</div>
           </div>
           <div class="pie-contra-col">
             <div class="pie-contra-lbl">PolyPilot видит</div>
-            <div class="pie-contra-val" style="color:#22D3A6">74%</div>
-            <div class="pie-contra-sub">Формула PIE v1.1</div>
+            <div class="pie-locked-wrap" id="pie-contra-pp-wrap">
+              <div class="pie-contra-val pie-locked-val" id="pie-contra-pp" style="color:#22D3A6">—</div>
+              <div class="pie-locked-overlay">PRO</div>
+            </div>
+            <div class="pie-contra-sub">PIE · rules_v0</div>
           </div>
         </div>
-        <div class="pie-contra-desc">
-          Объём ставок и поведение китов (накопление YES) опережают рыночную цену.
-          Исторически такой разрыв закрывается в течение горизонта прогноза.
-          Сила противоречия: <span style="color:#fb923c;font-weight:700">средняя</span> · Коррекция в формуле: −2 пп
-        </div>
+        <div class="pie-contra-desc" id="pie-contra-desc"></div>
       </div>
 
       <!-- ── БЛОКИ 6–7: две колонки ── -->
@@ -2115,65 +2232,13 @@
 
   </div>`;
 
-  /* ── PIE v1.3 Analysis Section ── */
-  (function () {
-    // Мок-данные PIE v1.3 согласно PROBABILITY_FORMULA_V1_1.md
-    // ppProb = 74%, marketProb = 56%, edge = +18 пп
-    // weighted = вклад компонента в пп (сумма = 74)
-    const PIE = {
-      components: [
-        { num:1, id:'market_base',       name:'Рыночная база',          desc:'Рынок 56% · market_reliability_mult 0.85 (health 72)',              w:0.28, raw:0.56, mult:0.85, weighted:42, color:'#a78bfa' },
-        { num:2, id:'whale_signal',      name:'Сигнал китов',           desc:'accumulation_yes · confidence 78% · объём ×2.3',                    w:0.15, raw:0.75, mult:1.0,  weighted:8,  color:'#22D3A6' },
-        { num:3, id:'news_signal',       name:'Новостной сигнал',       desc:'EQS=84 · mult 0.8 · 12 источников Tier A/B · 5 уникальных фактов', w:0.22, raw:0.65, mult:0.80, weighted:6,  color:'#60a5fa' },
-        { num:4, id:'social_signal',     name:'Соцсети / X',            desc:'Умеренный сентимент · дубли снижают EQS_mult до 0.55',              w:0.08, raw:0.55, mult:0.55, weighted:3,  color:'#fb923c' },
-        { num:5, id:'trends_signal',     name:'Google Trends',          desc:'delta +68% за 7 дней · тема совпадает · EQS_mult = 1.0',            w:0.12, raw:0.70, mult:1.0,  weighted:5,  color:'#f472b6' },
-        { num:6, id:'historical_rate',   name:'Исторический базис',     desc:'5 аналогов · similarity 0.68 (высокая) · средний исход YES 63%',    w:0.08, raw:0.63, mult:0.50, weighted:12, color:'#818cf8' },
-        { num:7, id:'contradiction_adj', name:'Корр. противоречий',     desc:'Сила противоречия: средняя → −2 пп · корректировка всегда ≤ 0',     w:0.07, raw:-0.02,mult:1.0,  weighted:-2, color:'#f87171' },
-      ],
-      flags: ['low_analog_weight'],
-    };
-
-    const compsEl = main.querySelector('#ev-pie-comps');
-    const flagsEl = main.querySelector('#ev-pie-flags');
-    if (!compsEl) return;
-
-    const maxAbs = Math.max(...PIE.components.map(c => Math.abs(c.weighted)));
-
-    compsEl.innerHTML = PIE.components.map(c => {
-      const isNeg   = c.weighted < 0;
-      const barPct  = Math.round(Math.abs(c.weighted / maxAbs) * 100);
-      const multCls = c.mult === 1.0 ? 'full' : (c.mult <= 0.55 ? 'partial' : '');
-      const rawDisp = c.raw < 0 ? Math.round(c.raw * 100) + ' пп' : Math.round(c.raw * 100) + '%';
-      const valStr  = (isNeg ? '−' : '+') + Math.abs(c.weighted) + ' пп';
-
-      return `
-        <div class="ev-pie-row" title="${c.desc}">
-          <div class="ev-pie-row-num" style="background:${c.color}1A;color:${c.color}">${c.num}</div>
-          <div class="ev-pie-row-main">
-            <div class="ev-pie-row-labels">
-              <span class="ev-pie-row-name">${c.name}</span>
-              <div class="ev-pie-row-meta">
-                <span class="ev-pie-row-w">w=${c.w}</span>
-                <span class="ev-pie-row-mult ${multCls}">×${c.mult}</span>
-                <span class="ev-pie-row-raw">${rawDisp}</span>
-              </div>
-            </div>
-            <div class="ev-pie-row-bar-bg">
-              <div class="ev-pie-row-bar-fill"
-                   style="width:${barPct}%;background:${isNeg ? '#f87171' : c.color};opacity:${isNeg ? 0.55 : 0.72}">
-              </div>
-            </div>
-          </div>
-          <div class="ev-pie-row-val" style="color:${isNeg ? '#f87171' : c.color}">${valStr}</div>
-        </div>`;
-    }).join('');
-
-    if (flagsEl) {
-      flagsEl.innerHTML = PIE.flags.length
-        ? `<span class="ev-pie-flags-lbl">Флаги:</span>`
-          + PIE.flags.map(f => `<span class="ev-pie-flag">${f}</span>`).join('')
-        : `<span class="ev-pie-no-flags">Флагов нет — полные данные</span>`;
-    }
+  /* ── PIE: real backend package or mock fallback ── */
+  (async function () {
+    if (!window.PP_PIE_API) return;
+    const pieMeta = await PP_PIE_API.loadPiePackage(ev);
+    window.__PP_PIE_PACKAGE__ = pieMeta.package || null;
+    window.__PP_PIE_META__ = pieMeta;
+    renderPieFromPackage(pieMeta.package, pieMeta, main.querySelector('#pie-analysis'), { canSeeEdge });
 
     const hdrEl   = main.querySelector('#ev-pie-toggle');
     const panelEl = main.querySelector('#ev-pie-panel');
