@@ -49,6 +49,7 @@ Short Content (Reels/Shorts/X)
 | [BRAND_GUARDRAILS.md](BRAND_GUARDRAILS.md) | Brand architecture, allowed/banned hooks, CTA rules |
 | [CONTENT_MATRIX.md](CONTENT_MATRIX.md) | Сегмент → боль → hook → формат → CTA |
 | [EVENT_CONTENT_PACK_TEMPLATE.md](EVENT_CONTENT_PACK_TEMPLATE.md) | Шаблон контент-завода на одно событие |
+| [packs/PACK_001_FED_RATE_CUTS_2026.md](packs/PACK_001_FED_RATE_CUTS_2026.md) | **Pack #1** · Fed rate cuts 2026 · ready to publish |
 | [CHANNEL_STACK.md](CHANNEL_STACK.md) | Каналы, syndication, объёмы публикаций |
 | [BOT_SEQUENCE_72H.md](BOT_SEQUENCE_72H.md) | Telegram bot под PolyPilot Starter |
 | [STARTER_ASSETS.md](STARTER_ASSETS.md) | 20 hooks + 5 event packs для теста |

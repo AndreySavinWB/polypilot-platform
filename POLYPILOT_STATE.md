@@ -154,20 +154,20 @@
 
 ## Следующий шаг
 
-**CEO — Track A publish (Pack #1 уже готов):**
+**CEO — Track A T+0 (сейчас):** публикация Pack #1 · `packs/PACK_001_FED_RATE_CUTS_2026.md` ✅ в git
 
 ```text
-T+0:  TG Post 1 + Short A → guest-event?id=live-51456
+T+0:  TG Post 1 + Short A → guest-event live-51456
+T+2h: X thread (6 tweets)
 T+24h: Post 2 + Short B
-T+48h: Post 3 + Starter CTA
+T+48h: Post 3 + Starter CTA + Short C
 KPI: ≥3 guest clicks · ≥1 /starter · 1 оплата или 5 pre-orders
 ```
 
-**03/04 (done in code, verify after deploy):**
-- Hard refresh event.html — PRO banner под hero, Strategy блок, рынок 80% синхронен
-- `PP.simulateTelegramLogin()` в консоли → проверить разблокировку ??%
-
-**CRO:** Pack #2 после baseline Pack #1.
+Prod links:
+- guest: https://polypilot-platform.vercel.app/app/guest-event.html?id=live-51456&utm_source=tg&utm_campaign=funnel_1_0
+- full:  https://polypilot-platform.vercel.app/app/event.html?id=live-51456
+- bot:   https://t.me/polypilot_pro_bot?start=event_live-51456
 
 Последний принятый backend-output:
 
