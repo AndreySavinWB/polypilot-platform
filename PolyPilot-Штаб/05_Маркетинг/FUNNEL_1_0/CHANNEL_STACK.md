@@ -101,7 +101,7 @@ flowchart TD
 |-------------|-------------|-----|
 | Guest event | `guest-event.html?id={event_id}` | `utm_source={channel}` |
 | Telegram channel | `t.me/polypilot_pro` | — |
-| Telegram bot | `t.me/polypilot_bot?start=event_{id}` | `start=payload` |
+| Telegram bot | `t.me/polypilot_pro_bot?start=event_{id}` | `start=payload` |
 | Starter offer | manual / landing TBD | `utm_campaign=starter` |
 | Learn | `app/learn.html` | `utm_source=content` |
 

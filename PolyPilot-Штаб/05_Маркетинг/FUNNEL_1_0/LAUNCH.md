@@ -50,7 +50,7 @@
 ```javascript
 funnel: {
   telegramChannel: 'https://t.me/polypilot_pro',
-  telegramBot: 'https://t.me/polypilot_bot?start=',
+  telegramBot: 'https://t.me/polypilot_pro_bot?start=',
   starterPage: 'app/starter.html',
   supportTelegram: 'https://t.me/polypilot_support',
 }
@@ -84,7 +84,7 @@ starter.html?utm_source=bot&utm_campaign=starter_cohort_1
 Bot deep link:
 
 ```text
-t.me/polypilot_bot?start=event_live-32228
+t.me/polypilot_pro_bot?start=event_live-32228
 ```
 
 ---

@@ -2,3 +2,5 @@
 .runtime/
 __pycache__/
 *.pyc
+data/bot_users.json
+data/bot_starter_applications.json

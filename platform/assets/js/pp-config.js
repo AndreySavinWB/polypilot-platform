@@ -11,10 +11,10 @@ window.PP_CONFIG = window.PP_CONFIG || {
   /** Funnel 1.0 — заменить на реальные URL после создания каналов */
   funnel: {
     telegramChannel: "https://t.me/polypilot_pro",
-    telegramBot: "https://t.me/polypilot_bot",
-    telegramBotStart: "https://t.me/polypilot_bot?start=",
+    telegramBot: "https://t.me/polypilot_pro_bot",
+    telegramBotStart: "https://t.me/polypilot_pro_bot?start=",
     supportTelegram: "https://t.me/polypilot_support",
-    starterBotStart: "https://t.me/polypilot_bot?start=starter",
+    starterBotStart: "https://t.me/polypilot_pro_bot?start=starter",
     /** Referral URL — заполнить после unlock $10k volume */
     polymarketReferralUrl: "",
   },
@@ -23,7 +23,7 @@ window.PP_CONFIG = window.PP_CONFIG || {
 /** Helpers for funnel CTAs */
 window.PP_FUNNEL = {
   botLink(payload) {
-    const base = (window.PP_CONFIG.funnel || {}).telegramBotStart || "https://t.me/polypilot_bot?start=";
+    const base = (window.PP_CONFIG.funnel || {}).telegramBotStart || "https://t.me/polypilot_pro_bot?start=";
     return payload ? base + encodeURIComponent(payload) : (window.PP_CONFIG.funnel || {}).starterBotStart;
   },
   guestEventUrl(eventId, source) {

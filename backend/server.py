@@ -86,6 +86,15 @@ class Handler(BaseHTTPRequestHandler):
                     self._send_json(200, json.load(live_file))
                 return
 
+            if parsed.path == "/api/telegram/health":
+                from src.bot import config as bot_config
+
+                self._send_json(200, {
+                    "ok": True,
+                    "telegramConfigured": bot_config.is_configured(),
+                })
+                return
+
             self._send_json(404, {"error": "Not found"})
         except Exception as error:
             self._send_json(500, {"error": str(error)})
@@ -114,6 +123,22 @@ class Handler(BaseHTTPRequestHandler):
                 priority = body.get("priority")
                 package = run_pie(event, priority_result=priority)
                 self._send_json(200, package)
+                return
+
+            if parsed.path == "/api/telegram/webhook":
+                from src.bot import config as bot_config, handlers as bot_handlers
+
+                if not bot_config.is_configured():
+                    self._send_json(503, {"error": "Telegram bot is not configured"})
+                    return
+                secret = bot_config.webhook_secret()
+                if secret:
+                    header = self.headers.get("X-Telegram-Bot-Api-Secret-Token")
+                    if header != secret:
+                        self._send_json(403, {"error": "Invalid webhook secret"})
+                        return
+                result = bot_handlers.handle_update(body)
+                self._send_json(200, result)
                 return
 
             self._send_json(404, {"error": "Not found"})
