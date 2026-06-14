@@ -1431,13 +1431,6 @@
   const tier      = PP.getTier();
   const canSeeEdge    = PP.getMeta().canSeeEdge;
   const canSeeWarRoom = PP.getMeta().canSeeWarRoom;
-  const proBotLink = (window.PP_FUNNEL && PP_FUNNEL.botLink)
-    ? PP_FUNNEL.botLink('event_' + ev.id)
-    : 'https://t.me/polypilot_pro_bot?start=event_' + encodeURIComponent(ev.id);
-  const pricingLink = 'pricing.html?utm_source=event_hero&utm_campaign=funnel_1_0';
-  const guestShareLink = (window.PP_FUNNEL && PP_FUNNEL.guestEventUrl)
-    ? PP_FUNNEL.guestEventUrl(ev.id, 'event_share')
-    : 'guest-event.html?id=' + encodeURIComponent(ev.id) + '&utm_source=event_share&utm_campaign=funnel_1_0';
 
   try {
     const res = await fetch('../data/events.json');
@@ -1449,6 +1442,14 @@
     main.innerHTML = '<p style="padding:40px;color:var(--text-muted)">Событие не найдено. <a href="events.html" style="color:#a855f7">← Назад</a></p>';
     return;
   }
+
+  const proBotLink = (window.PP_FUNNEL && PP_FUNNEL.botLink)
+    ? PP_FUNNEL.botLink('event_' + ev.id)
+    : 'https://t.me/polypilot_pro_bot?start=event_' + encodeURIComponent(ev.id);
+  const pricingLink = 'pricing.html?utm_source=event_hero&utm_campaign=funnel_1_0';
+  const guestShareLink = (window.PP_FUNNEL && PP_FUNNEL.guestEventUrl)
+    ? PP_FUNNEL.guestEventUrl(ev.id, 'event_share')
+    : 'guest-event.html?id=' + encodeURIComponent(ev.id) + '&utm_source=event_share&utm_campaign=funnel_1_0';
 
   document.title = ev.title + ' — PolyPilot';
 
