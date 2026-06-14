@@ -1,6 +1,6 @@
 # POLYPILOT STATE
 
-> Главный оперативный статус проекта и единый источник правды для всех команд: `01_CEO`, `02_Product Manager`, `03_UX/UI Designer`, `04_Backend Dev`.
+> Главный оперативный статус проекта и единый источник правды для всех команд: `01_CEO`, `02_Product Manager`, `03_UX/UI Designer`, `04_Backend Dev`, `05_CRO / Monetization Manager`.
 
 ---
 
@@ -13,10 +13,10 @@
 
 ## Текущий этап
 
-**Текущая фаза:** checkpoint PIE v1.0d опубликован на GitHub, Vercel деплоит UI-каркас.  
-**Текущий владелец:** `01_CEO`
+**Текущая фаза:** dual-track monetization утверждён CEO; Funnel 1.0 + PolyPilot Starter (primary) + Polymarket referral (secondary после $10k gate).  
+**Текущий владелец:** `05_CRO / Monetization Manager` (исполнение) · `01_CEO` (контроль)
 
-Главное узкое место сейчас: UI пока на mock-данных — нужен следующий backend-срез или подключение PIE-output к `event.html`.
+Главное узкое место сейчас: нет проверенного paid offer (5–10 оплат Starter) и UI пока не показывает real PIE-output. Контент-машину строим сейчас, referral — второй слой, не core business.
 
 ---
 
@@ -56,17 +56,34 @@
   - `02_Product Manager`
   - `03_UX/UI Designer`
   - `04_Backend Dev`
+  - `05_CRO / Monetization Manager`
 - Создана операционная система управления проектом:
   - `POLYPILOT_STATE.md`
   - `CEO_OPERATING_SYSTEM.md`
+- Создана рабочая зона монетизации:
+  - `PolyPilot-Штаб/06_Монетизация/README.md`
+  - `PolyPilot-Штаб/06_Монетизация/CRO_SYSTEM_PROMPT.md`
+  - `PolyPilot-Штаб/06_Монетизация/MONETIZATION_STATE.md`
+  - `PolyPilot-Штаб/06_Монетизация/FIRST_MONETIZATION_AUDIT.md`
+  - `PolyPilot-Штаб/06_Монетизация/POLYMARKET_REFERRAL_ANALYSIS.md`
+- Funnel 1.0 зафиксирован:
+  - `PolyPilot-Штаб/05_Маркетинг/FUNNEL_1_0/` (сегменты, guardrails, content matrix, bot 72h, starter assets)
+  - `PolyPilot-Штаб/05_Маркетинг/ВОРОНКА_И_ТГ.md` обновлён под Funnel 1.0
+- Дорожная карта и навигация штаба синхронизированы (2026-06-14):
+  - `PolyPilot-Штаб/07_Архитектура/ДОРОЖНАЯ_КАРТА_ОНЛАЙН.md`
+  - `PolyPilot-Штаб/00_Старт/ДОМ_ШТАБ.md`
+  - `PolyPilot-Штаб/01_Стратегия/КОНТЕКСТ_ПРОЕКТА_2.0.md`
 
 ---
 
 ## Что в работе
 
-- Ожидание деплоя Vercel после checkpoint-коммита.
-- Решение CEO: следующий backend-срез (Market Structure Analyzer v0) или wiring UI ↔ backend.
-- Формирование привычки команды: перед началом работы читать `POLYPILOT_STATE.md`.
+- **Funnel 1.0:** контент-машина Shorts/Reels/X → Telegram Hub → guest-event → PolyPilot Starter.
+- Minimal paid proof: `PolyPilot Starter: Polymarket + 3 live разбора событий` (цель: 5–10 оплат).
+- Integration: подключить real PIE v1.0d output к UI-каркасу `event.html`.
+- План набора **$10k lifetime volume** на Polymarket для unlock referral link.
+- Финализация affiliate disclosure copy для Polymarket CTA (принцип утверждён CEO).
+- Offer page / copy для PolyPilot Starter.
 
 ---
 
@@ -81,6 +98,11 @@
 - Evidence Collector v0 не подключает внешние источники, только `market` + `official`.
 - `collectionStatus = partial` у всех тестовых событий, потому что нет реальных News API / RSS / Trends.
 - Market Structure, Source Scoring и Probability Engine пока не реализованы.
+- Нет проверенного willingness-to-pay: нужны 5–10 оплат или pre-order commitments по Starter.
+- Подписка PolyPilot 1.0 остаётся рабочей гипотезой, не первым CTA.
+- Referral link недоступен до **$10k lifetime volume** на Polymarket.
+- Не упакован offer page / copy для `PolyPilot Starter`.
+- Не финализирован точный текст affiliate disclosure (принцип утверждён).
 
 ---
 
@@ -88,12 +110,23 @@
 
 Checkpoint-коммит выполнен и опубликован (`ce14461`).
 
-Следующий шаг CEO:
+Следующий шаг (утверждён CEO, dual-track):
 
 ```text
-Выбрать один из двух путей:
-A) Backend: Market Structure Analyzer v0
-B) Integration: подключить PIE v1.0d output к UI-каркасу event.html
+Track A (primary):
+  Funnel 1.0 → PolyPilot Starter → Early Access
+
+Track B (secondary, после $10k volume gate):
+  разбор события → мягкий CTA «Open on Polymarket» + disclosure
+
+Track C (later):
+  PP platform → real PIE-output → PRO subscription
+
+Порядок исполнения:
+1) CRO/Marketing: запуск Funnel 1.0 + offer copy для Starter
+2) Backend/UI: real PIE v1.0d output в event.html
+3) CRO: план $10k volume + disclosure copy
+4) UI: soft locked-state + Polymarket CTA после разбора (не в hooks Shorts)
 ```
 
 Последний принятый backend-output:
@@ -173,20 +206,28 @@ B) Integration: подключить PIE v1.0d output к UI-каркасу event
 
 ## Последнее решение CEO
 
+**Dual-track monetization утверждён (2026-06-14).**
+
+1. **Track A primary:** PolyPilot Starter через Funnel 1.0.
+2. **Track B secondary:** Polymarket referral после unlock $10k lifetime volume; CTA только после разбора, не в Shorts hooks.
+3. **Контент-машина:** строить сейчас, **не** как referral-first funnel.
+4. **Referral:** accelerator, not core business; PRO и PIE roadmap не меняем.
+5. **Disclosure:** обязателен affiliate disclosure рядом с Polymarket CTA; точный текст — задача CRO/Product.
+
 Checkpoint-коммит опубликован на GitHub/Vercel: UI-каркас PIE v1.3 + Project Operating System + Backend PIE v1.0b–v1.0d.
+
+Первый CRO-аудит принят: не строим billing/auth сейчас. Первый путь к деньгам — `education + premium reports + early access`.
 
 Backend-срез PIE v1.0d принят: Event Normalizer v0 + Event Type Classifier v0 + Market Intelligence v0 + Evidence Collector v0.
 
-До решения CEO по следующему backend-фокусу не начинаем:
+До paid proof Starter не начинаем:
 
-- новые UI-задачи;
-- новые страницы;
-- оплату;
-- auth;
-- Track Record;
-- Autopsy;
+- billing/auth;
+- aggressive referral funnel / referral-first контент;
+- Track Record как marketing claim без истории;
+- B2B/API;
 - Compare Terminal;
-- новых агентов.
+- новых агентов PIE вне текущего roadmap.
 
 ---
 
@@ -258,7 +299,48 @@ Backend-срез PIE v1.0d реализован.
 - двигаться вертикальными срезами;
 - сначала получить реальные PIE-данные;
 - затем подключать эти данные в уже подготовленный UI;
-- монетизацию и расширенные продуктовые фичи отложить до проверки ценности.
+- сложную оплату и расширенные продуктовые фичи отложить до проверки ценности;
+- monetization-гипотезу теперь прорабатывает `05_CRO` до разработки billing/auth.
+
+---
+
+## Последнее изменение Monetization
+
+CEO утвердил **dual-track monetization** по анализу `POLYMARKET_REFERRAL_ANALYSIS.md`.
+
+```text
+Track A (primary):  Funnel 1.0 → PolyPilot Starter
+Track B (secondary): referral после $10k volume gate + CTA после разбора
+Track C (later):     real PIE-output → Early Access → PRO
+```
+
+Ключевые правила:
+
+- контент-машина стартует сейчас, не вокруг referral как core;
+- referral = accelerator, not core business;
+- Telegram = бесплатный hub, деньги через Starter на старте;
+- PRO 2 990 ₽/мес — гипотеза, не первый CTA;
+- affiliate disclosure обязателен у Polymarket CTA.
+
+Первый paid offer:
+
+```text
+PolyPilot Starter: Polymarket + 3 live разбора событий · 4 990–9 990 ₽
+```
+
+KPI 60 дней: 5–10 Starter payments · unlock $10k volume · baseline referral metrics.
+
+Документы:
+
+- `PolyPilot-Штаб/06_Монетизация/POLYMARKET_REFERRAL_ANALYSIS.md`
+- `PolyPilot-Штаб/05_Маркетинг/FUNNEL_1_0/README.md`
+- `PolyPilot-Штаб/06_Монетизация/MONETIZATION_STATE.md`
+
+Следующий monetization-фокус:
+
+```text
+запуск Funnel 1.0 + offer copy Starter + план $10k volume + real PIE-output в UI
+```
 
 ---
 
@@ -271,6 +353,7 @@ Backend-срез PIE v1.0d реализован.
 - `02_Product Manager`
 - `03_UX/UI Designer`
 - `04_Backend Dev`
+- `05_CRO / Monetization Manager`
 
 После завершения задачи команда должна вернуть в `01_CEO`:
 

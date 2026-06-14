@@ -3,27 +3,131 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PolyPilot — AI-анализ события</title>
+  <title>PolyPilot — разбор события</title>
   <link rel="stylesheet" href="../assets/css/tokens.css">
   <link rel="stylesheet" href="../assets/css/layout.css">
+  <style>
+    .guest-wrap { padding: 32px 32px 48px; max-width: 640px; margin: 0 auto; }
+    .guest-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: #60a5fa; margin-bottom: 10px; }
+    .guest-title { font-size: 28px; font-weight: 800; letter-spacing: -0.6px; line-height: 1.2; margin-bottom: 12px; }
+    .guest-summary { font-size: 14px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 24px; }
+    .guest-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 28px;
+    }
+    .guest-stat {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px;
+      padding: 14px; text-align: center;
+    }
+    .guest-stat-lbl { font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+    .guest-stat-val { font-size: 22px; font-weight: 800; }
+    .guest-teaser {
+      background: linear-gradient(135deg, rgba(26,111,255,0.1), rgba(123,47,255,0.06));
+      border: 1px solid rgba(26,111,255,0.25); border-radius: 16px; padding: 20px; margin-bottom: 24px;
+    }
+    .guest-teaser p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 12px; }
+    .guest-teaser strong { color: var(--text-primary); }
+    .guest-cta { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+    .guest-btn {
+      display: block; text-align: center; padding: 13px 18px; border-radius: 12px;
+      font-size: 13px; font-weight: 700; text-decoration: none; transition: all 0.2s;
+    }
+    .guest-btn-primary {
+      background: linear-gradient(135deg,#1a6fff,#7b2fff); color: #fff;
+    }
+    .guest-btn-ghost {
+      background: rgba(255,255,255,0.06); color: var(--text-primary); border: 1px solid var(--border);
+    }
+    .guest-disclaimer { font-size: 11px; color: var(--text-muted); line-height: 1.6; }
+    .guest-loading { padding: 48px; text-align: center; color: var(--text-muted); }
+    @media (max-width: 520px) {
+      .guest-stats { grid-template-columns: 1fr; }
+      .guest-wrap { padding: 24px 16px 40px; }
+    }
+  </style>
 </head>
 <body>
 <div class="app-layout">
   <aside id="sidebar"></aside>
-  <main class="main-content">
-    <div class="page-header">
-      <div class="page-title">Guest Landing</div>
-      <div class="page-subtitle">Воронка с внешнего креатива — событие + CTA регистрация</div>
-    </div>
-    <div class="stub-page">
-      <svg class="stub-icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-      <div class="stub-title">Guest Event Landing</div>
-      <div class="stub-desc">60–90 сек «вау»: открытое событие с блюром edge + CTA «Войти через Telegram»</div>
-      <span class="stub-phase">Phase 4 — в разработке</span>
-    </div>
+  <main class="main-content" id="guest-main">
+    <div class="guest-loading">Загрузка события…</div>
   </main>
 </div>
+<script src="../assets/js/pp-config.js"></script>
+<script src="../data/events-live.js"></script>
+<script src="../data/events-data.js"></script>
+<script src="../assets/js/events-store.js"></script>
 <script src="../assets/js/state.js"></script>
 <script src="../assets/js/sidebar.js"></script>
+<script>
+(async function () {
+  const main = document.getElementById('guest-main');
+  const params = new URLSearchParams(window.location.search);
+  const eventId = params.get('id');
+  const utmSource = params.get('utm_source') || 'guest';
+
+  try {
+    const res = await fetch('../data/events.json');
+    window.__PP_EVENTS_JSON__ = await res.json();
+  } catch (e) { /* fallback */ }
+
+  let ev = eventId ? PP_EVENTS_STORE.getEventById(eventId) : null;
+  if (!ev) {
+    const all = PP_EVENTS_STORE.getAllEvents ? PP_EVENTS_STORE.getAllEvents() : [];
+    ev = all.find(e => e.hot) || all[0];
+  }
+
+  if (!ev) {
+    main.innerHTML = '<p style="padding:40px;color:var(--text-muted)">Событие не найдено. <a href="events.html">← События</a></p>';
+    return;
+  }
+
+  document.title = ev.title + ' — PolyPilot';
+
+  const cfg = (window.PP_CONFIG && PP_CONFIG.funnel) || {};
+  const botLink = window.PP_FUNNEL ? PP_FUNNEL.botLink('event_' + ev.id) : (cfg.telegramBotStart || '') + 'event_' + ev.id;
+  const fullLink = 'event.html?id=' + encodeURIComponent(ev.id) + '&utm_source=' + encodeURIComponent(utmSource);
+  const starterLink = window.PP_FUNNEL ? PP_FUNNEL.starterUrl(utmSource) : 'learn.html#starter';
+  const tgChannel = cfg.telegramChannel || 'https://t.me/polypilot_pro';
+
+  main.innerHTML = `
+    <div class="guest-wrap">
+      <div class="guest-eyebrow">Разбор события · 60–90 сек</div>
+      <h1 class="guest-title">${ev.title}</h1>
+      <p class="guest-summary">${ev.summary || ev.verdictText || ''}</p>
+
+      <div class="guest-stats">
+        <div class="guest-stat">
+          <div class="guest-stat-lbl">Рынок</div>
+          <div class="guest-stat-val" style="color:#60a5fa">${ev.marketOdds != null ? ev.marketOdds + '%' : '—'}</div>
+        </div>
+        <div class="guest-stat">
+          <div class="guest-stat-lbl">Объём 24ч</div>
+          <div class="guest-stat-val">${ev.volume24h || '—'}</div>
+        </div>
+        <div class="guest-stat">
+          <div class="guest-stat-lbl">Риск</div>
+          <div class="guest-stat-val" style="font-size:14px;padding-top:4px">${ev.riskLevel === 'high' ? 'Высокий' : ev.riskLevel === 'medium' ? 'Средний' : 'Низкий'}</div>
+        </div>
+      </div>
+
+      <div class="guest-teaser">
+        <p><strong>PolyPilot смотрит не только на цену.</strong> Resolution criteria, evidence, риски данных и контекст рынка — в полном разборе на платформе.</p>
+        <p>Это аналитика, не финансовый совет. Мы не обещаем прибыль.</p>
+      </div>
+
+      <div class="guest-cta">
+        <a class="guest-btn guest-btn-primary" href="${fullLink}">Полный разбор на PolyPilot →</a>
+        <a class="guest-btn guest-btn-ghost" href="${botLink}" target="_blank" rel="noopener">Получить 3 события в Telegram →</a>
+        <a class="guest-btn guest-btn-ghost" href="${starterLink}">PolyPilot Starter — научиться системно</a>
+        <a class="guest-btn guest-btn-ghost" href="${tgChannel}" target="_blank" rel="noopener">Подписаться на канал</a>
+      </div>
+
+      <p class="guest-disclaimer">
+        PolyPilot — аналитический и образовательный инструмент. Prediction markets связаны с риском потери средств.
+        Полный PIE-анализ может быть preliminary (rules_v0) — см. карточку события.
+      </p>
+    </div>`;
+})();
+</script>
 </body>
 </html>

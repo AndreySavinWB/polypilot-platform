@@ -335,6 +335,94 @@
       border:1px solid rgba(255,255,255,0.12);
     }
     .btn-learn-ghost:hover { background:rgba(255,255,255,0.10); }
+
+    /* ══════════════════════════════════════
+       STARTER COHORT SECTION
+    ══════════════════════════════════════ */
+    .starter-section {
+      margin-bottom: 64px;
+      scroll-margin-top: 24px;
+    }
+    .starter-section-hdr {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 28px;
+    }
+    .starter-section-eyebrow {
+      font-size: 10px; font-weight: 700; letter-spacing: 1.4px;
+      text-transform: uppercase; color: #34d399;
+    }
+    .starter-section-badge {
+      font-size: 11px; font-weight: 700; padding: 4px 12px;
+      border-radius: 9999px; background: rgba(52,211,153,0.10);
+      color: #34d399; border: 1px solid rgba(52,211,153,0.28);
+    }
+    .starter-body { max-width: 720px; }
+    .starter-h1 {
+      font-size: 32px; font-weight: 800; letter-spacing: -0.7px;
+      line-height: 1.15; margin-bottom: 14px;
+    }
+    .starter-sub {
+      font-size: 14px; color: rgba(255,255,255,0.45);
+      line-height: 1.7; margin-bottom: 28px;
+    }
+    .starter-card {
+      background: linear-gradient(145deg,#080c1a,#0a0f1e);
+      border: 1px solid rgba(26,111,255,0.28);
+      border-radius: 20px; padding: 28px; margin-bottom: 20px;
+      box-shadow: 0 0 0 1px rgba(26,111,255,0.08), 0 12px 32px rgba(26,111,255,0.07);
+    }
+    .starter-card h2 { font-size: 15px; font-weight: 800; margin-bottom: 16px; color: #fff; }
+    .starter-list { display: flex; flex-direction: column; gap: 11px; }
+    .starter-item {
+      display: flex; gap: 12px; font-size: 13px;
+      color: rgba(255,255,255,0.50); line-height: 1.55;
+    }
+    .starter-item strong { color: #fff; font-weight: 600; }
+    .starter-item-ico { color: #22d3a6; flex-shrink: 0; }
+    .starter-pricing {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px;
+    }
+    .starter-price-box {
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px; padding: 18px; text-align: center;
+    }
+    .starter-price-box.feat {
+      border-color: rgba(26,111,255,0.35);
+      background: linear-gradient(135deg, rgba(26,111,255,0.08), rgba(123,47,255,0.05));
+    }
+    .starter-price-lbl { font-size: 10px; font-weight: 700; text-transform: uppercase; color: rgba(255,255,255,0.30); margin-bottom: 6px; }
+    .starter-price-num { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; color: #fff; }
+    .starter-price-note { font-size: 11px; color: rgba(255,255,255,0.28); margin-top: 4px; }
+    .starter-cta { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+    .starter-btn {
+      display: block; text-align: center; padding: 14px 20px; border-radius: 14px;
+      font-size: 14px; font-weight: 700; text-decoration: none; transition: all 0.2s;
+      font-family: var(--font-main);
+    }
+    .starter-btn-primary {
+      background: linear-gradient(135deg,#1a6fff,#7b2fff); color: #fff;
+      box-shadow: 0 0 24px rgba(100,80,255,0.30);
+    }
+    .starter-btn-primary:hover { opacity: 0.92; transform: translateY(-1px); }
+    .starter-btn-ghost {
+      background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.70);
+      border: 1px solid rgba(255,255,255,0.10);
+    }
+    .starter-btn-ghost:hover { background: rgba(255,255,255,0.09); }
+    .starter-disclaimer {
+      font-size: 11px; color: rgba(255,255,255,0.28); line-height: 1.65;
+      padding: 16px; border-radius: 12px; background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+    .starter-faq { margin-top: 28px; }
+    .starter-faq h3 { font-size: 13px; font-weight: 800; color: #fff; margin-bottom: 14px; }
+    .starter-faq-item { margin-bottom: 14px; }
+    .starter-faq-q { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .starter-faq-a { font-size: 12px; color: rgba(255,255,255,0.42); line-height: 1.6; }
+    @media (max-width: 600px) {
+      .starter-pricing { grid-template-columns: 1fr; }
+      .starter-h1 { font-size: 24px; }
+    }
   </style>
 </head>
 <body>
@@ -355,6 +443,72 @@
         <div class="learn-hero-chip"><span>✓</span> Примеры из реальных событий</div>
       </div>
     </div>
+
+    <!-- ══ STARTER COHORT ══ -->
+    <div class="starter-section learn-section" id="starter">
+      <div class="starter-section-hdr">
+        <div class="learn-eyebrow starter-section-eyebrow">Track A · Первый cohort</div>
+        <span class="starter-section-badge">Осталось мест: ~10 · Early price 4 990 ₽</span>
+      </div>
+
+      <div class="starter-body">
+        <h2 class="starter-h1">Polymarket + PolyPilot:<br>научитесь читать события</h2>
+        <p class="starter-sub">
+          Mini-course, 3 live разбора актуальных событий и 7 дней research feed.
+          Без сигналов. Без обещания прибыли. Структура анализа, риски, resolution.
+        </p>
+
+        <div class="starter-card">
+          <h2>Что входит</h2>
+          <div class="starter-list">
+            <div class="starter-item"><span class="starter-item-ico">✓</span><span><strong>Mini-course</strong> — Polymarket с нуля: вероятность, resolution criteria, типичные ошибки</span></div>
+            <div class="starter-item"><span class="starter-item-ico">✓</span><span><strong>3 live reports</strong> — разбор актуальных событий: market context, evidence, risks</span></div>
+            <div class="starter-item"><span class="starter-item-ico">✓</span><span><strong>7 дней research feed</strong> — закрытый Telegram-чат cohort с ежедневными инсайтами</span></div>
+            <div class="starter-item"><span class="starter-item-ico">✓</span><span><strong>Как читать PolyPilot</strong> — walkthrough методологии анализа на платформе</span></div>
+          </div>
+        </div>
+
+        <div class="starter-pricing">
+          <div class="starter-price-box feat">
+            <div class="starter-price-lbl">Early cohort</div>
+            <div class="starter-price-num">4 990 ₽</div>
+            <div class="starter-price-note">первые 10 мест</div>
+          </div>
+          <div class="starter-price-box">
+            <div class="starter-price-lbl">Standard</div>
+            <div class="starter-price-num">7 990 ₽</div>
+            <div class="starter-price-note">после заполнения cohort</div>
+          </div>
+        </div>
+
+        <div class="starter-cta">
+          <a id="learn-cta-starter" class="starter-btn starter-btn-primary" href="#" target="_blank" rel="noopener">Записаться в первый cohort →</a>
+          <a id="learn-cta-tg" class="starter-btn starter-btn-ghost" href="#" target="_blank" rel="noopener">Сначала бесплатный разбор в Telegram</a>
+        </div>
+
+        <div class="starter-disclaimer">
+          PolyPilot — аналитический и образовательный инструмент. Не финансовый совет.
+          Мы не обещаем прибыль. Prediction markets связаны с риском потери средств.
+          Оплата на старте — через Telegram (manual payment). PRO подписка — позже, после проверки cohort.
+        </div>
+
+        <div class="starter-faq">
+          <h3>FAQ</h3>
+          <div class="starter-faq-item">
+            <div class="starter-faq-q">Это курс по заработку?</div>
+            <div class="starter-faq-a">Нет. Это обучение чтению prediction markets и структуре анализа событий.</div>
+          </div>
+          <div class="starter-faq-item">
+            <div class="starter-faq-q">Нужен ли опыт на Polymarket?</div>
+            <div class="starter-faq-a">Нет. Подходит новичкам и тем, кто уже смотрит рынки, но хочет систему.</div>
+          </div>
+          <div class="starter-faq-item">
+            <div class="starter-faq-q">Как оплатить?</div>
+            <div class="starter-faq-a">Нажмите «Записаться» → Telegram bot → оставьте @username и выберите интерес. Мы пришлём реквизиты.</div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /starter-section -->
 
     <!-- ══ PATH ══ -->
     <div class="learn-section">
@@ -683,7 +837,32 @@
   </div>
   </main>
 </div>
+<script src="../assets/js/pp-config.js"></script>
 <script src="../assets/js/state.js"></script>
 <script src="../assets/js/sidebar.js"></script>
+<script>
+(function () {
+  const cfg = window.PP_CONFIG && PP_CONFIG.funnel ? PP_CONFIG.funnel : {};
+  const params = new URLSearchParams(window.location.search);
+  const src = params.get('utm_source') || 'learn_page';
+
+  const elStarter = document.getElementById('learn-cta-starter');
+  const elTg      = document.getElementById('learn-cta-tg');
+
+  if (elStarter) {
+    elStarter.href = (window.PP_FUNNEL && PP_FUNNEL.botLink('starter')) ||
+                     cfg.starterBotStart || 'https://t.me/polypilot_bot?start=starter';
+  }
+  if (elTg) {
+    elTg.href = cfg.telegramChannel || 'https://t.me/polypilot_pro';
+  }
+
+  /* Автоскролл к #starter при переходе из redirect */
+  if (window.location.hash === '#starter') {
+    const sec = document.getElementById('starter');
+    if (sec) setTimeout(() => sec.scrollIntoView({ behavior: 'smooth', block: 'start' }), 120);
+  }
+})();
+</script>
 </body>
 </html>
