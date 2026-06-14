@@ -1,0 +1,59 @@
+{
+  "version": "funnel_1_0_sprint_v1",
+  "packId": "PACK_001",
+  "eventId": "live-51456",
+  "title": "Fed rate cuts 2026 — 7-day TG sprint",
+  "startDateHint": "2026-06-14",
+  "siteBase": "https://polypilot-platform.vercel.app/app",
+  "days": [
+    {
+      "day": 1,
+      "label": "Post 1 · Hook",
+      "channel": "telegram",
+      "alsoOptional": ["Short A — Script из PACK_001 §7"],
+      "text": "📊 Событие дня: Fed rate cuts 2026\n\nНа Polymarket — не одна монета, а 13 подрынков: сколько раз ФРС снизит ставку на 25 bps в 2026.\n\nСейчас top strike «0 cuts» ≈ 80%.\nНо большинство не читает resolution criteria: emergency cuts, FOMC source, early resolve rules.\n\nPolyPilot разобрал структуру и риски (preliminary · rules_v0).\n\n→ Полный разбор:\nhttps://polypilot-platform.vercel.app/app/guest-event.html?id=live-51456&utm_source=tg&utm_campaign=funnel_1_0\n\n→ Карточка PP:\nhttps://polypilot-platform.vercel.app/app/event.html?id=live-51456\n\nPolyPilot — аналитика и образование. Не финансовый совет. Не обещаем прибыль."
+    },
+    {
+      "day": 2,
+      "label": "Education · Resolution criteria",
+      "channel": "telegram",
+      "alsoOptional": ["X thread — 6 tweets из PACK_001 §9"],
+      "text": "📖 Resolution criteria важнее headline\n\nНа рынке Fed 2026 многие видят «80%» и думают: «ФРС точно не снизит ставку».\n\nНа самом деле 80% — цена подрынка «0 cuts», а не магический прогноз.\n\n3 вещи, которые стоит прочитать до любого решения:\n1️⃣ Считаются снижения на 25 bps (и emergency cuts)\n2️⃣ Источник резолва — FOMC / fed funds target\n3️⃣ 13 подрынков — это распределение, не одна монета\n\nPolyPilot помечает такие кейсы как education setup (rules_v0 · preliminary).\n\n→ Разбор Fed 2026:\nhttps://polypilot-platform.vercel.app/app/guest-event.html?id=live-51456&utm_source=tg&utm_campaign=funnel_1_0\n\nНе финансовый совет."
+    },
+    {
+      "day": 3,
+      "label": "Post 2 · Mini-breakdown",
+      "channel": "telegram",
+      "alsoOptional": ["Short B — Script из PACK_001 §7"],
+      "text": "🔍 Fed 2026 — что важно кроме «80%»\n\n1️⃣ Multi-market: отдельные цены на 0 / 1 / 2 cuts\n2️⃣ Resolution: только официальные FOMC statements + fed funds target\n3️⃣ PP Strategy Layer: education case — учим читать рынок, не «сигнал»\n4️⃣ Evidence partial: market + official, без полного news feed\n\nPP snapshot: market ~80% · preliminary · rules_v0\n(сверь на карточке)\n\n→ Разбор:\nhttps://polypilot-platform.vercel.app/app/guest-event.html?id=live-51456&utm_source=tg&utm_campaign=funnel_1_0\n\n→ Бот пришлёт ещё события:\nhttps://t.me/polypilot_pro_bot?start=event_live-51456\n\nНе финансовый совет."
+    },
+    {
+      "day": 4,
+      "label": "Structure · $33M volume",
+      "channel": "telegram",
+      "alsoOptional": ["Remix лучшего поста D1–D3 по просмотрам"],
+      "text": "💰 $33M объёма — и одна цифра в заголовке\n\nFed rate cuts 2026 на Polymarket:\n• ~$33.5M total volume\n• ~$159K за 24ч — рынок живой\n• top strike «0 cuts» ~80%, хвосты 1–2 cuts всё ещё торгуются\n\nОшибка новичка: смотреть только headline prob без структуры рынка.\n\nPolyPilot: market structure + education verdict — не betting tips.\n\n→ Полный разбор:\nhttps://polypilot-platform.vercel.app/app/guest-event.html?id=live-51456&utm_source=tg&utm_campaign=funnel_1_0\n\nPreliminary · rules_v0 · не финансовый совет."
+    },
+    {
+      "day": 5,
+      "label": "Trust · Method",
+      "channel": "telegram",
+      "alsoOptional": ["Starter soft mention в комментариях"],
+      "text": "🛡️ Почему PolyPilot не обещает прибыль\n\nPrediction markets — это цена коллективного belief + правила резолва.\n\nМы не продаём «сигналы» и не говорим «ставь YES».\n\nPolyPilot показывает:\n• resolution criteria\n• структуру multi-market\n• риски данных (partial evidence)\n• strategy layer (education / watchlist)\n\nПример сегодня — Fed 2026 (13 подрынков, ~80% на 0 cuts).\n\n→ Разбор:\nhttps://polypilot-platform.vercel.app/app/guest-event.html?id=live-51456&utm_source=tg&utm_campaign=funnel_1_0\n\nАналитика и образование. Не финансовый совет."
+    },
+    {
+      "day": 6,
+      "label": "Post 3 · Starter CTA",
+      "channel": "telegram",
+      "alsoOptional": ["Short C — Script из PACK_001 §7"],
+      "text": "🎓 Хотите понимать такие события системно?\n\nPolyPilot Starter — первый cohort:\n• mini-course Polymarket с нуля\n• 3 live разбора (Fed 2026 — одно из них)\n• 7 дней research feed\n\nНе сигналы. Не «гарантированная прибыль».\nEarly price: 4 990 ₽ · ~10 мест\n\n→ Запись:\nhttps://t.me/polypilot_pro_bot?start=starter\n\n→ Что входит:\nhttps://polypilot-platform.vercel.app/app/learn.html#starter\n\nУже смотрели разбор Fed? Напишите в бот «Хочу Starter».\n\nНе финансовый совет."
+    },
+    {
+      "day": 7,
+      "label": "Recap · Cohort last call",
+      "channel": "telegram",
+      "alsoOptional": ["Записать метрики недели в таблицу"],
+      "text": "📋 Итоги недели · Fed 2026\n\nГлавный урок Pack #1:\n80% на Polymarket ≠ «всё понятно».\nЭто цена конкретного подрынка + resolution criteria решают всё.\n\nPolyPilot Starter — последние места в cohort #1:\nPolymarket с нуля + 3 live разбора + research feed.\n\n→ Запись:\nhttps://t.me/polypilot_pro_bot?start=starter\n\n→ Разбор Fed (всегда доступен):\nhttps://polypilot-platform.vercel.app/app/guest-event.html?id=live-51456&utm_source=tg&utm_campaign=funnel_1_0\n\nСпасибо, что читаете метод, а не hype.\nНе финансовый совет."
+    }
+  ]
+}

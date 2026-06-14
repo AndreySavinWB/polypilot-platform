@@ -28,9 +28,10 @@ def send_message(token, chat_id, text, reply_markup=None, parse_mode="HTML"):
     payload = {
         "chat_id": chat_id,
         "text": text,
-        "parse_mode": parse_mode,
         "disable_web_page_preview": True,
     }
+    if parse_mode is not None:
+        payload["parse_mode"] = parse_mode
     if reply_markup:
         payload["reply_markup"] = reply_markup
     return _call(token, "sendMessage", payload)
