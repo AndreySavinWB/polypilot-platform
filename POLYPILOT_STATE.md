@@ -23,6 +23,10 @@
 ## Что готово
 
 - Архитектура PIE v1.3 зафиксирована.
+- Strategy Intelligence Layer v1.0 зафиксирован:
+  - `PolyPilot-Штаб/07_Архитектура/STRATEGY_INTELLIGENCE_LAYER.md`
+  - принцип: PIE = общий мозг, Strategy Layer = торговые линзы
+  - первые стратегии: Whale Copy, News Lag, Mispricing, Market Structure Warning, Education
 - Документы по новым PIE-блокам созданы:
   - Event Type Classifier
   - Market Structure Analyzer
@@ -50,6 +54,35 @@
   - `counts` по типам источников
   - `collectionStatus`
   - `scoringMode = rules_v0`
+  - smoke-test на 10 событиях проходит
+- Backend-срез PIE v1.0e реализован:
+  - Strategy Router v0
+  - `strategyIntelligence.primaryStrategy`
+  - `strategyFits[]` для `whale_copy`, `news_lag`, `education`
+  - `queues[]`
+  - `userWhySelected`
+  - `verdictMode`
+  - smoke-test на 10 событиях проходит
+- Backend-срез PIE v1.0f реализован:
+  - Market Structure Analyzer v0
+  - `marketHealthScore`
+  - `liquidityTier`
+  - `spreadRisk`
+  - `manipulationRisk`
+  - `priceReliability`
+  - `marketReliability`
+  - Strategy Router использует `marketStructure` для ограничения Whale Copy / News Lag
+  - smoke-test на 10 событиях проходит
+- Backend-срез PIE v1.0g реализован:
+  - Probability Engine v0
+  - `probability.marketProb`
+  - `probability.ppProb`
+  - `probability.edgePp`
+  - `probability.components`
+  - Strategy Verdict v0
+  - `strategyVerdict.summary`
+  - `strategyVerdict.requiredChecks`
+  - `strategyVerdict.invalidation`
   - smoke-test на 10 событиях проходит
 - Командная структура чатов зафиксирована:
   - `01_CEO`
@@ -80,7 +113,8 @@
 
 - **Funnel 1.0:** контент-машина Shorts/Reels/X → Telegram Hub → guest-event → PolyPilot Starter.
 - Minimal paid proof: `PolyPilot Starter: Polymarket + 3 live разбора событий` (цель: 5–10 оплат).
-- Integration: подключить real PIE v1.0d output к UI-каркасу `event.html`.
+- Product architecture: Strategy Intelligence Layer превращает ленту “интересных событий” в события, выбранные под конкретные trading setups.
+- Integration: подключить real PIE v1.0g output к UI-каркасу `event.html`.
 - План набора **$10k lifetime volume** на Polymarket для unlock referral link.
 - Финализация affiliate disclosure copy для Polymarket CTA (принцип утверждён CEO).
 - Offer page / copy для PolyPilot Starter.
@@ -89,7 +123,7 @@
 
 ## Блокеры
 
-- UI пока не подключён к реальному backend-output PIE.
+- UI пока не подключён к реальному backend-output PIE v1.0g.
 - `titleRu` в smoke-test остаётся на английском без LLM-ключа.
 - Event Type Classifier v0 даёт rule-based misfire на edge cases: 2 из 10 тестовых событий.
 - Market Intelligence работает только на данных Polymarket, без whale API.
@@ -97,7 +131,10 @@
 - `whaleSignal` является эвристикой по объёму и направлению, а не реальными кошельками.
 - Evidence Collector v0 не подключает внешние источники, только `market` + `official`.
 - `collectionStatus = partial` у всех тестовых событий, потому что нет реальных News API / RSS / Trends.
-- Market Structure, Source Scoring и Probability Engine пока не реализованы.
+- Source Scoring, Contradiction Engine и Comparable Events пока не реализованы.
+- Probability Engine v0 реализован rules-only; external evidence / historical / contradiction компоненты помечаются как missing.
+- Market Structure Analyzer v0 реализован rules-only, без реальной wallet concentration.
+- Strategy Router v0 пока rules-only и использует whale proxy по объёму, без реальных кошельков.
 - Нет проверенного willingness-to-pay: нужны 5–10 оплат или pre-order commitments по Starter.
 - Подписка PolyPilot 1.0 остаётся рабочей гипотезой, не первым CTA.
 - Referral link недоступен до **$10k lifetime volume** на Polymarket.
@@ -124,7 +161,7 @@ Track C (later):
 
 Порядок исполнения:
 1) CRO/Marketing: запуск Funnel 1.0 + offer copy для Starter
-2) Backend/UI: real PIE v1.0d output в event.html
+2) Backend/UI: real PIE v1.0g output в event.html
 3) CRO: план $10k volume + disclosure copy
 4) UI: soft locked-state + Polymarket CTA после разбора (не в hooks Shorts)
 ```

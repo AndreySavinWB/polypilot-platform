@@ -3,7 +3,7 @@
 > [[PIE_V1_2_ФИНАЛЬНАЯ_АРХИТЕКТУРА]] · [[PROBABILITY_INTELLIGENCE_ENGINE]] · [[SOURCE_SCORING_SYSTEM]] · [[MARKET_STRUCTURE_ANALYZER]]
 
 > **Версия:** `pie_v1.3` · формула `prob_formula_v1.1`  
-> **Статус:** 📐 зафиксирована на бумаге  
+> **Статус:** 📐 целевая формула зафиксирована · ✅ v0 реализован rules-only в `backend/src/agents/probability.py`  
 > **Дата:** 9 июня 2026
 
 ---

@@ -3,7 +3,7 @@
 > [[PIE_V1_2_ФИНАЛЬНАЯ_АРХИТЕКТУРА]] · [[PROBABILITY_INTELLIGENCE_ENGINE]] · [[EVENT_TYPE_CLASSIFIER]] · [[SOURCE_SCORING_SYSTEM]]
 
 > **Версия:** `pie_v1.3`  
-> **Статус:** 📐 зафиксирован на бумаге  
+> **Статус:** ✅ v0 реализован rules-only в `backend/src/agents/market_structure.py`  
 > **Дата:** 9 июня 2026
 
 ---
@@ -199,13 +199,46 @@ Market Structure Score напрямую влияет на вес компоне�
 | Graph-анализ связанных кошельков | ❌ | v2 |
 | Исторический baseline концентрации | ❌ | v1.1 (из Memory) |
 
+### Реализованный v0 (июнь 2026)
+
+До подключения wallet/trades API блок не выдумывает концентрацию кошельков.
+
+**Использует:**
+
+- `marketSnapshot.volume`
+- `marketSnapshot.volume24h`
+- `marketSnapshot.liquidity`
+- `marketSnapshot.spread`
+- `marketSnapshot.marketProb`
+- `marketIntelligence.volumeAnomaly`
+- `marketIntelligence.whaleSignal` как proxy, а не настоящий wallet signal
+
+**Выход v0:**
+
+```json
+{
+  "marketHealthScore": 0,
+  "liquidityTier": "low|medium|high|unknown",
+  "spreadRisk": "low|medium|high|unknown",
+  "walletConcentration": "unknown",
+  "whaleDominance": null,
+  "manipulationRisk": "low|medium|high",
+  "crowdParticipation": "low|moderate|high",
+  "priceReliability": "low|moderate|high",
+  "marketReliability": 0.0,
+  "flags": [],
+  "scoringMode": "rules_v0"
+}
+```
+
 ---
 
 ## Definition of Done
 
-- [ ] Основатель прочитал — показатели и интерпретации понятны
-- [ ] Понятно, как marketHealthScore влияет на Probability Engine
-- [ ] Место в pipeline зафиксировано: после Market Intelligence, до Evidence Collector
+- [x] Основатель прочитал — показатели и интерпретации понятны
+- [x] Понятно, как marketHealthScore влияет на Probability Engine
+- [x] Место в pipeline зафиксировано: после Market Intelligence, до Evidence Collector
+- [x] v0 подключён в `pie_v1_0f`
 
 ---
 

@@ -1,11 +1,12 @@
 """Probability Intelligence Engine — orchestrator.
 
-PIE v1.0d: Priority → Event Normalizer → Event Type Classifier → Market Intelligence
-           → Evidence Collector → Risk (draft).
+PIE v1.0g: Priority → Event Normalizer → Event Type Classifier → Market Intelligence
+           → Market Structure → Evidence Collector → Risk (draft) → Probability
+           → Strategy Router → Strategy Verdict.
 Output contract: POLYPILOT_STATE.md §Следующий шаг.
 
-Blocks not in v1.0d scope (null):
-  contradictionMap, analogs, probability, verdict.
+Blocks not in v1.0g scope (null):
+  contradictionMap, analogs, generic verdict.
 Risk block remains draft — not part of accepted scope per CEO.
 """
 
@@ -14,12 +15,16 @@ from __future__ import annotations
 from src.agents.classifier import classify_event
 from src.agents.evidence_collector import collect_evidence
 from src.agents.market_intelligence import assess_market_intelligence
+from src.agents.market_structure import analyze_market_structure
 from src.agents.normalizer import normalize_event_pie
+from src.agents.probability import calculate_probability
 from src.agents.priority import score_event
 from src.agents.risk import assess_risk_v1_0a
+from src.agents.strategy import route_strategy
+from src.agents.strategy_verdict import build_strategy_verdict
 from src.services.llm import has_llm_key
 
-PIE_VERSION = "pie_v1_0d"
+PIE_VERSION = "pie_v1_0g"
 
 
 def _slim_priority(priority: dict) -> dict | None:
@@ -41,13 +46,16 @@ def _future_blocks() -> dict:
         "contradictionMap": [],
         "analogs": [],
         "probability": None,
+        "marketStructure": None,
+        "strategyIntelligence": None,
+        "strategyVerdict": None,
         "verdict": None,
         "publishedAt": None,
     }
 
 
 def run_pie(event: dict, priority_result: dict | None = None) -> dict:
-    """Run PIE pipeline v1.0c. Returns pipelinePackage per output contract."""
+    """Run PIE pipeline v1.0g. Returns pipelinePackage per output contract."""
     priority = priority_result or score_event(event, use_llm=has_llm_key())
 
     package: dict = {
@@ -63,7 +71,10 @@ def run_pie(event: dict, priority_result: dict | None = None) -> dict:
         package["normalizedEvent"] = None
         package["eventClassification"] = None
         package["marketIntelligence"] = None
+        package["marketStructure"] = None
         package["evidence"] = None
+        package["probability"] = None
+        package["strategyVerdict"] = None
         package["risk"] = assess_risk_v1_0a(event, None, None, priority)
         return package
 
@@ -84,7 +95,15 @@ def run_pie(event: dict, priority_result: dict | None = None) -> dict:
     mi = assess_market_intelligence(event, normalized_event)
     package["marketIntelligence"] = mi["marketIntelligence"]
 
-    # Step 4 — Evidence Collector
+    # Step 4 — Market Structure Analyzer
+    ms = analyze_market_structure(
+        normalized_event,
+        package["marketIntelligence"],
+        package["eventClassification"],
+    )
+    package["marketStructure"] = ms["marketStructure"]
+
+    # Step 5 — Evidence Collector
     ev = collect_evidence(
         event,
         normalized_event,
@@ -97,10 +116,22 @@ def run_pie(event: dict, priority_result: dict | None = None) -> dict:
     market_snapshot = normalized_event.get("marketSnapshot") or {}
     package["risk"] = assess_risk_v1_0a(event, normalized_event, market_snapshot, priority)
 
+    # Step 6 — Probability Engine
+    probability = calculate_probability(package)
+    package["probability"] = probability["probability"]
+
+    # Step 7 — Strategy Intelligence Layer
+    strategy = route_strategy(package)
+    package["strategyIntelligence"] = strategy["strategyIntelligence"]
+
+    # Step 8 — Strategy Verdict
+    strategy_verdict = build_strategy_verdict(package)
+    package["strategyVerdict"] = strategy_verdict["strategyVerdict"]
+
     flags = normalized_event.get("flags") or []
     if "resolution_unclear" in flags:
         package["pipelineStatus"] = "branch_resolution_unclear"
     else:
-        package["pipelineStatus"] = "v1_0d_complete"
+        package["pipelineStatus"] = "v1_0g_complete"
 
     return package

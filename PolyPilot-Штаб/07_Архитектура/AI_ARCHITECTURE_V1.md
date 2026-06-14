@@ -1,6 +1,6 @@
 # AI Architecture V1 — Intelligence Pipeline PolyPilot
 
-> [[PROBABILITY_INTELLIGENCE_ENGINE]] · [[INTELLIGENCE_ENGINE_MVP]] · [[INTELLIGENCE_DATA_FLOW]] · [[ДОМ_ШТАБ]] · [[ДОРОЖНАЯ_КАРТА_ОНЛАЙН]] · [[СХЕМА_МЯСОРУБКИ]] · [[АРХИТЕКТУРА_АГЕНТОВ]] · [[СХЕМА_ДАННЫХ_СОБЫТИЯ]] · [[ПРИОРИТЕТ_АГЕНТ]]
+> [[PROBABILITY_INTELLIGENCE_ENGINE]] · [[STRATEGY_INTELLIGENCE_LAYER]] · [[INTELLIGENCE_ENGINE_MVP]] · [[INTELLIGENCE_DATA_FLOW]] · [[ДОМ_ШТАБ]] · [[ДОРОЖНАЯ_КАРТА_ОНЛАЙН]] · [[СХЕМА_МЯСОРУБКИ]] · [[АРХИТЕКТУРА_АГЕНТОВ]] · [[СХЕМА_ДАННЫХ_СОБЫТИЯ]] · [[ПРИОРИТЕТ_АГЕНТ]]
 
 > **Реализация:** master pipeline → [[PROBABILITY_INTELLIGENCE_ENGINE]] · веса/gates → этот документ
 
@@ -26,7 +26,7 @@
 
 ## Одним абзацем
 
-PolyPilot берёт событие с prediction market → **нормализует** → **разведывает поведение денег** (киты, аномалии, smart money) → **собирает информационные доказательства** (новости, social, trends) → **ищет противоречия и аналоги** → **считает PP Probability** → **оценивает риск** → **выдаёт вердикт** → **публикует карточку** → **память + autopsy** → обучение системы.
+PolyPilot берёт событие с prediction market → **нормализует** → **разведывает поведение денег** (киты, аномалии, smart money) → **собирает информационные доказательства** (новости, social, trends) → **ищет противоречия и аналоги** → **считает PP Probability** → **оценивает риск** → **пропускает через Strategy Intelligence Layer** → **выдаёт вердикт внутри конкретного setup** → **публикует карточку** → **память + autopsy** → обучение системы.
 
 ---
 

@@ -1,6 +1,6 @@
 # Probability Intelligence Engine — архитектура PolyPilot
 
-> [[ДОМ_ШТАБ]] · [[INTELLIGENCE_ENGINE_MVP]] · [[INTELLIGENCE_DATA_FLOW]] · [[AI_ARCHITECTURE_V1]] · [[СХЕМА_МЯСОРУБКИ]]
+> [[ДОМ_ШТАБ]] · [[INTELLIGENCE_ENGINE_MVP]] · [[INTELLIGENCE_DATA_FLOW]] · [[AI_ARCHITECTURE_V1]] · [[STRATEGY_INTELLIGENCE_LAYER]] · [[СХЕМА_МЯСОРУБКИ]]
 
 > **Статус:** ✅ **зафиксирован** — DoD закрыт, основатель ОК 9 июня 2026  
 > **Версия:** `pie_v1.3` · **Дата:** 9 июня 2026  
@@ -45,6 +45,8 @@ Probability Engine           ← PP Probability v1.1, edge, компоненты
         ↓
 Risk Officer                 ← riskLevel, flags, gates
         ↓
+Strategy Router              ← primary setup, strategy fits, why selected
+        ↓
 Verdict Agent                ← итог для UX
         ↓
 Publishing                   ← events-live.js / API  (продукт)
@@ -55,6 +57,8 @@ Memory                       ← track record, версии, autopsy feed
 
 **Сквозной слой:** Quality & Monitoring — verify, dedupe, freshness на каждом шаге.
 
+**Strategy Intelligence Layer:** не заменяет PIE. Он работает после базового evidence package и отвечает на вопрос: под какую торговую стратегию событие подходит и почему оно вообще выбрано. См. [[STRATEGY_INTELLIGENCE_LAYER]].
+
 ---
 
 ## Пять уровней разведки (v1.3)
@@ -64,7 +68,7 @@ Memory                       ← track record, версии, autopsy feed
 | **1 · Событие** | Scanner, Priority, Normalizer, **Event Type Classifier** | *Что торгуем, как резолвится, какого типа?* |
 | **2 · Деньги** | Market Intelligence, **Market Structure Analyzer** | *Что делают деньги? Можно ли доверять рынку?* |
 | **3 · Информация** | Evidence Collector, **Source Scoring System** | *Что говорит мир снаружи, насколько надёжно?* |
-| **4 · Мышление** | Contradiction, Comparable, **Probability Engine v1.1**, Risk, Verdict | *Где PP видит edge и риск?* |
+| **4 · Мышление** | Contradiction, Comparable, **Probability Engine v1.1**, Risk, **Strategy Router**, Verdict | *Где PP видит edge, риск и trading setup?* |
 | **5 · Память** | Memory (+ Autopsy) | *Что мы предсказывали и где ошиблись?* |
 
 **Новые блоки v1.3:**
