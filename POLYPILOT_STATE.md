@@ -6,17 +6,17 @@
 
 ## Последний коммит
 
-**SHA:** `79237ca563e03150a9edd8ad8a4f62688072fa05`  
-**Дата:** 2026-06-14 19:28:48 +03:00
+**SHA:** `8060053` (Strategy liquidity fix) · checkpoint hero+CRO+liquidity — pending push  
+**Дата:** 2026-06-14
 
 ---
 
 ## Текущий этап
 
-**Текущая фаза:** dual-track monetization утверждён CEO; Funnel 1.0 + PolyPilot Starter (primary) + Polymarket referral (secondary после $10k gate).  
-**Текущий владелец:** `05_CRO / Monetization Manager` (исполнение) · `01_CEO` (контроль)
+**Текущая фаза:** dual-track monetization; Funnel 1.0 + PolyPilot Starter (primary).  
+**Текущий владелец:** `05_CRO` (публикация Pack #1) · `03_UX/UI` (hero/PIE sync) · `01_CEO` (контроль)
 
-Главное узкое место сейчас: нет проверенного paid offer (5–10 оплат Starter). PIE v1.0g + Strategy Layer подключены к `event.html`; prod ждёт Railway Public URL в `pp-config.js`. Контент-машину строим сейчас, referral — второй слой, не core business.
+**Prod stack live:** Vercel frontend + Railway backend (`polypilot-platform-production.up.railway.app`). PIE v1.0g + Strategy Layer на `event.html?id=live-51456` — **проверено на prod** (Обучение / Кандидат). Hero `??%` для guest — tier lock + PRO banner (не баг API).
 
 ---
 
@@ -111,10 +111,18 @@
 
 ## Что в работе
 
-- **Funnel 1.0:** контент-машина Shorts/Reels/X → Telegram Hub → guest-event → PolyPilot Starter.
+- **Track A — Funnel 1.0 (активен):** Event Content Pack #1 готов → CEO публикует 72h sprint.
+  - Pack: `PolyPilot-Штаб/05_Маркетинг/FUNNEL_1_0/packs/PACK_001_FED_RATE_CUTS_2026.md`
+  - Событие P0: `live-51456` · Fed rate cuts 2026 · guest-event + bot `event_live-51456`
+  - Цепочка: Shorts/Reels/X → @polypilot_pro → guest-event → bot /starter
 - Minimal paid proof: `PolyPilot Starter: Polymarket + 3 live разбора событий` (цель: 5–10 оплат).
 - Product architecture: Strategy Intelligence Layer превращает ленту “интересных событий” в события, выбранные под конкретные trading setups.
-- Integration: **PIE v1.0g в event.html** — `pie-api.js` (API + render), Strategy badge/verdict, market structure, probability; prod: `usePieApi` + `PP_PROD_API_BASE` в `pp-config.js`.
+- Integration prod (2026-06-14):
+  - Railway backend Online · `/health` 200 · `PP_PROD_API_BASE` в `pp-config.js`
+  - Strategy fix: `estimateLiquidity()` в `pie-api.js` — Priority Gate проходит без `liquidity` в карточке
+  - Hero sync: `applyPieToHero()` — рынок из PIE/карточки; PP AI/Edge по tier
+  - CRO strip на `event.html`: PRO banner → Telegram bot / pricing / guest-event
+  - `sync_live_to_mvp.py`: поля `liquidity`, `liquidityFormatted`, `marketsCount` в events-live
 - План набора **$10k lifetime volume** на Polymarket для unlock referral link.
 - Финализация affiliate disclosure copy для Polymarket CTA (принцип утверждён CEO).
 - Offer page / copy для PolyPilot Starter.
@@ -123,7 +131,8 @@
 
 ## Блокеры
 
-- **Prod PIE:** на Vercel `usePieApi` включён для prod-хостов; нужен живой Railway Public URL в `PP_PROD_API_BASE` (`platform/assets/js/pp-config.js`). Пока URL не совпадает с деплоем — mock fallback.
+- **Prod PIE:** ✅ Railway URL в `PP_PROD_API_BASE`; live PIE на Vercel prod-хостах.
+- Hero `??%` для guest — **by design** (tier lock); разблокировка через PRO Trial / Telegram bot.
 - `titleRu` в smoke-test остаётся на английском без LLM-ключа.
 - Event Type Classifier v0 даёт rule-based misfire на edge cases: 2 из 10 тестовых событий.
 - Market Intelligence работает только на данных Polymarket, без whale API.
@@ -145,26 +154,20 @@
 
 ## Следующий шаг
 
-Checkpoint UI + PIE integration опубликован.
-
-Следующий шаг (утверждён CEO, dual-track):
+**CEO — Track A publish (Pack #1 уже готов):**
 
 ```text
-Track A (primary):
-  05_CRO → Event Content Pack #1 (live PIE) → Shorts/TG → Starter (5–10 оплат)
-
-Track B (secondary, после $10k volume gate):
-  разбор события → мягкий CTA «Open on Polymarket» + disclosure
-
-Track C (later):
-  PP platform PRO subscription
-
-Порядок исполнения:
-1) CRO: первый Event Content Pack + публикация Funnel 1.0
-2) CEO: Railway Public URL → PP_PROD_API_BASE (если ещё не задеплоен backend)
-3) UI: guest-event + strategy badge в ленте events.html
-4) CRO: план $10k volume + disclosure copy
+T+0:  TG Post 1 + Short A → guest-event?id=live-51456
+T+24h: Post 2 + Short B
+T+48h: Post 3 + Starter CTA
+KPI: ≥3 guest clicks · ≥1 /starter · 1 оплата или 5 pre-orders
 ```
+
+**03/04 (done in code, verify after deploy):**
+- Hard refresh event.html — PRO banner под hero, Strategy блок, рынок 80% синхронен
+- `PP.simulateTelegramLogin()` в консоли → проверить разблокировку ??%
+
+**CRO:** Pack #2 после baseline Pack #1.
 
 Последний принятый backend-output:
 
@@ -365,10 +368,27 @@ KPI 60 дней: 5–10 Starter payments · unlock $10k volume · baseline refer
 - `PolyPilot-Штаб/05_Маркетинг/FUNNEL_1_0/README.md`
 - `PolyPilot-Штаб/06_Монетизация/MONETIZATION_STATE.md`
 
+Event Content Pack #1:
+
+```text
+Файл: PolyPilot-Штаб/05_Маркетинг/FUNNEL_1_0/packs/PACK_001_FED_RATE_CUTS_2026.md
+Статус: ready to publish · PIE reference snapshot (rules_v0 · preliminary)
+CTA: guest-event → bot event → Starter (T+48h)
+```
+
+Funnel 1.0 KPI недели (baseline до публикации):
+
+| Метрика | Цель | Факт |
+|---------|------|------|
+| Pack опубликован (TG + ≥1 Short) | 1 | — |
+| guest-event clicks from TG | ≥3 | — |
+| bot `/starter` заявки | ≥1 | — |
+| Starter оплата / pre-order | 1 или 5 | — |
+
 Следующий monetization-фокус:
 
 ```text
-запуск Funnel 1.0 + offer copy Starter + план $10k volume + real PIE-output в UI
+CEO: публикация Pack #1 (72h) · метрики в Sheet · Pack #2 после baseline
 ```
 
 ---

@@ -102,13 +102,14 @@
     if (!storeEvent) return null;
 
     var prob = marketProbFromOdds(storeEvent.marketOdds);
-    var yes = prob != null ? prob.toFixed(4) : '0.50';
-    var no = prob != null ? (1 - prob).toFixed(4) : '0.50';
+    var yes = prob != null ? prob.toFixed(4) : '0.5000';
+    var no = prob != null ? (1 - prob).toFixed(4) : '0.5000';
     var title = storeEvent.titleEn || storeEvent.title || '';
     var volume = parseMoneyString(storeEvent.volumeTotal) || parseMoneyString(storeEvent.volume);
     var volume24 = parseMoneyString(storeEvent.volume24h) || parseMoneyString(storeEvent.volume24hr);
     var liquidity = estimateLiquidity(storeEvent, volume);
     var description = storeEvent.summary || storeEvent.verdictText || storeEvent.description || title;
+    var marketsCount = storeEvent.marketsCount || (storeEvent.markets && storeEvent.markets.length) || 1;
 
     return {
       id: polymarketId(storeEvent),
@@ -121,7 +122,7 @@
       liquidity: liquidity,
       startDate: storeEvent.startDate || null,
       endDate: toIsoEndDate(storeEvent.resolveDate || storeEvent.endDate),
-      marketsCount: 1,
+      marketsCount: marketsCount,
       markets: [{
         question: title,
         outcomePrices: JSON.stringify([yes, no]),
@@ -777,6 +778,108 @@
     }
   }
 
+  function formatEdgePpDisplay(edgePp) {
+    if (edgePp == null || edgePp === '') return null;
+    var e = Number(edgePp);
+    if (isNaN(e)) return null;
+    return (e >= 0 ? '+' : '−') + Math.abs(Math.round(e * 10) / 10) + ' пп';
+  }
+
+  function resolveMarketPct(pkg, storeEvent) {
+    var prob = (pkg && pkg.probability) || {};
+    var snap = ((pkg && pkg.normalizedEvent) || {}).marketSnapshot || {};
+    if (storeEvent && storeEvent.marketOdds != null && storeEvent.marketOdds !== '') {
+      var card = Number(storeEvent.marketOdds);
+      if (!isNaN(card)) return Math.round(card);
+    }
+    var fromPie = pct01(prob.marketProb != null ? prob.marketProb : snap.marketProb);
+    return fromPie != null ? fromPie : null;
+  }
+
+  function resolvePpPct(pkg, storeEvent) {
+    var prob = (pkg && pkg.probability) || {};
+    if (prob.ppProb != null) return pct01(prob.ppProb);
+    if (storeEvent && storeEvent.aiOdds != null) return Math.round(Number(storeEvent.aiOdds));
+    return null;
+  }
+
+  function funnelBotLink(eventId) {
+    var payload = 'event_' + String(eventId || '');
+    if (global.PP_FUNNEL && global.PP_FUNNEL.botLink) {
+      return global.PP_FUNNEL.botLink(payload);
+    }
+    var base = ((cfg().funnel || {}).telegramBotStart) || 'https://t.me/polypilot_pro_bot?start=';
+    return base + encodeURIComponent(payload);
+  }
+
+  /**
+   * Обновить hero / timeline после загрузки PIE (рыночная цена для всех, PP AI — по tier).
+   */
+  function applyPieToHero(root, pkg, storeEvent, options) {
+    if (!root || !storeEvent) return;
+    options = options || {};
+    var canSeeEdge = !!options.canSeeEdge;
+    var prob = (pkg && pkg.probability) || {};
+    var marketPct = resolveMarketPct(pkg, storeEvent);
+    var ppPct = resolvePpPct(pkg, storeEvent);
+    var edgeStr = formatEdgePpDisplay(prob.edgePp);
+    if (!edgeStr && storeEvent.edgeScore != null) {
+      var es = Number(storeEvent.edgeScore);
+      if (!isNaN(es)) edgeStr = (es >= 0 ? '+' : '−') + Math.abs(es) + ' пп';
+    }
+    var potentialNum = parseFloat(String(storeEvent.potential || '').replace(/[^\d.-]/g, '')) || 0;
+    var targetPct = marketPct != null
+      ? Math.round(marketPct + Math.abs(prob.edgePp != null ? Number(prob.edgePp) : potentialNum))
+      : null;
+
+    setText(root, '#ev-ai-market-odds', marketPct != null ? marketPct + '%' : '—');
+
+    var aiOddsEl = root.querySelector('#ev-hstat-ai-odds');
+    if (aiOddsEl) {
+      if (canSeeEdge && ppPct != null) {
+        aiOddsEl.textContent = ppPct + '%';
+        aiOddsEl.classList.remove('is-pro-locked');
+      } else {
+        aiOddsEl.textContent = '??%';
+        aiOddsEl.classList.add('is-pro-locked');
+      }
+    }
+
+    var aiMidEl = root.querySelector('#ev-ai-potential');
+    if (aiMidEl) {
+      if (canSeeEdge) {
+        aiMidEl.textContent = edgeStr || storeEvent.potential || '—';
+        aiMidEl.classList.remove('is-pro-locked');
+      } else {
+        aiMidEl.textContent = '??%';
+        aiMidEl.classList.add('is-pro-locked');
+      }
+    }
+
+    var aiTargetEl = root.querySelector('#ev-ai-target');
+    if (aiTargetEl) {
+      if (canSeeEdge && targetPct != null) {
+        aiTargetEl.textContent = targetPct + '%';
+        aiTargetEl.classList.remove('is-pro-locked');
+      } else {
+        aiTargetEl.textContent = '??%';
+        aiTargetEl.classList.add('is-pro-locked');
+      }
+    }
+
+    var edgeTileEl = root.querySelector('#ev-opp-edge-val');
+    if (edgeTileEl && canSeeEdge && edgeStr) {
+      edgeTileEl.textContent = edgeStr;
+    }
+
+    var banner = root.querySelector('#ev-pro-banner');
+    if (banner) {
+      banner.style.display = canSeeEdge ? 'none' : '';
+      var botEl = banner.querySelector('[data-ev-pro-bot]');
+      if (botEl) botEl.href = funnelBotLink(storeEvent.id);
+    }
+  }
+
   /**
    * Рендер PIE + Strategy Intelligence Layer из pipelinePackage.
    * options.canSeeEdge — tier lock для ppProb / edge.
@@ -823,6 +926,8 @@
     loadPiePackage: loadPiePackage,
     buildMockPiePackage: buildMockPiePackage,
     renderPieFromPackage: renderPieFromPackage,
+    applyPieToHero: applyPieToHero,
+    resolveMarketPct: resolveMarketPct,
   };
   global.renderPieFromPackage = renderPieFromPackage;
 

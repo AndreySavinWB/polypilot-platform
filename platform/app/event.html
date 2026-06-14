@@ -141,6 +141,30 @@
       font-size: 11px; color: rgba(255,255,255,0.28); margin-top: 1px;
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
+    .is-pro-locked { opacity: 0.72; }
+    .ev-pro-banner {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px;
+      margin-top: 14px; padding: 12px 16px;
+      border: 1px solid rgba(26,111,255,0.28);
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(26,111,255,0.08), rgba(123,47,255,0.05));
+    }
+    .ev-pro-banner-text {
+      flex: 1 1 200px; font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.45;
+    }
+    .ev-pro-banner-text strong { color: rgba(255,255,255,0.88); }
+    .ev-pro-banner-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+    .ev-pro-banner-btn {
+      display: inline-flex; align-items: center; padding: 7px 12px; border-radius: 9px;
+      font-size: 11px; font-weight: 700; text-decoration: none; white-space: nowrap;
+    }
+    .ev-pro-banner-btn.primary {
+      color: #fff; background: linear-gradient(135deg,#1a6fff,#7b2fff);
+    }
+    .ev-pro-banner-btn.ghost {
+      color: rgba(255,255,255,0.78); border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.04);
+    }
     /* value colors */
     .ehv-purple { color: #a855f7; }
     .ehv-green  { color: #22c55e; }
@@ -1407,6 +1431,13 @@
   const tier      = PP.getTier();
   const canSeeEdge    = PP.getMeta().canSeeEdge;
   const canSeeWarRoom = PP.getMeta().canSeeWarRoom;
+  const proBotLink = (window.PP_FUNNEL && PP_FUNNEL.botLink)
+    ? PP_FUNNEL.botLink('event_' + ev.id)
+    : 'https://t.me/polypilot_pro_bot?start=event_' + encodeURIComponent(ev.id);
+  const pricingLink = 'pricing.html?utm_source=event_hero&utm_campaign=funnel_1_0';
+  const guestShareLink = (window.PP_FUNNEL && PP_FUNNEL.guestEventUrl)
+    ? PP_FUNNEL.guestEventUrl(ev.id, 'event_share')
+    : 'guest-event.html?id=' + encodeURIComponent(ev.id) + '&utm_source=event_share&utm_campaign=funnel_1_0';
 
   try {
     const res = await fetch('../data/events.json');
@@ -1527,7 +1558,7 @@
     {
       iconKey: 'target', iconCls: 'c-teal',
       lbl: 'Рынок не догнал реальность',
-      val: edgeSign + ev.edgeScore + ' пп', valCls: 'c-teal', sub: 'разрыв рынок / AI',
+      val: edgeSign + ev.edgeScore + ' пп', valCls: 'c-teal', sub: 'разрыв рынок / AI', valId: 'ev-opp-edge-val',
       desc: 'На основе всех сигналов PolyPilot оценивает вероятность выше рыночной. Такой разрыв исторически закрывается в течение горизонта прогноза.',
       sources: ['PP AI', 'Исторические данные'],
     },
@@ -1658,7 +1689,7 @@
             <div class="ev-hstat-icon ehi-violet">${ICON.brain}</div>
             <div class="ev-hstat-body">
               <span class="ev-hstat-lbl">Вероятность</span>
-              <span class="ev-hstat-val ehv-purple">${canSeeEdge ? ev.aiOdds + '%' : '??%'}</span>
+              <span class="ev-hstat-val ehv-purple${canSeeEdge ? '' : ' is-pro-locked'}" id="ev-hstat-ai-odds">${canSeeEdge ? ev.aiOdds + '%' : '??%'}</span>
               <span class="ev-hstat-sub">Оценка PP AI</span>
             </div>
           </div>
@@ -1694,6 +1725,17 @@
             </div>
           </div>
         </div>
+        ${canSeeEdge ? '' : `
+        <div class="ev-pro-banner" id="ev-pro-banner">
+          <div class="ev-pro-banner-text">
+            <strong>PP AI, Edge и целевая цена</strong> — в PRO Trial и Starter. Рынок ${ev.marketOdds}% виден всем; оценка модели и разрыв — после входа через Telegram.
+          </div>
+          <div class="ev-pro-banner-actions">
+            <a class="ev-pro-banner-btn primary" href="${proBotLink}" target="_blank" rel="noopener" data-ev-pro-bot>3 события в Telegram →</a>
+            <a class="ev-pro-banner-btn ghost" href="${pricingLink}">Тарифы PRO</a>
+            <a class="ev-pro-banner-btn ghost" href="${guestShareLink}">Гостевая ссылка</a>
+          </div>
+        </div>`}
       </div>
     </div>
 
@@ -1712,7 +1754,7 @@
             </svg>
             Рынок сейчас
           </div>
-          <div class="ev-ai-num">${ev.marketOdds}%</div>
+          <div class="ev-ai-num" id="ev-ai-market-odds">${ev.marketOdds}%</div>
         </div>
 
         <!-- Center: AI forecast -->
@@ -1725,7 +1767,7 @@
             </svg>
             PolyPilot AI видит потенциал
           </div>
-          <div class="ev-ai-num-mid">${canSeeEdge ? ev.potential : '??%'}</div>
+          <div class="ev-ai-num-mid${canSeeEdge ? '' : ' is-pro-locked'}" id="ev-ai-potential">${canSeeEdge ? ev.potential : '??%'}</div>
           <div class="ev-ai-sub">возможный рост</div>
         </div>
 
@@ -1734,7 +1776,7 @@
           <div class="ev-ai-lbl" style="justify-content:flex-end">
             рынок через ${ev.horizon}
           </div>
-          <div class="ev-ai-num-right">${canSeeEdge ? aiTargetOdds + '%' : '??%'}</div>
+          <div class="ev-ai-num-right${canSeeEdge ? '' : ' is-pro-locked'}" id="ev-ai-target">${canSeeEdge ? aiTargetOdds + '%' : '??%'}</div>
         </div>
 
       </div>
@@ -1784,7 +1826,7 @@
             <div class="ev-opp-head">
               <div class="ev-opp-icon-wrap ${t.iconCls}">${OPP_SVG[t.iconKey]}</div>
               <div class="ev-opp-val-wrap">
-                <div class="ev-opp-val ${t.valCls}">${t.val}</div>
+                <div class="ev-opp-val ${t.valCls}"${t.valId ? ` id="${t.valId}"` : ''}>${t.val}</div>
                 <div class="ev-opp-sub">${t.sub}</div>
               </div>
             </div>
@@ -2239,6 +2281,9 @@
     window.__PP_PIE_PACKAGE__ = pieMeta.package || null;
     window.__PP_PIE_META__ = pieMeta;
     renderPieFromPackage(pieMeta.package, pieMeta, main.querySelector('#pie-analysis'), { canSeeEdge });
+    if (PP_PIE_API.applyPieToHero) {
+      PP_PIE_API.applyPieToHero(main, pieMeta.package, ev, { canSeeEdge });
+    }
 
     const hdrEl   = main.querySelector('#ev-pie-toggle');
     const panelEl = main.querySelector('#ev-pie-panel');

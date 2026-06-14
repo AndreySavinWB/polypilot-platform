@@ -179,6 +179,13 @@ def convert_item(item):
     priority_decision = (analysis.get("priority") or {}).get("decision")
     volume24 = float(event.get("volume24hr") or 0)
     volume_total = float(event.get("volume") or 0)
+    liquidity_raw = market_snapshot.get("liquidity")
+    if liquidity_raw is None:
+        liquidity_raw = event.get("liquidity")
+    try:
+        liquidity_num = float(liquidity_raw or 0)
+    except (TypeError, ValueError):
+        liquidity_num = 0.0
 
     short_verdicts = {"yes", "no", "да", "нет", "pending", "watchlist", "research_required", "ожидание", "наблюдение"}
     verdict_text = localized.get("ppVerdict") or (analysis.get("verdict") or {}).get("ppVerdict") or ""
@@ -210,6 +217,9 @@ def convert_item(item):
         "horizon": horizon_days(event.get("endDate")),
         "volumeTotal": fmt_money(volume_total),
         "volume24h": fmt_money(volume24) if volume24 else "—",
+        "liquidity": round(liquidity_num) if liquidity_num > 0 else None,
+        "liquidityFormatted": fmt_money(liquidity_num) if liquidity_num > 0 else None,
+        "marketsCount": int(event.get("marketsCount") or len(markets) or 1),
         "volume24hPositive": volume24 >= 0,
         "interest": "Интерес растёт" if volume24 > 1000 else "Стабильно",
         "interestPositive": volume24 > 1000,
