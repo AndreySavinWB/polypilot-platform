@@ -83,6 +83,20 @@
     return id;
   }
 
+  /** Оценка ликвидности для Priority Gate, если в карточке нет liquidity (events-live.js). */
+  function estimateLiquidity(storeEvent, volume) {
+    if (storeEvent && storeEvent.liquidity != null && storeEvent.liquidity !== '') {
+      var direct = typeof storeEvent.liquidity === 'number'
+        ? storeEvent.liquidity
+        : parseMoneyString(storeEvent.liquidity);
+      if (direct != null && direct > 0) return direct;
+    }
+    if (volume != null && volume > 0) {
+      return Math.max(Math.round(volume * 0.06), 6000);
+    }
+    return null;
+  }
+
   /** Собрать rawEvent для POST /api/pie/process из карточки events-store. */
   function mapStoreEventToPieInput(storeEvent) {
     if (!storeEvent) return null;
@@ -91,26 +105,28 @@
     var yes = prob != null ? prob.toFixed(4) : '0.50';
     var no = prob != null ? (1 - prob).toFixed(4) : '0.50';
     var title = storeEvent.titleEn || storeEvent.title || '';
-    var volume = parseMoneyString(storeEvent.volumeTotal);
-    var volume24 = parseMoneyString(storeEvent.volume24h);
+    var volume = parseMoneyString(storeEvent.volumeTotal) || parseMoneyString(storeEvent.volume);
+    var volume24 = parseMoneyString(storeEvent.volume24h) || parseMoneyString(storeEvent.volume24hr);
+    var liquidity = estimateLiquidity(storeEvent, volume);
+    var description = storeEvent.summary || storeEvent.verdictText || storeEvent.description || title;
 
     return {
       id: polymarketId(storeEvent),
       slug: storeEvent.slug || null,
       title: title,
-      description: storeEvent.summary || storeEvent.verdictText || title,
+      description: description,
       category: storeEvent.category || null,
       volume: volume,
       volume24hr: volume24,
-      liquidity: storeEvent.liquidity != null ? storeEvent.liquidity : null,
+      liquidity: liquidity,
       startDate: storeEvent.startDate || null,
-      endDate: toIsoEndDate(storeEvent.resolveDate),
+      endDate: toIsoEndDate(storeEvent.resolveDate || storeEvent.endDate),
       marketsCount: 1,
       markets: [{
         question: title,
         outcomePrices: JSON.stringify([yes, no]),
         volume: volume,
-        liquidity: storeEvent.liquidity != null ? storeEvent.liquidity : null,
+        liquidity: liquidity,
       }],
       source: 'polymarket_gamma',
       sourceUrl: storeEvent.marketUrl || null,
@@ -456,7 +472,27 @@
     return fits[0] || {};
   }
 
-  function renderStrategyBadge(root, si) {
+  function priorityBlockReason(pkg) {
+    if (!pkg || pkg.pipelineStatus !== 'stopped_priority') return null;
+    var pr = pkg.priority || {};
+    if (pr.reason) return pr.reason;
+    var failed = pr.gates && pr.gates.failed;
+    if (failed && failed.length) return failed.join(' · ');
+    return 'Событие не прошло Priority Gate — полный PIE не запущен.';
+  }
+
+  function renderStrategyBadge(root, si, pkg) {
+    var blocked = priorityBlockReason(pkg);
+    if (blocked) {
+      setText(root, '#pie-strategy-name', 'Priority Gate: анализ не запущен');
+      setText(root, '#pie-strategy-why', blocked);
+      var blockedStatus = root.querySelector('#pie-strategy-status');
+      if (blockedStatus) {
+        blockedStatus.textContent = 'Отклонено';
+        blockedStatus.className = 'pie-strategy-status not_a_fit';
+      }
+      return;
+    }
     if (!si || !si.primaryStrategy) {
       setText(root, '#pie-strategy-name', 'Стратегия не определена');
       setText(root, '#pie-strategy-why', 'Данные Strategy Intelligence Layer пока недоступны.');
@@ -767,7 +803,7 @@
     setText(root, '#pie-sec-badge', version);
     setText(root, '#pie-sec-sub', sourceSubLabel(meta, prob, pkg));
 
-    renderStrategyBadge(root, si);
+    renderStrategyBadge(root, si, pkg);
     renderStrategyVerdict(root, sv, canSeeEdge);
     renderProbability(root, prob, canSeeEdge);
     renderClassification(root, ec);
