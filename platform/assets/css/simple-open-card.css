@@ -3,8 +3,9 @@
   width: 100%;
   max-width: none;
   margin: 0;
-  padding: 0 32px 48px;
+  padding: 0 24px 40px;
   box-sizing: border-box;
+  font-size: 16px;
 }
 
 .so-topbar {
@@ -13,7 +14,7 @@
   justify-content: space-between;
   gap: 12px;
   flex-wrap: wrap;
-  padding: 12px 0 8px;
+  padding: 10px 0 6px;
 }
 .so-topbar-actions {
   display: flex;
@@ -25,19 +26,19 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.38);
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.45);
   padding: 0;
   text-decoration: none;
   transition: color 0.2s;
 }
-.so-back:hover { color: rgba(255, 255, 255, 0.75); }
+.so-back:hover { color: rgba(255, 255, 255, 0.78); }
 
 .so-banner {
-  margin-bottom: 20px;
-  padding: 10px 14px;
+  margin-bottom: 16px;
+  padding: 12px 16px;
   border-radius: 10px;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.45;
 }
 
@@ -45,70 +46,80 @@
   background: linear-gradient(165deg, #0b0d18 0%, #0f1222 48%, #0a0c16 100%);
   border: 1px solid rgba(124, 58, 237, 0.22);
   border-radius: 18px;
-  padding: 26px 28px 22px;
-  margin-bottom: 28px;
+  padding: 22px 24px 20px;
+  margin-bottom: 22px;
 }
 .so-verdict-label {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #a78bfa;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 .so-title {
-  font-size: 24px;
+  font-size: 30px;
   font-weight: 800;
-  line-height: 1.28;
-  letter-spacing: -0.4px;
+  line-height: 1.26;
+  letter-spacing: -0.5px;
   color: #fff;
-  margin: 0 0 6px;
+  margin: 0 0 8px;
 }
 .so-meta {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.38);
-  margin-bottom: 18px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 16px;
 }
 .so-verdict .sc-vs-wrap {
-  margin: 0 0 14px;
+  margin: 0 0 12px;
+  padding: 18px 16px;
+}
+.so-verdict .sc-vs-lbl {
+  font-size: 13px;
+}
+.so-verdict .sc-vs-val {
+  font-size: 42px;
+}
+.so-verdict .sc-segments i {
+  height: 26px;
 }
 .so-verdict-headline {
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 700;
   color: #86efac;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 .so-verdict-headline.is-over { color: #fca5a5; }
 .so-verdict-headline.is-match { color: #c4b5fd; }
 .so-plain {
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.55;
-  color: rgba(255, 255, 255, 0.55);
-  margin-bottom: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 12px;
 }
 .so-pills {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 10px;
 }
 .so-pill {
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 600;
-  padding: 5px 10px;
+  padding: 7px 12px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.6);
 }
-.so-pill strong { color: rgba(255, 255, 255, 0.85); font-weight: 700; }
+.so-pill strong { color: rgba(255, 255, 255, 0.88); font-weight: 700; }
 .so-pill.risk-high strong { color: #fca5a5; }
 .so-pill.risk-low strong { color: #86efac; }
 
 .so-duo {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 28px;
+  gap: 14px;
+  margin-bottom: 22px;
 }
 @media (max-width: 820px) {
   .so-duo { grid-template-columns: 1fr; }
@@ -118,7 +129,7 @@
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 16px;
-  padding: 18px 18px 16px;
+  padding: 16px 18px 14px;
   min-height: 100%;
 }
 .so-card--reasons {
@@ -134,11 +145,11 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 .so-card-icon {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   border-radius: 999px;
   display: inline-flex;
   align-items: center;
@@ -146,8 +157,8 @@
   flex-shrink: 0;
 }
 .so-card-icon svg {
-  width: 15px;
-  height: 15px;
+  width: 17px;
+  height: 17px;
 }
 .so-card-icon--purple {
   color: #c4b5fd;
@@ -161,7 +172,7 @@
 }
 .so-card-title {
   margin: 0;
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 800;
   letter-spacing: -0.2px;
   color: rgba(255, 255, 255, 0.92);
@@ -174,9 +185,9 @@
   list-style: none;
 }
 .so-card-list li {
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.55;
-  color: rgba(255, 255, 255, 0.62);
+  color: rgba(255, 255, 255, 0.68);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 .so-card-list li:last-child { border-bottom: none; }
@@ -187,20 +198,20 @@
 .so-card-list.num li {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
-  padding: 10px 0;
+  gap: 12px;
+  padding: 9px 0;
 }
 .so-card-list.num li::before {
   content: counter(so-card-item);
   counter-increment: so-card-item;
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   border-radius: 999px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   color: #86efac;
   background: rgba(74, 222, 128, 0.12);
@@ -209,28 +220,28 @@
 
 .so-card-list.dash li {
   position: relative;
-  padding: 10px 0 10px 16px;
+  padding: 9px 0 9px 18px;
 }
 .so-card-list.dash li::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 16px;
-  width: 6px;
-  height: 6px;
+  top: 15px;
+  width: 7px;
+  height: 7px;
   border-radius: 999px;
   background: #fb923c;
   box-shadow: 0 0 6px rgba(251, 146, 60, 0.45);
 }
 
 .so-section {
-  margin-bottom: 28px;
+  margin-bottom: 22px;
 }
 .so-section-title {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 800;
   color: #fff;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   letter-spacing: -0.2px;
 }
 .so-list {
@@ -240,15 +251,15 @@
 }
 .so-list li {
   position: relative;
-  padding: 8px 0 8px 22px;
-  font-size: 14px;
+  padding: 8px 0 8px 24px;
+  font-size: 16px;
   line-height: 1.5;
-  color: rgba(255, 255, 255, 0.62);
+  color: rgba(255, 255, 255, 0.68);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 .so-list li:last-child { border-bottom: none; }
 .so-list.num li {
-  padding-left: 28px;
+  padding-left: 32px;
 }
 .so-list.num li::before {
   content: counter(so-item) ".";
@@ -256,7 +267,7 @@
   position: absolute;
   left: 0;
   top: 8px;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
   color: #a78bfa;
 }
@@ -269,8 +280,8 @@
 }
 
 .so-checked-card {
-  margin-bottom: 28px;
-  padding: 18px 20px 20px;
+  margin-bottom: 22px;
+  padding: 16px 18px 18px;
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -279,11 +290,11 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 .so-checked-icon {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   border-radius: 999px;
   display: inline-flex;
   align-items: center;
@@ -294,12 +305,12 @@
   border: 1px solid rgba(124, 58, 237, 0.28);
 }
 .so-checked-icon svg {
-  width: 15px;
-  height: 15px;
+  width: 17px;
+  height: 17px;
 }
 .so-checked-title {
   margin: 0;
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 800;
   letter-spacing: -0.2px;
   color: rgba(255, 255, 255, 0.92);
@@ -307,34 +318,34 @@
 .so-checked-chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 10px;
 }
 .so-check-chip {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  padding: 7px 12px;
-  border-radius: 8px;
-  font-size: 12px;
+  gap: 8px;
+  padding: 9px 14px;
+  border-radius: 9px;
+  font-size: 14px;
   font-weight: 500;
-  line-height: 1.2;
-  color: rgba(255, 255, 255, 0.52);
+  line-height: 1.25;
+  color: rgba(255, 255, 255, 0.58);
   background: rgba(15, 18, 34, 0.85);
   border: 1px solid rgba(255, 255, 255, 0.07);
 }
 .so-check-chip.done {
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(255, 255, 255, 0.86);
   background: rgba(255, 255, 255, 0.05);
   border-color: rgba(255, 255, 255, 0.09);
 }
 .so-check-chip-mark {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   border-radius: 999px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 700;
   flex-shrink: 0;
   background: rgba(255, 255, 255, 0.06);
@@ -350,10 +361,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: 18px;
   flex-wrap: wrap;
-  margin-bottom: 28px;
-  padding: 20px 22px;
+  margin-bottom: 22px;
+  padding: 18px 20px;
   border-radius: 14px;
   background: #12141c;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -366,8 +377,8 @@
   min-width: 0;
 }
 .so-cta-icon {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
@@ -375,22 +386,22 @@
   color: #fbbf24;
 }
 .so-cta-icon svg {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
 }
 .so-cta-copy { min-width: 0; }
 .so-cta-title {
   margin: 0 0 6px;
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 800;
   letter-spacing: -0.2px;
   color: #a5b4fc;
 }
 .so-cta-desc {
   margin: 0 0 4px;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.5;
-  color: rgba(255, 255, 255, 0.42);
+  color: rgba(255, 255, 255, 0.48);
 }
 .so-cta-desc:last-child { margin-bottom: 0; }
 
@@ -411,10 +422,10 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 11px 18px;
+  gap: 7px;
+  padding: 12px 18px;
   border-radius: 11px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   text-decoration: none;
   border: none;
@@ -439,7 +450,7 @@
   border: 1px solid rgba(124, 58, 237, 0.35);
 }
 .so-btn-outline-light {
-  color: rgba(255, 255, 255, 0.78);
+  color: rgba(255, 255, 255, 0.82);
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.12);
 }
@@ -448,8 +459,8 @@
   background: rgba(255, 255, 255, 0.04);
 }
 .so-btn-cta {
-  padding: 10px 14px;
-  font-size: 12px;
+  padding: 11px 16px;
+  font-size: 14px;
   border-radius: 9px;
   white-space: nowrap;
 }
@@ -460,19 +471,18 @@
   flex-shrink: 0;
 }
 .so-btn-ico svg {
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
 }
 .so-btn-ico--end {
   opacity: 0.55;
   margin-left: 2px;
 }
 .so-btn-sm {
-  padding: 8px 14px;
-  font-size: 12px;
+  padding: 9px 14px;
+  font-size: 14px;
   border-radius: 9px;
 }
-
 
 .so-changes-box {
   padding: 14px 16px;
@@ -481,19 +491,19 @@
   border: 1px solid rgba(255, 255, 255, 0.07);
 }
 .so-changes-sub {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.38);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.42);
   margin-bottom: 10px;
 }
 .so-changes-empty {
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.42);
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.48);
 }
 
 .so-advanced-wrap {
-  margin-top: 8px;
+  margin-top: 4px;
   border-top: 1px solid rgba(255, 255, 255, 0.07);
-  padding-top: 20px;
+  padding-top: 16px;
 }
 .so-advanced-btn {
   width: 100%;
@@ -505,8 +515,8 @@
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.55);
-  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
   font-family: inherit;
@@ -514,7 +524,7 @@
 }
 .so-advanced-btn:hover {
   border-color: rgba(124, 58, 237, 0.35);
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.78);
 }
 .so-advanced-btn span { color: #a78bfa; font-weight: 700; }
 .so-advanced-body {
@@ -523,19 +533,25 @@
 }
 .so-advanced-body.is-open { display: block; }
 .so-advanced-note {
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.32);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.38);
   margin-bottom: 16px;
   line-height: 1.5;
 }
 
 .so-footer {
-  margin-top: 32px;
-  padding-top: 16px;
+  margin-top: 24px;
+  padding-top: 14px;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.28);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.35);
   display: flex;
   flex-wrap: wrap;
   gap: 8px 12px;
+}
+
+@media (max-width: 640px) {
+  .so-page { padding: 0 16px 32px; }
+  .so-title { font-size: 24px; }
+  .so-verdict .sc-vs-val { font-size: 34px; }
 }
