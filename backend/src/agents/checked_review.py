@@ -63,6 +63,14 @@ def _pma_analytics_checked(pma: dict) -> bool:
     return _is_real_source(pma.get("dataSource"))
 
 
+def _hashdive_whale_checked(whale: dict) -> bool:
+    if whale.get("lookupStatus") not in ("found", "similar_found"):
+        return False
+    if whale.get("status") != "ready":
+        return False
+    return _is_real_source(whale.get("dataSource"))
+
+
 def _resolve_last_checked(
     package: dict,
     analysis: dict | None,
@@ -139,6 +147,7 @@ def build_checked_review(
         ),
         "externalAnalytics": bool(
             _pma_analytics_checked(package.get("externalMarketCheck") or {})
+            or _hashdive_whale_checked(package.get("whaleCheck") or {})
             or (
                 mi.get("whaleSignal") not in (None, "unknown", "none")
                 and bool(mi.get("whaleSignal"))

@@ -131,6 +131,7 @@
   const ICON_SHARE = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5 15.4 17.5"/><path d="M15.4 6.5 8.6 10.5"/></svg>`;
   const ICON_CROWD = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`;
   const ICON_PMA = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-7"/></svg>`;
+  const ICON_WHALE = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c2-4 6-7 10-7s8 3 10 7c-2 4-6 7-10 7S4 16 2 12z"/><circle cx="8" cy="11" r="1"/><path d="M16 10c1.5 1 2.5 2.5 2.5 2.5"/></svg>`;
 
   const PMA_STATUS_LABELS = {
     found: "Найдено",
@@ -147,6 +148,28 @@
     weak_negative: "Слегка снижает доверие к рыночной цене",
   };
 
+  const WHALE_LOOKUP_LABELS = {
+    found: "Найдено в Hashdive",
+    not_found: "Не найдено",
+    similar_found: "Найдено похожее",
+    error: "Ошибка проверки",
+    not_supported: "Источник недоступен",
+  };
+
+  const WHALE_IMPACT_LABELS = {
+    neutral: "Нейтральное",
+    weak_positive: "Слабое положительное",
+    weak_negative: "Слабое отрицательное",
+    moderate_positive: "Умеренное положительное",
+    moderate_negative: "Умеренное отрицательное",
+  };
+
+  const WHALE_SKEW_LABELS = {
+    weak: "слабый",
+    medium: "средний",
+    strong: "сильный",
+  };
+
   const LEAN_LABELS = {
     yes: "скорее YES",
     no: "скорее NO",
@@ -158,6 +181,14 @@
     medium: "средний",
     high: "высокий",
   };
+
+  function formatUsd(value) {
+    const n = Number(value);
+    if (!Number.isFinite(n)) return "—";
+    if (n >= 1_000_000) return `$${(n / 1_000_000).toFixed(1)}M`;
+    if (n >= 1_000) return `$${Math.round(n / 1_000)}K`;
+    return `$${Math.round(n)}`;
+  }
 
   function escapeHtml(value) {
     return String(value)
@@ -518,6 +549,74 @@
       </section>`;
   }
 
+  function renderWhaleCheckSection(ev) {
+    const whale = ev.whaleCheck;
+    if (!whale) return "";
+
+    const lookup = whale.lookupStatus || "not_found";
+    const noData =
+      lookup === "not_found" ||
+      lookup === "error" ||
+      lookup === "not_supported" ||
+      whale.mainVerdict === "no_data" ||
+      whale.status === "no_data";
+
+    if (noData) {
+      return `
+      <section class="so-whale-card">
+        <div class="so-whale-head">
+          <span class="so-whale-icon">${ICON_WHALE}</span>
+          <div>
+            <h2 class="so-whale-title">Крупные игроки</h2>
+            <p class="so-whale-sub">Проверяем, куда идут крупные деньги по этому событию.</p>
+          </div>
+        </div>
+        <p class="so-whale-empty">${escapeHtml(
+          whale.summaryRu || "Данных по крупным игрокам нет."
+        )}</p>
+      </section>`;
+    }
+
+    const statusLabel = WHALE_LOOKUP_LABELS[lookup] || WHALE_LOOKUP_LABELS.found;
+    const headline = whale.headlineRu || "Без явного сигнала";
+    const highlight = whale.againstMarket ? " so-whale-headline--alert" : "";
+    const skew = WHALE_SKEW_LABELS[whale.skewStrength] || "—";
+    const impact = WHALE_IMPACT_LABELS[whale.forecastImpact] || WHALE_IMPACT_LABELS.neutral;
+
+    return `
+      <section class="so-whale-card">
+        <div class="so-whale-head">
+          <span class="so-whale-icon">${ICON_WHALE}</span>
+          <div>
+            <h2 class="so-whale-title">Крупные игроки</h2>
+            <p class="so-whale-sub">Проверяем, куда идут крупные деньги по этому событию.</p>
+          </div>
+        </div>
+        <div class="so-whale-status">Статус: <strong>${escapeHtml(statusLabel)}</strong></div>
+        <div class="so-whale-headline${highlight}">${escapeHtml(headline)}</div>
+        <div class="so-whale-metrics">
+          <div class="so-whale-metric">
+            <span>Крупный объём YES</span>
+            <strong>${escapeHtml(formatUsd(whale.yesWhaleVolumeUsd))}</strong>
+          </div>
+          <div class="so-whale-metric">
+            <span>Крупный объём NO</span>
+            <strong>${escapeHtml(formatUsd(whale.noWhaleVolumeUsd))}</strong>
+          </div>
+          <div class="so-whale-metric">
+            <span>Перекос</span>
+            <strong>${escapeHtml(skew)}</strong>
+          </div>
+        </div>
+        ${
+          whale.explanationRu
+            ? `<p class="so-whale-explain">${escapeHtml(whale.explanationRu)}</p>`
+            : ""
+        }
+        <div class="so-whale-impact">Влияние на прогноз: ${escapeHtml(impact)}</div>
+      </section>`;
+  }
+
   function renderActionsSection(ev, opts) {
     opts = opts || {};
     const marketUrl = ev.marketUrl || opts.marketUrl || "https://polymarket.com";
@@ -602,6 +701,7 @@
         ${renderAnalysisDuo(ev)}
         ${renderCrowdPulseSection(ev)}
         ${renderExternalMarketCheckSection(ev)}
+        ${renderWhaleCheckSection(ev)}
         ${renderCheckedSection(ev)}
         ${renderActionsSection(ev, opts)}
         ${renderChangesSection(ev)}

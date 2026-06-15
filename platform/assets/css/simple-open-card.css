@@ -569,6 +569,111 @@
   color: rgba(255, 255, 255, 0.52);
 }
 
+.so-whale-card {
+  margin-bottom: 22px;
+  padding: 16px 18px 18px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.so-whale-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.so-whale-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #fcd34d;
+  background: rgba(245, 158, 11, 0.14);
+  border: 1px solid rgba(245, 158, 11, 0.28);
+}
+.so-whale-icon svg {
+  width: 17px;
+  height: 17px;
+}
+.so-whale-title {
+  margin: 0 0 4px;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+  color: rgba(255, 255, 255, 0.92);
+}
+.so-whale-sub {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.42);
+}
+.so-whale-status {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.62);
+  margin-bottom: 10px;
+}
+.so-whale-status strong {
+  color: rgba(255, 255, 255, 0.88);
+  font-weight: 700;
+}
+.so-whale-headline {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.86);
+  margin-bottom: 14px;
+}
+.so-whale-headline--alert {
+  color: #fcd34d;
+}
+.so-whale-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+@media (max-width: 640px) {
+  .so-whale-metrics { grid-template-columns: 1fr; }
+}
+.so-whale-metric {
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(15, 18, 34, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+.so-whale-metric span {
+  display: block;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.42);
+  margin-bottom: 4px;
+}
+.so-whale-metric strong {
+  font-size: 15px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.88);
+}
+.so-whale-explain {
+  margin: 0 0 10px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.68);
+}
+.so-whale-impact {
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.48);
+}
+.so-whale-empty {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.52);
+}
+
 .so-cta-bar {
   display: flex;
   align-items: center;

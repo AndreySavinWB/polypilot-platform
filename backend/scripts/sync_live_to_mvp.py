@@ -13,6 +13,7 @@ OUT = os.path.join(ROOT, "..", "platform", "data", "events-live.js")
 
 from src.agents.checked_review import build_checked_review
 from src.agents.external_market_check import build_external_market_check
+from src.agents.whale_check import build_whale_check
 from src.services.localize import (
     AGENT_NAMES_RU,
     DECISION_RU,
@@ -335,6 +336,14 @@ def convert_item(item):
             normalized_event,
             package.get("marketIntelligence"),
             package.get("marketStructure"),
+        ),
+        "whaleCheck": package.get("whaleCheck")
+        or build_whale_check(
+            event,
+            normalized_event,
+            package.get("marketIntelligence"),
+            market_odds_pct=market_odds,
+            crowd_pulse=package.get("crowdPulse"),
         ),
         "checkedReview": build_checked_review(
             package,

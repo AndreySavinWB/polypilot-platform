@@ -35,6 +35,8 @@ Polymarket API
       ↓
  External Market Check (5.6) ──→ externalMarketCheck
       ↓
+ Whale Check / Hashdive (5.7) ──→ whaleCheck
+      ↓
  Contradiction Engine ──→ contradictionMap
       ↓
  Comparable Events ──→ analogs[]  (+ read Memory)
@@ -308,6 +310,44 @@ Polymarket API
 - UI — простой язык, без spread/order book jargon.
 
 **MVP:** mock для event `79061`; PMA API — заглушка.
+
+---
+
+## Шаг 5.7 — Whale Check (Hashdive / Unusual Whales Predictions)
+
+> Полная спецификация: [[WHALE_CHECK_V1]]
+
+**Вход:** normalized + marketIntelligence + marketOdds + crowdPulse (контекст)  
+**Выход добавляет:** `whaleCheck`
+
+```json
+{
+  "whaleCheck": {
+    "lookupStatus": "found",
+    "whaleLean": "yes",
+    "mainVerdict": "against_market",
+    "headlineRu": "Киты идут против рынка",
+    "yesWhaleVolumeUsd": 84000,
+    "noWhaleVolumeUsd": 11000,
+    "skewStrength": "medium",
+    "againstMarket": true,
+    "explanationRu": "…",
+    "forecastImpact": "moderate_positive",
+    "weightPct": 5,
+    "passToRiskOfficer": ["thin_market_whale_entry"],
+    "contradictionHints": ["whales_vs_market"],
+    "scoringMode": "mock_v1"
+  }
+}
+```
+
+**Правила:**
+
+- PMA = структура рынка; Hashdive = крупные игроки.
+- Тонкий рынок + крупный вход → Risk Officer.
+- Max weight **10%**; не главное доказательство.
+
+**MVP:** mock для event `79061`; Hashdive API — заглушка.
 
 ---
 
