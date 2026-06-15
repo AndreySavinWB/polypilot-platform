@@ -1,8 +1,10 @@
 /* Simple Events — open card (detail page) */
 .so-page {
-  max-width: 860px;
-  margin: 0 auto;
-  padding: 0 24px 48px;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0 32px 48px;
+  box-sizing: border-box;
 }
 
 .so-topbar {
@@ -149,10 +151,11 @@
 
 .so-check-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 6px 16px;
   margin-bottom: 14px;
 }
+@media (max-width: 900px) { .so-check-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .so-check-grid { grid-template-columns: 1fr; } }
 .so-check-item {
   display: flex;
