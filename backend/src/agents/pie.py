@@ -18,7 +18,7 @@ from src.agents.market_intelligence import assess_market_intelligence
 from src.agents.market_structure import analyze_market_structure
 from src.agents.normalizer import normalize_event_pie
 from src.agents.probability import calculate_probability
-from src.agents.priority import score_event
+from src.agents.event_ranking import score_event
 from src.agents.risk import assess_risk_v1_0a
 from src.agents.strategy import route_strategy
 from src.agents.strategy_verdict import build_strategy_verdict
@@ -30,7 +30,7 @@ PIE_VERSION = "pie_v1_0g"
 def _slim_priority(priority: dict) -> dict | None:
     if not priority:
         return None
-    return {
+    slim = {
         "agent": priority.get("agent", "Priority Agent"),
         "score": priority.get("score"),
         "decision": priority.get("decision"),
@@ -39,6 +39,11 @@ def _slim_priority(priority: dict) -> dict | None:
         "scoringMode": priority.get("scoringMode"),
         "rank": priority.get("rank"),
     }
+    if priority.get("simpleCategory"):
+        slim["simpleCategory"] = priority.get("simpleCategory")
+        slim["categoryTier"] = priority.get("categoryTier")
+        slim["categoryLabel"] = priority.get("categoryLabel")
+    return slim
 
 
 def _future_blocks() -> dict:

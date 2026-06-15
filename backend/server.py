@@ -11,7 +11,7 @@ from urllib.parse import parse_qs, urlparse
 
 from src.agents.pipeline import analyze_event
 from src.agents.pie import run_pie
-from src.agents.priority import scan_and_rank, score_event
+from src.agents.event_ranking import get_rank_mode, scan_and_rank, score_event
 from src.services.polymarket import list_active_events, scan_active_events
 
 
@@ -62,7 +62,11 @@ class Handler(BaseHTTPRequestHandler):
                 scan_limit = int((params.get("scan") or ["300"])[0])
                 top_n = int((params.get("top") or ["10"])[0])
                 pool = scan_active_events(max_events=scan_limit)
-                ranking = scan_and_rank(pool, top_n=top_n, use_llm_top_k=0)
+                ranking = scan_and_rank(
+                    pool,
+                    top_n=top_n,
+                    use_llm_top_k=20 if get_rank_mode() == "priority" else 0,
+                )
                 self._send_json(200, ranking)
                 return
 

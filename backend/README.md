@@ -1,6 +1,8 @@
 # PolyPilot — Backend
 
-API и агенты: Priority Agent (рубрика v1), Polymarket, LLM (Polza).
+API и агенты: **Simplicity Filter** (default) / Priority Agent (legacy), Polymarket, LLM (Polza).
+
+Переменные: `POLZA_API_KEY`, `LLM_PROVIDER=polza`, `PP_SCAN_LIMIT`, `PP_TOP_N`, **`PP_RANK_MODE=simple`**.
 
 ## Локально
 
@@ -14,7 +16,7 @@ copy .env.example .env   # POLZA_API_KEY
 
 Root Directory: **`backend`**. См. `railway.toml`, `Procfile`.
 
-Переменные: `POLZA_API_KEY`, `LLM_PROVIDER=polza`, `PP_SCAN_LIMIT`, `PP_TOP_N`.
+Переменные: `POLZA_API_KEY`, `LLM_PROVIDER=polza`, `PP_SCAN_LIMIT`, `PP_TOP_N`, `PP_RANK_MODE`.
 
 Cron (harvest):
 

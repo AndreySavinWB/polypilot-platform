@@ -1,194 +1,101 @@
 [
   {
     "testNo": 1,
-    "id": "32228",
-    "title": "Balance of Power: 2026 Midterms",
+    "id": "69702",
+    "title": "Will Argentina dollarize by June 30, 2026?",
     "tags": [
       "hot",
-      "multi_market",
-      "news_driven"
+      "crypto_simple",
+      "low_liquidity"
     ],
-    "priorityScore": 81.8,
+    "priorityScore": 86.0,
     "priorityDecision": "accepted",
     "priorityRank": 1,
-    "riskLevel": "low",
+    "riskLevel": "medium",
     "pipelineStatus": "v1_0g_complete",
-    "titleRu": "Каков баланс сил на промежуточных выборах 2026 года?",
-    "eventType": "elections",
-    "ppVerdict": "Событие имеет высокую степень неопределенности из-за возможных изменений в политической ситуации.",
-    "confidence": 75,
-    "sourceUrl": "https://polymarket.com/event/balance-of-power-2026-midterms"
+    "titleRu": "Аргентина долларизуется до 30 июня 2026 года?",
+    "eventType": "crypto",
+    "ppVerdict": "На данный момент вероятность долларизации Аргентины до 30 июня 2026 года остается неопределенной.",
+    "confidence": 65,
+    "sourceUrl": "https://polymarket.com/event/will-argentina-dollarize-by-june-30-2026"
   },
   {
     "testNo": 2,
-    "id": "51456",
-    "title": "How many Fed rate cuts in 2026?",
+    "id": "73212",
+    "title": "Will North and South Korea engage in direct talks by June 30?",
     "tags": [
       "hot",
-      "multi_market",
-      "news_driven"
+      "sports",
+      "low_liquidity"
     ],
-    "priorityScore": 80.3,
+    "priorityScore": 86.0,
     "priorityDecision": "accepted",
     "priorityRank": 2,
-    "riskLevel": "medium",
-    "pipelineStatus": "branch_resolution_unclear",
-    "titleRu": "Сколько будет снижений ставки ФРС в 2026 году?",
-    "eventType": "regulatory",
-    "ppVerdict": "Событие имеет высокую степень неопределенности из-за непредсказуемости действий ФРС.",
-    "confidence": 75,
-    "sourceUrl": "https://polymarket.com/event/how-many-fed-rate-cuts-in-2026"
+    "riskLevel": "low",
+    "pipelineStatus": "v1_0g_complete",
+    "titleRu": "Состоятся ли прямые переговоры между Северной и Южной Кореей до 30 июня?",
+    "eventType": "geopolitics",
+    "ppVerdict": "Существует вероятность того, что Северная и Южная Корея начнут прямые переговоры до 30 июня 2026 года.",
+    "confidence": 65,
+    "sourceUrl": "https://polymarket.com/event/will-north-and-south-korea-engage-in-direct-talks-by-2027"
   },
   {
     "testNo": 3,
-    "id": "32225",
-    "title": "Which party will win the House in 2026?",
+    "id": "79050",
+    "title": "Will a Chinese AI model become #1 by June 30? ",
     "tags": [
       "hot",
-      "multi_market",
-      "news_driven"
+      "crypto_simple"
     ],
-    "priorityScore": 79.9,
+    "priorityScore": 86.0,
     "priorityDecision": "accepted",
     "priorityRank": 3,
     "riskLevel": "medium",
-    "pipelineStatus": "branch_resolution_unclear",
-    "titleRu": "Какая партия выиграет выборы в Палату представителей в 2026 году?",
-    "eventType": "elections",
-    "ppVerdict": "Результаты выборов в Конгресс США в 2026 году будут зависеть от политической ситуации и активности избирателей.",
-    "confidence": 75,
-    "sourceUrl": "https://polymarket.com/event/which-party-will-win-the-house-in-2026"
+    "pipelineStatus": "v1_0g_complete",
+    "titleRu": "Станет ли китайская модель ИИ номером 1 к 30 июня?",
+    "eventType": "crypto",
+    "ppVerdict": "На данный момент нет достаточных оснований для уверенности в том, что китайская модель ИИ станет первой к указанной дате",
+    "confidence": 65,
+    "sourceUrl": "https://polymarket.com/event/will-a-chinese-ai-model-become-1-by-june-30"
   },
   {
     "testNo": 4,
-    "id": "32224",
-    "title": "Which party will win the Senate in 2026?",
+    "id": "79061",
+    "title": "Will Tesla launch robotaxis in California by June 30?",
     "tags": [
       "hot",
-      "multi_market",
-      "news_driven"
+      "crypto_simple",
+      "low_liquidity"
     ],
-    "priorityScore": 78.2,
+    "priorityScore": 82.0,
     "priorityDecision": "accepted",
     "priorityRank": 4,
     "riskLevel": "medium",
-    "pipelineStatus": "branch_resolution_unclear",
-    "titleRu": "Какая партия выиграет Сенат в 2026 году?",
-    "eventType": "elections",
-    "ppVerdict": "Рынок будет зависеть от результатов выборов в Сенат США в 2026 году.",
+    "pipelineStatus": "v1_0g_complete",
+    "titleRu": "Запустит ли Tesla роботакси в Калифорнии до 30 июня?",
+    "eventType": "crypto",
+    "ppVerdict": "Существует вероятность того, что Тесла запустит роботакси в Калифорнии до 30 июня 2026 года.",
     "confidence": 75,
-    "sourceUrl": "https://polymarket.com/event/which-party-will-win-the-senate-in-2026"
+    "sourceUrl": "https://polymarket.com/event/will-tesla-launch-robotaxis-in-california-by-june-30"
   },
   {
     "testNo": 5,
-    "id": "30615",
-    "title": "World Cup Winner ",
+    "id": "40270",
+    "title": "Taylor Swift pregnant before marriage?",
     "tags": [
       "hot",
-      "multi_market"
+      "crypto_simple",
+      "low_liquidity"
     ],
-    "priorityScore": 78.1,
+    "priorityScore": 77.0,
     "priorityDecision": "accepted",
     "priorityRank": 5,
     "riskLevel": "medium",
-    "pipelineStatus": "branch_resolution_unclear",
-    "titleRu": "Кто станет победителем Кубка мира?",
-    "eventType": "elections",
-    "ppVerdict": "Событие имеет высокий потенциал для новостного освещения, но требует дальнейшего анализа.",
-    "confidence": 75,
-    "sourceUrl": "https://polymarket.com/event/world-cup-winner"
-  },
-  {
-    "testNo": 6,
-    "id": "57705",
-    "title": "Which company has best AI model end of June?",
-    "tags": [
-      "hot",
-      "multi_market"
-    ],
-    "priorityScore": 77.9,
-    "priorityDecision": "accepted",
-    "priorityRank": 6,
-    "riskLevel": "medium",
-    "pipelineStatus": "branch_resolution_unclear",
-    "titleRu": "Какая компания имеет лучший ИИ-модель на конец июня?",
+    "pipelineStatus": "v1_0g_complete",
+    "titleRu": "Тейлор Свифт беременна до свадьбы?",
     "eventType": "crypto",
-    "ppVerdict": "Событие имеет четкие критерии для разрешения, но дата разрешения далека.",
-    "confidence": 75,
-    "sourceUrl": "https://polymarket.com/event/which-company-has-best-ai-model-end-of-june"
-  },
-  {
-    "testNo": 7,
-    "id": "73969",
-    "title": "Trump out as President before 2027?",
-    "tags": [
-      "hot",
-      "news_driven"
-    ],
-    "priorityScore": 77.4,
-    "priorityDecision": "accepted",
-    "priorityRank": 7,
-    "riskLevel": "low",
-    "pipelineStatus": "v1_0g_complete",
-    "titleRu": "Трамп уйдет с поста президента до 2027 года?",
-    "eventType": "elections",
-    "ppVerdict": "Существует вероятность, что Трамп может покинуть пост президента до 2027 года, но это зависит от множества факторов.",
+    "ppVerdict": "На данный момент вероятность беременности Тейлор Свифт до свадьбы с Трависом Келси остается неопределенной.",
     "confidence": 65,
-    "sourceUrl": "https://polymarket.com/event/trump-out-as-president-before-2027"
-  },
-  {
-    "testNo": 8,
-    "id": "31195",
-    "title": "Putin out as President of Russia by December 31, 2026?",
-    "tags": [
-      "hot"
-    ],
-    "priorityScore": 76.8,
-    "priorityDecision": "accepted",
-    "priorityRank": 8,
-    "riskLevel": "low",
-    "pipelineStatus": "v1_0g_complete",
-    "titleRu": "Путин уйдет с поста президента России до 31 декабря 2026 года?",
-    "eventType": "elections",
-    "ppVerdict": "Существует вероятность, что Путин может уйти с поста президента до конца 2026 года.",
-    "confidence": 65,
-    "sourceUrl": "https://polymarket.com/event/putin-out-before-2027"
-  },
-  {
-    "testNo": 9,
-    "id": "60182",
-    "title": "Nobel Peace Prize Winner 2026",
-    "tags": [
-      "hot",
-      "multi_market"
-    ],
-    "priorityScore": 74.6,
-    "priorityDecision": "accepted",
-    "priorityRank": 9,
-    "riskLevel": "medium",
-    "pipelineStatus": "branch_resolution_unclear",
-    "titleRu": "Кто станет лауреатом Нобелевской премии мира в 2026 году?",
-    "eventType": "elections",
-    "ppVerdict": "Событие имеет низкую вероятность значительных изменений до объявления лауреата Нобелевской премии мира.",
-    "confidence": 75,
-    "sourceUrl": "https://polymarket.com/event/nobel-peace-prize-winner-2026-139"
-  },
-  {
-    "testNo": 10,
-    "id": "72347",
-    "title": "Will the Iranian regime fall before 2027?",
-    "tags": [
-      "hot"
-    ],
-    "priorityScore": 73.0,
-    "priorityDecision": "accepted",
-    "priorityRank": 10,
-    "riskLevel": "low",
-    "pipelineStatus": "v1_0g_complete",
-    "titleRu": "Падет ли иранский режим до 2027 года?",
-    "eventType": "crypto",
-    "ppVerdict": "Вероятность падения иранского режима до конца 2026 года остается неопределенной, но не исключенной.",
-    "confidence": 65,
-    "sourceUrl": "https://polymarket.com/event/will-the-iranian-regime-fall-by-the-end-of-2026"
+    "sourceUrl": "https://polymarket.com/event/taylor-swift-pregnant-before-marriage"
   }
 ]

@@ -1,23 +1,39 @@
 import json
 import os
+import ssl
+import time
+from urllib.error import URLError
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
 
 GAMMA_URL = os.getenv("POLYMARKET_GAMMA_URL", "https://gamma-api.polymarket.com")
+MAX_RETRIES = 3
+_SSL_CONTEXT = ssl.create_default_context()
 
 
 def _get_json(path, params=None):
     query = f"?{urlencode(params or {})}" if params else ""
-    request = Request(
-        f"{GAMMA_URL}{path}{query}",
-        headers={
-            "Accept": "application/json",
-            "User-Agent": "PolyPilot-Platform/1.0",
-        },
-    )
-    with urlopen(request, timeout=20) as response:
-        return json.loads(response.read().decode("utf-8"))
+    url = f"{GAMMA_URL}{path}{query}"
+    last_error = None
+
+    for attempt in range(1, MAX_RETRIES + 1):
+        request = Request(
+            url,
+            headers={
+                "Accept": "application/json",
+                "User-Agent": "PolyPilot-Platform/1.0",
+            },
+        )
+        try:
+            with urlopen(request, timeout=30, context=_SSL_CONTEXT) as response:
+                return json.loads(response.read().decode("utf-8"))
+        except (URLError, TimeoutError, json.JSONDecodeError) as exc:
+            last_error = exc
+            if attempt < MAX_RETRIES:
+                time.sleep(attempt * 2)
+                continue
+            raise last_error from exc
 
 
 def list_active_events(limit=10):

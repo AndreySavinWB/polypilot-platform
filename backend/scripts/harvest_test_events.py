@@ -1,4 +1,4 @@
-"""Сканировать Polymarket → Priority Agent (рубрика) → полный анализ топ-N."""
+"""Сканировать Polymarket → Simplicity Filter / Priority → полный анализ топ-N."""
 
 import json
 import os
@@ -8,9 +8,9 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 
+from src.agents.event_ranking import get_rank_mode, scan_and_rank
 from src.agents.pipeline import analyze_event
 from src.agents.pie import run_pie
-from src.agents.priority import scan_and_rank
 from src.services.llm import has_llm_key
 from src.services.polymarket import scan_active_events
 
@@ -38,13 +38,18 @@ def classify_event(event, priority):
     if decision == "rejected":
         tags.append("rejected")
 
+    simple_category = (priority or {}).get("simpleCategory")
+    if simple_category and simple_category not in ("other", "hold_politics_macro", "hold_weather"):
+        tags.append(simple_category)
+
     rubric = (priority or {}).get("rubric") or {}
-    if (rubric.get("liquidity") or {}).get("score", 100) < 40:
+    liq = rubric.get("liquidity") or {}
+    if isinstance(liq, dict) and liq.get("score", 100) < 4:
         tags.append("low_liquidity")
-    if int(event.get("marketsCount") or 0) > 2:
+
+    markets_count = int(event.get("marketsCount") or 0)
+    if markets_count > 1:
         tags.append("multi_market")
-    if (rubric.get("news_driver") or {}).get("score", 0) >= 60:
-        tags.append("news_driven")
 
     if not tags:
         tags.append("standard")
@@ -57,14 +62,16 @@ def main():
     top_n = int(os.getenv("PP_TOP_N", "10"))
 
     print("LLM enabled:", has_llm_key(), "| provider:", os.getenv("LLM_PROVIDER"), "| model:", os.getenv("LLM_MODEL") or os.getenv("OPENAI_MODEL"))
+    print("Rank mode:", get_rank_mode())
     print(f"Scanning up to {scan_limit} active Polymarket events...")
 
     pool = scan_active_events(max_events=scan_limit)
     print(f"Fetched {len(pool)} events from Polymarket")
 
-    ranking = scan_and_rank(pool, top_n=top_n, use_llm_top_k=20)
+    ranking = scan_and_rank(pool, top_n=top_n, use_llm_top_k=20 if get_rank_mode() == "priority" else 0)
+    scan_label = "Simplicity scan" if get_rank_mode() == "simple" else "Priority scan"
     print(
-        "Priority scan:",
+        scan_label + ":",
         f"scanned={ranking['scannedTotal']}",
         f"passedGates={ranking['passedGates']}",
         f"accepted={ranking['accepted']}",

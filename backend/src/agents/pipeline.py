@@ -1,4 +1,4 @@
-from src.agents.priority import score_event
+from src.agents.event_ranking import score_event
 from src.services.llm import ask_llm, has_llm_key
 
 
