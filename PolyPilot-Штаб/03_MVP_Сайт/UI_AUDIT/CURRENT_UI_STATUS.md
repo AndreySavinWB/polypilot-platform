@@ -1,7 +1,8 @@
 # CURRENT_UI_STATUS — Аудит UI PolyPilot
 
-> Сгенерировано: 9 июня 2026  
-> Цель: зафиксировать текущее состояние UI перед разработкой PIE v1.3
+> **Обновлено:** 14 июня 2026 · baseline **OPEN CARD v2** (`bc48e47`)  
+> Спецификация карточки: [[OPEN_CARD_V2_SIMPLE]]  
+> Предыдущий аудит (9 июня, legacy layout): см. историю git
 
 ---
 
@@ -9,12 +10,12 @@
 
 | Параметр | Значение |
 |----------|---------|
-| **SHA коммита** | `177c06c5d4b8bb70f3fd3f150f16635f962c0429` |
+| **SHA коммита** | `bc48e47` |
 | **Ветка** | `main` |
-| **Дата аудита** | 9 июня 2026 |
+| **Дата аудита** | 14 июня 2026 |
+| **Baseline** | Simple Open Card v2 — 9 секций, единый `renderPage()` |
 | **Репозиторий** | https://github.com/AndreySavinWB/polypilot-platform |
-| **Prod URL** | https://polypilot-platform.vercel.app |
-| **Backup URL** | https://andreysavinwb.github.io/polypilot-platform/app/events.html |
+| **Prod URL** | https://polypilot-platform.vercel.app || **Backup URL** | https://andreysavinwb.github.io/polypilot-platform/app/events.html |
 
 ---
 
@@ -40,7 +41,7 @@
 |------|------|-----------|-----------|
 | `/` | `platform/index.html` | ✅ | **95%** — Лендинг |
 | `/app/events.html` | `app/events.html` | ✅ | **85%** — Лента событий |
-| `/app/event.html?id=X` | `app/event.html` | ✅ | **65%** — Карточка события |
+| `/app/event.html?id=X` | `app/event.html` | ✅ | **85%** — OPEN CARD v2 (Simple Open Card) |
 | `/app/how-it-works.html` | `app/how-it-works.html` | ✅ | **90%** — Объяснения |
 | `/app/pricing.html` | `app/pricing.html` | ✅ | **90%** — Тарифы |
 | `/app/support.html` | `app/support.html` | ✅ | **80%** — Поддержка |
@@ -128,35 +129,34 @@
 
 ---
 
-### Карточка события (`event.html`)
+### Карточка события (`event.html`) — OPEN CARD v2 ✅
 
-#### Есть
-- ✅ Hero с изображением слева и метаданными справа
-- ✅ Odds comparison: РЫНОК СЕЙЧАС vs PP AI ВИДИТ ПОТЕНЦИАЛ
-- ✅ Прогресс-бар до горизонта
-- ✅ «Почему мы видим возможность» — 6 stat-блоков
-- ✅ War Room / Штаб агентов (mock)
-- ✅ Risk section
-- ✅ Калькулятор прибыли (mock)
-- ✅ Back-ссылка «Назад к событиям»
-- ✅ ДЕМО-баннер для demo-событий
+**Рендер:** `PP_SIMPLE_OPEN.renderPage(ev, opts)` · `simple-open-card.js`
+
+#### Есть (все demo + live)
+- ✅ Единый порядок **9 секций** на каждой открытой карточке
+- ✅ «Вывод за 10 секунд» — VS: Рынок | EDGE + горизонт | PolyPilot
+- ✅ «Почему PolyPilot так думает» + риски (duo-блок)
+- ✅ «Анализ комментариев» — всегда на экране (placeholder если нет данных)
+- ✅ «Данные с Polymarket Analytics» — always-on + empty-state
+- ✅ «Крупные игроки» — always-on + empty-state
+- ✅ «Мы проверили» — чипы проверок (эвристика / `checkedReview`)
+- ✅ «Итоговый вывод» — уверенность из `confidence`, риск, горизонт
+- ✅ «Что делать» — CTA Polymarket / бот / guest-share
+- ✅ «Изменения по событию»
+- ✅ Баннер ДЕМО / ОНЛАЙН
 
 #### Частично есть
-- ⚠️ POLYPILOT AI ВИДИТ ПОТЕНЦИАЛ показывает «??%» — данные не заполнены для live-событий
-- ⚠️ «undefined следят» — watcher count = undefined
-- ⚠️ «Рынок через undefined» — horizon не конвертируется из числа в дату
-- ⚠️ Stat-блоки показывают «u...» (truncated) — вёрстка обрезает значения
-- ⚠️ Агенты в War Room — статичные mock-данные, не из PIE
+- ⚠️ Pipeline-секции (3–5) с **реальным контентом** только у `live-79061` (stub)
+- ⚠️ «Мы проверили» — эвристика; явный `checkedReview` из pipeline пока нет
+- ⚠️ Legacy CSS/JS в `event.html` не удалён (не рендерится)
 
-#### Нет
-- ❌ Реальный PP Probability из пайплайна
-- ❌ Evidence секция (факты с источниками)
-- ❌ Contradiction Engine результаты
-- ❌ Comparable Events (аналоги)
-- ❌ Market Intelligence / Whale Signal
-- ❌ Source Scoring (EQS)
-- ❌ Реальный риск-офицер
+#### Убрано (14.06.2026)
+- ❌ War Room-аккордеон, AI Timeline, калькулятор, «Подробная аналитика», PIE-панель на странице
 
+#### Следующий шаг (подкапотка)
+- Pipeline → `crowdPulse`, `externalMarketCheck`, `whaleCheck`, `checkedReview` для всех live
+- См. [[OPEN_CARD_V2_SIMPLE]] · [[ДОРОЖНАЯ_КАРТА_ОНЛАЙН]] этап 4c
 ---
 
 ### Как это работает (`how-it-works.html`)
@@ -222,23 +222,22 @@
 - Счётчик следящих
 - Bookmark-иконка
 
-### Открытая карточка (`event.html?id=...`)
+### Открытая карточка (`event.html?id=...`) — v2
 
-**Блоки, которые видит пользователь:**
-1. Hero (изображение + title + badges + meta)
-2. Odds comparison: Рынок vs PP AI vs Рынок через N дней
-3. Progress bar (временная шкала)
-4. «Почему мы видим возможность» (6 метрик)
-5. War Room — штаб агентов (mock, 5 агентов)
-6. Risk section
-7. Калькулятор прибыли
+**9 секций (фиксированный порядок):**
+1. Вывод за 10 секунд (VS + EDGE)
+2. Почему PolyPilot так думает + риски
+3. Анализ комментариев
+4. Данные с Polymarket Analytics
+5. Крупные игроки
+6. Мы проверили
+7. Итоговый вывод
+8. Что делать
+9. Изменения по событию
 
-**Баги при открытии live-событий:**
-- `??%` в колонке «PP AI видит потенциал» — нет `aiOdds` в live-данных
-- `undefined следят` — нет `watchers` поля
-- `Рынок через undefined` — нет конвертации `horizon` → дата
-- Stat-блоки обрезаются «u...» — CSS truncation + нет данных
+**Единая логика:** demo и live используют один `renderPage()`. Секции 3–5 с placeholder при отсутствии pipeline-полей.
 
+**Данные:** полный pipeline только `live-79061`; остальные 12 open-событий — empty-state в секциях 3–5.
 ---
 
 ## Часть 6. Сравнение с Master Reference (AI_ARCHITECTURE_V1)
@@ -390,7 +389,7 @@ PIE v1.3 = все 15 блоков pipeline видны в UI с реальным�
 |---------|-----------|--------|------|------|
 | Landing `index.html` | ⭐⭐⭐⭐⭐ | Mock | Minor | **95%** |
 | Events `events.html` | ⭐⭐⭐⭐ | Live + Mock | Medium | **85%** |
-| Event `event.html` | ⭐⭐⭐ | Mock | Critical | **65%** |
+| Event `event.html` | ⭐⭐⭐⭐ | Live + Demo | Minor (pipeline data) | **85%** |
 | How it works | ⭐⭐⭐⭐ | Mock | None | **90%** |
 | Pricing | ⭐⭐⭐⭐⭐ | Mock | Minor | **90%** |
 | Support | ⭐⭐⭐⭐ | Mock | None | **80%** |
@@ -401,4 +400,4 @@ PIE v1.3 = все 15 блоков pipeline видны в UI с реальным�
 
 ---
 
-← [[ДОМ_ШТАБ]] · [[PIE_V1_2_ФИНАЛЬНАЯ_АРХИТЕКТУРА]] · [[ДОРОЖНАЯ_КАРТА_ОНЛАЙН]]
+← [[ДОМ_ШТАБ]] · [[OPEN_CARD_V2_SIMPLE]] · [[ДОРОЖНАЯ_КАРТА_ОНЛАЙН]]

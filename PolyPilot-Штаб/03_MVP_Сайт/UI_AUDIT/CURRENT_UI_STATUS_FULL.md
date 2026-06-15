@@ -1,6 +1,9 @@
 # CURRENT_UI_STATUS_FULL.md
 ## Полный аудит UI — PolyPilot Platform
 
+> **⚠️ OPEN CARD v2 baseline (14.06.2026):** актуальный статус open-карточки — [[OPEN_CARD_V2_SIMPLE]] и [[CURRENT_UI_STATUS]].  
+> Этот документ (9 июня) описывает **legacy layout** до редизайна; секция `event.html` ниже устарела.
+
 ---
 
 ## МЕТАДАННЫЕ

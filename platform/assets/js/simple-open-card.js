@@ -237,8 +237,14 @@
   }
 
   function getConfidenceLabel(ev) {
+    const c = ev.confidence;
+    if (typeof c === "number") {
+      if (c >= 70) return "высокая";
+      if (c >= 50) return "средняя";
+      return "низкая";
+    }
     const map = { low: "низкая", medium: "средняя", high: "высокая" };
-    return map[ev.riskLevel] || "средняя";
+    return map[ev.confidenceLevel] || "средняя";
   }
 
   function getRiskLabel(ev) {

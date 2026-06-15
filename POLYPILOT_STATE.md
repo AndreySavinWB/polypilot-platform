@@ -6,17 +6,19 @@
 
 ## Последний коммит
 
-**SHA:** `8060053` (Strategy liquidity fix) · checkpoint hero+CRO+liquidity — pending push  
+**SHA:** `bc48e47` · OPEN CARD v2 baseline (9 секций, empty-state always-on)  
 **Дата:** 2026-06-14
 
 ---
 
 ## Текущий этап
 
-**Текущая фаза:** dual-track monetization; Funnel 1.0 + PolyPilot Starter (primary).  
-**Текущий владелец:** `05_CRO` (публикация Pack #1) · `03_UX/UI` (hero/PIE sync) · `01_CEO` (контроль)
+**Текущая фаза:** **4c — Pipeline → OPEN CARD v2** (подкапотка под новый визуал).  
+**Отправная точка:** 14 июня 2026 · спека [[OPEN_CARD_V2_SIMPLE]] · checkpoint `bc48e47`.
 
-**Prod stack live:** Vercel frontend + Railway backend (`polypilot-platform-production.up.railway.app`). PIE v1.0g + Strategy Layer на `event.html?id=live-51456` — **проверено на prod** (Обучение / Кандидат). Hero `??%` для guest — tier lock + PRO banner (не баг API).
+**Prod stack live:** Vercel frontend + Railway backend. Open card = `PP_SIMPLE_OPEN.renderPage()` — единый layout для demo + live.
+
+**Параллельно:** Track A Funnel 1.0 · dual-track monetization (CEO ОК 14.06).
 
 ---
 
@@ -32,8 +34,16 @@
   - Market Structure Analyzer
   - Source Scoring System
   - Probability Formula v1.1
-- Полный UI-аудит платформы выполнен.
-- UI-каркас PIE v1.3 в `platform/app/event.html` принят.
+- Полный UI-аудит платформы выполнен; обновлён 14.06 под OPEN CARD v2.
+- **OPEN CARD v2 (Simple Open Card) — visual baseline ✅ 14.06.2026:**
+  - `platform/assets/js/simple-open-card.js` — единый `renderPage()` для demo + live
+  - 9 секций: вердикт → почему/риски → комментарии → PMA → киты → проверили → итог → CTA → изменения
+  - VS-блок «Вывод за 10 секунд» (Рынок | EDGE + горизонт | PolyPilot)
+  - Убрана «Подробная аналитика» (War Room UI, PIE panel на странице)
+  - Секции 3–5 always-on с empty-state
+  - Спека: `PolyPilot-Штаб/03_MVP_Сайт/OPEN_CARD_V2_SIMPLE.md`
+  - Commits: `c5850f8` → `656beb1` → `bc48e47`
+- UI-каркас PIE v1.3 в `event.html` — **заменён** OPEN CARD v2 (legacy CSS/JS в файле, не рендерится).
 - Backend-срез PIE v1.0b реализован:
   - Event Normalizer v0
   - Event Type Classifier v0
@@ -111,7 +121,12 @@
 
 ## Что в работе
 
-- **Track A — Funnel 1.0 (активен):** Event Content Pack #1 готов → CEO публикует 72h sprint.
+- **Этап 4c — Pipeline → OPEN CARD v2 (приоритет завтра):**
+  - `sync_live_to_mvp.py` → `crowdPulse`, `externalMarketCheck`, `whaleCheck` для всех live
+  - `checkedReview` → чипы «Мы проверили»
+  - `aiOdds` / `verdictText` / `arguments` из PIE
+  - Спека: `PolyPilot-Штаб/03_MVP_Сайт/OPEN_CARD_V2_SIMPLE.md`
+- **Track A — Funnel 1.0 (активен):** Event Content Pack #1 → CEO публикует 72h sprint.
   - Pack: `PolyPilot-Штаб/05_Маркетинг/FUNNEL_1_0/packs/PACK_001_FED_RATE_CUTS_2026.md`
   - Событие P0: `live-51456` · Fed rate cuts 2026 · guest-event + bot `event_live-51456`
   - Цепочка: Shorts/Reels/X → @polypilot_pro → guest-event → bot /starter
@@ -154,7 +169,18 @@
 
 ## Следующий шаг
 
-**CEO — Track A T+0 (сейчас):** публикация Pack #1 · `packs/PACK_001_FED_RATE_CUTS_2026.md` ✅ в git
+**Backend / 04_Dev — этап 4c (завтра):** pipeline → OPEN CARD v2 data contract
+
+```text
+1. sync_live_to_mvp.py — crowdPulse / PMA / whaleCheck для всех live (не только live-79061)
+2. checkedReview → «Мы проверили»
+3. aiOdds + verdictText из PIE Probability Engine
+4. Smoke: открыть каждое live-событие — тот же 9-блочный layout, секции 3–6 с контентом
+```
+
+Спека: `PolyPilot-Штаб/03_MVP_Сайт/OPEN_CARD_V2_SIMPLE.md` · карта: `ДОРОЖНАЯ_КАРТА_ОНЛАЙН.md` этап 4c.
+
+**CEO — Track A (параллельно):** публикация Pack #1 · `packs/PACK_001_FED_RATE_CUTS_2026.md` ✅ в git
 
 ```text
 T+0:  TG Post 1 + Short A → guest-event live-51456
