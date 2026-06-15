@@ -305,7 +305,7 @@
       <section class="so-crowd-card">
         <div class="so-crowd-head">
           <span class="so-crowd-icon">${ICON_CROWD}</span>
-          <h2 class="so-crowd-title">Что говорят люди</h2>
+          <h2 class="so-crowd-title">Анализ комментариев</h2>
         </div>
         <p class="so-crowd-empty">Недостаточно комментариев для вывода.</p>
       </section>`;
@@ -350,7 +350,7 @@
       <section class="so-crowd-card">
         <div class="so-crowd-head">
           <span class="so-crowd-icon">${ICON_CROWD}</span>
-          <h2 class="so-crowd-title">Что говорят люди</h2>
+          <h2 class="so-crowd-title">Анализ комментариев</h2>
         </div>
         <div class="so-crowd-grid">${marketBlock}${socialBlock}</div>
         ${synthesisBlock}
