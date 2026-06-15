@@ -304,35 +304,59 @@
       margin-bottom: 10px;
       letter-spacing: -0.2px;
     }
-    .ef-bars {
+    .ef-data-row {
       display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-bottom: 8px;
-      max-width: 520px;
-    }
-    .ef-bar-row {
-      display: grid;
-      grid-template-columns: 108px 1fr;
       align-items: center;
-      gap: 10px;
+      gap: 18px;
+      min-width: 0;
+      flex-wrap: nowrap;
     }
-    .ef-bar-lbl {
+    .ef-metric {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      flex-shrink: 0;
+    }
+    .ef-metric-lbl {
       font-size: 12px;
       font-weight: 600;
       color: rgba(255,255,255,0.42);
       white-space: nowrap;
     }
-    .ef-bar-row .sc-segments { margin: 0; }
-    .ef-bar-row .sc-segments i { height: 18px; }
+    .ef-metric-val {
+      font-size: 13px;
+      font-weight: 800;
+      color: #fff;
+      min-width: 30px;
+      white-space: nowrap;
+    }
+    .ef-metric-val--pp { color: #4ade80; }
+    .ef-scale {
+      width: 92px;
+      flex-shrink: 0;
+    }
+    .ef-scale .sc-segments {
+      margin: 0;
+      gap: 2px;
+    }
+    .ef-scale .sc-segments i {
+      flex: 1 1 0;
+      min-width: 0;
+      height: 16px;
+      border-radius: 2px;
+    }
 
     .ef-status {
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      min-width: 0;
       font-size: 12.5px;
       font-weight: 500;
       color: rgba(255,255,255,0.55);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .ef-status-dot {
       width: 7px;
@@ -406,6 +430,15 @@
         gap: 14px;
       }
       .ef-left { min-width: 0; }
+      .ef-data-row {
+        flex-wrap: wrap;
+        row-gap: 10px;
+      }
+      .ef-status {
+        flex: 1 1 100%;
+        white-space: normal;
+        overflow: visible;
+      }
       .ef-edge { text-align: left; display: flex; align-items: baseline; gap: 10px; }
       .ef-btn { width: fit-content; }
     }

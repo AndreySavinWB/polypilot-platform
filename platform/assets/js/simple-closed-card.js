@@ -214,38 +214,33 @@
     return label.length <= 12 ? label.toUpperCase() : label.slice(0, 12).toUpperCase();
   }
 
+  function getFeedCaseType(ev) {
+    const simple = ev.simpleCategory === "crypto_simple"
+      || String(ev.simpleCategory || "").includes("simple")
+      || String(ev.simpleCategoryLabel || "").includes("Прост")
+      || ev.simpleCategory === "tech_oneshot";
+    return simple ? "понятный кейс" : "спорный кейс";
+  }
+
+  function getFeedRiskLabel(ev) {
+    const risk = ev.riskLevel || "medium";
+    if (risk === "high") return "Риск высокий";
+    if (risk === "low") return "Риск низкий";
+    return "Риск средний";
+  }
+
   function buildFeedStatusLine(ev, verdict) {
     const headline = ev.simpleVerdict || getVerdictHeadline(verdict);
-    const parts = [];
-
-    if (ev.simpleCategory === "crypto_simple" || String(ev.simpleCategoryLabel || "").includes("Прост")) {
-      parts.push("Простое событие", "шум высокий");
-    } else {
-      parts.push(headline);
-      const whale = ev.whaleCheck;
-      if (whale?.status === "ready") {
-        const yes = Number(whale.yesWhaleVolumeUsd || 0);
-        const no = Number(whale.noWhaleVolumeUsd || 0);
-        if (yes > no * 1.15) parts.push("киты за YES");
-        else if (no > yes * 1.15) parts.push("киты за NO");
-      } else if (verdict.tone === "under" && Math.abs(verdict.delta || 0) >= 15) {
-        parts.push("киты за YES");
-      }
-      if (ev.news?.length && !parts.includes("новостной драйвер")) {
-        parts.push("новостной драйвер");
-      }
-    }
+    const caseType = getFeedCaseType(ev);
+    const riskLabel = getFeedRiskLabel(ev);
+    const text = `${headline}, ${caseType}. ${riskLabel}.`;
 
     const risk = ev.riskLevel || "medium";
-    if (risk === "high") parts.push("риск высокий");
-    else if (risk === "medium") parts.push("риск средний");
-    else parts.push("риск низкий");
-
     let tone = "green";
     if (risk === "high" || ev.simpleCategory === "crypto_simple") tone = "red";
     else if (risk === "medium" && !headline.includes("сильно")) tone = "orange";
 
-    return { text: parts.join(" · "), tone };
+    return { text, tone };
   }
 
   function renderFeedRow(ev, opts) {
@@ -283,19 +278,21 @@
         </div>
         <div class="ef-main">
           <div class="ef-title">${escapeHtml(ev.title || "—")}</div>
-          <div class="ef-bars">
-            <div class="ef-bar-row">
-              <span class="ef-bar-lbl">Рынок ${market}%</span>
-              ${renderSegments(market, "market")}
+          <div class="ef-data-row">
+            <div class="ef-metric ef-metric--market">
+              <span class="ef-metric-lbl">Рынок</span>
+              <span class="ef-metric-val">${market}%</span>
+              <div class="ef-scale">${renderSegments(market, "market")}</div>
             </div>
-            <div class="ef-bar-row">
-              <span class="ef-bar-lbl">PolyPilot ${pp}%</span>
-              ${renderSegments(pp, "pp")}
+            <div class="ef-metric ef-metric--pp">
+              <span class="ef-metric-lbl">PolyPilot</span>
+              <span class="ef-metric-val ef-metric-val--pp">${pp}%</span>
+              <div class="ef-scale">${renderSegments(pp, "pp")}</div>
             </div>
-          </div>
-          <div class="ef-status ef-status--${status.tone}">
-            <span class="ef-status-dot"></span>
-            ${escapeHtml(status.text)}
+            <div class="ef-status ef-status--${status.tone}">
+              <span class="ef-status-dot"></span>
+              ${escapeHtml(status.text)}
+            </div>
           </div>
         </div>
         <div class="ef-edge ef-edge--${edgeTone}">
