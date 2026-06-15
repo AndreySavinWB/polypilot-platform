@@ -486,18 +486,15 @@
   transform: translate(-50%, -50%);
   display: flex;
   align-items: center;
-  gap: 2px;
   left: var(--edge-pos, 50%);
   transition: left 0.35s ease;
 }
-.sc-edge-chevron {
-  font-size: 11px;
-  font-weight: 800;
-  color: rgba(74, 222, 128, 0.75);
-  line-height: 1;
-  letter-spacing: -2px;
+.sc-edge-bar--under .sc-edge-runner,
+.sc-edge-bar--over .sc-edge-runner {
+  left: auto;
+  right: 5px;
+  transform: translate(50%, -50%);
 }
-.sc-edge-bar--over .sc-edge-chevron { color: rgba(248, 113, 113, 0.75); }
 .sc-edge-orb {
   width: 11px;
   height: 11px;
@@ -524,9 +521,9 @@
   animation: sc-edge-orb-run 2.4s ease-in-out infinite;
 }
 @keyframes sc-edge-orb-run {
-  0% { left: 8%; opacity: 0.55; }
+  0% { left: 8%; right: auto; transform: translate(-50%, -50%); opacity: 0.55; }
   55% { opacity: 1; }
-  100% { left: var(--edge-pos, 50%); opacity: 1; }
+  100% { left: auto; right: 5px; transform: translate(50%, -50%); opacity: 1; }
 }
 
 @media (prefers-reduced-motion: reduce) {

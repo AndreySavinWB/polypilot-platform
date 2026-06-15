@@ -151,9 +151,8 @@
   }
 
   function edgeTrackPos(verdict) {
-    const d = Math.abs(verdict.delta || 0);
     if (verdict.tone === "match") return 50;
-    return Math.max(12, Math.min(100, d));
+    return 100;
   }
 
   function renderEdgeBar(ev, verdict) {
@@ -171,7 +170,6 @@
             <span class="sc-edge-dot sc-edge-dot--start"></span>
             <span class="sc-edge-line"></span>
             <span class="sc-edge-runner">
-              <span class="sc-edge-chevron">››</span>
               <span class="sc-edge-orb"></span>
             </span>
             <span class="sc-edge-dot sc-edge-dot--end"></span>
