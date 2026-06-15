@@ -133,10 +133,6 @@
   const ICON_PMA = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-7"/></svg>`;
   const ICON_WHALE = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c2-4 6-7 10-7s8 3 10 7c-2 4-6 7-10 7S4 16 2 12z"/><circle cx="8" cy="11" r="1"/><path d="M16 10c1.5 1 2.5 2.5 2.5 2.5"/></svg>`;
   const ICON_CHECK = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>`;
-  const ICON_WARN = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.3 3.6 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.6a2 2 0 0 0-3.4 0z"/></svg>`;
-  const ICON_TARGET = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M2 12h2"/><path d="M20 12h2"/></svg>`;
-  const ICON_PULSE = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg>`;
-  const ICON_CLOCK = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>`;
 
   const PMA_STATUS_LABELS = {
     found: "Найдено",
@@ -393,86 +389,18 @@
       </div>`;
   }
 
-  function buildConfirmItems(ev) {
-    const out = [];
-    const review = resolveCheckedReview(ev);
-    (review.checks || [])
-      .filter((c) => c.done)
-      .slice(0, 2)
-      .forEach((c) => out.push(c.label));
-
-    if (ev.news?.length) {
-      const n = ev.news[0];
-      const text = typeof n === "string" ? n : n.title || n.text || n.summary;
-      if (text) out.push(String(text).replace(/\s+/g, " ").trim().slice(0, 90));
-    }
-
-    const whale = ev.whaleCheck;
-    if (whale?.status === "ready" && whale.headlineRu) out.push(whale.headlineRu);
-
-    const crowd = ev.crowdPulse?.synthesis?.summaryRu;
-    if (crowd) out.push(crowd);
-
-    const defaults = [
-      "Официальные заявления и первоисточники",
-      "Соцсети и медиа поддерживают сценарий",
-      "Крупные деньги идут в YES",
-    ];
-    defaults.forEach((line) => {
-      if (out.length < 3) out.push(line);
-    });
-    return out.slice(0, 3);
-  }
-
-  function getActionAdvice(ev, verdict) {
-    if (ev.actionAdvice) return ev.actionAdvice;
-    if (verdict.tone === "under") {
-      return "Следить за официальным подтверждением запуска и изменением ликвидности.";
-    }
-    if (verdict.tone === "over") {
-      return "Не переоценивать шум — ждать подтверждения от первоисточников.";
-    }
-    return "Наблюдать за событием и возвращаться к разбору при новых данных.";
-  }
-
   function buildFinalConclusion(ev) {
     const verdict = computeVerdict(ev);
     const headline = ev.simpleVerdict || getHeadline(ev, verdict);
     const toneClass = verdict.tone === "over" ? "is-over" : verdict.tone === "match" ? "is-match" : "";
-    const riskClass = ev.riskLevel === "high" ? "risk-high" : ev.riskLevel === "low" ? "risk-low" : "";
     const body = ev.verdictText || getPlainText(ev, verdict);
-    const whyItems = buildReasons(ev).slice(0, 3);
-    const confirmItems = buildConfirmItems(ev);
-    const breakItems = buildRisks(ev).slice(0, 3);
-    const actionText = getActionAdvice(ev, verdict);
 
     return {
       headline,
       body,
       toneClass,
-      riskClass,
       tone: verdict.tone,
-      whyItems,
-      confirmItems,
-      breakItems,
-      actionText,
-      confidence: getConfidenceLabel(ev),
-      risk: getRiskLabel(ev),
-      horizon: getHorizonDisplay(ev),
     };
-  }
-
-  function renderFinalCard(title, icon, tone, items) {
-    return `
-      <div class="so-final-v2-card so-final-v2-card--${tone}">
-        <div class="so-final-v2-card-head">
-          <span class="so-final-v2-card-icon">${icon}</span>
-          <h3 class="so-final-v2-card-title">${escapeHtml(title)}</h3>
-        </div>
-        <ul class="so-final-v2-card-list">
-          ${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
-        </ul>
-      </div>`;
   }
 
   function renderFinalConclusionSection(ev) {
@@ -487,34 +415,6 @@
             <div class="so-final-v2-hero-copy">
               <h2 class="so-final-v2-headline">${escapeHtml(c.headline)}</h2>
               <p class="so-final-v2-sub">${escapeHtml(c.body)}</p>
-            </div>
-          </div>
-          <div class="so-final-v2-grid">
-            ${renderFinalCard("Почему это возможно", ICON_BULB, "why", c.whyItems)}
-            ${renderFinalCard("Что подтверждает", ICON_SHIELD, "confirm", c.confirmItems)}
-            ${renderFinalCard("Что может сломать сценарий", ICON_WARN, "break", c.breakItems)}
-          </div>
-          <div class="so-final-v2-foot">
-            <div class="so-final-v2-action">
-              <span class="so-final-v2-action-icon">${ICON_TARGET}</span>
-              <div class="so-final-v2-action-copy">
-                <div class="so-final-v2-action-title">Что делать сейчас</div>
-                <p class="so-final-v2-action-text">${escapeHtml(c.actionText)}</p>
-              </div>
-            </div>
-            <div class="so-final-v2-metrics">
-              <span class="so-final-v2-metric so-final-v2-metric--conf">
-                <span class="so-final-v2-metric-icon">${ICON_SHIELD}</span>
-                Уверенность: <strong>${escapeHtml(c.confidence)}</strong>
-              </span>
-              <span class="so-final-v2-metric so-final-v2-metric--risk ${c.riskClass}">
-                <span class="so-final-v2-metric-icon">${ICON_PULSE}</span>
-                Риск: <strong>${escapeHtml(c.risk)}</strong>
-              </span>
-              <span class="so-final-v2-metric so-final-v2-metric--horizon">
-                <span class="so-final-v2-metric-icon">${ICON_CLOCK}</span>
-                Горизонт: <strong>${escapeHtml(c.horizon)}</strong>
-              </span>
             </div>
           </div>
         </div>
