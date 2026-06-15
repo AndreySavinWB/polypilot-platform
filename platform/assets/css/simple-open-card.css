@@ -346,11 +346,67 @@
   color: #86efac;
 }
 
-.so-actions {
+.so-cta-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+  padding: 20px 22px;
+  border-radius: 14px;
+  background: #12141c;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.so-cta-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  flex: 1 1 320px;
+  min-width: 0;
+}
+.so-cta-icon {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fbbf24;
+}
+.so-cta-icon svg {
+  width: 18px;
+  height: 18px;
+}
+.so-cta-copy { min-width: 0; }
+.so-cta-title {
+  margin: 0 0 6px;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+  color: #a5b4fc;
+}
+.so-cta-desc {
+  margin: 0 0 4px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.42);
+}
+.so-cta-desc:last-child { margin-bottom: 0; }
+
+.so-cta-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 0 1 auto;
 }
+@media (max-width: 900px) {
+  .so-cta-bar { align-items: flex-start; }
+  .so-cta-actions { width: 100%; justify-content: flex-start; }
+}
+
 .so-btn {
   display: inline-flex;
   align-items: center;
@@ -382,18 +438,41 @@
   background: transparent;
   border: 1px solid rgba(124, 58, 237, 0.35);
 }
+.so-btn-outline-light {
+  color: rgba(255, 255, 255, 0.78);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+.so-btn-outline-light:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.04);
+}
+.so-btn-cta {
+  padding: 10px 14px;
+  font-size: 12px;
+  border-radius: 9px;
+  white-space: nowrap;
+}
+.so-btn-ico {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.so-btn-ico svg {
+  width: 14px;
+  height: 14px;
+}
+.so-btn-ico--end {
+  opacity: 0.55;
+  margin-left: 2px;
+}
 .so-btn-sm {
   padding: 8px 14px;
   font-size: 12px;
   border-radius: 9px;
 }
 
-.so-disclaimer {
-  margin: 10px 0 0;
-  font-size: 11px;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.32);
-}
 
 .so-changes-box {
   padding: 14px 16px;

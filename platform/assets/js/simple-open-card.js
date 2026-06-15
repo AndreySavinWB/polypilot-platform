@@ -28,6 +28,11 @@
   const ICON_BRAIN = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a4 4 0 0 1 4 4c0 .8-.2 1.5-.6 2.1A4 4 0 0 1 16 17a4 4 0 0 1-8 0 4 4 0 0 1-.4-7.9A4 4 0 0 1 12 3z"/><path d="M8 10H6a2 2 0 0 0 0 4h2"/><path d="M16 10h2a2 2 0 0 1 0 4h-2"/></svg>`;
   const ICON_SHIELD = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V6l8-3z"/></svg>`;
   const ICON_TREND = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4,16 9,11 13,15 20,6"/><polyline points="15,6 20,6 20,11"/></svg>`;
+  const ICON_BULB = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a6 6 0 0 0-4 10c.6.6 1 1.2 1 2h6c0-.8.4-1.4 1-2a6 6 0 0 0-4-10z"/></svg>`;
+  const ICON_BELL = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>`;
+  const ICON_MARKET = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>`;
+  const ICON_EXT = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v7h-7"/><path d="M3 10V3h7"/><path d="M3 21l7-7"/></svg>`;
+  const ICON_SHARE = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5 15.4 17.5"/><path d="M15.4 6.5 8.6 10.5"/></svg>`;
 
   function escapeHtml(value) {
     return String(value)
@@ -268,29 +273,41 @@
   function renderActionsSection(ev, opts) {
     opts = opts || {};
     const marketUrl = ev.marketUrl || opts.marketUrl || "https://polymarket.com";
-
-    return `
-      <section class="so-section">
-        <h2 class="so-section-title">Что делать</h2>
-        <div class="so-actions">
-          <a class="so-btn so-btn-ghost" href="${escapeHtml(marketUrl)}" target="_blank" rel="noopener">Открыть на Polymarket</a>
-        </div>
-        <p class="so-disclaimer">Не финансовый совет. PolyPilot показывает расхождение с рынком — решение за вами.</p>
-      </section>`;
-  }
-
-  function renderTopBar(ev, opts) {
-    opts = opts || {};
     const shareUrl = opts.guestShareLink || `guest-event.html?id=${encodeURIComponent(ev.id)}`;
     const followHref = opts.proBotLink || "#";
 
     return `
+      <section class="so-cta-bar">
+        <div class="so-cta-left">
+          <span class="so-cta-icon">${ICON_BULB}</span>
+          <div class="so-cta-copy">
+            <h2 class="so-cta-title">Что делать</h2>
+            <p class="so-cta-desc">Наблюдать за событием и возвращаться к разбору при новых данных.</p>
+            <p class="so-cta-desc">Не считать это гарантированным исходом.</p>
+          </div>
+        </div>
+        <div class="so-cta-actions">
+          <a class="so-btn so-btn-primary so-btn-cta" href="${escapeHtml(followHref)}" target="_blank" rel="noopener">
+            <span class="so-btn-ico">${ICON_BELL}</span>
+            Следить за событием
+          </a>
+          <a class="so-btn so-btn-outline-light so-btn-cta" href="${escapeHtml(marketUrl)}" target="_blank" rel="noopener">
+            <span class="so-btn-ico">${ICON_MARKET}</span>
+            Открыть на Polymarket
+            <span class="so-btn-ico so-btn-ico--end">${ICON_EXT}</span>
+          </a>
+          <a class="so-btn so-btn-outline-light so-btn-cta" href="${escapeHtml(shareUrl)}">
+            <span class="so-btn-ico">${ICON_SHARE}</span>
+            Поделиться
+          </a>
+        </div>
+      </section>`;
+  }
+
+  function renderTopBar(ev, opts) {
+    return `
       <div class="so-topbar">
         <a href="events.html" class="so-back">← Назад к событиям</a>
-        <div class="so-topbar-actions">
-          <a class="so-btn so-btn-primary so-btn-sm" href="${escapeHtml(followHref)}" target="_blank" rel="noopener">Следить</a>
-          <a class="so-btn so-btn-outline so-btn-sm" href="${escapeHtml(shareUrl)}">Поделиться</a>
-        </div>
       </div>`;
   }
 
