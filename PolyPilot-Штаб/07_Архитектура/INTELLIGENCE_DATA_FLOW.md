@@ -33,6 +33,8 @@ Polymarket API
       ↓
  Comment Analysis (5.5A/B/C) ──→ crowdPulse
       ↓
+ External Market Check (5.6) ──→ externalMarketCheck
+      ↓
  Contradiction Engine ──→ contradictionMap
       ↓
  Comparable Events ──→ analogs[]  (+ read Memory)
@@ -260,7 +262,56 @@ Polymarket API
 
 ---
 
-## Шаг 5 — Contradiction Engine
+## Шаг 5.6 — External Market Check (Polymarket Analytics)
+
+> Полная спецификация: [[EXTERNAL_MARKET_CHECK_V1]]
+
+**Вход:** normalized + marketIntelligence + marketStructure  
+**Выход добавляет:** `externalMarketCheck`
+
+```json
+{
+  "externalMarketCheck": {
+    "lookupStatus": "found",
+    "eventUrl": "https://polymarket.com/event/...",
+    "pmAnalyticsUrl": "https://polymarketanalytics.com/events/...",
+    "features": {
+      "priceChartAvailable": true,
+      "orderBookAvailable": true,
+      "similarMarketsAvailable": true,
+      "traderWhaleDataAvailable": false
+    },
+    "metrics": {
+      "liquidityLevel": "low",
+      "spreadLevel": "low",
+      "priceReliability": "distorted",
+      "sharpPriceMove": false,
+      "orderBookSkew": "balanced",
+      "anomalies": ["thin_liquidity"]
+    },
+    "marketCharacter": "thin",
+    "observationsRu": ["…", "…", "…"],
+    "summaryRu": "Рынок тонкий; рыночную цену лучше использовать осторожно.",
+    "marketOddsTrust": "low",
+    "forecastImpact": "weak_negative",
+    "probabilityAdjustPct": 0,
+    "dataSource": "polymarket_analytics_stub",
+    "scoringMode": "mock_v1"
+  }
+}
+```
+
+**Правила:**
+
+- PMA не заменяет Polymarket / scanner как источник события.
+- `lookupStatus`: found / not_found / similar_found / error.
+- UI — простой язык, без spread/order book jargon.
+
+**MVP:** mock для event `79061`; PMA API — заглушка.
+
+---
+
+## Шаг 6 — Contradiction Engine
 
 **Вход:** marketSnapshot + marketIntelligence + evidence  
 **Выход добавляет:**

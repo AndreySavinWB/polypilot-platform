@@ -130,6 +130,22 @@
   const ICON_EXT = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v7h-7"/><path d="M3 10V3h7"/><path d="M3 21l7-7"/></svg>`;
   const ICON_SHARE = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5 15.4 17.5"/><path d="M15.4 6.5 8.6 10.5"/></svg>`;
   const ICON_CROWD = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`;
+  const ICON_PMA = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-7"/></svg>`;
+
+  const PMA_STATUS_LABELS = {
+    found: "Найдено",
+    not_found: "Не найдено",
+    similar_found: "Найдено похожее",
+    error: "Ошибка проверки",
+  };
+
+  const PMA_IMPACT_LABELS = {
+    positive: "Поддерживает прогноз",
+    negative: "Снижает доверие к рыночной цене",
+    neutral: "Почти не влияет на прогноз",
+    weak_positive: "Слегка поддерживает прогноз",
+    weak_negative: "Слегка снижает доверие к рыночной цене",
+  };
 
   const LEAN_LABELS = {
     yes: "скорее YES",
@@ -456,6 +472,52 @@
       </section>`;
   }
 
+  function renderExternalMarketCheckSection(ev) {
+    const pma = ev.externalMarketCheck;
+    if (!pma) return "";
+
+    const status = pma.lookupStatus || "not_found";
+    const statusLabel = PMA_STATUS_LABELS[status] || PMA_STATUS_LABELS.not_found;
+
+    if (status === "not_found" || status === "error") {
+      return `
+      <section class="so-pma-card">
+        <div class="so-pma-head">
+          <span class="so-pma-icon">${ICON_PMA}</span>
+          <h2 class="so-pma-title">Данные с Polymarket Analytics</h2>
+        </div>
+        <p class="so-pma-empty">${escapeHtml(
+          pma.summaryRu || "Событие не найдено на Polymarket Analytics."
+        )}</p>
+      </section>`;
+    }
+
+    const observations = (pma.observationsRu || []).slice(0, 3);
+    const obsHtml = observations.length
+      ? `<ul class="so-pma-obs">${observations
+          .map((o) => `<li>${escapeHtml(o)}</li>`)
+          .join("")}</ul>`
+      : "";
+
+    const summary = pma.summaryRu
+      ? `<div class="so-pma-summary"><span>Итог:</span> ${escapeHtml(pma.summaryRu)}</div>`
+      : "";
+
+    const impact = PMA_IMPACT_LABELS[pma.forecastImpact] || PMA_IMPACT_LABELS.neutral;
+
+    return `
+      <section class="so-pma-card">
+        <div class="so-pma-head">
+          <span class="so-pma-icon">${ICON_PMA}</span>
+          <h2 class="so-pma-title">Данные с Polymarket Analytics</h2>
+        </div>
+        <div class="so-pma-status">Статус: <strong>${escapeHtml(statusLabel)}</strong></div>
+        ${obsHtml}
+        ${summary}
+        <div class="so-pma-impact">Влияние на прогноз: ${escapeHtml(impact)}</div>
+      </section>`;
+  }
+
   function renderActionsSection(ev, opts) {
     opts = opts || {};
     const marketUrl = ev.marketUrl || opts.marketUrl || "https://polymarket.com";
@@ -539,6 +601,7 @@
         ${renderVerdictSection(ev)}
         ${renderAnalysisDuo(ev)}
         ${renderCrowdPulseSection(ev)}
+        ${renderExternalMarketCheckSection(ev)}
         ${renderCheckedSection(ev)}
         ${renderActionsSection(ev, opts)}
         ${renderChangesSection(ev)}

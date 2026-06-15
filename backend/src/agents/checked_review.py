@@ -57,6 +57,12 @@ def _market_comments_checked(crowd_pulse: dict) -> bool:
     return int(market.get("commentCount") or 0) > 0
 
 
+def _pma_analytics_checked(pma: dict) -> bool:
+    if pma.get("lookupStatus") not in ("found", "similar_found"):
+        return False
+    return _is_real_source(pma.get("dataSource"))
+
+
 def _resolve_last_checked(
     package: dict,
     analysis: dict | None,
@@ -132,7 +138,11 @@ def build_checked_review(
             or event.get("volume") is not None
         ),
         "externalAnalytics": bool(
-            mi.get("whaleSignal") not in (None, "unknown", "none")
+            _pma_analytics_checked(package.get("externalMarketCheck") or {})
+            or (
+                mi.get("whaleSignal") not in (None, "unknown", "none")
+                and bool(mi.get("whaleSignal"))
+            )
             or bool((mi.get("sourcesUsed") or []))
         ),
         "contradictions": bool(len(contradictions) > 0 or edge_pp >= 8),

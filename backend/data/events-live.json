@@ -442,6 +442,37 @@
         },
         "scoringMode": "mock_v1"
       },
+      "externalMarketCheck": {
+        "lookupStatus": "found",
+        "eventUrl": "https://polymarket.com/event/will-tesla-launch-robotaxis-in-california-by-june-30",
+        "pmAnalyticsUrl": "https://polymarketanalytics.com/events/will-tesla-launch-robotaxis-in-california-by-june-30",
+        "features": {
+          "priceChartAvailable": true,
+          "orderBookAvailable": true,
+          "similarMarketsAvailable": true,
+          "traderWhaleDataAvailable": false
+        },
+        "metrics": {
+          "liquidityLevel": "low",
+          "spreadLevel": "low",
+          "priceReliability": "distorted",
+          "sharpPriceMove": false,
+          "orderBookSkew": "balanced",
+          "anomalies": ["thin_liquidity", "low_volume_24h"]
+        },
+        "marketCharacter": "thin",
+        "observationsRu": [
+          "Ликвидность низкая — в стакане мало денег.",
+          "Цена может искажаться из-за редких сделок.",
+          "Резких скачков за последние дни не видно."
+        ],
+        "summaryRu": "Рынок тонкий: внешняя аналитика подтверждает низкую ликвидность. Рыночную цену лучше использовать осторожно.",
+        "marketOddsTrust": "low",
+        "forecastImpact": "weak_negative",
+        "probabilityAdjustPct": 0,
+        "dataSource": "polymarket_analytics_stub",
+        "scoringMode": "mock_v1"
+      },
       "proofTrack": {
         "opened": "2026-06-15",
         "ppOdds": 75,
