@@ -11,6 +11,7 @@ sys.path.insert(0, ROOT)
 SRC = os.path.join(ROOT, "data", "test_events.json")
 OUT = os.path.join(ROOT, "..", "platform", "data", "events-live.js")
 
+from src.agents.checked_review import build_checked_review
 from src.services.localize import (
     AGENT_NAMES_RU,
     DECISION_RU,
@@ -327,6 +328,12 @@ def convert_item(item):
             "marketOddsAtOpen": market_odds or 50,
         },
         "crowdPulse": package.get("crowdPulse"),
+        "checkedReview": build_checked_review(
+            package,
+            analysis,
+            event,
+            generated_at=datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+        ),
     }
 
 

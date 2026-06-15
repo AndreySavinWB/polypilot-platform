@@ -15,15 +15,111 @@
     "данные могут быть шумом, а не реальным сигналом",
   ];
 
-  const CHECK_ITEMS = [
-    { label: "Формулировка события", test: (ev) => !!ev.title },
-    { label: "Дата и условия закрытия", test: (ev) => !!ev.resolveDate },
-    { label: "Рынок (Polymarket)", test: (ev) => ev.marketOdds != null },
-    { label: "Источники и новости", test: (ev) => (ev.warRoom?.agents || []).length > 1 },
-    { label: "Похожие исторические события", test: () => false },
-    { label: "Противоречия между источниками", test: (ev) => Math.abs((ev.aiOdds || 0) - (ev.marketOdds || 0)) >= 8 },
-    { label: "Риски и неизвестные", test: (ev) => !!(ev.riskTags?.length || ev.riskLevel) },
+  const CHECK_CATALOG = [
+    { id: "eventRules", label: "Формулировка и правила резолва" },
+    { id: "news", label: "Новости" },
+    { id: "official", label: "Официальные источники" },
+    { id: "social", label: "X / Reddit / соцсети" },
+    { id: "trends", label: "Google Trends / поисковый интерес" },
+    { id: "youtubeMedia", label: "YouTube / медиа" },
+    { id: "marketComments", label: "Комментарии участников рынка" },
+    { id: "comparableEvents", label: "Похожие события" },
+    { id: "polymarketHistory", label: "Исторические данные Polymarket" },
+    { id: "externalAnalytics", label: "Внешние аналитические сервисы" },
+    { id: "contradictions", label: "Противоречия между источниками" },
+    { id: "risks", label: "Риски и неизвестные" },
   ];
+
+  const STUB_MARKERS = ["stub", "mock"];
+
+  function isRealDataSource(dataSource) {
+    if (!dataSource) return true;
+    const lower = String(dataSource).toLowerCase();
+    return !STUB_MARKERS.some((m) => lower.includes(m));
+  }
+
+  function hasWarRoomAgent(ev, roleHint) {
+    return (ev.warRoom?.agents || []).some((a) => String(a.role || "").includes(roleHint));
+  }
+
+  function resolveCheckedReview(ev) {
+    if (ev.checkedReview?.checks?.length) return ev.checkedReview;
+
+    const crowd = ev.crowdPulse || {};
+    const social = crowd.socialDiscussion || {};
+    const marketComments = crowd.marketComments || {};
+    const socialSources = social.sources || [];
+    const socialFound = (platforms) =>
+      isRealDataSource(social.dataSource) &&
+      socialSources.some((s) => s.found && platforms.includes(s.platform));
+
+    const checks = CHECK_CATALOG.map((item) => {
+      let done = false;
+      switch (item.id) {
+        case "eventRules":
+          done = !!(ev.title && (ev.summary || ev.resolveDate));
+          break;
+        case "news":
+          done = !!(ev.news?.length || hasWarRoomAgent(ev, "Сбор фактов"));
+          break;
+        case "official":
+          done = !!(ev.summary?.length > 40 || ev.marketUrl);
+          break;
+        case "social":
+          done = socialFound(["x", "reddit", "telegram"]);
+          break;
+        case "trends":
+          done = false;
+          break;
+        case "youtubeMedia":
+          done = socialFound(["youtube", "news"]);
+          break;
+        case "marketComments":
+          done =
+            isRealDataSource(marketComments.dataSource) &&
+            Number(marketComments.commentCount || 0) > 0;
+          break;
+        case "comparableEvents":
+          done = false;
+          break;
+        case "polymarketHistory":
+          done = ev.marketOdds != null;
+          break;
+        case "externalAnalytics":
+          done = false;
+          break;
+        case "contradictions":
+          done = Math.abs((ev.aiOdds || 0) - (ev.marketOdds || 0)) >= 8;
+          break;
+        case "risks":
+          done = !!(ev.riskTags?.length || ev.riskLevel || hasWarRoomAgent(ev, "риска"));
+          break;
+        default:
+          done = false;
+      }
+      return { ...item, done };
+    });
+
+    return {
+      lastCheckedAt: ev.proofTrack?.opened || null,
+      checks,
+    };
+  }
+
+  function formatCheckedDate(value) {
+    if (!value) return "—";
+    const raw = String(value);
+    const iso = raw.match(/^(\d{4})-(\d{2})-(\d{2})/);
+    if (iso) {
+      const d = new Date(Number(iso[1]), Number(iso[2]) - 1, Number(iso[3]));
+      return d.toLocaleDateString("ru-RU", { day: "numeric", month: "long", year: "numeric" });
+    }
+    const parsed = new Date(raw);
+    if (!Number.isNaN(parsed.getTime())) {
+      return parsed.toLocaleDateString("ru-RU", { day: "numeric", month: "long", year: "numeric" });
+    }
+    return raw;
+  }
 
   const ICON_BRAIN = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a4 4 0 0 1 4 4c0 .8-.2 1.5-.6 2.1A4 4 0 0 1 16 17a4 4 0 0 1-8 0 4 4 0 0 1-.4-7.9A4 4 0 0 1 12 3z"/><path d="M8 10H6a2 2 0 0 0 0 4h2"/><path d="M16 10h2a2 2 0 0 1 0 4h-2"/></svg>`;
   const ICON_SHIELD = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V6l8-3z"/></svg>`;
@@ -258,16 +354,18 @@
   }
 
   function renderCheckedSection(ev) {
-    const checks = CHECK_ITEMS.map((item) => ({
-      label: item.label,
-      done: item.test(ev),
-    }));
+    const review = resolveCheckedReview(ev);
+    const checks = review.checks || [];
+    const lastChecked = formatCheckedDate(review.lastCheckedAt);
 
     return `
       <section class="so-checked-card">
         <div class="so-checked-head">
-          <span class="so-checked-icon">${ICON_TREND}</span>
-          <h2 class="so-checked-title">Что мы проверили</h2>
+          <div class="so-checked-head-main">
+            <span class="so-checked-icon">${ICON_TREND}</span>
+            <h2 class="so-checked-title">Мы проверили.</h2>
+          </div>
+          <div class="so-checked-date">Крайняя проверка: ${escapeHtml(lastChecked)}</div>
         </div>
         <div class="so-checked-chips">
           ${checks
