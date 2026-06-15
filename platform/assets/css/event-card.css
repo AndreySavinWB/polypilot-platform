@@ -218,3 +218,115 @@
 .sv-pos    { color: #34d399; }
 .sv-neg    { color: #f87171; }
 .sv-pink   { color: #f472b6; }
+
+/* ---- Simple Events v1 closed card ---- */
+.event-card.simple-v1 {
+  animation: none;
+  background: #0c0e1a;
+}
+.event-card.simple-v1:hover {
+  border-color: rgba(124,58,237,0.45);
+}
+.event-card.simple-v1.is-hot::after {
+  display: none;
+}
+.sc-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  flex-wrap: wrap;
+}
+.sc-cat {
+  font-size: 11px;
+  font-weight: 600;
+  color: #c4b5fd;
+  background: rgba(124,58,237,0.15);
+  border: 1px solid rgba(124,58,237,0.3);
+  border-radius: 999px;
+  padding: 4px 10px;
+}
+.sc-date {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.sc-title {
+  padding: 16px 16px 12px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.3px;
+  color: #fff;
+}
+.sc-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 0 16px 16px;
+}
+.sc-bar-block label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+.sc-bar-block label .val {
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+}
+.sc-bar-block label .val.pp { color: #c4b5fd; }
+.sc-bar {
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+  overflow: hidden;
+}
+.sc-bar > i {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.35);
+}
+.sc-bar.pp > i { background: #7c3aed; }
+.sc-verdict {
+  margin: 0 16px 16px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(124,58,237,0.08);
+  border: 1px solid rgba(124,58,237,0.18);
+}
+.sc-verdict--under {
+  background: rgba(74,222,128,0.06);
+  border-color: rgba(74,222,128,0.18);
+}
+.sc-verdict--under strong { color: #86efac; }
+.sc-verdict--over {
+  background: rgba(248,113,113,0.06);
+  border-color: rgba(248,113,113,0.18);
+}
+.sc-verdict--over strong { color: #fca5a5; }
+.sc-verdict strong {
+  display: block;
+  color: #a78bfa;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+.sc-verdict p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: rgba(255,255,255,0.62);
+}
+.sc-cta {
+  padding: 0 16px 16px;
+  text-align: right;
+  font-size: 13px;
+  font-weight: 600;
+  color: #a78bfa;
+}

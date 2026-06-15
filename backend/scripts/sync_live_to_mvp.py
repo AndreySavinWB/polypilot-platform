@@ -65,17 +65,84 @@ def parse_prices(raw):
         return None
 
 
-def guess_category(title, tags, title_en=None):
+def guess_category(title, tags, title_en=None, simple_category=None):
+    if simple_category == "sports":
+        return "Спорт", "sport"
+    if simple_category == "entertainment":
+        return "Кино", "cinema"
+    if simple_category == "crypto_simple":
+        return "Крипто", "crypto"
+    if simple_category == "tech_oneshot":
+        return "Tech", "tech"
+    if simple_category == "games":
+        return "Игры", "sport"
+    if "crypto_simple" in tags:
+        return "Крипто", "crypto"
+    if "sports" in tags or "sport" in tags:
+        return "Спорт", "sport"
+    if "entertainment" in tags:
+        return "Кино", "cinema"
     text = f"{title or ''} {title_en or ''}".lower()
-    if any(word in text for word in ("ipo", "kraken", "bitcoin", "crypto", "крипто")):
+    if any(word in text for word in ("swift", "taylor", "pregnant", "marriage", "album", "oscar", "grammy")):
+        return "Кино", "cinema"
+    if any(word in text for word in ("tesla", "robotaxi", "iphone", "openai")):
+        return "Tech", "tech"
+    if any(word in text for word in ("ipo", "kraken", "bitcoin", "crypto", "крипто", "ai model", "deepseek")):
         return "Крипто", "crypto"
     if any(word in text for word in ("election", "macron", "starmer", "nato", "ukraine", "uk ", "troops", "макрон", "стармер", "выбор", "нато", "украин")):
         return "Политика", "politics"
-    if any(word in text for word in ("china", "india", "military", "clash", "китай", "инди", "конфликт")):
+    if any(word in text for word in ("china", "india", "military", "clash", "korea", "китай", "инди", "конфликт", "коре")):
         return "Геополитика", "politics"
     if "news_driven" in tags:
         return "Политика", "politics"
     return "Макро", "macro"
+
+
+SIMPLE_CATEGORY_LABELS = {
+    "sports": "Спорт",
+    "entertainment": "Кино",
+    "crypto_simple": "Простое · крипто",
+    "tech_oneshot": "Tech",
+    "games": "Игры",
+}
+
+
+def extract_simple_meta(item, tags):
+    package_priority = (item.get("pipelinePackage") or {}).get("priority") or {}
+    analysis_priority = (item.get("analysis") or {}).get("priority") or {}
+    simple_cat = (
+        package_priority.get("simpleCategory")
+        or analysis_priority.get("simpleCategory")
+        or next((tag for tag in tags if tag in SIMPLE_CATEGORY_LABELS), None)
+    )
+    label = (
+        package_priority.get("categoryLabel")
+        or analysis_priority.get("categoryLabel")
+        or SIMPLE_CATEGORY_LABELS.get(simple_cat)
+    )
+    return simple_cat, label
+
+
+def simple_verdict_fields(market_odds, confidence):
+    market = 50 if market_odds is None else market_odds
+    delta = confidence - market
+    if delta >= 8:
+        return "Рынок занижен", "under"
+    if delta <= -8:
+        return "Рынок завышен", "over"
+    return "Совпадаем с рынком", "match"
+
+
+def horizon_short(end_date):
+    days_str = horizon_days(end_date)
+    match = re.match(r"(\d+)", days_str)
+    days = match.group(1) if match else None
+    if end_date and len(end_date) >= 10:
+        _, month, day = end_date[:10].split("-")
+        if days:
+            return f"Закрытие {day}.{month} · {days} дн."
+        return f"Закрытие {day}.{month}"
+    return days_str
 
 
 def horizon_days(end_date):
@@ -166,7 +233,10 @@ def convert_item(item):
     event_id = str(event.get("id"))
     title_ru = normalized_event.get("titleRu") or translate_title(event_id, event.get("title"))
     localized = localize_analysis_texts(analysis)
-    category, category_tag = guess_category(title_ru, tags, event.get("title"))
+    simple_category, simple_category_label = extract_simple_meta(item, tags)
+    category, category_tag = guess_category(
+        title_ru, tags, event.get("title"), simple_category=simple_category
+    )
 
     # marketProb is 0.0–1.0 in PIE v1.0b; convert to integer % for display
     raw_prob = market_snapshot.get("marketProb")
@@ -196,6 +266,9 @@ def convert_item(item):
     if market_odds is not None:
         edge = max(0, confidence - market_odds)
 
+    simple_verdict, simple_verdict_tone = simple_verdict_fields(market_odds, confidence)
+    horizon_label = horizon_short((event.get("endDate") or "")[:10])
+
     summary_ru = localize_description(event.get("description"), title_ru)
     risk_tags_ru = pie_risk.get("flags") or localized.get("riskFlags") or (analysis.get("riskOfficer") or {}).get("flags") or []
     facts_ru = localized.get("newsFacts") or (analysis.get("newsScout") or {}).get("facts") or []
@@ -207,6 +280,11 @@ def convert_item(item):
         "titleEn": event.get("title"),
         "category": category,
         "categoryTag": category_tag,
+        "simpleCategory": simple_category,
+        "simpleCategoryLabel": simple_category_label or category,
+        "simpleVerdict": simple_verdict,
+        "simpleVerdictTone": simple_verdict_tone,
+        "horizonShort": horizon_label,
         "status": "open",
         "isLive": True,
         "isDemo": False,

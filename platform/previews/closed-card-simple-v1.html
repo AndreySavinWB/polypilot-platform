@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PolyPilot — Closed Card Simple v1 (preview)</title>
+  <link rel="stylesheet" href="../assets/css/event-card.css" />
+  <style>
+    :root {
+      --text-muted: rgba(255,255,255,0.45);
+      --bg: #07080f;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: #fff;
+      min-height: 100vh;
+    }
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 48px;
+    }
+    h1 { font-size: 22px; margin: 0 0 8px; letter-spacing: -0.3px; }
+    .sub { color: var(--text-muted); font-size: 14px; margin-bottom: 24px; max-width: 640px; line-height: 1.5; }
+    .tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+    .tab {
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+      color: rgba(255,255,255,0.7);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .tab.active {
+      border-color: rgba(124,58,237,0.5);
+      background: rgba(124,58,237,0.18);
+      color: #e9d5ff;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+    .col-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+    /* ---- CURRENT (simplified from prod) ---- */
+    .event-card.current { animation: none; }
+    .current .card-stats-row + .card-stats-row { display: none; }
+    .signal-row {
+      display: flex;
+      gap: 8px;
+      padding: 10px 14px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      flex-wrap: wrap;
+    }
+    .sig-pill {
+      font-size: 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.35);
+    }
+    .sig-pill.on {
+      border-color: rgba(74,222,128,0.4);
+      background: rgba(74,222,128,0.12);
+      color: #86efac;
+    }
+    /* ---- SIMPLE v1 ---- */
+    .simple-card {
+      background: #0c0e1a;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .simple-card:hover {
+      border-color: rgba(124,58,237,0.45);
+      transform: translateY(-2px);
+    }
+    .sc-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      flex-wrap: wrap;
+    }
+    .sc-cat {
+      font-size: 11px;
+      font-weight: 600;
+      color: #c4b5fd;
+      background: rgba(124,58,237,0.15);
+      border: 1px solid rgba(124,58,237,0.3);
+      border-radius: 999px;
+      padding: 4px 10px;
+    }
+    .sc-date { font-size: 11px; color: var(--text-muted); }
+    .sc-title {
+      padding: 16px 16px 12px;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.3px;
+    }
+    .sc-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      padding: 0 16px 16px;
+    }
+    .sc-bar-block label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .sc-bar-block label span.val { color: #fff; font-weight: 700; font-size: 18px; }
+    .sc-bar-block label span.val.pp { color: #c4b5fd; }
+    .bar {
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      overflow: hidden;
+    }
+    .bar > i {
+      display: block;
+      height: 100%;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.35);
+    }
+    .bar.pp > i { background: #7c3aed; }
+    .sc-verdict {
+      margin: 0 16px 16px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: rgba(124,58,237,0.08);
+      border: 1px solid rgba(124,58,237,0.18);
+    }
+    .sc-verdict strong {
+      display: block;
+      color: #a78bfa;
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+    .sc-verdict p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.45;
+      color: rgba(255,255,255,0.62);
+    }
+    .sc-cta {
+      padding: 0 16px 16px;
+      text-align: right;
+      font-size: 13px;
+      font-weight: 600;
+      color: #a78bfa;
+    }
+    .note {
+      margin-top: 32px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Closed Card — Simple Events v1</h1>
+    <p class="sub">Слева — как сейчас (упрощённо). Справа — предложение. Переключай примеры.</p>
+
+    <div class="tabs" id="tabs"></div>
+
+    <div class="grid">
+      <div>
+        <div class="col-label">Сейчас</div>
+        <div id="current"></div>
+      </div>
+      <div>
+        <div class="col-label">Simple v1</div>
+        <div id="simple"></div>
+      </div>
+    </div>
+
+    <div class="note">
+      Это только превью — код сайта не менялся. Открой файл локально или через Vercel preview path.
+      Argentina — слабый кейс для Simple (macro); смотри «Спорт» и «Oscar».
+    </div>
+  </div>
+
+  <script>
+    const EXAMPLES = {
+      argentina: {
+        tab: "Argentina (harvest)",
+        title: "Аргентина долларизуется до 30 июня 2026 года?",
+        category: "Макро",
+        hot: true,
+        potential: "+28%",
+        pp: 65,
+        horizon: "14 д.",
+        watchers: "22K",
+        simple: {
+          cat: "Простое · крипто",
+          date: "Закрытие 30 июня · 14 дн.",
+          title: "Аргентина перейдёт на доллар до 30 июня?",
+          market: 1,
+          pp: 65,
+          verdict: "Рынок сильно занижен",
+          reason: "Рынок почти не закладывает долларизацию — мы видим иначе.",
+        },
+      },
+      sport: {
+        tab: "Спорт",
+        title: "Will Manchester City win the Champions League?",
+        category: "Спорт",
+        hot: true,
+        potential: "+14%",
+        pp: 48,
+        horizon: "45 д.",
+        watchers: "890K",
+        simple: {
+          cat: "Спорт",
+          date: "Закрытие 30 мая · 45 дн.",
+          title: "Manchester City — чемпион ЛЧ?",
+          market: 34,
+          pp: 48,
+          verdict: "Рынок занижен",
+          reason: "Букмекеры дают City ~45–50%, рынок отстаёт.",
+        },
+      },
+      oscar: {
+        tab: "Oscar",
+        title: "Will Anora win Best Picture at the Oscars?",
+        category: "Кино",
+        hot: false,
+        potential: "+11%",
+        pp: 51,
+        horizon: "260 д.",
+        watchers: "120K",
+        simple: {
+          cat: "Кино",
+          date: "Закрытие 2 марта · 260 дн.",
+          title: "«Anora» — Best Picture?",
+          market: 62,
+          pp: 51,
+          verdict: "Рынок завышен",
+          reason: "Рынок заложил победу раньше, чем odds на награды.",
+        },
+      },
+    };
+
+    let active = "argentina";
+
+    function renderCurrent(ex) {
+      return `
+        <div class="event-card current is-hot">
+          <div class="card-topbar">
+            ${ex.hot ? '<span class="card-hot">🔥 Горячее</span>' : ''}
+            <span class="card-category-tag" style="background:rgba(34,197,94,0.15);border-color:rgba(34,197,94,0.35);color:#86efac">ОНЛАЙН</span>
+            <span class="card-category-tag">${ex.category.toUpperCase()}</span>
+            <div class="card-topbar-right">
+              <span class="card-watchers">👁 ${ex.watchers} следят</span>
+              <span class="card-bookmark">🔖</span>
+            </div>
+          </div>
+          <div class="card-title-block"><div class="card-title">${ex.title}</div></div>
+          <div class="card-stats-row">
+            <div class="card-stat">
+              <div class="stat-body">
+                <span class="stat-lbl">Потенциал</span>
+                <span class="stat-val sv-purple">${ex.potential}</span>
+                <span class="stat-sub">Возможный рост</span>
+              </div>
+            </div>
+            <div class="card-stat">
+              <div class="stat-body">
+                <span class="stat-lbl">Вероятность</span>
+                <span class="stat-val sv-purple">${ex.pp}%</span>
+                <span class="stat-sub">Оценка PP AI</span>
+              </div>
+            </div>
+            <div class="card-stat">
+              <div class="stat-body">
+                <span class="stat-lbl">Горизонт</span>
+                <span class="stat-val sv-green">${ex.horizon}</span>
+                <span class="stat-sub">Ожидаемое движение</span>
+              </div>
+            </div>
+          </div>
+          <div class="signal-row">
+            <span class="sig-pill on">Сильный сигнал</span>
+            <span class="sig-pill">Наблюдать</span>
+            <span class="sig-pill">Недостаточно данных</span>
+          </div>
+        </div>`;
+    }
+
+    function renderSimple(s) {
+      return `
+        <div class="simple-card">
+          <div class="sc-meta">
+            <span class="sc-cat">${s.cat}</span>
+            <span class="sc-date">${s.date}</span>
+          </div>
+          <div class="sc-title">${s.title}</div>
+          <div class="sc-compare">
+            <div class="sc-bar-block">
+              <label><span>Рынок</span><span class="val">${s.market}%</span></label>
+              <div class="bar"><i style="width:${s.market}%"></i></div>
+            </div>
+            <div class="sc-bar-block">
+              <label><span>PolyPilot</span><span class="val pp">${s.pp}%</span></label>
+              <div class="bar pp"><i style="width:${s.pp}%"></i></div>
+            </div>
+          </div>
+          <div class="sc-verdict">
+            <strong>${s.verdict}</strong>
+            <p>${s.reason}</p>
+          </div>
+          <div class="sc-cta">Разбор →</div>
+        </div>`;
+    }
+
+    function render() {
+      const ex = EXAMPLES[active];
+      document.getElementById("current").innerHTML = renderCurrent(ex);
+      document.getElementById("simple").innerHTML = renderSimple(ex.simple);
+      document.querySelectorAll(".tab").forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.id === active);
+      });
+    }
+
+    const tabs = document.getElementById("tabs");
+    Object.entries(EXAMPLES).forEach(([id, ex]) => {
+      const b = document.createElement("button");
+      b.className = "tab" + (id === active ? " active" : "");
+      b.dataset.id = id;
+      b.textContent = ex.tab;
+      b.onclick = () => { active = id; render(); };
+      tabs.appendChild(b);
+    });
+    render();
+  </script>
+</body>
+</html>

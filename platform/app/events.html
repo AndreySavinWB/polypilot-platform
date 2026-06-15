@@ -1204,6 +1204,7 @@
 <script src="../assets/js/pp-config.js"></script>
 <script src="../data/events-live.js"></script>
 <script src="../data/events-data.js"></script>
+<script src="../assets/js/simple-closed-card.js"></script>
 <script src="../assets/js/events-store.js"></script>
 <script src="../assets/js/state.js"></script>
 <script src="../assets/js/sidebar.js"></script>
@@ -1375,84 +1376,19 @@
     renderFeedSection('feed-list-demo', demoList);
   }
 
-  // ---- Grid card ----
+  // ---- Grid card (Simple v1) ----
   function renderGridCard(ev) {
-    const potClass   = 'sv-purple';
-    const vol24Class = ev.volume24hPositive ? 'sv-pos' : 'sv-neg';
-    const interestVal = ev.interestPositive ? 'Растёт' : 'Падает';
-    const interestSub = ev.interestPositive ? 'Рынок активен' : 'Рынок остывает';
-    const ppConf = ev.verdict === 'NO' ? (100 - ev.aiOdds) : ev.aiOdds;
-    return `
-      <div class="event-card is-hot" onclick="location.href='event.html?id=${ev.id}'">
-        <div class="card-topbar">
-          ${ev.hot ? '<span class="card-hot">🔥 Горячее</span>' : ''}
-          ${sourceBadge(ev, 'card-source')}
-          <span class="card-category-tag">${ev.category}</span>
-          <div class="card-topbar-right">
-            <span class="card-watchers">👁 ${ev.watchers||'—'} следят</span>
-            <span class="card-bookmark">🔖</span>
-          </div>
-        </div>
-        <div class="card-title-block"><div class="card-title">${ev.title}</div></div>
-        <div class="card-stats-row">
-          <div class="card-stat">
-            <div class="stat-icon si-purple">${SVG.trending}</div>
-            <div class="stat-body">
-              <span class="stat-lbl">Потенциал</span>
-              <span class="stat-val ${potClass}">${ev.potential||'—'}</span>
-              <span class="stat-sub">Возможный рост</span>
-            </div>
-          </div>
-          <div class="card-stat">
-            <div class="stat-icon si-purple">${SVG.trending}</div>
-            <div class="stat-body">
-              <span class="stat-lbl">Вероятность</span>
-              <span class="stat-val sv-purple">${ppConf}%</span>
-              <span class="stat-sub">Оценка PP AI</span>
-            </div>
-          </div>
-          <div class="card-stat">
-            <div class="stat-icon si-green">${SVG.calendar}</div>
-            <div class="stat-body">
-              <span class="stat-lbl">Горизонт</span>
-              <span class="stat-val sv-green">${ev.horizon||'—'}</span>
-              <span class="stat-sub">Ожидаемое движение</span>
-            </div>
-          </div>
-        </div>
-        <div class="card-stats-row">
-          <div class="card-stat">
-            <div class="stat-icon si-blue">${SVG.database}</div>
-            <div class="stat-body">
-              <span class="stat-lbl">Денег в событии</span>
-              <span class="stat-val sv-white">${ev.volumeTotal||'—'}</span>
-              <span class="stat-sub">Всего за всё время</span>
-            </div>
-          </div>
-          <div class="card-stat">
-            <div class="stat-icon si-teal">${SVG.trendUp}</div>
-            <div class="stat-body">
-              <span class="stat-val ${vol24Class}">${ev.volume24h||'—'}</span>
-              <span class="stat-sub">за 24 часа</span>
-            </div>
-          </div>
-          <div class="card-stat">
-            <div class="stat-icon si-pink">${SVG.bars}</div>
-            <div class="stat-body">
-              <span class="stat-lbl">Интерес</span>
-              <span class="stat-val sv-pink">${interestVal}</span>
-              <span class="stat-sub">${interestSub}</span>
-            </div>
-          </div>
-        </div>
-      </div>`;
+    return PP_SIMPLE_CARD.render(ev);
   }
 
-  // ---- List row ----
+  // ---- List row (Simple v1 lite) ----
   function renderListRow(ev) {
     const cs = getCatStyle(ev);
-    const riskVal   = { low: 'Низкий', medium: 'Средний', high: 'Высокий' }[ev.riskLevel] || ev.riskLevel;
-    const riskColor = { low: '#22c55e', medium: '#f97316', high: '#f87171' }[ev.riskLevel] || '#fff';
+    const catLabel = PP_SIMPLE_CARD.getCategoryLabel(ev);
+    const market = ev.marketOdds ?? 50;
+    const pp = ev.aiOdds ?? ev.confidence ?? 50;
+    const verdict = PP_SIMPLE_CARD.computeSimpleVerdict(market, pp);
+    const horizon = PP_SIMPLE_CARD.formatHorizonShort(ev);
     return `
       <div class="ev-list-row" onclick="location.href='event.html?id=${ev.id}'">
         <div class="ev-list-thumb" style="background:${cs.grad}">
@@ -1460,35 +1396,33 @@
       </div>
         <div class="ev-list-content">
           <div class="ev-list-meta">
-            ${ev.hot ? '<span class="ev-list-hot">🔥 Горячее</span>' : ''}
-            ${sourceBadge(ev, 'ev-list-source')}
-            <span class="ev-list-cat" style="color:${cs.color};background:${cs.bg};border:1px solid ${cs.border}">${ev.category}</span>
+            <span class="ev-list-cat" style="color:${cs.color};background:${cs.bg};border:1px solid ${cs.border}">${catLabel}</span>
+            <span style="font-size:11px;color:var(--text-muted)">${horizon}</span>
           </div>
           <div class="ev-list-title">${ev.title}</div>
           <div class="ev-list-sub">
-            <span>${ev.volumeTotal||'—'}</span>
+            <span>Рынок ${market}%</span>
             <span class="ev-list-sub-dot">·</span>
-            <span>${ev.volume24h||'—'} / 24ч</span>
+            <span style="color:#c4b5fd">PolyPilot ${pp}%</span>
             <span class="ev-list-sub-dot">·</span>
-            <span style="color:${ev.interestPositive?'#22c55e':'#f87171'}">${ev.interestPositive?'▲ Интерес растёт':'▼ Интерес падает'}</span>
+            <span>${verdict.label}</span>
           </div>
         </div>
         <div class="ev-list-metrics">
           <div class="ev-list-metric">
-            <span class="ev-list-metric-val sv-purple">${ev.potential||'—'}</span>
-            <span class="ev-list-metric-lbl">Потенциал</span>
+            <span class="ev-list-metric-val sv-purple">${market}%</span>
+            <span class="ev-list-metric-lbl">Рынок</span>
           </div>
           <div class="ev-list-metric">
-            <span class="ev-list-metric-val" style="color:${riskColor}">${riskVal}</span>
-            <span class="ev-list-metric-lbl">Риск</span>
+            <span class="ev-list-metric-val" style="color:#c4b5fd">${pp}%</span>
+            <span class="ev-list-metric-lbl">PolyPilot</span>
           </div>
           <div class="ev-list-metric">
-            <span class="ev-list-metric-val sv-green">${ev.horizon||'—'}</span>
-            <span class="ev-list-metric-lbl">Горизонт</span>
+            <span class="ev-list-metric-val sv-green">${horizon.replace(/^Закрытие /, '')}</span>
+            <span class="ev-list-metric-lbl">Срок</span>
           </div>
         </div>
         <div class="ev-list-actions">
-          <span class="ev-list-bookmark" onclick="event.stopPropagation()">🔖</span>
           <div class="ev-list-arrow"><svg viewBox="0 0 14 14"><polyline points="4,2 10,7 4,12"/></svg></div>
         </div>
       </div>`;

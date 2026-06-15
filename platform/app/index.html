@@ -841,97 +841,22 @@
   </main>
 </div>
 
+<script src="../data/events-live.js"></script>
 <script src="../data/events-data.js"></script>
+<script src="../assets/js/simple-closed-card.js"></script>
 <script src="../assets/js/state.js"></script>
 <script src="../assets/js/sidebar.js"></script>
 <script>
-  /* ── Hero: render best event card ── */
-  const _eventsArr = (typeof EVENTS_DATA !== 'undefined')
-    ? (Array.isArray(EVENTS_DATA) ? EVENTS_DATA : (EVENTS_DATA.events || []))
-    : [];
+  /* ── Hero: render best event card (Simple v1) ── */
+  const _eventsArr = (window.EVENTS_LIVE && window.EVENTS_LIVE.events && window.EVENTS_LIVE.events.length)
+    ? window.EVENTS_LIVE.events
+    : ((typeof EVENTS_DATA !== 'undefined')
+      ? (Array.isArray(EVENTS_DATA) ? EVENTS_DATA : (EVENTS_DATA.events || []))
+      : []);
 
   function renderHeroCard(wrap, ev) {
     if (!wrap || !ev) return;
-    const SVG_HERO = {
-      trending: `<svg viewBox="0 0 22 22" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,16 7,10 11,14 17,7"/><polyline points="13,7 17,7 17,11"/></svg>`,
-      calendar: `<svg viewBox="0 0 22 22" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="18" height="16" rx="2"/><line x1="7" y1="2" x2="7" y2="6"/><line x1="15" y1="2" x2="15" y2="6"/><line x1="2" y1="10" x2="20" y2="10"/></svg>`,
-      database: `<svg viewBox="0 0 22 22" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="11" cy="5.5" rx="7" ry="2.5"/><path d="M4 5.5 v5 c0 1.38 3.13 2.5 7 2.5s7-1.12 7-2.5v-5"/><path d="M4 10.5 v5 c0 1.38 3.13 2.5 7 2.5s7-1.12 7-2.5v-5"/></svg>`,
-      trendUp:  `<svg viewBox="0 0 22 22" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,18 7,12 11,15 16,8 20,5"/><polyline points="15,5 20,5 20,10"/></svg>`,
-      bars:     `<svg viewBox="0 0 22 22" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="14" width="5" height="6" rx="1.5"/><rect x="8.5" y="9" width="5" height="11" rx="1.5"/><rect x="15" y="4" width="5" height="16" rx="1.5"/></svg>`,
-    };
-    const potentialNum = parseFloat(String(ev.potential).replace(/[^0-9.\-]/g,'')) || 0;
-    const potRaw   = ev.potential || '—';
-    const potClass = potentialNum >= 0 ? 'sv-purple' : 'sv-neg';
-    const ppConf   = ev.aiOdds || 55;
-    const vol24Cls = ev.volume24hPositive ? 'sv-pos' : 'sv-neg';
-    const interestSVG = ev.interestPositive ? SVG_HERO.bars : SVG_HERO.trendUp;
-    const interestVal = ev.interestPositive ? 'Растёт' : 'Падает';
-    const interestSub = ev.interestPositive ? 'Рынок активен' : 'Интерес снижается';
-    wrap.innerHTML = `
-      <div class="event-card ${ev.hot ? 'is-hot' : ''}" onclick="location.href='event.html?id=${ev.id}'">
-        <div class="card-topbar">
-          ${ev.hot ? '<span class="card-hot">🔥 Горячее</span>' : ''}
-          <span class="card-category-tag">${ev.category}</span>
-          <div class="card-topbar-right">
-            <span class="card-watchers">👁 ${ev.watchers || '—'} следят</span>
-            <span class="card-bookmark">🔖</span>
-          </div>
-        </div>
-        <div class="card-title-block">
-          <div class="card-title">${ev.title}</div>
-        </div>
-        <div class="card-stats-row">
-          <div class="card-stat">
-            <div class="stat-icon si-purple">${SVG_HERO.trending}</div>
-            <div class="stat-body">
-              <span class="stat-lbl">Потенциал</span>
-              <span class="stat-val ${potClass}">${potRaw}</span>
-              <span class="stat-sub">Возможный рост</span>
-            </div>
-          </div>
-          <div class="card-stat">
-            <div class="stat-icon si-purple">${SVG_HERO.trending}</div>
-            <div class="stat-body">
-              <span class="stat-lbl">Вероятность</span>
-              <span class="stat-val sv-purple">${ppConf}%</span>
-              <span class="stat-sub">Оценка PP AI</span>
-            </div>
-          </div>
-          <div class="card-stat">
-            <div class="stat-icon si-green">${SVG_HERO.calendar}</div>
-            <div class="stat-body">
-              <span class="stat-lbl">Горизонт</span>
-              <span class="stat-val sv-green">${ev.horizon || '—'}</span>
-              <span class="stat-sub">Ожидаемое движение</span>
-            </div>
-          </div>
-        </div>
-        <div class="card-stats-row">
-          <div class="card-stat">
-            <div class="stat-icon si-blue">${SVG_HERO.database}</div>
-            <div class="stat-body">
-              <span class="stat-lbl">Денег в событии</span>
-              <span class="stat-val sv-white">${ev.volumeTotal || '—'}</span>
-              <span class="stat-sub">Всего за всё время</span>
-            </div>
-          </div>
-          <div class="card-stat">
-            <div class="stat-icon si-teal">${SVG_HERO.trendUp}</div>
-            <div class="stat-body">
-              <span class="stat-val ${vol24Cls}">${ev.volume24h || '—'}</span>
-              <span class="stat-sub">за 24 часа</span>
-            </div>
-          </div>
-          <div class="card-stat">
-            <div class="stat-icon si-pink">${interestSVG}</div>
-            <div class="stat-body">
-              <span class="stat-lbl">Интерес</span>
-              <span class="stat-val sv-pink">${interestVal}</span>
-              <span class="stat-sub">${interestSub}</span>
-            </div>
-          </div>
-        </div>
-      </div>`;
+    wrap.innerHTML = PP_SIMPLE_CARD.render(ev);
   }
 
   if (_eventsArr.length) {
