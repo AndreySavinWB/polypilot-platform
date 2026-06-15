@@ -256,34 +256,191 @@
   function renderActionsSection(ev, opts) {
     opts = opts || {};
     const marketUrl = ev.marketUrl || opts.marketUrl || "https://polymarket.com";
-    const shareUrl = opts.guestShareLink || `guest-event.html?id=${encodeURIComponent(ev.id)}`;
-    const followHref = opts.proBotLink || "#";
 
     return `
       <section class="so-section">
         <h2 class="so-section-title">Что делать</h2>
         <div class="so-actions">
-          <a class="so-btn so-btn-primary" href="${escapeHtml(followHref)}" target="_blank" rel="noopener">Следить за событием</a>
           <a class="so-btn so-btn-ghost" href="${escapeHtml(marketUrl)}" target="_blank" rel="noopener">Открыть на Polymarket</a>
-          <a class="so-btn so-btn-outline" href="${escapeHtml(shareUrl)}">Поделиться разбором</a>
         </div>
+        <p class="so-disclaimer">Не финансовый совет. PolyPilot показывает расхождение с рынком — решение за вами.</p>
       </section>`;
   }
 
-  function renderChangesSection(ev) {
+  function renderTopBar(ev, opts) {
+    opts = opts || {};
+    const shareUrl = opts.guestShareLink || `guest-event.html?id=${encodeURIComponent(ev.id)}`;
+    const followHref = opts.proBotLink || "#";
+
+    return `
+      <div class="so-topbar">
+        <a href="events.html" class="so-back">← Назад к событиям</a>
+        <div class="so-topbar-actions">
+          <a class="so-btn so-btn-primary so-btn-sm" href="${escapeHtml(followHref)}" target="_blank" rel="noopener">Следить</a>
+          <a class="so-btn so-btn-outline so-btn-sm" href="${escapeHtml(shareUrl)}">Поделиться</a>
+        </div>
+      </div>`;
+  }
+
+  function getCategoryCounts(allEvents) {
+    const map = {};
+    (allEvents || []).forEach((item) => {
+      const key = item.categoryTag || item.simpleCategory || "other";
+      const label = CARD.getCategoryLabel ? CARD.getCategoryLabel(item) : item.category || "Другое";
+      if (!map[key]) map[key] = { key, label, count: 0 };
+      map[key].count += 1;
+    });
+    return Object.values(map).sort((a, b) => b.count - a.count);
+  }
+
+  function renderMiniEventLink(item, currentId) {
+    if (!item || item.id === currentId) return "";
+    const market = clampPct(item.marketOdds ?? 50);
+    const pp = clampPct(item.aiOdds ?? item.confidence ?? 50);
+    const title = item.title || "—";
+    const short = title.length > 52 ? `${title.slice(0, 49)}…` : title;
+    return `
+      <a class="so-mini-ev" href="event.html?id=${encodeURIComponent(item.id)}">
+        <span class="so-mini-title">${escapeHtml(short)}</span>
+        <span class="so-mini-vs">${market}% · PP ${pp}%</span>
+      </a>`;
+  }
+
+  function renderLeftRail(ev, allEvents) {
+    const siblings = (allEvents || [])
+      .filter((item) => item.id !== ev.id)
+      .sort((a, b) => (b.edgeScore || 0) - (a.edgeScore || 0))
+      .slice(0, 4);
+    const cats = getCategoryCounts(allEvents);
+
+    return `
+      <div class="so-widget">
+        <div class="so-widget-title">Ещё события</div>
+        <div class="so-mini-list">
+          ${siblings.length ? siblings.map((item) => renderMiniEventLink(item, ev.id)).join("") : '<div class="so-empty-note">Других live-событий пока нет</div>'}
+        </div>
+      </div>
+      <div class="so-widget">
+        <div class="so-widget-title">Категории</div>
+        <div class="so-cat-links">
+          <a class="so-cat-link" href="events.html">Все <span>${(allEvents || []).length}</span></a>
+          ${cats
+            .map(
+              (c) =>
+                `<a class="so-cat-link" href="events.html">${escapeHtml(c.label)} <span>${c.count}</span></a>`
+            )
+            .join("")}
+        </div>
+      </div>
+      <div class="so-widget so-widget-legend">
+        <div class="so-widget-title">Как читать прогнозы</div>
+        <ul class="so-legend">
+          <li><strong>Рынок</strong> — текущая цена на Polymarket</li>
+          <li><strong>PolyPilot</strong> — наша оценка по данным</li>
+          <li><strong>Занижен / завышен</strong> — расхождение ≥ 8 п.п.</li>
+        </ul>
+      </div>`;
+  }
+
+  function renderSparkline(ev) {
+    const open = clampPct(ev.proofTrack?.marketOddsAtOpen ?? ev.marketOdds ?? 50);
+    const now = clampPct(ev.marketOdds ?? open);
+    const points = [];
+    for (let i = 0; i < 8; i += 1) {
+      points.push(Math.round(open + ((now - open) * i) / 7));
+    }
+    const max = Math.max(...points, 1);
+    return points
+      .map((p) => `<i style="height:${Math.max(12, Math.round((p / max) * 100))}%"></i>`)
+      .join("");
+  }
+
+  function renderChangesWidget(ev) {
     const items = buildChanges(ev);
     const body = items.length
-      ? `<ul class="so-list dash">${items.map((i) => `<li>${escapeHtml(i)}</li>`).join("")}</ul>`
+      ? `<ul class="so-rail-list">${items.map((i) => `<li>${escapeHtml(i)}</li>`).join("")}</ul>`
       : `<div class="so-changes-empty">Пока существенных изменений нет</div>`;
 
     return `
-      <section class="so-section">
-        <h2 class="so-section-title">Изменения по событию</h2>
-        <div class="so-changes-box">
-          <div class="so-changes-sub">PolyPilot следит за событием</div>
-          ${body}
+      <div class="so-widget">
+        <div class="so-widget-title">Изменения</div>
+        <div class="so-sparkline" aria-hidden="true">${renderSparkline(ev)}</div>
+        <div class="so-changes-sub">PolyPilot следит за событием</div>
+        ${body}
+      </div>`;
+  }
+
+  function renderTrackRecordWidget(ev) {
+    const cat = CARD.getCategoryLabel ? CARD.getCategoryLabel(ev) : ev.category || "категории";
+    return `
+      <div class="so-widget">
+        <div class="so-widget-head">
+          <span class="so-widget-title">Точность PolyPilot</span>
+          <span class="so-badge-soon">скоро</span>
         </div>
-      </section>`;
+        <div class="so-track-row">
+          <div class="so-donut" style="--pct:67" aria-hidden="true"><span>67%</span></div>
+          <p class="so-track-note">Демо-метрика по ${escapeHtml(cat.toLowerCase())}. Реальная история точности появится после первых закрытых событий.</p>
+        </div>
+      </div>`;
+  }
+
+  function renderSimilarWidget(ev, allEvents) {
+    const similar = (allEvents || [])
+      .filter((item) => item.id !== ev.id && (item.categoryTag === ev.categoryTag || item.simpleCategory === ev.simpleCategory))
+      .slice(0, 3);
+
+    const demo = [
+      { title: "Ecuador dollarizes by 2026?", market: 45, pp: 38, status: "пример" },
+      { title: "El Salvador BTC reserve by end 2025?", market: 12, pp: 8, status: "пример" },
+    ];
+
+    const liveHtml = similar
+      .map(
+        (item) => `
+        <a class="so-similar" href="event.html?id=${encodeURIComponent(item.id)}">
+          <span class="so-similar-title">${escapeHtml(item.title)}</span>
+          <span class="so-similar-meta">${clampPct(item.marketOdds)}% · PP ${clampPct(item.aiOdds ?? item.confidence)}% · открыто</span>
+        </a>`
+      )
+      .join("");
+
+    const demoHtml = demo
+      .map(
+        (item) => `
+        <div class="so-similar so-similar--demo">
+          <span class="so-similar-title">${escapeHtml(item.title)}</span>
+          <span class="so-similar-meta">${item.market}% · PP ${item.pp}% · ${item.status}</span>
+        </div>`
+      )
+      .join("");
+
+    return `
+      <div class="so-widget">
+        <div class="so-widget-title">Похожие события</div>
+        <div class="so-similar-list">${liveHtml}${demoHtml}</div>
+      </div>`;
+  }
+
+  function renderRightRail(ev, allEvents) {
+    return `${renderChangesWidget(ev)}${renderTrackRecordWidget(ev)}${renderSimilarWidget(ev, allEvents)}`;
+  }
+
+  function renderMainColumn(ev, opts) {
+    return `
+      ${renderVerdictSection(ev)}
+      <div class="so-duo">
+        ${renderReasonsSection(ev)}
+        ${renderRisksSection(ev)}
+      </div>
+      ${renderCheckedSection(ev)}
+      ${renderActionsSection(ev, opts)}
+      ${renderAdvancedSection(opts.advancedHtml || "")}
+      <div class="so-footer">
+        <span>ID: ${escapeHtml(ev.id)}</span>
+        <span>·</span>
+        <span>Данные: Polymarket, новости, соцсети</span>
+      </div>`;
   }
 
   function renderAdvancedSection(advancedHtml) {
@@ -304,22 +461,16 @@
   function renderPage(ev, opts) {
     opts = opts || {};
     const sourceBanner = opts.sourceBanner || "";
+    const allEvents = opts.allEvents || [];
 
     return `
       <div class="so-page">
-        <a href="events.html" class="so-back">← Назад к событиям</a>
+        ${renderTopBar(ev, opts)}
         ${sourceBanner}
-        ${renderVerdictSection(ev)}
-        ${renderReasonsSection(ev)}
-        ${renderRisksSection(ev)}
-        ${renderCheckedSection(ev)}
-        ${renderActionsSection(ev, opts)}
-        ${renderChangesSection(ev)}
-        ${renderAdvancedSection(opts.advancedHtml || "")}
-        <div class="so-footer">
-          <span>ID: ${escapeHtml(ev.id)}</span>
-          <span>·</span>
-          <span>Данные: Polymarket, новости, соцсети</span>
+        <div class="so-layout">
+          <aside class="so-rail so-rail--left">${renderLeftRail(ev, allEvents)}</aside>
+          <div class="so-main">${renderMainColumn(ev, opts)}</div>
+          <aside class="so-rail so-rail--right">${renderRightRail(ev, allEvents)}</aside>
         </div>
       </div>`;
   }
@@ -339,6 +490,8 @@
   global.PP_SIMPLE_OPEN = {
     renderPage,
     wireAdvancedToggle,
+    renderLeftRail,
+    renderRightRail,
     buildReasons,
     buildRisks,
     buildChanges,
