@@ -331,18 +331,50 @@
     return html;
   }
 
+  function getHorizonDisplay(ev) {
+    if (ev.horizonShort) {
+      const m = String(ev.horizonShort).match(/(\d+)\s*дн/i);
+      if (m) return `${m[1]} дней`;
+    }
+    return getHorizonLabel(ev);
+  }
+
+  function getEdgeDisplay(ev) {
+    const market = clampPct(ev.marketOdds ?? 50);
+    const pp = clampPct(ev.aiOdds ?? ev.confidence ?? 50);
+    const delta = pp - market;
+    const verdict = computeVerdict(ev);
+    const magnitude = ev.edgeScore != null ? Math.round(Number(ev.edgeScore)) : Math.abs(delta);
+    const sign = delta >= 0 ? "+" : "-";
+    return {
+      text: `EDGE ${sign}${magnitude}%`,
+      tone: verdict.tone,
+    };
+  }
+
   function renderVsBlock(ev) {
     const market = clampPct(ev.marketOdds ?? 50);
     const pp = clampPct(ev.aiOdds ?? ev.confidence ?? 50);
+    const edge = getEdgeDisplay(ev);
+    const horizon = getHorizonDisplay(ev);
+
     return `
-      <div class="sc-vs-wrap">
-        <div class="sc-vs-side sc-vs-side--market">
+      <div class="so-vs-trio">
+        <div class="so-vs-panel so-vs-panel--market">
           <div class="sc-vs-lbl">Рынок</div>
           <div class="sc-vs-val sc-vs-val--market">${market}%</div>
           ${renderSegments(market, "market")}
         </div>
-        <div class="sc-vs-divider"><span>vs</span></div>
-        <div class="sc-vs-side sc-vs-side--pp">
+        <div class="so-vs-center">
+          <div class="so-edge-badge so-edge-badge--${edge.tone}">
+            <span class="so-edge-badge-text">${escapeHtml(edge.text)}</span>
+          </div>
+          <div class="so-horizon-block">
+            <span class="so-horizon-lbl">Горизонт</span>
+            <span class="so-horizon-val">${escapeHtml(horizon)}</span>
+          </div>
+        </div>
+        <div class="so-vs-panel so-vs-panel--pp">
           <div class="sc-vs-lbl">PolyPilot</div>
           <div class="sc-vs-val sc-vs-val--pp">${pp}%</div>
           ${renderSegments(pp, "pp")}
@@ -389,6 +421,7 @@
   function renderVerdictSection(ev) {
     return `
       <section class="so-verdict">
+        <div class="so-verdict-label">Вывод за 10 секунд</div>
         <h1 class="so-title">${escapeHtml(ev.title || "—")}</h1>
         <div class="so-meta">${escapeHtml(getMetaLine(ev))}</div>
         ${renderVsBlock(ev)}
