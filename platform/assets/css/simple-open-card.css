@@ -104,6 +104,125 @@
 .so-pill.risk-high strong { color: #fca5a5; }
 .so-pill.risk-low strong { color: #86efac; }
 
+.so-duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+@media (max-width: 820px) {
+  .so-duo { grid-template-columns: 1fr; }
+}
+
+.so-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 18px 18px 16px;
+  min-height: 100%;
+}
+.so-card--reasons {
+  background: rgba(124, 58, 237, 0.05);
+  border-color: rgba(124, 58, 237, 0.18);
+}
+.so-card--risks {
+  background: rgba(251, 146, 60, 0.04);
+  border-color: rgba(251, 146, 60, 0.16);
+}
+
+.so-card-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.so-card-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.so-card-icon svg {
+  width: 15px;
+  height: 15px;
+}
+.so-card-icon--purple {
+  color: #c4b5fd;
+  background: rgba(124, 58, 237, 0.18);
+  border: 1px solid rgba(124, 58, 237, 0.28);
+}
+.so-card-icon--orange {
+  color: #fb923c;
+  background: rgba(251, 146, 60, 0.14);
+  border: 1px solid rgba(251, 146, 60, 0.28);
+}
+.so-card-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+  color: rgba(255, 255, 255, 0.92);
+}
+.so-card-title--purple { color: #c4b5fd; }
+
+.so-card-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.so-card-list li {
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.62);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.so-card-list li:last-child { border-bottom: none; }
+
+.so-card-list.num {
+  counter-reset: so-card-item;
+}
+.so-card-list.num li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 0;
+}
+.so-card-list.num li::before {
+  content: counter(so-card-item);
+  counter-increment: so-card-item;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #86efac;
+  background: rgba(74, 222, 128, 0.12);
+  border: 1px solid rgba(74, 222, 128, 0.28);
+}
+
+.so-card-list.dash li {
+  position: relative;
+  padding: 10px 0 10px 16px;
+}
+.so-card-list.dash li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 16px;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #fb923c;
+  box-shadow: 0 0 6px rgba(251, 146, 60, 0.45);
+}
+
 .so-section {
   margin-bottom: 28px;
 }

@@ -29,6 +29,9 @@
     "новости · официальные источники · X / Reddit · Google Trends · YouTube / медиа · " +
     "похожие события · история Polymarket · внешние аналитические сервисы";
 
+  const ICON_BRAIN = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a4 4 0 0 1 4 4c0 .8-.2 1.5-.6 2.1A4 4 0 0 1 16 17a4 4 0 0 1-8 0 4 4 0 0 1-.4-7.9A4 4 0 0 1 12 3z"/><path d="M8 10H6a2 2 0 0 0 0 4h2"/><path d="M16 10h2a2 2 0 0 1 0 4h-2"/></svg>`;
+  const ICON_SHIELD = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V6l8-3z"/></svg>`;
+
   function escapeHtml(value) {
     return String(value)
       .replace(/&/g, "&amp;")
@@ -115,6 +118,13 @@
     DEFAULT_REASONS.forEach((line) => {
       if (out.length < 3) out.push(line);
     });
+
+    if (out.length && ev.marketOdds != null && clampPct(ev.marketOdds) <= 10) {
+      const market = clampPct(ev.marketOdds);
+      if (String(out[0]).includes("Рынок почти не учитывает")) {
+        out[0] = `Рынок почти не учитывает этот исход — текущая вероятность всего ${market}%.`;
+      }
+    }
 
     if ((ev.riskLevel === "high" || ev.riskLevel === "medium") && out.length < 4) {
       out.push("Но данных пока недостаточно для сильной уверенности");
@@ -205,26 +215,31 @@
       </section>`;
   }
 
-  function renderReasonsSection(ev) {
+  function renderAnalysisDuo(ev) {
     const reasons = buildReasons(ev);
-    return `
-      <section class="so-section">
-        <h2 class="so-section-title">Почему PolyPilot так думает</h2>
-        <ol class="so-list num">
-          ${reasons.map((r) => `<li>${escapeHtml(r)}</li>`).join("")}
-        </ol>
-      </section>`;
-  }
-
-  function renderRisksSection(ev) {
     const risks = buildRisks(ev);
+
     return `
-      <section class="so-section">
-        <h2 class="so-section-title">Что может пойти не так</h2>
-        <ul class="so-list dash">
-          ${risks.map((r) => `<li>${escapeHtml(r)}</li>`).join("")}
-        </ul>
-      </section>`;
+      <div class="so-duo">
+        <div class="so-card so-card--reasons">
+          <div class="so-card-head">
+            <span class="so-card-icon so-card-icon--purple">${ICON_BRAIN}</span>
+            <h2 class="so-card-title so-card-title--purple">Почему PolyPilot так думает</h2>
+          </div>
+          <ol class="so-card-list num">
+            ${reasons.map((r) => `<li>${escapeHtml(r)}</li>`).join("")}
+          </ol>
+        </div>
+        <div class="so-card so-card--risks">
+          <div class="so-card-head">
+            <span class="so-card-icon so-card-icon--orange">${ICON_SHIELD}</span>
+            <h2 class="so-card-title">Что может пойти не так</h2>
+          </div>
+          <ul class="so-card-list dash">
+            ${risks.map((r) => `<li>${escapeHtml(r)}</li>`).join("")}
+          </ul>
+        </div>
+      </div>`;
   }
 
   function renderCheckedSection(ev) {
@@ -322,8 +337,7 @@
         ${renderTopBar(ev, opts)}
         ${sourceBanner}
         ${renderVerdictSection(ev)}
-        ${renderReasonsSection(ev)}
-        ${renderRisksSection(ev)}
+        ${renderAnalysisDuo(ev)}
         ${renderCheckedSection(ev)}
         ${renderActionsSection(ev, opts)}
         ${renderChangesSection(ev)}
