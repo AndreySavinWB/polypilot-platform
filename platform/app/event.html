@@ -1423,7 +1423,6 @@
 <script src="../assets/js/events-store.js"></script>
 <script src="../assets/js/simple-closed-card.js"></script>
 <script src="../assets/js/simple-open-card.js"></script>
-<script src="../assets/js/pie-api.js"></script>
 <script src="../assets/js/state.js"></script>
 <script src="../assets/js/sidebar.js"></script>
 <script>
@@ -1432,8 +1431,6 @@
   const eventId   = params.get('id');
   const main      = document.getElementById('main-content');
   const tier      = PP.getTier();
-  const canSeeEdge    = PP.getMeta().canSeeEdge;
-  const canSeeWarRoom = PP.getMeta().canSeeWarRoom;
 
   try {
     const res = await fetch('../data/events.json');
@@ -1578,68 +1575,6 @@
     { icon: '🕐', name: 'История', sub: 'Похожие события' },
   ];
 
-  /* ── war room ── */
-  const agents = ev.warRoom?.agents || [];
-  let warRoomHTML;
-  if (!canSeeWarRoom) {
-    warRoomHTML = `
-      <div class="ev-agents">
-        ${agents.slice(0, 2).map(agentRow).join('')}
-        <div style="padding:16px;text-align:center;border:1px dashed rgba(255,255,255,0.10);border-radius:10px;margin-top:2px;">
-          <div style="font-size:13px;color:rgba(255,255,255,0.32);margin-bottom:12px">🔒 Полный анализ PP AI — доступно в Pulse и PRO</div>
-          <a href="pricing.html" class="btn btn-primary" style="font-size:12px;">Разблокировать</a>
-        </div>
-      </div>`;
-  } else {
-    warRoomHTML = `<div class="ev-agents">${agents.map(agentRow).join('')}</div>`;
-  }
-
-  function agentRow(a) {
-    const evidenceHtml = (a.evidence || []).map(e =>
-      `<div class="ev-agent-ev-item"><div class="ev-agent-ev-dot"></div><span>${e}</span></div>`
-    ).join('');
-    const sourcesHtml = (a.sources || []).map(s =>
-      `<span class="ev-agent-src-tag">${s}</span>`
-    ).join('');
-    const conf = a.confidence || 65;
-    const verdictCls = a.verdictColor || 'green';
-
-    return `
-      <div class="ev-agent">
-        <div class="ev-agent-row">
-          <div class="ev-agent-av">${a.avatar}</div>
-          <div class="ev-agent-info">
-            <div class="ev-agent-header">
-              <span class="ev-agent-name">${a.name}</span>
-              <span class="ev-agent-role">— ${a.role}</span>
-            </div>
-            <div class="ev-agent-msg">${a.message}</div>
-          </div>
-          ${a.verdict ? `<span class="ev-agent-verdict ${verdictCls}">${a.verdict}</span>` : ''}
-          <div class="ev-agent-chevron">
-            <span class="ev-agent-chevron-arrow">↓</span>
-            <span class="ev-agent-chevron-lbl">Подробнее</span>
-          </div>
-        </div>
-        <div class="ev-agent-detail">
-          <div class="ev-agent-detail-inner">
-            ${a.detail ? `<div class="ev-agent-detail-text">${a.detail}</div>` : ''}
-            ${evidenceHtml ? `<div class="ev-agent-evidence">${evidenceHtml}</div>` : ''}
-            <div class="ev-agent-footer">
-              <div class="ev-agent-conf">
-                <span class="ev-agent-conf-lbl">Уверенность</span>
-                <div class="ev-agent-conf-bar-bg">
-                  <div class="ev-agent-conf-fill" style="width:${conf}%"></div>
-                </div>
-                <span class="ev-agent-conf-val">${conf}%</span>
-              </div>
-              <div class="ev-agent-sources">${sourcesHtml}</div>
-            </div>
-          </div>
-        </div>
-      </div>`;
-  }
-
   /* ── first sentence for verdict statement ── */
   const stmtEnd = ev.verdictText.indexOf('.');
   const verdictStmt = stmtEnd > 0 ? ev.verdictText.slice(0, stmtEnd + 1) : ev.verdictText;
@@ -1651,283 +1586,12 @@
     ? `<div style="margin:0 0 16px;padding:10px 16px;border-radius:10px;font-size:13px;color:#4ade80;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.25)">ОНЛАЙН · Полимаркет — реальные рыночные данные${ev.marketUrl ? ` · <a href="${ev.marketUrl}" target="_blank" style="color:#86efac">открыть на Полимаркете</a>` : ''}</div>`
     : '';
 
-  const marketLabel = ev.isDemo ? 'Демо' : (ev.market || 'Полимаркет');
-
-  /* ══════════════════════════════════════════════
-     RENDER
-  ══════════════════════════════════════════════ */
-  const advancedHtml = `    <!-- ═══ WAR ROOM ═══ -->
-    <div class="ev-section" style="padding-top:8px">
-      <div class="ev-section-title">⚡ Штаб PP AI</div>
-    </div>
-    <div class="ev-warroom">
-      <div class="ev-warroom-hdr">
-        <div class="ev-warroom-title">
-          Что говорит PP AI
-          <span style="font-size:12px;font-weight:400;color:rgba(255,255,255,0.30)">— анализ завершён за ${ev.warRoom?.duration || 6} часов</span>
-        </div>
-      </div>
-      ${warRoomHTML}
-    </div>
-
-    <!-- ═══ PIE v1.3 · АНАЛИТИКА 8 СЛОЁВ ═══ -->
-    <div class="pie-section" id="pie-analysis">
-
-      <div class="pie-sec-hdr">
-        <div>
-          <span class="pie-sec-badge" id="pie-sec-badge">PIE</span>
-          <div class="pie-sec-title">Как PP AI считал прогноз</div>
-        </div>
-        <div class="pie-sec-sub" id="pie-sec-sub">Загрузка анализа…</div>
-      </div>
-
-      <!-- Strategy Badge -->
-      <div class="pie-strategy-badge" id="pie-strategy-badge">
-        <div class="pie-strategy-badge-hdr">
-          <span class="pie-strategy-badge-eyebrow">Почему PP выбрал это событие</span>
-          <span class="pie-strategy-status watchlist" id="pie-strategy-status">—</span>
-        </div>
-        <div class="pie-strategy-name" id="pie-strategy-name">Анализ стратегии…</div>
-        <div class="pie-strategy-why" id="pie-strategy-why">Загрузка данных PIE…</div>
-      </div>
-
-      <!-- Strategy Verdict -->
-      <div class="pie-strategy-verdict" id="pie-strategy-verdict">
-        <div class="pie-strategy-verdict-hdr">
-          <div class="pie-strategy-verdict-title">Вывод по стратегии</div>
-          <div class="pie-strategy-verdict-metrics" id="pie-verdict-metrics"></div>
-        </div>
-        <p class="pie-strategy-verdict-summary" id="pie-verdict-summary"></p>
-        <div class="pie-strategy-verdict-cols">
-          <div>
-            <div class="pie-verdict-col-title">Что проверить</div>
-            <ul class="pie-verdict-list" id="pie-verdict-checks"></ul>
-          </div>
-          <div>
-            <div class="pie-verdict-col-title">Когда setup ломается</div>
-            <ul class="pie-verdict-list invalidation" id="pie-verdict-invalidation"></ul>
-          </div>
-        </div>
-        <p class="pie-strategy-verdict-disclaimer" id="pie-verdict-disclaimer"></p>
-      </div>
-
-      <!-- ── БЛОК 0: Разбивка вероятности (коллапсируемый) ── -->
-      <div class="ev-pie-panel" id="ev-pie-panel">
-        <div class="ev-pie-hdr" id="ev-pie-toggle">
-          <div class="ev-pie-hdr-left">
-            <div class="ev-pie-hdr-icon">
-              <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-            </div>
-            <div>
-              <div class="ev-pie-hdr-title">Блок 0 · Разбивка вероятности PP AI</div>
-              <div class="ev-pie-hdr-sub" id="pie-prob-sub">7 компонентов · нажмите чтобы раскрыть</div>
-            </div>
-            <span class="ev-pie-hdr-badge" id="pie-prob-mode-badge">rules_v0</span>
-          </div>
-          <div class="ev-pie-hdr-prob">
-            <div class="pie-locked-wrap" id="pie-hdr-pp-wrap">
-              <div class="ev-pie-prob-val pie-locked-val" id="pie-hdr-pp-val">—</div>
-              <div class="pie-locked-overlay">PRO</div>
-            </div>
-            <div class="ev-pie-prob-lbl">PP AI</div>
-          </div>
-          <div class="ev-pie-edge-pill">
-            <div class="pie-locked-wrap" id="pie-hdr-edge-wrap">
-              <div class="ev-pie-edge-val pie-locked-val" id="pie-hdr-edge-val">—</div>
-              <div class="pie-locked-overlay">PRO</div>
-            </div>
-            <div class="ev-pie-edge-lbl">Edge</div>
-          </div>
-          <div class="ev-pie-chevron">
-            <span class="ev-pie-chevron-arrow">↓</span>
-            <span class="ev-pie-chevron-lbl">Открыть</span>
-          </div>
-        </div>
-        <div class="ev-pie-body">
-          <div class="ev-pie-body-inner">
-            <div class="ev-pie-comps" id="ev-pie-comps"></div>
-            <div class="ev-pie-sum">
-              <div class="ev-pie-sum-left">
-                <div class="ev-pie-sum-lbl">Вероятность PP AI <span class="pie-prob-badge preliminary" id="pie-prob-status-badge"></span></div>
-                <div class="ev-pie-sum-formula">Итог считается как сумма взвешенных сигналов с ограничением от 2% до 98%</div>
-                <div class="ev-pie-sum-market">
-                  Рынок: <span class="ev-pie-sum-mkt-val" id="pie-sum-mkt-val">—</span>
-                  · Edge PP: <span class="ev-pie-sum-edge" id="pie-sum-edge-val">—</span>
-                </div>
-              </div>
-              <div class="pie-locked-wrap" id="pie-sum-pp-wrap">
-                <div class="ev-pie-sum-val pie-locked-val" id="pie-sum-pp-val">—</div>
-                <div class="pie-locked-overlay">PRO</div>
-              </div>
-            </div>
-            <div class="ev-pie-flags-row" id="ev-pie-flags"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ── БЛОКИ 1–4: сетка 2×2 ── -->
-      <div class="pie-grid">
-
-        <div class="pie-card" id="pie-card-classification">
-          <div class="pie-card-hdr">
-            <div class="pie-card-icon" style="background:rgba(99,102,241,0.12)">
-              <svg viewBox="0 0 20 20" fill="none" stroke="#818cf8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="14" height="14" rx="2.5"/><line x1="7" y1="7" x2="13" y2="7"/><line x1="7" y1="10" x2="11" y2="10"/><line x1="7" y1="13" x2="9" y2="13"/></svg>
-            </div>
-            <div>
-              <div class="pie-card-title">Блок 1 · Тип события</div>
-              <div class="pie-card-badge-row"><span class="pie-block-badge">Классификатор типа события</span></div>
-            </div>
-          </div>
-          <div class="pie-card-body" id="pie-body-classification"></div>
-        </div>
-
-        <div class="pie-card" id="pie-card-mi">
-          <div class="pie-card-hdr">
-            <div class="pie-card-icon" style="background:rgba(34,211,166,0.10)">
-              <svg viewBox="0 0 20 20" fill="none" stroke="#22D3A6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><polyline points="10 7 10 10 13 12"/></svg>
-            </div>
-            <div>
-              <div class="pie-card-title">Блок 2 · Разведка рынка</div>
-              <div class="pie-card-badge-row"><span class="pie-block-badge">Разведка рынка</span></div>
-            </div>
-          </div>
-          <div class="pie-card-body" id="pie-body-mi"></div>
-        </div>
-
-        <div class="pie-card" id="pie-card-structure">
-          <div class="pie-card-hdr">
-            <div class="pie-card-icon" style="background:rgba(96,165,250,0.10)">
-              <svg viewBox="0 0 20 20" fill="none" stroke="#60a5fa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="12" width="4" height="6" rx="1"/><rect x="8" y="8" width="4" height="10" rx="1"/><rect x="14" y="3" width="4" height="15" rx="1"/></svg>
-            </div>
-            <div>
-              <div class="pie-card-title">Блок 3 · Структура рынка</div>
-              <div class="pie-card-badge-row"><span class="pie-block-badge">Анализ структуры рынка</span></div>
-            </div>
-          </div>
-          <div class="pie-card-body" id="pie-body-structure"></div>
-        </div>
-
-        <div class="pie-card" id="pie-card-evidence">
-          <div class="pie-card-hdr">
-            <div class="pie-card-icon" style="background:rgba(251,146,60,0.10)">
-              <svg viewBox="0 0 20 20" fill="none" stroke="#fb923c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7.5"/><polyline points="7 10 9 12 13 8"/></svg>
-            </div>
-            <div>
-              <div class="pie-card-title">Блок 4 · Качество источников</div>
-              <div class="pie-card-badge-row"><span class="pie-block-badge">Оценка источников</span></div>
-            </div>
-          </div>
-          <div class="pie-card-body" id="pie-body-evidence"></div>
-        </div>
-
-      </div><!-- /pie-grid -->
-
-      <!-- ── БЛОК 5: Карта противоречий (full width) ── -->
-      <div class="pie-card-wide" id="pie-card-contradiction">
-        <div class="pie-card-hdr" style="border-bottom:none;padding-bottom:0">
-          <div class="pie-card-icon" style="background:rgba(248,113,113,0.10)">
-            <svg viewBox="0 0 20 20" fill="none" stroke="#f87171" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3l1.5 4.5h4.5l-3.5 2.7 1.3 4.3L10 12l-3.8 2.5 1.3-4.3L4 7.5h4.5L10 3z"/></svg>
-          </div>
-          <div class="pie-card-title" style="font-size:13px">Блок 5 · Карта противоречий</div>
-          <span class="pie-block-badge" style="margin-left:auto;flex-shrink:0">Карта противоречий</span>
-        </div>
-        <div class="pie-contradiction">
-          <div class="pie-contra-col">
-            <div class="pie-contra-lbl">Рынок говорит</div>
-            <div class="pie-contra-val" id="pie-contra-mkt" style="color:#a78bfa">—</div>
-            <div class="pie-contra-sub">Polymarket · участники</div>
-          </div>
-          <div class="pie-contra-arrow">
-            <svg viewBox="0 0 60 20" fill="none" width="60" height="20">
-              <line x1="4" y1="10" x2="56" y2="10" stroke="rgba(255,255,255,0.14)" stroke-width="1.5"/>
-              <polyline points="46,4 56,10 46,16" stroke="rgba(255,255,255,0.14)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-            </svg>
-            <div class="pie-contra-gap" id="pie-contra-gap">—</div>
-          </div>
-          <div class="pie-contra-col">
-            <div class="pie-contra-lbl">PolyPilot видит</div>
-            <div class="pie-locked-wrap" id="pie-contra-pp-wrap">
-              <div class="pie-contra-val pie-locked-val" id="pie-contra-pp" style="color:#22D3A6">—</div>
-              <div class="pie-locked-overlay">PRO</div>
-            </div>
-            <div class="pie-contra-sub">PIE · rules_v0</div>
-          </div>
-        </div>
-        <div class="pie-contra-desc" id="pie-contra-desc"></div>
-      </div>
-
-      <!-- ── БЛОКИ 6–7: две колонки ── -->
-      <div class="pie-2col">
-
-        <!-- Блок 6: Исторические аналоги -->
-        <div class="pie-card">
-          <div class="pie-card-hdr">
-            <div class="pie-card-icon" style="background:rgba(139,92,246,0.10)">
-              <svg viewBox="0 0 20 20" fill="none" stroke="#a78bfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><polyline points="10 7 10 10 12.5 11.5"/><path d="M5.5 5.5l.7.7M14.5 5.5l-.7.7"/></svg>
-            </div>
-            <div>
-              <div class="pie-card-title">Блок 6 · Исторические аналоги</div>
-              <div class="pie-card-badge-row"><span class="pie-block-badge">Исторические аналоги</span></div>
-            </div>
-          </div>
-          <div class="pie-card-body">
-            <div class="pie-kv"><span class="pie-kv-lbl">Найдено аналогов</span><span class="pie-kv-val c-green">5 событий</span></div>
-            <div class="pie-kv"><span class="pie-kv-lbl">Средний исход YES</span><span class="pie-kv-val c-violet">63%</span></div>
-            <div class="pie-kv"><span class="pie-kv-lbl">Средняя схожесть</span><span class="pie-kv-val c-green">0.68 · высокая</span></div>
-            <div class="pie-kv"><span class="pie-kv-lbl">Лучший аналог</span><span class="pie-kv-val" style="font-size:11px">Снижение ставки ФРС, январь 2024 → Да</span></div>
-          </div>
-        </div>
-
-        <!-- Блок 7: История точности PP (заглушка) -->
-        <div class="pie-card pie-card-stub">
-          <div class="pie-card-hdr">
-            <div class="pie-card-icon" style="background:rgba(255,255,255,0.04)">
-              <svg viewBox="0 0 20 20" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 14 7 9 10 11 13 6 17 8"/><line x1="2" y1="16.5" x2="18" y2="16.5"/></svg>
-            </div>
-            <div>
-              <div class="pie-card-title" style="color:rgba(255,255,255,0.38)">Блок 7 · История точности PP</div>
-              <div class="pie-card-badge-row"><span class="pie-block-badge pie-stub-badge">История точности · скоро</span></div>
-            </div>
-          </div>
-          <div class="pie-card-body">
-            <div class="pie-stub-msg">
-              <svg viewBox="0 0 20 20" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" stroke-linecap="round" width="22" height="22" style="flex-shrink:0;margin-top:1px"><circle cx="10" cy="10" r="7"/><line x1="10" y1="7" x2="10" y2="11"/><circle cx="10" cy="13.5" r="0.5" fill="rgba(255,255,255,0.18)"/></svg>
-              <div>
-                <div style="font-size:12px;color:rgba(255,255,255,0.32);font-weight:600;margin-bottom:5px">Появится после первых закрытых событий</div>
-                <div style="font-size:11px;color:rgba(255,255,255,0.18);line-height:1.6">Точность по категории, Brier Score, трек-рекорд прогнозов — модуль памяти в разработке</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div><!-- /pie-2col -->
-
-    </div><!-- /pie-section -->`;
-
   main.innerHTML = PP_SIMPLE_OPEN.renderPage(ev, {
     sourceBanner,
     proBotLink,
     guestShareLink,
     marketUrl: ev.marketUrl,
-    advancedHtml,
   });
-
-  PP_SIMPLE_OPEN.wireAdvancedToggle(main);
-
-  /* ── PIE: real backend package or mock fallback ── */
-  (async function () {
-    if (!window.PP_PIE_API) return;
-    const pieMeta = await PP_PIE_API.loadPiePackage(ev);
-    window.__PP_PIE_PACKAGE__ = pieMeta.package || null;
-    window.__PP_PIE_META__ = pieMeta;
-    renderPieFromPackage(pieMeta.package, pieMeta, main.querySelector('#pie-analysis'), { canSeeEdge });
-
-    const hdrEl   = main.querySelector('#ev-pie-toggle');
-    const panelEl = main.querySelector('#ev-pie-panel');
-    if (hdrEl && panelEl) {
-      hdrEl.addEventListener('click', () => panelEl.classList.toggle('is-open'));
-    }
-  })();
 
   /* ── Smooth image fade-in ── */
   const heroImg = document.querySelector('.ev-hero-img');
@@ -1999,16 +1663,6 @@
       </div>`;
     }).join('');
   })();
-
-  /* ── War Room accordion ── */
-  main.querySelectorAll('.ev-agent').forEach(el => {
-    el.addEventListener('click', () => {
-      const isOpen = el.classList.contains('is-open');
-      // Close all others
-      main.querySelectorAll('.ev-agent.is-open').forEach(o => o.classList.remove('is-open'));
-      if (!isOpen) el.classList.add('is-open');
-    });
-  });
 
   /* ── Draggable + auto ping-pong slider ── */
   (function () {

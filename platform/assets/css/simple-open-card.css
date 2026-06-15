@@ -964,45 +964,6 @@
   color: rgba(255, 255, 255, 0.48);
 }
 
-.so-advanced-wrap {
-  margin-top: 4px;
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
-  padding-top: 16px;
-}
-.so-advanced-btn {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 14px 16px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  font-family: inherit;
-  transition: border-color 0.2s, color 0.2s;
-}
-.so-advanced-btn:hover {
-  border-color: rgba(124, 58, 237, 0.35);
-  color: rgba(255, 255, 255, 0.78);
-}
-.so-advanced-btn span { color: #a78bfa; font-weight: 700; }
-.so-advanced-body {
-  display: none;
-  margin-top: 16px;
-}
-.so-advanced-body.is-open { display: block; }
-.so-advanced-note {
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.38);
-  margin-bottom: 16px;
-  line-height: 1.5;
-}
-
 .so-footer {
   margin-top: 24px;
   padding-top: 14px;

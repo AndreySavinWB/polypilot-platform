@@ -750,21 +750,6 @@
       </section>`;
   }
 
-  function renderAdvancedSection(advancedHtml) {
-    if (!advancedHtml) return "";
-    return `
-      <div class="so-advanced-wrap">
-        <button type="button" class="so-advanced-btn" id="so-advanced-btn" aria-expanded="false">
-          <span>Подробная аналитика</span>
-          <span id="so-advanced-chevron">раскрыть ↓</span>
-        </button>
-        <div class="so-advanced-body" id="so-advanced-body">
-          <p class="so-advanced-note">Технический слой для PRO: агенты, PIE, формулы. Итоговый вывод — в блоке выше.</p>
-          ${advancedHtml}
-        </div>
-      </div>`;
-  }
-
   function renderPage(ev, opts) {
     opts = opts || {};
     const sourceBanner = opts.sourceBanner || "";
@@ -782,7 +767,6 @@
         ${renderFinalConclusionSection(ev)}
         ${renderActionsSection(ev, opts)}
         ${renderChangesSection(ev)}
-        ${renderAdvancedSection(opts.advancedHtml || "")}
         <div class="so-footer">
           <span>ID: ${escapeHtml(ev.id)}</span>
           <span>·</span>
@@ -791,21 +775,8 @@
       </div>`;
   }
 
-  function wireAdvancedToggle(root) {
-    const btn = (root || document).querySelector("#so-advanced-btn");
-    const body = (root || document).querySelector("#so-advanced-body");
-    const chev = (root || document).querySelector("#so-advanced-chevron");
-    if (!btn || !body) return;
-    btn.addEventListener("click", () => {
-      const open = body.classList.toggle("is-open");
-      btn.setAttribute("aria-expanded", open ? "true" : "false");
-      if (chev) chev.textContent = open ? "свернуть ↑" : "раскрыть ↓";
-    });
-  }
-
   global.PP_SIMPLE_OPEN = {
     renderPage,
-    wireAdvancedToggle,
     buildReasons,
     buildRisks,
     buildChanges,
