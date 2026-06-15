@@ -33,6 +33,19 @@
   const ICON_MARKET = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>`;
   const ICON_EXT = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v7h-7"/><path d="M3 10V3h7"/><path d="M3 21l7-7"/></svg>`;
   const ICON_SHARE = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5 15.4 17.5"/><path d="M15.4 6.5 8.6 10.5"/></svg>`;
+  const ICON_CROWD = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`;
+
+  const LEAN_LABELS = {
+    yes: "скорее YES",
+    no: "скорее NO",
+    split: "мнения разделены",
+    unclear: "непонятно",
+  };
+  const NOISE_LABELS = {
+    low: "низкий",
+    medium: "средний",
+    high: "высокий",
+  };
 
   function escapeHtml(value) {
     return String(value)
@@ -270,6 +283,81 @@
       </section>`;
   }
 
+  function formatLean(lean) {
+    return LEAN_LABELS[lean] || LEAN_LABELS.unclear;
+  }
+
+  function formatNoise(level) {
+    return NOISE_LABELS[level] || NOISE_LABELS.medium;
+  }
+
+  function renderCrowdPulseSection(ev) {
+    const pulse = ev.crowdPulse;
+    if (!pulse) return "";
+
+    const status = pulse.status || "insufficient";
+    const market = pulse.marketComments;
+    const social = pulse.socialDiscussion;
+    const synthesis = pulse.synthesis;
+
+    if (status === "insufficient" || (!market && !social)) {
+      return `
+      <section class="so-crowd-card">
+        <div class="so-crowd-head">
+          <span class="so-crowd-icon">${ICON_CROWD}</span>
+          <h2 class="so-crowd-title">Что говорят люди</h2>
+        </div>
+        <p class="so-crowd-empty">Недостаточно комментариев для вывода.</p>
+      </section>`;
+    }
+
+    const marketNoise = market?.noiseLevel || "medium";
+    const socialNoise = social?.noiseLevel || "medium";
+    const noisyNote =
+      marketNoise === "high" || socialNoise === "high"
+        ? `<p class="so-crowd-note">Обсуждение шумное, влияние на прогноз слабое.</p>`
+        : "";
+
+    const marketBlock = market
+      ? `
+        <div class="so-crowd-part so-crowd-part--market">
+          <div class="so-crowd-part-label">Внутри события</div>
+          <div class="so-crowd-row"><span>Склонение:</span> ${escapeHtml(formatLean(market.lean))}</div>
+          <div class="so-crowd-row so-crowd-row--main"><span>Главная мысль:</span> ${escapeHtml(market.summaryRu || "—")}</div>
+          <div class="so-crowd-row"><span>Шум:</span> ${escapeHtml(formatNoise(marketNoise))}</div>
+        </div>`
+      : "";
+
+    const socialBlock = social
+      ? `
+        <div class="so-crowd-part so-crowd-part--social">
+          <div class="so-crowd-part-label">В сети</div>
+          <div class="so-crowd-row"><span>Склонение:</span> ${escapeHtml(formatLean(social.lean))}</div>
+          <div class="so-crowd-row so-crowd-row--main"><span>Главная мысль:</span> ${escapeHtml(social.summaryRu || "—")}</div>
+          <div class="so-crowd-row"><span>Шум:</span> ${escapeHtml(formatNoise(socialNoise))}</div>
+        </div>`
+      : "";
+
+    const synthesisBlock = synthesis?.summaryRu
+      ? `
+        <div class="so-crowd-synthesis">
+          <div class="so-crowd-part-label">Общий вывод</div>
+          <p>${escapeHtml(synthesis.summaryRu)}</p>
+        </div>`
+      : "";
+
+    return `
+      <section class="so-crowd-card">
+        <div class="so-crowd-head">
+          <span class="so-crowd-icon">${ICON_CROWD}</span>
+          <h2 class="so-crowd-title">Что говорят люди</h2>
+        </div>
+        <div class="so-crowd-grid">${marketBlock}${socialBlock}</div>
+        ${synthesisBlock}
+        ${noisyNote}
+      </section>`;
+  }
+
   function renderActionsSection(ev, opts) {
     opts = opts || {};
     const marketUrl = ev.marketUrl || opts.marketUrl || "https://polymarket.com";
@@ -352,6 +440,7 @@
         ${sourceBanner}
         ${renderVerdictSection(ev)}
         ${renderAnalysisDuo(ev)}
+        ${renderCrowdPulseSection(ev)}
         ${renderCheckedSection(ev)}
         ${renderActionsSection(ev, opts)}
         ${renderChangesSection(ev)}

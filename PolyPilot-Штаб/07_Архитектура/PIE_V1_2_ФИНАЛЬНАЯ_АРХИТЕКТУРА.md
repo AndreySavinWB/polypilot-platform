@@ -219,6 +219,20 @@ Hard gates (без LLM):
 
 ---
 
+### Comment Analysis (5.5A / 5.5B / 5.5C)
+
+- **Вход:** `normalized` + контекст `evidence`
+- **Выход:** блок `crowdPulse` (см. [[COMMENT_ANALYSIS_V1]])
+
+Содержит три **отдельных** блока:
+- `marketComments` (5.5A) — комментарии под событием Polymarket
+- `socialDiscussion` (5.5B) — X, Reddit, YouTube, Telegram, медиа
+- `synthesis` (5.5C) — сравнение A и B, max weight 10% на probability
+
+MVP: mock для event `79061`; API collectors — заглушки.
+
+---
+
 ### Contradiction Engine
 
 - **Вход:** `marketSnapshot` + `marketIntelligence` + `evidence`

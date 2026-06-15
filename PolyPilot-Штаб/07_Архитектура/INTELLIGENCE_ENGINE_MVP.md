@@ -110,6 +110,22 @@
 
 ---
 
+## 4.5 Comment Analysis v0 (5.5A / 5.5B / 5.5C)
+
+**Отдельно от Evidence Collector.** Не смешивать комментарии Polymarket и соцсети.
+
+| Блок | v0 |
+|------|-----|
+| 5.5A Polymarket comments | stub / mock |
+| 5.5B Social (X, Reddit, YouTube, Telegram, news) | stub / mock |
+| 5.5C Synthesis | rule + mock RU summary |
+
+**Выход:** `crowdPulse` — см. [[COMMENT_ANALYSIS_V1]]  
+**Вес на PP:** max 10% (вспомогательный сигнал)  
+**Код:** `backend/src/agents/comment_analysis.py` · UI mock `live-79061`
+
+---
+
 ## 5. Contradiction Engine v0
 
 **Rule-based lite (без LLM):**

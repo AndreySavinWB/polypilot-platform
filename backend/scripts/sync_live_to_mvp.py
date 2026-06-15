@@ -326,6 +326,7 @@ def convert_item(item):
             "ppOdds": confidence,
             "marketOddsAtOpen": market_odds or 50,
         },
+        "crowdPulse": package.get("crowdPulse"),
     }
 
 

@@ -35,6 +35,8 @@ Market Structure Analyzer    ← концентрация, здоровье ры
         ↓
 Evidence Collector           ← факты снаружи (news, social, trends)
         ↓
+Comment Analysis (5.5A/B/C)  ← crowdPulse: рынок vs сеть vs сводка (max 10%)
+        ↓
 Source Scoring System        ← Trust, Freshness, Uniqueness, EQS
         ↓
 Contradiction Engine         ← рынок vs факты vs flow
@@ -67,7 +69,7 @@ Memory                       ← track record, версии, autopsy feed
 |---------|------------|--------|
 | **1 · Событие** | Scanner, Priority, Normalizer, **Event Type Classifier** | *Что торгуем, как резолвится, какого типа?* |
 | **2 · Деньги** | Market Intelligence, **Market Structure Analyzer** | *Что делают деньги? Можно ли доверять рынку?* |
-| **3 · Информация** | Evidence Collector, **Source Scoring System** | *Что говорит мир снаружи, насколько надёжно?* |
+| **3 · Информация** | Evidence Collector, **Comment Analysis (5.5A/B/C)**, **Source Scoring System** | *Что говорит мир снаружи и что говорят люди (отдельно)?* |
 | **4 · Мышление** | Contradiction, Comparable, **Probability Engine v1.1**, Risk, **Strategy Router**, Verdict | *Где PP видит edge, риск и trading setup?* |
 | **5 · Память** | Memory (+ Autopsy) | *Что мы предсказывали и где ошиблись?* |
 
@@ -132,6 +134,22 @@ Hard gates: [[ПРИОРИТЕТ_АГЕНТ]]. Без `accepted` событие 
 | **Выход** | `evidence` — news[], social[], trends[], official[] |
 | **Не делает** | on-chain flow (это MI), финальный вердикт |
 | **Статус код** | ⚠️ LLM mock в `pipeline.py` |
+
+---
+
+### 3b. Comment Analysis (5.5A / 5.5B / 5.5C)
+
+| | |
+|---|---|
+| **Роль** | Отдельно: комментарии Polymarket vs обсуждение в сети → сводка |
+| **Вход** | `normalized` + контекст `evidence` |
+| **Выход** | `crowdPulse` — marketComments, socialDiscussion, synthesis |
+| **Вес на PP** | max **10%** (рынок 0–7%, сеть 0–5%) |
+| **Risk Officer** | спорный резолв, сильный риск → `passToRiskOfficer[]` |
+| **Спека** | [[COMMENT_ANALYSIS_V1]] |
+| **Статус код** | ⚠️ mock `comment_analysis.py` · UI ✅ |
+
+**Не смешивать** с `evidence.social[]` — там сырые сигналы, здесь структурированный crowd sentiment.
 
 ---
 

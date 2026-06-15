@@ -357,6 +357,103 @@
   color: #86efac;
 }
 
+.so-crowd-card {
+  margin-bottom: 22px;
+  padding: 16px 18px 18px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.so-crowd-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.so-crowd-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #93c5fd;
+  background: rgba(59, 130, 246, 0.14);
+  border: 1px solid rgba(59, 130, 246, 0.28);
+}
+.so-crowd-icon svg {
+  width: 17px;
+  height: 17px;
+}
+.so-crowd-title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+  color: rgba(255, 255, 255, 0.92);
+}
+.so-crowd-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+@media (max-width: 820px) {
+  .so-crowd-grid { grid-template-columns: 1fr; }
+}
+.so-crowd-part {
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: rgba(15, 18, 34, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+.so-crowd-part--market {
+  border-color: rgba(124, 58, 237, 0.18);
+}
+.so-crowd-part--social {
+  border-color: rgba(59, 130, 246, 0.18);
+}
+.so-crowd-part-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.42);
+  margin-bottom: 10px;
+}
+.so-crowd-row {
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.68);
+  margin-bottom: 8px;
+}
+.so-crowd-row:last-child { margin-bottom: 0; }
+.so-crowd-row span {
+  color: rgba(255, 255, 255, 0.42);
+  margin-right: 4px;
+}
+.so-crowd-row--main span { display: block; margin-bottom: 4px; }
+.so-crowd-synthesis {
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: rgba(74, 222, 128, 0.05);
+  border: 1px solid rgba(74, 222, 128, 0.14);
+}
+.so-crowd-synthesis p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.72);
+}
+.so-crowd-note,
+.so-crowd-empty {
+  margin: 10px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.42);
+}
+
 .so-cta-bar {
   display: flex;
   align-items: center;

@@ -31,6 +31,8 @@ Polymarket API
       ↓
  Evidence Collector ──→ evidence
       ↓
+ Comment Analysis (5.5A/B/C) ──→ crowdPulse
+      ↓
  Contradiction Engine ──→ contradictionMap
       ↓
  Comparable Events ──→ analogs[]  (+ read Memory)
@@ -189,6 +191,72 @@ Polymarket API
   }
 }
 ```
+
+---
+
+## Шаг 5.5 — Comment Analysis (5.5A / 5.5B / 5.5C)
+
+> Полная спецификация: [[COMMENT_ANALYSIS_V1]]
+
+**Вход:** normalized + evidence (контекст события)  
+**Выход добавляет:** `crowdPulse` — **три отдельных блока**, не один общий sentiment.
+
+```json
+{
+  "crowdPulse": {
+    "status": "ready",
+    "maxWeightPct": 10,
+    "marketComments": {
+      "commentCount": 47,
+      "lean": "no",
+      "argumentsYes": ["…"],
+      "argumentsNo": ["…"],
+      "resolutionDispute": true,
+      "hasSourceLinks": true,
+      "noiseSignals": ["resolve_rules_debate"],
+      "quality": "medium",
+      "noiseLevel": "high",
+      "summaryRu": "…",
+      "weightPct": 4,
+      "dataSource": "polymarket_comments_stub"
+    },
+    "socialDiscussion": {
+      "sources": [{ "platform": "x", "found": true, "activityTrend": "rising" }],
+      "lean": "yes",
+      "arguments": ["…"],
+      "freshFacts": false,
+      "viralHype": true,
+      "expertSources": false,
+      "quality": "medium",
+      "noiseLevel": "medium",
+      "summaryRu": "…",
+      "weightPct": 3,
+      "dataSource": "social_stub"
+    },
+    "synthesis": {
+      "alignment": "divergent",
+      "contradiction": "…",
+      "repeatedArgument": "…",
+      "mainRiskFromDiscussion": "…",
+      "forecastImpact": "weak_positive",
+      "probabilityAdjustPct": 2,
+      "summaryRu": "…",
+      "totalWeightPct": 5,
+      "passToRiskOfficer": ["resolutionDispute"]
+    },
+    "scoringMode": "mock_v1"
+  }
+}
+```
+
+**Правила:**
+
+- A = только комментарии под событием Polymarket.
+- B = только внешние источники (X, Reddit, YouTube, Telegram, медиа).
+- C = сравнение A и B; max weight **10%** на PP probability.
+- Спорный резолв / сильный риск → `passToRiskOfficer`.
+
+**MVP:** mock для event `79061`; API collectors — заглушки.
 
 ---
 

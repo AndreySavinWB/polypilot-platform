@@ -1365,6 +1365,64 @@
           "disclaimer": "Аналитика PolyPilot не является финансовым советом и не обещает прибыль.",
           "scoringMode": "rules_v0"
         },
+        "crowdPulse": {
+          "status": "ready",
+          "maxWeightPct": 10,
+          "marketComments": {
+            "commentCount": 47,
+            "lean": "no",
+            "argumentsYes": [
+              "Tesla уже тестирует FSD — запуск возможен до июня.",
+              "В Калифорнии есть разрешения на robotaxi-пилоты."
+            ],
+            "argumentsNo": [
+              "Спорят, будет ли запуск считаться полноценным по правилам рынка.",
+              "Нужен публичный сервис без водителя — демо не засчитают."
+            ],
+            "resolutionDispute": true,
+            "hasSourceLinks": true,
+            "noiseSignals": ["resolve_rules_debate", "speculation"],
+            "quality": "medium",
+            "noiseLevel": "high",
+            "summaryRu": "Участники рынка осторожны: много споров о том, что именно засчитается запуском по правилам Polymarket.",
+            "weightPct": 4,
+            "dataSource": "polymarket_comments_stub"
+          },
+          "socialDiscussion": {
+            "sources": [
+              {"platform": "x", "found": true, "activityTrend": "rising"},
+              {"platform": "reddit", "found": true, "activityTrend": "stable"},
+              {"platform": "youtube", "found": true, "activityTrend": "rising"},
+              {"platform": "telegram", "found": false, "activityTrend": "unknown"},
+              {"platform": "news", "found": true, "activityTrend": "stable"}
+            ],
+            "lean": "yes",
+            "arguments": [
+              "Соцсети обсуждают заявления Tesla о robotaxi в Калифорнии.",
+              "Есть хайп вокруг демо и тестовых поездок."
+            ],
+            "freshFacts": false,
+            "viralHype": true,
+            "expertSources": false,
+            "quality": "medium",
+            "noiseLevel": "medium",
+            "summaryRu": "Внешняя аудитория склоняется к YES: верят в запуск и цитируют новости Tesla, но без новых официальных фактов.",
+            "weightPct": 3,
+            "dataSource": "social_stub"
+          },
+          "synthesis": {
+            "alignment": "divergent",
+            "contradiction": "Участники рынка осторожнее из-за правил резолва; соцсети оптимистичнее.",
+            "repeatedArgument": "Запуск robotaxi в Калифорнии до 30 июня",
+            "mainRiskFromDiscussion": "Спор по формулировке «полноценного» публичного сервиса",
+            "forecastImpact": "weak_positive",
+            "probabilityAdjustPct": 2,
+            "summaryRu": "Обсуждения расходятся. Соцсети оптимистичны, но участники рынка осторожнее из-за правил события.",
+            "totalWeightPct": 5,
+            "passToRiskOfficer": ["resolutionDispute", "high_noise_market_comments"]
+          },
+          "scoringMode": "mock_v1"
+        },
         "verdict": null,
         "publishedAt": null,
         "normalizedEvent": {
