@@ -191,6 +191,121 @@
     return html;
   }
 
+  function formatEdgePp(verdict) {
+    const d = Math.round(Math.abs(verdict.delta || 0));
+    if (verdict.tone === "under") return `+${d} п.п.`;
+    if (verdict.tone === "over") return `−${d} п.п.`;
+    return "≈0 п.п.";
+  }
+
+  function getCategoryTagUpper(ev) {
+    const tag = String(ev.categoryTag || "").toLowerCase();
+    const map = {
+      tech: "TECH",
+      crypto: "КРИПТО",
+      politics: "ПОЛИТИКА",
+      economics: "ЭКОНОМИКА",
+      macro: "МАКРО",
+      cinema: "КИНО",
+      sport: "СПОРТ",
+    };
+    if (map[tag]) return map[tag];
+    const label = getCategoryLabel(ev);
+    return label.length <= 12 ? label.toUpperCase() : label.slice(0, 12).toUpperCase();
+  }
+
+  function buildFeedStatusLine(ev, verdict) {
+    const headline = ev.simpleVerdict || getVerdictHeadline(verdict);
+    const parts = [];
+
+    if (ev.simpleCategory === "crypto_simple" || String(ev.simpleCategoryLabel || "").includes("Прост")) {
+      parts.push("Простое событие", "шум высокий");
+    } else {
+      parts.push(headline);
+      const whale = ev.whaleCheck;
+      if (whale?.status === "ready") {
+        const yes = Number(whale.yesWhaleVolumeUsd || 0);
+        const no = Number(whale.noWhaleVolumeUsd || 0);
+        if (yes > no * 1.15) parts.push("киты за YES");
+        else if (no > yes * 1.15) parts.push("киты за NO");
+      } else if (verdict.tone === "under" && Math.abs(verdict.delta || 0) >= 15) {
+        parts.push("киты за YES");
+      }
+      if (ev.news?.length && !parts.includes("новостной драйвер")) {
+        parts.push("новостной драйвер");
+      }
+    }
+
+    const risk = ev.riskLevel || "medium";
+    if (risk === "high") parts.push("риск высокий");
+    else if (risk === "medium") parts.push("риск средний");
+    else parts.push("риск низкий");
+
+    let tone = "green";
+    if (risk === "high" || ev.simpleCategory === "crypto_simple") tone = "red";
+    else if (risk === "medium" && !headline.includes("сильно")) tone = "orange";
+
+    return { text: parts.join(" · "), tone };
+  }
+
+  function renderFeedRow(ev, opts) {
+    opts = opts || {};
+    const market = clampPct(ev.marketOdds ?? 50);
+    const pp = clampPct(ev.aiOdds ?? ev.confidence ?? 50);
+    const verdict = ev.simpleVerdict
+      ? {
+          label: ev.simpleVerdict,
+          tone: ev.simpleVerdictTone || "match",
+          delta: pp - market,
+        }
+      : computeSimpleVerdict(market, pp);
+    const href = opts.href || `event.html?id=${encodeURIComponent(ev.id)}`;
+    const status = buildFeedStatusLine(ev, verdict);
+    const catUpper = getCategoryTagUpper(ev);
+    const horizon = getHorizonDaysLabel(ev);
+    const iconHtml = opts.iconHtml || ICON_GLOBE;
+    const iconBg = opts.iconBg || "linear-gradient(145deg,#012e1e,#044d31)";
+    const iconColor = opts.iconColor || "#34d399";
+    const edgeVal = formatEdgePp(verdict);
+    const edgeTone = verdict.tone === "over" ? "over" : verdict.tone === "match" ? "match" : "under";
+
+    return `
+      <div class="ef-row" data-href="${escapeHtml(href)}" role="link" tabindex="0">
+        <div class="ef-left">
+          <div class="ef-icon" style="background:${iconBg};color:${iconColor}">${iconHtml}</div>
+          <div class="ef-cat-block">
+            <div class="ef-cat">${escapeHtml(catUpper)}</div>
+            <div class="ef-days">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              ${escapeHtml(horizon)}
+            </div>
+          </div>
+        </div>
+        <div class="ef-main">
+          <div class="ef-title">${escapeHtml(ev.title || "—")}</div>
+          <div class="ef-bars">
+            <div class="ef-bar-row">
+              <span class="ef-bar-lbl">Рынок ${market}%</span>
+              ${renderSegments(market, "market")}
+            </div>
+            <div class="ef-bar-row">
+              <span class="ef-bar-lbl">PolyPilot ${pp}%</span>
+              ${renderSegments(pp, "pp")}
+            </div>
+          </div>
+          <div class="ef-status ef-status--${status.tone}">
+            <span class="ef-status-dot"></span>
+            ${escapeHtml(status.text)}
+          </div>
+        </div>
+        <div class="ef-edge ef-edge--${edgeTone}">
+          <div class="ef-edge-lbl">EDGE</div>
+          <div class="ef-edge-val">${escapeHtml(edgeVal)}</div>
+        </div>
+        <a class="ef-btn" href="${escapeHtml(href)}">Разбор →</a>
+      </div>`;
+  }
+
   function renderSimpleClosedCard(ev, opts) {
     opts = opts || {};
     const market = clampPct(ev.marketOdds ?? 50);
@@ -244,9 +359,12 @@
 
   global.PP_SIMPLE_CARD = {
     render: renderSimpleClosedCard,
+    renderFeedRow,
     computeSimpleVerdict,
     formatHorizonShort,
     formatHorizonLong,
     getCategoryLabel,
+    getHorizonDaysLabel,
+    buildFeedStatusLine,
   };
 })(window);

@@ -106,201 +106,310 @@
     }
 
     /* =============================================
-       FEED SECTION
+       FEED SECTION — «Что смотреть сейчас»
        ============================================= */
-    .ev-feed { padding: 0; }
+    .ev-feed { padding: 0 0 8px; }
 
     .ev-feed-header {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
-      padding: 18px 32px 14px;
+      padding: 22px 32px 16px;
       gap: 16px;
       flex-wrap: wrap;
     }
-    .ev-feed-title-group { display: flex; flex-direction: column; }
+    .ev-feed-title-group { display: flex; flex-direction: column; gap: 4px; }
+    .ev-feed-sort-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .ev-feed-sort-label {
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      white-space: nowrap;
+    }
 
-    /* Sort dropdown */
     .ev-sort {
-      padding: 7px 30px 7px 12px;
+      padding: 8px 32px 8px 14px;
       background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
+      border: 1px solid rgba(255,255,255,0.1);
       border-radius: 10px;
-      color: var(--text-secondary);
-      font-size: 12.5px;
+      color: rgba(255,255,255,0.82);
+      font-size: 13px;
       font-family: inherit;
       cursor: pointer;
       outline: none;
       transition: border-color 0.18s;
       appearance: none;
       -webkit-appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M2 4l4 4 4-4' stroke='%236b7280' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M2 4l4 4 4-4' stroke='%239ca3af' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: right 10px center;
     }
-    .ev-sort:focus { border-color: rgba(124,58,237,0.5); }
+    .ev-sort:focus { border-color: rgba(59,130,246,0.55); }
     .ev-sort option { background: #0e1020; }
 
-    /* Filter pills */
-    .ev-filters {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 0 32px 14px;
-      flex-wrap: wrap;
-      border-bottom: 1px solid var(--border);
-    }
-    .filter-btn {
-      padding: 6px 16px;
-      border-radius: var(--radius-full);
-      font-size: 12.5px;
-      font-weight: 500;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--text-secondary);
-      cursor: pointer;
-      transition: all 0.18s;
-      white-space: nowrap;
-    }
-    .filter-btn:hover { border-color: rgba(124,58,237,0.4); color: #c4b5fd; }
-    .filter-btn.active {
-      background: linear-gradient(90deg, #4f46e5, #7c3aed);
-      color: #fff;
-      border-color: transparent;
-    }
-
-    /* Search + Count bar */
     .ev-search-bar {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 10px 32px;
-      border-bottom: 1px solid var(--border);
+      padding: 0 32px 14px;
     }
     .ev-search-wrap {
       position: relative;
-      flex: 1 1 260px;
-      max-width: 360px;
+      flex: 1;
+      max-width: none;
     }
     .ev-search-wrap svg {
       position: absolute;
-      left: 12px;
+      left: 14px;
       top: 50%;
       transform: translateY(-50%);
-      width: 15px; height: 15px;
-      stroke: var(--text-muted);
+      width: 16px; height: 16px;
+      stroke: rgba(255,255,255,0.35);
       fill: none;
       pointer-events: none;
     }
     .ev-search {
       width: 100%;
       box-sizing: border-box;
-      padding: 7px 12px 7px 34px;
+      padding: 11px 14px 11px 42px;
       background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      border-radius: 9px;
-      color: var(--text-primary);
-      font-size: 13px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      color: #fff;
+      font-size: 14px;
       font-family: inherit;
       outline: none;
       transition: border-color 0.18s;
     }
-    .ev-search::placeholder { color: var(--text-muted); }
-    .ev-search:focus { border-color: rgba(124,58,237,0.5); background: rgba(124,58,237,0.04); }
-    .ev-count {
-      margin-left: auto;
-      font-size: 12.5px;
-      color: var(--text-muted);
-      white-space: nowrap;
-    }
-    .ev-count strong { color: var(--text-secondary); }
+    .ev-search::placeholder { color: rgba(255,255,255,0.28); }
+    .ev-search:focus { border-color: rgba(59,130,246,0.45); background: rgba(59,130,246,0.04); }
 
-    /* =============================================
-       LIST ROWS
-       ============================================= */
-    .ev-list-row {
+    .ev-feature-filters,
+    .ev-cat-filters {
       display: flex;
       align-items: center;
-      padding: 14px 32px;
-      border-bottom: 1px solid var(--border);
+      gap: 8px;
+      padding: 0 32px 12px;
+      flex-wrap: wrap;
+    }
+    .ev-cat-filters { padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+
+    .ef-filter {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      font-weight: 600;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.03);
+      color: rgba(255,255,255,0.62);
+      cursor: pointer;
+      transition: all 0.18s;
+      white-space: nowrap;
+    }
+    .ef-filter svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      stroke: currentColor;
+      fill: none;
+    }
+    .ef-filter:hover {
+      border-color: rgba(59,130,246,0.35);
+      color: rgba(255,255,255,0.88);
+    }
+    .ef-filter.active {
+      background: linear-gradient(90deg, #2563eb, #3b82f6);
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 0 18px rgba(59,130,246,0.28);
+    }
+
+    .ef-cat-btn {
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: transparent;
+      color: rgba(255,255,255,0.55);
+      cursor: pointer;
+      transition: all 0.18s;
+    }
+    .ef-cat-btn:hover { color: rgba(255,255,255,0.82); border-color: rgba(255,255,255,0.14); }
+    .ef-cat-btn.active {
+      background: rgba(59,130,246,0.18);
+      border-color: rgba(59,130,246,0.45);
+      color: #93c5fd;
+    }
+
+    .ef-list { padding: 0; }
+    .ef-row {
+      display: grid;
+      grid-template-columns: auto 1fr auto auto;
+      align-items: center;
+      gap: 20px;
+      padding: 18px 32px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
       cursor: pointer;
       transition: background 0.15s;
-      gap: 0;
     }
-    .ev-list-row:hover { background: rgba(255,255,255,0.025); }
-    .ev-list-row:hover .ev-list-arrow { opacity: 1; }
+    .ef-row:hover { background: rgba(255,255,255,0.025); }
 
-    /* Thumbnail */
-    .ev-list-thumb {
-      width: 72px; height: 72px;
+    .ef-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 148px;
+    }
+    .ef-icon {
+      width: 52px;
+      height: 52px;
       border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .ef-icon svg { width: 26px; height: 26px; display: block; }
+    .ef-cat-block { display: flex; flex-direction: column; gap: 4px; }
+    .ef-cat {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.72);
+    }
+    .ef-days {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.38);
+    }
+    .ef-days svg { width: 13px; height: 13px; opacity: 0.7; }
+
+    .ef-main { min-width: 0; }
+    .ef-title {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.35;
+      color: #fff;
+      margin-bottom: 10px;
+      letter-spacing: -0.2px;
+    }
+    .ef-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 8px;
+      max-width: 520px;
+    }
+    .ef-bar-row {
+      display: grid;
+      grid-template-columns: 108px 1fr;
+      align-items: center;
+      gap: 10px;
+    }
+    .ef-bar-lbl {
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.42);
+      white-space: nowrap;
+    }
+    .ef-bar-row .sc-segments { margin: 0; }
+    .ef-bar-row .sc-segments i { height: 18px; }
+
+    .ef-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.55);
+    }
+    .ef-status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .ef-status--green .ef-status-dot { background: #4ade80; box-shadow: 0 0 8px rgba(74,222,128,0.65); }
+    .ef-status--orange .ef-status-dot { background: #fb923c; box-shadow: 0 0 8px rgba(251,146,60,0.55); }
+    .ef-status--red .ef-status-dot { background: #f87171; box-shadow: 0 0 8px rgba(248,113,113,0.55); }
+
+    .ef-edge {
+      text-align: center;
+      min-width: 88px;
+      padding: 0 8px;
+    }
+    .ef-edge-lbl {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: rgba(74,222,128,0.72);
+      margin-bottom: 2px;
+    }
+    .ef-edge-val {
       font-size: 28px;
-      margin-right: 18px;
-      position: relative;
-      overflow: hidden;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.5px;
+      color: #4ade80;
+      text-shadow: 0 0 20px rgba(74,222,128,0.25);
     }
-    .ev-list-thumb::after {
-      content: '';
-      position: absolute; inset: 0;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.10);
+    .ef-edge--over .ef-edge-lbl { color: rgba(248,113,113,0.72); }
+    .ef-edge--over .ef-edge-val { color: #fca5a5; text-shadow: 0 0 20px rgba(248,113,113,0.2); }
+    .ef-edge--match .ef-edge-lbl { color: rgba(196,181,253,0.72); }
+    .ef-edge--match .ef-edge-val { color: #c4b5fd; text-shadow: none; }
+
+    .ef-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 18px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.82);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: all 0.18s;
+      flex-shrink: 0;
     }
-    .ev-list-thumb svg {
-      width: 36px; height: 36px;
-      display: block;
-      stroke: currentColor;
+    .ef-btn:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.16);
+      color: #fff;
     }
 
-    /* Content */
-    .ev-list-content { flex: 1 1 0; min-width: 0; margin-right: 24px; }
-    .ev-list-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
-    .ev-list-cat {
-      font-size: 10px; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.6px;
-      padding: 2px 8px; border-radius: 5px;
+    .ef-demo-label {
+      padding: 14px 32px 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.28);
     }
-    .ev-list-hot {
-      font-size: 10px; font-weight: 700;
-      color: #fb923c;
-      background: rgba(251,146,60,0.12);
-      border: 1px solid rgba(251,146,60,0.25);
-      border-radius: 9999px; padding: 2px 8px;
-    }
-    .ev-list-title {
-      font-size: 15px; font-weight: 700; color: #fff;
-      line-height: 1.35; letter-spacing: -0.15px;
-      margin-bottom: 5px;
-      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
-    }
-    .ev-list-sub { display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--text-muted); }
-    .ev-list-sub-dot { opacity: 0.35; }
 
-    /* Metrics */
-    .ev-list-metrics { display: flex; align-items: center; flex-shrink: 0; }
-    .ev-list-metric {
-      display: flex; flex-direction: column; align-items: flex-end;
-      min-width: 80px; padding: 0 16px;
-      border-right: 1px solid rgba(255,255,255,0.06);
+    @media (max-width: 960px) {
+      .ef-row {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+      .ef-left { min-width: 0; }
+      .ef-edge { text-align: left; display: flex; align-items: baseline; gap: 10px; }
+      .ef-btn { width: fit-content; }
     }
-    .ev-list-metric:last-child { border-right: none; }
-    .ev-list-metric-val { font-size: 17px; font-weight: 700; line-height: 1.1; letter-spacing: -0.2px; }
-    .ev-list-metric-lbl { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
 
-    /* Actions */
-    .ev-list-actions { display: flex; align-items: center; gap: 8px; margin-left: 16px; flex-shrink: 0; }
-    .ev-list-bookmark { font-size: 15px; color: var(--text-muted); cursor: pointer; padding: 4px; transition: color 0.15s; }
-    .ev-list-bookmark:hover { color: #c4b5fd; }
-    .ev-list-arrow {
-      width: 28px; height: 28px; border-radius: 8px;
-      background: rgba(124,58,237,0.10); border: 1px solid rgba(124,58,237,0.18);
-      display: flex; align-items: center; justify-content: center;
-      color: #a855f7; opacity: 0.5; transition: opacity 0.15s;
-    }
-    .ev-list-arrow svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
-
-    /* Empty state */
     .ev-empty { padding: 40px 32px; text-align: center; color: var(--text-muted); font-size: 14px; }
     .ev-empty-icon { font-size: 32px; margin-bottom: 10px; }
 
@@ -935,8 +1044,8 @@
     <section class="ev-hot">
       <div class="ev-hot-header">
         <div>
-          <span class="section-title">Реальные события на Полимаркете</span>
-          <div class="section-sub">Данные с рынка + анализ PP AI</div>
+          <span class="section-title">События с самым сильным расхождением</span>
+          <div class="section-sub">PolyPilot видит больше, чем рынок</div>
         </div>
         <span class="ev-source-badge live">ОНЛАЙН · Полимаркет</span>
       </div>
@@ -949,39 +1058,65 @@
     <section class="ev-feed">
       <div class="ev-feed-header">
         <div class="ev-feed-title-group">
-          <span class="section-title">Лента событий</span>
-          <span class="section-sub">Реальные рынки и демо-примеры — отдельными блоками</span>
+          <span class="section-title">Что смотреть сейчас</span>
+          <span class="section-sub">Отобранные возможности, где рынок может ошибаться</span>
         </div>
-        <select class="ev-sort" id="ev-sort">
-          <option value="popular">Популярные</option>
-          <option value="edge">По перевесу ↑</option>
-          <option value="new">Новые</option>
-          <option value="volume">По объёму</option>
-          <option value="horizon">Ближайшие</option>
-        </select>
+        <div class="ev-feed-sort-wrap">
+          <span class="ev-feed-sort-label">Сортировка:</span>
+          <select class="ev-sort" id="ev-sort">
+            <option value="edge" selected>Лучшие расхождения</option>
+            <option value="popular">Популярные</option>
+            <option value="new">Новые</option>
+            <option value="volume">По объёму</option>
+            <option value="horizon">Ближайшие</option>
+          </select>
+        </div>
       </div>
 
-      <!-- Filters -->
-      <div class="ev-filters">
-        <button class="filter-btn active" data-filter="all">Все события</button>
-        <button class="filter-btn" data-filter="crypto">Крипто</button>
-        <button class="filter-btn" data-filter="politics">Политика</button>
-        <button class="filter-btn" data-filter="economics">Экономика</button>
-        <button class="filter-btn" data-filter="macro">Макроэкономика</button>
-        <button class="filter-btn" data-filter="tech">Технологии</button>
-        <button class="filter-btn" data-filter="cinema">Кино</button>
-        <button class="filter-btn" data-filter="sport">Спорт</button>
-      </div>
-
-      <!-- Search + Count -->
       <div class="ev-search-bar">
         <div class="ev-search-wrap">
           <svg viewBox="0 0 22 22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="10" cy="10" r="7"/><line x1="15.5" y1="15.5" x2="20" y2="20"/>
           </svg>
-          <input class="ev-search" id="ev-search" type="text" placeholder="Поиск событий…" autocomplete="off">
+          <input class="ev-search" id="ev-search" type="text" placeholder="Поиск событий..." autocomplete="off">
         </div>
-        <span class="ev-count" id="ev-count"><strong>0</strong> событий</span>
+      </div>
+
+      <div class="ev-feature-filters" id="ev-feature-filters">
+        <button type="button" class="ef-filter active" data-feature="strong-edge">
+          <svg viewBox="0 0 24 24" stroke-width="2"><path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/></svg>
+          Сильный EDGE
+        </button>
+        <button type="button" class="ef-filter" data-feature="fast-outcome">
+          <svg viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          Быстрый исход
+        </button>
+        <button type="button" class="ef-filter" data-feature="simple">
+          <svg viewBox="0 0 24 24" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 12h6"/></svg>
+          Простые события
+        </button>
+        <button type="button" class="ef-filter" data-feature="whales">
+          <svg viewBox="0 0 24 24" stroke-width="2"><path d="M3 12c2-4 6-7 9-7s7 3 9 7c-2 4-6 7-9 7s-7-3-9-7z"/><path d="M12 9v6"/></svg>
+          Киты активны
+        </button>
+        <button type="button" class="ef-filter" data-feature="crowd">
+          <svg viewBox="0 0 24 24" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Люди спорят
+        </button>
+        <button type="button" class="ef-filter" data-feature="education">
+          <svg viewBox="0 0 24 24" stroke-width="2"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/></svg>
+          Учебные кейсы
+        </button>
+      </div>
+
+      <div class="ev-cat-filters" id="ev-cat-filters">
+        <button type="button" class="ef-cat-btn active" data-filter="all">Все</button>
+        <button type="button" class="ef-cat-btn" data-filter="crypto">Крипто</button>
+        <button type="button" class="ef-cat-btn" data-filter="politics">Политика</button>
+        <button type="button" class="ef-cat-btn" data-filter="economics">Экономика</button>
+        <button type="button" class="ef-cat-btn" data-filter="tech">Технологии</button>
+        <button type="button" class="ef-cat-btn" data-filter="cinema">Кино</button>
+        <button type="button" class="ef-cat-btn" data-filter="sport">Спорт</button>
       </div>
 
       <div id="paywall-pulse" class="paywall-notice" style="display:none;margin:12px 32px 0;">
@@ -989,19 +1124,11 @@
         <a href="pricing.html" class="btn btn-primary">Перейти на PRO</a>
       </div>
 
-      <!-- Feed lists: live + demo -->
-      <div class="ev-feed-divider">
-        <span class="ev-source-badge live">ОНЛАЙН · Полимаркет</span>
-        <span class="ev-feed-divider-count" id="live-count"></span>
-      </div>
-      <div id="feed-list-live"></div>
+      <div class="ef-list" id="feed-list"></div>
 
-      <div class="ev-block-demo">
-        <div class="ev-feed-divider">
-          <span class="ev-source-badge demo">ДЕМО · примеры интерфейса</span>
-          <span class="ev-feed-divider-count" id="demo-count"></span>
-        </div>
-        <div id="feed-list-demo"></div>
+      <div class="ev-block-demo" id="ev-block-demo" hidden>
+        <div class="ef-demo-label">ДЕМО · примеры интерфейса</div>
+        <div class="ef-list" id="feed-list-demo"></div>
       </div>
 
       <!-- Upsell -->
@@ -1312,14 +1439,30 @@
 
   // ---- Feed state ----
   let currentFilter = 'all';
-  let currentSort   = 'popular';
+  let currentFeature = 'strong-edge';
+  let currentSort   = 'edge';
   let currentSearch = '';
 
-  document.querySelectorAll('.filter-btn').forEach(btn => {
+  document.querySelectorAll('.ef-cat-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.ef-cat-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       currentFilter = btn.dataset.filter;
+      renderFeed();
+    });
+  });
+
+  document.querySelectorAll('.ef-filter').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const next = btn.dataset.feature;
+      if (currentFeature === next) {
+        btn.classList.remove('active');
+        currentFeature = '';
+      } else {
+        document.querySelectorAll('.ef-filter').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFeature = next;
+      }
       renderFeed();
     });
   });
@@ -1335,12 +1478,53 @@
     searchTimer = setTimeout(() => { currentSearch = e.target.value.trim().toLowerCase(); renderFeed(); }, 200);
   });
 
+  function eventEdgeMagnitude(ev) {
+    const market = ev.marketOdds ?? 50;
+    const pp = ev.aiOdds ?? ev.confidence ?? 50;
+    if (ev.edgeScore != null) return Math.abs(Number(ev.edgeScore));
+    return Math.abs(pp - market);
+  }
+
+  function eventHorizonDays(ev) {
+    const m = String(ev.horizon || '').match(/(\d+)/);
+    return m ? parseInt(m[1], 10) : 9999;
+  }
+
+  function passesFeatureFilter(ev) {
+    if (!currentFeature) return true;
+    const edge = eventEdgeMagnitude(ev);
+    const days = eventHorizonDays(ev);
+    const whale = ev.whaleCheck;
+    switch (currentFeature) {
+      case 'strong-edge':
+        return edge >= 15;
+      case 'fast-outcome':
+        return days <= 14;
+      case 'simple':
+        return ev.simpleCategory === 'crypto_simple'
+          || String(ev.simpleCategory || '').includes('simple')
+          || String(ev.simpleCategoryLabel || '').includes('Прост');
+      case 'whales':
+        if (!whale || whale.status !== 'ready') return false;
+        return Number(whale.yesWhaleVolumeUsd || 0) + Number(whale.noWhaleVolumeUsd || 0) > 0;
+      case 'crowd': {
+        const vol = parseFloat(String(ev.volumeTotal || '').replace(/[^0-9.]/g, '')) || 0;
+        const watch = parseFloat(String(ev.watchers || '').replace(/[^0-9.]/g, '')) || 0;
+        return vol >= 20 || watch >= 5;
+      }
+      case 'education':
+        return ev.isDemo === true;
+      default:
+        return true;
+    }
+  }
+
   function sortEvents(list) {
     switch (currentSort) {
-      case 'edge':    list.sort((a,b) => (b.edgeScore||0)  - (a.edgeScore||0)); break;
+      case 'edge':    list.sort((a,b) => eventEdgeMagnitude(b) - eventEdgeMagnitude(a)); break;
       case 'volume':  list.sort((a,b) => parseFloat(String(b.volumeTotal).replace(/[^0-9.]/g,'')) - parseFloat(String(a.volumeTotal).replace(/[^0-9.]/g,''))); break;
       case 'new':     list.sort((a,b) => new Date(b.proofTrack?.opened||0) - new Date(a.proofTrack?.opened||0)); break;
-      case 'horizon': list.sort((a,b) => parseInt(a.horizon) - parseInt(b.horizon)); break;
+      case 'horizon': list.sort((a,b) => eventHorizonDays(a) - eventHorizonDays(b)); break;
       default:        list.sort((a,b) => parseFloat(String(b.volumeTotal).replace(/[^0-9.]/g,'')) - parseFloat(String(a.volumeTotal).replace(/[^0-9.]/g,''))); break;
     }
     return list;
@@ -1349,11 +1533,29 @@
   function getFeedList(source) {
     let list = source === 'live' ? [...liveEvents] : [...demoEvents];
     if (currentFilter !== 'all') list = list.filter(e => e.categoryTag === currentFilter);
+    if (currentFeature) list = list.filter(passesFeatureFilter);
     if (currentSearch) list = list.filter(e =>
       e.title.toLowerCase().includes(currentSearch) ||
-      e.category.toLowerCase().includes(currentSearch)
+      String(e.category || '').toLowerCase().includes(currentSearch)
     );
     return sortEvents(list);
+  }
+
+  function bindFeedRows(container) {
+    if (!container) return;
+    container.querySelectorAll('.ef-row').forEach(row => {
+      row.addEventListener('click', e => {
+        if (e.target.closest('.ef-btn')) return;
+        const href = row.dataset.href;
+        if (href) location.href = href;
+      });
+      row.addEventListener('keydown', e => {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        e.preventDefault();
+        const href = row.dataset.href;
+        if (href) location.href = href;
+      });
+    });
   }
 
   function renderFeedSection(elId, list) {
@@ -1362,18 +1564,22 @@
       el.innerHTML = `<div class="ev-empty"><div class="ev-empty-icon">🔍</div>Ничего не найдено</div>`;
       return;
     }
-    el.innerHTML = list.map(ev => renderListRow(ev)).join('');
+    el.innerHTML = list.map(ev => renderFeedRow(ev)).join('');
+    bindFeedRows(el);
   }
 
   function renderFeed() {
     const liveList = getFeedList('live');
     const demoList = getFeedList('demo');
-    const total = liveList.length + demoList.length;
-    document.getElementById('ev-count').innerHTML = `<strong>${total}</strong> ${plural(total,'событие','события','событий')}`;
-    document.getElementById('live-count').textContent = `${liveList.length} ${plural(liveList.length,'событие','события','событий')}`;
-    document.getElementById('demo-count').textContent = `${demoList.length} ${plural(demoList.length,'событие','события','событий')}`;
-    renderFeedSection('feed-list-live', liveList);
-    renderFeedSection('feed-list-demo', demoList);
+    renderFeedSection('feed-list', liveList);
+    const demoBlock = document.getElementById('ev-block-demo');
+    if (demoList.length) {
+      demoBlock.hidden = false;
+      renderFeedSection('feed-list-demo', demoList);
+    } else {
+      demoBlock.hidden = true;
+      document.getElementById('feed-list-demo').innerHTML = '';
+    }
   }
 
   // ---- Grid card (Simple v1) ----
@@ -1381,58 +1587,13 @@
     return PP_SIMPLE_CARD.render(ev);
   }
 
-  // ---- List row (Simple v1 lite) ----
-  function renderListRow(ev) {
+  function renderFeedRow(ev) {
     const cs = getCatStyle(ev);
-    const catLabel = PP_SIMPLE_CARD.getCategoryLabel(ev);
-    const market = ev.marketOdds ?? 50;
-    const pp = ev.aiOdds ?? ev.confidence ?? 50;
-    const verdict = PP_SIMPLE_CARD.computeSimpleVerdict(market, pp);
-    const horizon = PP_SIMPLE_CARD.formatHorizonShort(ev);
-    return `
-      <div class="ev-list-row" onclick="location.href='event.html?id=${ev.id}'">
-        <div class="ev-list-thumb" style="background:${cs.grad}">
-        <span style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;color:${cs.stroke}">${getCatIcon(ev)}</span>
-      </div>
-        <div class="ev-list-content">
-          <div class="ev-list-meta">
-            <span class="ev-list-cat" style="color:${cs.color};background:${cs.bg};border:1px solid ${cs.border}">${catLabel}</span>
-            <span style="font-size:11px;color:var(--text-muted)">${horizon}</span>
-          </div>
-          <div class="ev-list-title">${ev.title}</div>
-          <div class="ev-list-sub">
-            <span>Рынок ${market}%</span>
-            <span class="ev-list-sub-dot">·</span>
-            <span style="color:#c4b5fd">PolyPilot ${pp}%</span>
-            <span class="ev-list-sub-dot">·</span>
-            <span>${verdict.label}</span>
-          </div>
-        </div>
-        <div class="ev-list-metrics">
-          <div class="ev-list-metric">
-            <span class="ev-list-metric-val sv-purple">${market}%</span>
-            <span class="ev-list-metric-lbl">Рынок</span>
-          </div>
-          <div class="ev-list-metric">
-            <span class="ev-list-metric-val" style="color:#c4b5fd">${pp}%</span>
-            <span class="ev-list-metric-lbl">PolyPilot</span>
-          </div>
-          <div class="ev-list-metric">
-            <span class="ev-list-metric-val sv-green">${horizon.replace(/^Закрытие /, '')}</span>
-            <span class="ev-list-metric-lbl">Срок</span>
-          </div>
-        </div>
-        <div class="ev-list-actions">
-          <div class="ev-list-arrow"><svg viewBox="0 0 14 14"><polyline points="4,2 10,7 4,12"/></svg></div>
-        </div>
-      </div>`;
-  }
-
-  function plural(n, one, few, many) {
-    const m = n % 10, c = n % 100;
-    if (m===1 && c!==11) return one;
-    if (m>=2 && m<=4 && (c<10||c>=20)) return few;
-    return many;
+    return PP_SIMPLE_CARD.renderFeedRow(ev, {
+      iconHtml: getCatIcon(ev),
+      iconBg: cs.grad,
+      iconColor: cs.stroke,
+    });
   }
 
   renderFeed();
