@@ -117,13 +117,6 @@
     return "низкая";
   }
 
-  function getFooterHint(verdict) {
-    if (verdict.tone === "match") {
-      return "Оценки близки — загляни в разбор";
-    }
-    return "Есть расхождение — есть повод смотреть";
-  }
-
   function renderSegments(pct, variant) {
     const filled = Math.round((clampPct(pct) / 100) * SEGMENTS);
     let html = `<div class="sc-segments sc-segments--${variant}">`;
@@ -150,10 +143,9 @@
     const href = opts.href || `event.html?id=${encodeURIComponent(ev.id)}`;
     const watchers = ev.watchers || "—";
     const confidence = getConfidenceLabel(ev);
-    const footerHint = getFooterHint(verdict);
 
     return `
-      <div class="event-card simple-v1" onclick="location.href='${href}'">
+      <div class="event-card simple-v1" onclick="location.href='${href}'" role="link" tabindex="0">
         <div class="sc-head">
           <div class="sc-head-left">
             <span class="sc-cat-icon">${ICON_GLOBE}</span>
@@ -195,14 +187,6 @@
             ${ICON_SIGNAL}
             <span>Уверенность: ${escapeHtml(confidence)}</span>
           </div>
-        </div>
-
-        <div class="sc-foot">
-          <div class="sc-foot-hint">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="12" cy="16" r="0.5" fill="currentColor"/></svg>
-            ${escapeHtml(footerHint)}
-          </div>
-          <div class="sc-foot-btn">Разбор →</div>
         </div>
       </div>`;
   }

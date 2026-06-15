@@ -228,10 +228,12 @@
   padding: 0;
   overflow: hidden;
   cursor: pointer;
+  transition: border-color 0.25s, transform 0.22s ease, box-shadow 0.25s;
 }
 .event-card.simple-v1:hover {
   border-color: rgba(124, 58, 237, 0.42);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  transform: scale(1.03);
 }
 .event-card.simple-v1.is-hot::after {
   display: none;
@@ -386,11 +388,11 @@
 .sc-insight {
   display: grid;
   grid-template-columns: auto 1fr auto;
-  gap: 12px;
-  align-items: start;
-  margin: 0 18px 14px;
-  padding: 14px;
-  border-radius: 14px;
+  gap: 8px;
+  align-items: center;
+  margin: 0 18px 16px;
+  padding: 8px 10px;
+  border-radius: 10px;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.07);
 }
@@ -403,8 +405,8 @@
   border-color: rgba(248, 113, 113, 0.14);
 }
 .sc-insight-ico {
-  width: 36px;
-  height: 36px;
+  width: 28px;
+  height: 28px;
   border-radius: 999px;
   display: flex;
   align-items: center;
@@ -420,28 +422,28 @@
   border-color: rgba(248, 113, 113, 0.22);
 }
 .sc-insight-ico svg {
-  width: 18px;
-  height: 18px;
+  width: 14px;
+  height: 14px;
 }
 .sc-insight-body strong {
   display: block;
-  font-size: 14px;
+  font-size: 11px;
   color: #fff;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 .sc-insight-body p {
   margin: 0;
-  font-size: 12px;
-  line-height: 1.45;
-  color: rgba(255, 255, 255, 0.48);
+  font-size: 10px;
+  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.42);
 }
 .sc-insight-badge {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  padding: 6px 10px;
+  gap: 4px;
+  padding: 4px 8px;
   border-radius: 999px;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 600;
   white-space: nowrap;
   color: #86efac;
@@ -454,40 +456,8 @@
   border: 1px solid rgba(248, 113, 113, 0.22);
 }
 .sc-insight-badge svg {
-  width: 12px;
-  height: 12px;
-}
-
-.sc-foot {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 0 18px 16px;
-}
-.sc-foot-hint {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.38);
-  min-width: 0;
-}
-.sc-foot-hint svg {
-  width: 14px;
-  height: 14px;
-  flex-shrink: 0;
-  opacity: 0.55;
-}
-.sc-foot-btn {
-  flex-shrink: 0;
-  padding: 9px 16px;
-  border-radius: 10px;
-  font-size: 13px;
-  font-weight: 700;
-  color: #fff;
-  background: linear-gradient(135deg, #6d28d9, #7c3aed);
-  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.35);
+  width: 10px;
+  height: 10px;
 }
 
 @media (max-width: 520px) {
@@ -503,9 +473,4 @@
   .sc-insight-badge {
     grid-column: 1 / -1;
   }
-  .sc-foot {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .sc-foot-btn { text-align: center; }
 }
