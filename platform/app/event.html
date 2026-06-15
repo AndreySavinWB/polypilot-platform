@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="../assets/css/tokens.css">
   <link rel="stylesheet" href="../assets/css/layout.css">
   <link rel="stylesheet" href="../assets/css/event-card.css">
+  <link rel="stylesheet" href="../assets/css/simple-open-card.css">
   <style>
     * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
@@ -1420,6 +1421,8 @@
 <script src="../data/events-live.js"></script>
 <script src="../data/events-data.js"></script>
 <script src="../assets/js/events-store.js"></script>
+<script src="../assets/js/simple-closed-card.js"></script>
+<script src="../assets/js/simple-open-card.js"></script>
 <script src="../assets/js/pie-api.js"></script>
 <script src="../assets/js/state.js"></script>
 <script src="../assets/js/sidebar.js"></script>
@@ -1653,245 +1656,7 @@
   /* ══════════════════════════════════════════════
      RENDER
   ══════════════════════════════════════════════ */
-  main.innerHTML = `
-  <div class="ev-page">
-
-    <!-- Back -->
-    <a href="events.html" class="ev-back">← Назад к событиям</a>
-    ${sourceBanner}
-
-    <!-- ═══ BLOCK 1: HERO ═══ -->
-    <div class="ev-hero">
-      <div class="ev-hero-img" style="background: ${imgBg}">
-        <div class="ev-hero-img-overlay"></div>
-        <div class="ev-hero-img-label">${ev.category} · ${marketLabel}</div>
-      </div>
-      <div class="ev-hero-content">
-        <div class="ev-hero-topbar">
-          ${ev.hot ? '<span class="ev-badge-hot">Возможность дня</span>' : ''}
-          <span class="ev-badge-cat">${ev.category}</span>
-          <div class="ev-hero-meta">
-            <span class="ev-watchers">👁 ${ev.watchers} следят</span>
-            <span class="ev-bookmark">🔖</span>
-          </div>
-        </div>
-        <h1 class="ev-hero-title">${ev.title}</h1>
-        <p class="ev-hero-summary">${ev.summary}</p>
-        <div class="ev-hero-stats">
-          <div class="ev-hstat">
-            <div class="ev-hstat-icon ehi-purple">${ICON.trending}</div>
-            <div class="ev-hstat-body">
-              <span class="ev-hstat-lbl">Потенциал</span>
-              <span class="ev-hstat-val ehv-purple">${ev.potential}</span>
-              <span class="ev-hstat-sub">Возможный рост</span>
-            </div>
-          </div>
-          <div class="ev-hstat">
-            <div class="ev-hstat-icon ehi-violet">${ICON.brain}</div>
-            <div class="ev-hstat-body">
-              <span class="ev-hstat-lbl">Вероятность</span>
-              <span class="ev-hstat-val ehv-purple${canSeeEdge ? '' : ' is-pro-locked'}" id="ev-hstat-ai-odds">${canSeeEdge ? ev.aiOdds + '%' : '??%'}</span>
-              <span class="ev-hstat-sub">Оценка PP AI</span>
-            </div>
-          </div>
-          <div class="ev-hstat">
-            <div class="ev-hstat-icon ehi-green">${ICON.calendar}</div>
-            <div class="ev-hstat-body">
-              <span class="ev-hstat-lbl">Горизонт</span>
-              <span class="ev-hstat-val ehv-teal">${ev.horizon}</span>
-              <span class="ev-hstat-sub">Ожидаемое движение</span>
-            </div>
-          </div>
-          <div class="ev-hstat">
-            <div class="ev-hstat-icon ehi-blue">${ICON.database}</div>
-            <div class="ev-hstat-body">
-              <span class="ev-hstat-lbl">Денег в событии</span>
-              <span class="ev-hstat-val ehv-white">${ev.volumeTotal}</span>
-              <span class="ev-hstat-sub">Всего за всё время</span>
-            </div>
-          </div>
-          <div class="ev-hstat">
-            <div class="ev-hstat-icon ehi-teal">${ICON.trendUp}</div>
-            <div class="ev-hstat-body">
-              <span class="ev-hstat-val ${ev.volume24hPositive ? 'ehv-pos' : 'ehv-neg'}">${ev.volume24h}</span>
-              <span class="ev-hstat-sub">за 24 часа</span>
-            </div>
-          </div>
-          <div class="ev-hstat">
-            <div class="ev-hstat-icon ehi-pink">${ICON.bars}</div>
-            <div class="ev-hstat-body">
-              <span class="ev-hstat-lbl">Интерес</span>
-              <span class="ev-hstat-val ehv-pink">${ev.interestPositive ? 'Растёт' : 'Падает'}</span>
-              <span class="ev-hstat-sub">${ev.interestPositive ? 'Рынок активен' : 'Рынок остывает'}</span>
-            </div>
-          </div>
-        </div>
-        ${canSeeEdge ? '' : `
-        <div class="ev-pro-banner" id="ev-pro-banner">
-          <div class="ev-pro-banner-text">
-            <strong>PP AI, Edge и целевая цена</strong> — в PRO Trial и Starter. Рынок ${ev.marketOdds}% виден всем; оценка модели и разрыв — после входа через Telegram.
-          </div>
-          <div class="ev-pro-banner-actions">
-            <a class="ev-pro-banner-btn primary" href="${proBotLink}" target="_blank" rel="noopener" data-ev-pro-bot>3 события в Telegram →</a>
-            <a class="ev-pro-banner-btn ghost" href="${pricingLink}">Тарифы PRO</a>
-            <a class="ev-pro-banner-btn ghost" href="${guestShareLink}">Гостевая ссылка</a>
-          </div>
-        </div>`}
-      </div>
-    </div>
-
-    <!-- ═══ BLOCK 2: AI TIMELINE PANEL ═══ -->
-    <div class="ev-ai-panel">
-
-      <!-- Top: 3 sections -->
-      <div class="ev-ai-top">
-
-        <!-- Left: market -->
-        <div class="ev-ai-col">
-          <div class="ev-ai-lbl">
-            <svg class="ev-ai-lbl-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
-              <circle cx="7" cy="6" r="2.5"/><circle cx="13" cy="6" r="2.5"/>
-              <path d="M1 17c0-2.8 2.2-4.5 6-4.5M13 12.5c3.8 0 6 1.7 6 4.5"/>
-            </svg>
-            Рынок сейчас
-          </div>
-          <div class="ev-ai-num" id="ev-ai-market-odds">${ev.marketOdds}%</div>
-        </div>
-
-        <!-- Center: AI forecast -->
-        <div class="ev-ai-col ev-ai-col-mid">
-          <div class="ev-ai-lbl">
-            <svg class="ev-ai-lbl-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M10 2a3.5 3.5 0 0 1 3.5 3.5c0 .5-.1 1-.3 1.4A3.5 3.5 0 0 1 10 12a3.5 3.5 0 0 1-3.2-5.1A3.5 3.5 0 0 1 10 2z"/>
-              <path d="M6.5 7.5H5a1.5 1.5 0 0 0 0 3h1.5M13.5 7.5H15a1.5 1.5 0 0 1 0 3h-1.5"/>
-              <line x1="10" y1="12" x2="10" y2="17"/>
-            </svg>
-            PolyPilot AI видит потенциал
-          </div>
-          <div class="ev-ai-num-mid${canSeeEdge ? '' : ' is-pro-locked'}" id="ev-ai-potential">${canSeeEdge ? ev.potential : '??%'}</div>
-          <div class="ev-ai-sub">возможный рост</div>
-        </div>
-
-        <!-- Right: AI target price -->
-        <div class="ev-ai-col ev-ai-col-right">
-          <div class="ev-ai-lbl" style="justify-content:flex-end">
-            рынок через ${ev.horizon}
-          </div>
-          <div class="ev-ai-num-right${canSeeEdge ? '' : ' is-pro-locked'}" id="ev-ai-target">${canSeeEdge ? aiTargetOdds + '%' : '??%'}</div>
-        </div>
-
-      </div>
-
-      <!-- Timeline -->
-      <div class="ev-ai-tl">
-        <div class="ev-ai-tl-header">
-          <div class="ev-ai-tl-hdr-l">Прогноз PolyPilot AI</div>
-          <div class="ev-ai-tl-hdr-r">Горизонт: ${ev.horizon}</div>
-        </div>
-
-        <div class="ev-ai-tl-track">
-          <div class="ev-ai-tl-line"></div>
-
-          <!-- Draggable exit-timing slider -->
-          <div class="ev-ai-slider-wrap">
-            <div class="ev-ai-slider" id="ev-ai-slider" style="left:0%">
-              <div class="ev-ai-slider-ring"></div>
-              <div class="ev-ai-slider-handle"></div>
-              <div class="ev-ai-slider-vline"></div>
-              <div class="ev-ai-drag-hint">← →</div>
-              <div class="ev-ai-slider-tip">
-                <div class="ev-ai-tip-day">СЕЙЧАС</div>
-                <div class="ev-ai-tip-pct">+0%</div>
-                <div class="ev-ai-tip-edge">рынок: ${ev.marketOdds}% · вход: ${ev.marketOdds}%</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="ev-ai-tl-ticks">${ticksHtml}</div>
-        </div>
-
-        <div class="ev-ai-note">
-          <span class="ev-ai-note-star">✦</span>
-          PolyPilot AI строит прогноз до ${ev.horizon}. Это горизонт максимальной точности анализа.
-        </div>
-      </div>
-
-    </div>
-
-    <!-- ═══ BLOCK 4: ПОЧЕМУ МЫ ВИДИМ ВОЗМОЖНОСТЬ ═══ -->
-    <div class="ev-section">
-      <div class="ev-section-title">Почему мы видим возможность</div>
-      <div class="ev-opp-grid">
-        ${oppTiles.map(t => `
-          <div class="ev-opp-tile">
-            <div class="ev-opp-head">
-              <div class="ev-opp-icon-wrap ${t.iconCls}">${OPP_SVG[t.iconKey]}</div>
-              <div class="ev-opp-val-wrap">
-                <div class="ev-opp-val ${t.valCls}"${t.valId ? ` id="${t.valId}"` : ''}>${t.val}</div>
-                <div class="ev-opp-sub">${t.sub}</div>
-              </div>
-            </div>
-            <div class="ev-opp-lbl">${t.lbl}</div>
-            <div class="ev-opp-divider"></div>
-            <div class="ev-opp-desc">${t.desc}</div>
-            <div class="ev-opp-sources">${t.sources.map(s => `<span class="ev-opp-src">${s}</span>`).join('')}</div>
-          </div>`).join('')}
-      </div>
-    </div>
-
-    <!-- ═══ BLOCK 6: МЫ ПРОДОЛЖАЕМ СЛЕДИТЬ ═══ -->
-    <div class="ev-section" style="padding-top:0">
-      <div class="ev-section-title">Мы продолжаем следить</div>
-      <div class="ev-watch-grid">
-
-        <div class="ev-watch-item">
-          <div class="ev-watch-top">
-            <div class="ev-watch-name">Объём ставок</div>
-            <div class="ev-watch-status alert">
-              <div class="ev-watch-dot alert"></div>Изменение
-            </div>
-          </div>
-          <div class="ev-watch-desc">За последние 6 часов зафиксирован нетто-приток на исход «Да». Крупные игроки занимают позиции.</div>
-          <div class="ev-watch-meta">Обновлено: 14 мин. назад · Полимаркет</div>
-        </div>
-
-        <div class="ev-watch-item">
-          <div class="ev-watch-top">
-            <div class="ev-watch-name">Движение вероятностей</div>
-            <div class="ev-watch-status live">
-              <div class="ev-watch-dot live"></div>Активно
-            </div>
-          </div>
-          <div class="ev-watch-desc">Рыночная вероятность стабильна, но модель фиксирует давление на рост. Ожидаем сдвига в течение 48ч.</div>
-          <div class="ev-watch-meta">Обновлено: 2 мин. назад · Live</div>
-        </div>
-
-        <div class="ev-watch-item">
-          <div class="ev-watch-top">
-            <div class="ev-watch-name">Новости и утечки</div>
-            <div class="ev-watch-status live">
-              <div class="ev-watch-dot live"></div>Активно
-            </div>
-          </div>
-          <div class="ev-watch-desc">Мониторинг 140+ источников. Новых материалов за последние 3 часа: 12. Тональность — позитивная.</div>
-          <div class="ev-watch-meta">Обновлено: 8 мин. назад · NewsRadar</div>
-        </div>
-
-        <div class="ev-watch-item">
-          <div class="ev-watch-top">
-            <div class="ev-watch-name">Комментарии и соцсети</div>
-            <div class="ev-watch-status calm">
-              <div class="ev-watch-dot calm"></div>Спокойно
-            </div>
-          </div>
-          <div class="ev-watch-desc">Всплеск обсуждений прошёл пик. Органический интерес сохраняется, новых вирусных нарративов нет.</div>
-          <div class="ev-watch-meta">Обновлено: 31 мин. назад · X, Reddit</div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ═══ WAR ROOM ═══ -->
+  const advancedHtml = `    <!-- ═══ WAR ROOM ═══ -->
     <div class="ev-section" style="padding-top:8px">
       <div class="ev-section-title">⚡ Штаб PP AI</div>
     </div>
@@ -2137,143 +1902,17 @@
 
       </div><!-- /pie-2col -->
 
-    </div><!-- /pie-section -->
+    </div><!-- /pie-section -->`;
 
-    <!-- ═══ CHANGES MAP ═══ -->
-    <div class="ev-section" style="padding-top:8px">
-      <div class="ev-section-title">📡 Карта изменений</div>
-    </div>
-    <div class="ev-changes" id="ev-changes-block">
-      <div class="ev-changes-hdr">
-        <div class="ev-changes-title">
-          PP AI мониторит событие
-          <div class="ev-changes-live">
-            <div class="ev-changes-live-dot"></div>
-            Активно
-          </div>
-        </div>
-        <div class="ev-changes-count" id="ev-changes-count"></div>
-      </div>
-      <div class="ev-changes-list" id="ev-changes-list">
-        <!-- JS fills -->
-      </div>
-    </div>
+  main.innerHTML = PP_SIMPLE_OPEN.renderPage(ev, {
+    sourceBanner,
+    proBotLink,
+    guestShareLink,
+    marketUrl: ev.marketUrl,
+    advancedHtml,
+  });
 
-    <!-- ═══ BLOCK 7: BOTTOM ═══ -->
-    <div class="ev-bottom">
-      <!-- Calculator -->
-      <div class="ev-bottom-card">
-        <div class="ev-bottom-title">
-          Ваш потенциальный результат
-        </div>
-        <div class="ev-calc-inputs" style="grid-template-columns:1fr 1.6fr;align-items:center;">
-
-          <!-- LEFT: число + валюта -->
-          <div class="ev-inp-group" style="justify-content:center;">
-            <label class="ev-inp-lbl">Сумма входа</label>
-            <input type="number" id="calc-amount" class="ev-inp"
-              value="500" min="1" style="font-size:22px;font-weight:800;letter-spacing:-0.5px;padding:12px 14px;">
-            <div class="ev-curr-toggle" style="margin-top:8px;align-self:flex-start;">
-              <button class="ev-curr-btn active" id="curr-usd">$ USD</button>
-              <button class="ev-curr-btn"        id="curr-rub">₽ RUB</button>
-            </div>
-          </div>
-
-          <!-- RIGHT: два слайдера -->
-          <div class="ev-inp-group" style="gap:16px;justify-content:center;transform:translateY(-20%);">
-            <div>
-              <label class="ev-inp-lbl" style="display:flex;justify-content:space-between;margin-bottom:10px;">
-                <span>Сумма входа</span>
-                <span id="calc-amount-lbl" style="color:#22D3A6;font-weight:700;">$500</span>
-              </label>
-              <input type="range" id="calc-amount-range" class="ev-range"
-                min="100" max="10000" value="500" step="100">
-            </div>
-            <div>
-              <label class="ev-inp-lbl" style="display:flex;justify-content:space-between;margin-bottom:10px;">
-                <span>Срок выхода</span>
-                <span id="calc-days-lbl" style="color:#22D3A6;font-weight:700;">${hDay} дн. (полный горизонт)</span>
-              </label>
-              <input type="range" id="calc-days" class="ev-range"
-                min="1" max="${hDay}" value="${hDay}" step="1">
-            </div>
-          </div>
-
-        </div>
-        <div class="ev-calc-out">
-          <div class="ev-calc-item">
-            <div class="ev-calc-item-lbl">Эдж на выбранный срок</div>
-            <div class="ev-calc-item-val c-purple" id="calc-edge">${ev.potential}</div>
-            <div class="ev-calc-item-sub">Пропорционально сроку</div>
-          </div>
-          <div class="ev-calc-item">
-            <div class="ev-calc-item-lbl">Возможный результат</div>
-            <div class="ev-calc-item-val c-green" id="calc-result">+$0</div>
-            <div class="ev-calc-item-sub">При текущих данных</div>
-          </div>
-          <div class="ev-calc-item">
-            <div class="ev-calc-item-lbl">% годовых</div>
-            <div class="ev-calc-item-val c-teal" id="calc-annual">—</div>
-            <div class="ev-calc-item-sub">В пересчёте на год</div>
-          </div>
-        </div>
-        <div class="ev-calc-note">
-          Чем раньше выйти — тем меньше эдж. Полный потенциал достигается к горизонту прогноза (${ev.horizon}).<br>
-          Это не гарантированный доход. Результат зависит от множества факторов.
-        </div>
-      </div>
-
-      <!-- Follow / CTA -->
-      <div class="ev-bottom-card">
-        <div class="ev-bottom-title">Следить за событием</div>
-        <div class="ev-follow-desc">Получайте уведомления об изменениях и новых сигналах по этому событию.</div>
-        <button class="ev-follow-btn">🔔 Следить за событием</button>
-        <div class="ev-follow-note">Вы всегда можете отключить уведомления</div>
-        <a href="${ev.marketUrl}" target="_blank" class="ev-pm-btn">
-          <div>
-            <div>↗ Перейти на Полимаркет</div>
-            <div class="ev-pm-sub">Смотреть торговлю и ставить на исход на Полимаркете</div>
-          </div>
-          <span style="font-size:16px;opacity:0.35">›</span>
-        </a>
-
-        <div class="ev-disclaimer">
-          <div class="ev-disclaimer-row">
-            <div class="ev-disclaimer-icon blue">🔒</div>
-            <div class="ev-disclaimer-text">
-              <strong>PolyPilot не берёт ваши деньги.</strong>
-              Мы — аналитический инструмент. Все сделки совершаются лично вами напрямую на платформе Полимаркет. Мы не являемся брокером, посредником или управляющим активами.
-            </div>
-          </div>
-          <div class="ev-disclaimer-divider"></div>
-          <div class="ev-disclaimer-row">
-            <div class="ev-disclaimer-icon green">📊</div>
-            <div class="ev-disclaimer-text">
-              <strong>Как это работает:</strong>
-              PolyPilot анализирует событие, рассчитывает потенциал и объясняет логику. Дальше вы сами переходите на Полимаркет, создаёте аккаунт (если ещё нет) и самостоятельно ставите на исход.
-            </div>
-          </div>
-          <div class="ev-disclaimer-divider"></div>
-          <div class="ev-disclaimer-row">
-            <div class="ev-disclaimer-icon gray">⚠️</div>
-            <div class="ev-disclaimer-text">
-              Это не финансовая консультация. Prediction markets — это рынок, результат не гарантирован. Вкладывайте только то, что готовы потерять.
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Footer -->
-    <div class="ev-footer">
-      <span>Обновлено 1ч назад</span>
-      <span class="ev-footer-sep">|</span>
-      <span>Данные: Полимаркет, соцсети, новостные источники</span>
-      <span class="ev-footer-sep">|</span>
-      <span>ID: ${ev.id}</span>
-    </div>
-
-  </div>`;
+  PP_SIMPLE_OPEN.wireAdvancedToggle(main);
 
   /* ── PIE: real backend package or mock fallback ── */
   (async function () {
@@ -2282,9 +1921,6 @@
     window.__PP_PIE_PACKAGE__ = pieMeta.package || null;
     window.__PP_PIE_META__ = pieMeta;
     renderPieFromPackage(pieMeta.package, pieMeta, main.querySelector('#pie-analysis'), { canSeeEdge });
-    if (PP_PIE_API.applyPieToHero) {
-      PP_PIE_API.applyPieToHero(main, pieMeta.package, ev, { canSeeEdge });
-    }
 
     const hdrEl   = main.querySelector('#ev-pie-toggle');
     const panelEl = main.querySelector('#ev-pie-panel');

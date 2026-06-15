@@ -1,0 +1,282 @@
+/* Simple Events — open card (detail page) */
+  .so-page {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 24px 48px;
+}
+
+.so-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.38);
+  padding: 16px 0 12px;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.so-back:hover { color: rgba(255, 255, 255, 0.75); }
+
+.so-banner {
+  margin-bottom: 20px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.so-verdict {
+  background: linear-gradient(165deg, #0b0d18 0%, #0f1222 48%, #0a0c16 100%);
+  border: 1px solid rgba(124, 58, 237, 0.22);
+  border-radius: 18px;
+  padding: 22px 22px 18px;
+  margin-bottom: 28px;
+}
+.so-verdict-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #a78bfa;
+  margin-bottom: 12px;
+}
+.so-title {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.28;
+  letter-spacing: -0.4px;
+  color: #fff;
+  margin: 0 0 6px;
+}
+.so-meta {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.38);
+  margin-bottom: 18px;
+}
+.so-verdict .sc-vs-wrap {
+  margin: 0 0 14px;
+}
+.so-verdict-headline {
+  font-size: 15px;
+  font-weight: 700;
+  color: #86efac;
+  margin-bottom: 6px;
+}
+.so-verdict-headline.is-over { color: #fca5a5; }
+.so-verdict-headline.is-match { color: #c4b5fd; }
+.so-plain {
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 14px;
+}
+.so-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.so-pill {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.55);
+}
+.so-pill strong { color: rgba(255, 255, 255, 0.85); font-weight: 700; }
+.so-pill.risk-high strong { color: #fca5a5; }
+.so-pill.risk-low strong { color: #86efac; }
+
+.so-section {
+  margin-bottom: 28px;
+}
+.so-section-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 12px;
+  letter-spacing: -0.2px;
+}
+.so-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.so-list li {
+  position: relative;
+  padding: 8px 0 8px 22px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.62);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.so-list li:last-child { border-bottom: none; }
+.so-list.num li {
+  padding-left: 28px;
+}
+.so-list.num li::before {
+  content: counter(so-item) ".";
+  counter-increment: so-item;
+  position: absolute;
+  left: 0;
+  top: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #a78bfa;
+}
+.so-list.num { counter-reset: so-item; }
+.so-list.dash li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: rgba(255, 255, 255, 0.28);
+}
+
+.so-check-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 16px;
+  margin-bottom: 14px;
+}
+@media (max-width: 560px) { .so-check-grid { grid-template-columns: 1fr; } }
+.so-check-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.55);
+}
+.so-check-item.done { color: rgba(255, 255, 255, 0.78); }
+.so-check-mark {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.25);
+}
+.so-check-item.done .so-check-mark {
+  background: rgba(74, 222, 128, 0.15);
+  color: #86efac;
+}
+.so-sources {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.38);
+  line-height: 1.6;
+}
+.so-sources strong {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 6px;
+}
+
+.so-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.so-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 11px 18px;
+  border-radius: 11px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.so-btn:hover { opacity: 0.92; transform: translateY(-1px); }
+.so-btn-primary {
+  color: #fff;
+  background: linear-gradient(135deg, #6d28d9, #7c3aed);
+  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.3);
+}
+.so-btn-ghost {
+  color: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.so-btn-outline {
+  color: #c4b5fd;
+  background: transparent;
+  border: 1px solid rgba(124, 58, 237, 0.35);
+}
+
+.so-changes-box {
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+.so-changes-sub {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.38);
+  margin-bottom: 10px;
+}
+.so-changes-empty {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.so-advanced-wrap {
+  margin-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  padding-top: 20px;
+}
+.so-advanced-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color 0.2s, color 0.2s;
+}
+.so-advanced-btn:hover {
+  border-color: rgba(124, 58, 237, 0.35);
+  color: rgba(255, 255, 255, 0.75);
+}
+.so-advanced-btn span { color: #a78bfa; font-weight: 700; }
+.so-advanced-body {
+  display: none;
+  margin-top: 16px;
+}
+.so-advanced-body.is-open { display: block; }
+.so-advanced-note {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.32);
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.so-footer {
+  margin-top: 32px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.28);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
