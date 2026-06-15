@@ -514,7 +514,16 @@
 
   function renderCrowdPulseSection(ev) {
     const pulse = ev.crowdPulse;
-    if (!pulse) return "";
+    if (!pulse) {
+      return `
+      <section class="so-crowd-card">
+        <div class="so-crowd-head">
+          <span class="so-crowd-icon">${ICON_CROWD}</span>
+          <h2 class="so-crowd-title">Анализ комментариев</h2>
+        </div>
+        <p class="so-crowd-empty">Недостаточно комментариев для вывода.</p>
+      </section>`;
+    }
 
     const status = pulse.status || "insufficient";
     const market = pulse.marketComments;
@@ -581,7 +590,16 @@
 
   function renderExternalMarketCheckSection(ev) {
     const pma = ev.externalMarketCheck;
-    if (!pma) return "";
+    if (!pma) {
+      return `
+      <section class="so-pma-card">
+        <div class="so-pma-head">
+          <span class="so-pma-icon">${ICON_PMA}</span>
+          <h2 class="so-pma-title">Данные с Polymarket Analytics</h2>
+        </div>
+        <p class="so-pma-empty">Событие не найдено на Polymarket Analytics.</p>
+      </section>`;
+    }
 
     const status = pma.lookupStatus || "not_found";
     const statusLabel = PMA_STATUS_LABELS[status] || PMA_STATUS_LABELS.not_found;
@@ -627,7 +645,19 @@
 
   function renderWhaleCheckSection(ev) {
     const whale = ev.whaleCheck;
-    if (!whale) return "";
+    if (!whale) {
+      return `
+      <section class="so-whale-card">
+        <div class="so-whale-head">
+          <span class="so-whale-icon">${ICON_WHALE}</span>
+          <div>
+            <h2 class="so-whale-title">Крупные игроки</h2>
+            <p class="so-whale-sub">Проверяем, куда идут крупные деньги по этому событию.</p>
+          </div>
+        </div>
+        <p class="so-whale-empty">Данных по крупным игрокам нет.</p>
+      </section>`;
+    }
 
     const lookup = whale.lookupStatus || "not_found";
     const noData =
