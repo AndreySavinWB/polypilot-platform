@@ -350,24 +350,67 @@
       </div>`;
   }
 
-  function renderVerdictSection(ev) {
+  function buildFinalConclusion(ev) {
     const verdict = computeVerdict(ev);
     const headline = getHeadline(ev, verdict);
-    const plain = getPlainText(ev, verdict);
     const toneClass = verdict.tone === "over" ? "is-over" : verdict.tone === "match" ? "is-match" : "";
     const riskClass = ev.riskLevel === "high" ? "risk-high" : ev.riskLevel === "low" ? "risk-low" : "";
 
+    let body = ev.verdictText || getPlainText(ev, verdict);
+
+    const support = [];
+    const market = clampPct(ev.marketOdds ?? 50);
+    const pp = clampPct(ev.aiOdds ?? ev.confidence ?? 50);
+    if (Math.abs(pp - market) >= 8) {
+      support.push(`Рынок ${market}%, оценка PolyPilot ${pp}%.`);
+    }
+
+    const reasons = buildReasons(ev);
+    if (reasons[0] && !body.includes(reasons[0].slice(0, 24))) {
+      support.push(reasons[0]);
+    }
+
+    const whale = ev.whaleCheck;
+    if (whale?.status === "ready" && whale.explanationRu) {
+      support.push(whale.explanationRu);
+    } else if (ev.crowdPulse?.synthesis?.summaryRu) {
+      support.push(ev.crowdPulse.synthesis.summaryRu);
+    }
+
+    return {
+      headline,
+      body,
+      supportLine: support.slice(0, 2).join(" "),
+      toneClass,
+      riskClass,
+    };
+  }
+
+  function renderVerdictSection(ev) {
     return `
       <section class="so-verdict">
-        <div class="so-verdict-label">Вывод за 10 секунд</div>
         <h1 class="so-title">${escapeHtml(ev.title || "—")}</h1>
         <div class="so-meta">${escapeHtml(getMetaLine(ev))}</div>
         ${renderVsBlock(ev)}
-        <div class="so-verdict-headline ${toneClass}">${escapeHtml(headline)}</div>
-        <div class="so-plain">${escapeHtml(plain)}</div>
-        <div class="so-pills">
+      </section>`;
+  }
+
+  function renderFinalConclusionSection(ev) {
+    const c = buildFinalConclusion(ev);
+
+    return `
+      <section class="so-final">
+        <div class="so-final-label">Итоговый вывод</div>
+        <div class="so-final-headline ${c.toneClass}">${escapeHtml(c.headline)}</div>
+        <p class="so-final-text">${escapeHtml(c.body)}</p>
+        ${
+          c.supportLine
+            ? `<p class="so-final-support">${escapeHtml(c.supportLine)}</p>`
+            : ""
+        }
+        <div class="so-pills so-pills--final">
           <span class="so-pill">Уверенность: <strong>${escapeHtml(getConfidenceLabel(ev))}</strong></span>
-          <span class="so-pill ${riskClass}">Риск: <strong>${escapeHtml(getRiskLabel(ev))}</strong></span>
+          <span class="so-pill ${c.riskClass}">Риск: <strong>${escapeHtml(getRiskLabel(ev))}</strong></span>
           <span class="so-pill">Горизонт: <strong>${escapeHtml(getHorizonLabel(ev))}</strong></span>
         </div>
       </section>`;
@@ -683,7 +726,7 @@
           <span id="so-advanced-chevron">раскрыть ↓</span>
         </button>
         <div class="so-advanced-body" id="so-advanced-body">
-          <p class="so-advanced-note">Технический слой для PRO: агенты, PIE, формулы. Основной вывод — в блоках выше.</p>
+          <p class="so-advanced-note">Технический слой для PRO: агенты, PIE, формулы. Итоговый вывод — в блоке выше.</p>
           ${advancedHtml}
         </div>
       </div>`;
@@ -703,6 +746,7 @@
         ${renderExternalMarketCheckSection(ev)}
         ${renderWhaleCheckSection(ev)}
         ${renderCheckedSection(ev)}
+        ${renderFinalConclusionSection(ev)}
         ${renderActionsSection(ev, opts)}
         ${renderChangesSection(ev)}
         ${renderAdvancedSection(opts.advancedHtml || "")}

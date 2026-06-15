@@ -83,6 +83,54 @@
 .so-verdict .sc-segments i {
   height: 26px;
 }
+
+.so-final {
+  margin-bottom: 24px;
+  padding: 28px 26px 24px;
+  border-radius: 18px;
+  background: linear-gradient(165deg, rgba(134, 239, 172, 0.06) 0%, rgba(15, 18, 34, 0.95) 42%, #0a0c16 100%);
+  border: 1px solid rgba(134, 239, 172, 0.18);
+}
+.so-final-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(134, 239, 172, 0.72);
+  margin-bottom: 14px;
+}
+.so-final-headline {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.6px;
+  color: #86efac;
+  margin-bottom: 16px;
+}
+.so-final-headline.is-over { color: #fca5a5; }
+.so-final-headline.is-match { color: #c4b5fd; }
+.so-final-text {
+  margin: 0 0 14px;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: -0.2px;
+  color: rgba(255, 255, 255, 0.88);
+}
+.so-final-support {
+  margin: 0 0 18px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.48);
+}
+.so-pills--final {
+  padding-top: 4px;
+}
+@media (max-width: 640px) {
+  .so-final-headline { font-size: 26px; }
+  .so-final-text { font-size: 19px; }
+}
+
 .so-verdict-headline {
   font-size: 18px;
   font-weight: 700;
