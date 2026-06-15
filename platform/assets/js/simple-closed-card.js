@@ -117,6 +117,72 @@
     return "низкая";
   }
 
+  function getHorizonDaysLabel(ev) {
+    const daysMatch = String(ev.horizon || "").match(/(\d+)/);
+    if (!daysMatch) return ev.horizon || "—";
+    const n = parseInt(daysMatch[1], 10);
+    const mod10 = n % 10;
+    const mod100 = n % 100;
+    let word = "дней";
+    if (mod100 < 11 || mod100 > 14) {
+      if (mod10 === 1) word = "день";
+      else if (mod10 >= 2 && mod10 <= 4) word = "дня";
+    }
+    return `${n} ${word}`;
+  }
+
+  function formatHeadDate(ev) {
+    const resolveDate = ev.resolveDate || "";
+    const parts = resolveDate.split("-");
+    if (parts.length === 3) {
+      const day = parseInt(parts[2], 10);
+      const month = MONTHS_RU[parseInt(parts[1], 10) - 1] || parts[1];
+      return `Закрытие ${day} ${month} ${parts[0]}`;
+    }
+    const long = formatHorizonLong(ev);
+    return long.split(" • ")[0] || long;
+  }
+
+  function formatEdgeValue(verdict) {
+    const d = Math.round(Math.abs(verdict.delta || 0));
+    if (verdict.tone === "under") return `+${d}%`;
+    if (verdict.tone === "over") return `−${d}%`;
+    return "≈0%";
+  }
+
+  function edgeTrackPos(verdict) {
+    const d = Math.abs(verdict.delta || 0);
+    if (verdict.tone === "match") return 50;
+    return Math.max(12, Math.min(100, d));
+  }
+
+  function renderEdgeBar(ev, verdict) {
+    const horizon = getHorizonDaysLabel(ev);
+    const edgeVal = formatEdgeValue(verdict);
+    const edgePos = edgeTrackPos(verdict);
+
+    return `
+        <div class="sc-edge-bar sc-edge-bar--${verdict.tone}" style="--edge-pos: ${edgePos}%">
+          <div class="sc-edge-col sc-edge-col--horizon">
+            <span class="sc-edge-lbl">Горизонт</span>
+            <span class="sc-edge-val sc-edge-val--horizon">${escapeHtml(horizon)}</span>
+          </div>
+          <div class="sc-edge-track" aria-hidden="true">
+            <span class="sc-edge-dot sc-edge-dot--start"></span>
+            <span class="sc-edge-line"></span>
+            <span class="sc-edge-runner">
+              <span class="sc-edge-chevron">››</span>
+              <span class="sc-edge-orb"></span>
+            </span>
+            <span class="sc-edge-dot sc-edge-dot--end"></span>
+          </div>
+          <div class="sc-edge-col sc-edge-col--edge">
+            <span class="sc-edge-lbl">EDGE · разрыв</span>
+            <span class="sc-edge-val sc-edge-val--edge">${escapeHtml(edgeVal)}</span>
+          </div>
+        </div>`;
+  }
+
   function renderSegments(pct, variant) {
     const filled = Math.round((clampPct(pct) / 100) * SEGMENTS);
     let html = `<div class="sc-segments sc-segments--${variant}">`;
@@ -138,11 +204,8 @@
           delta: pp - market,
         }
       : computeSimpleVerdict(market, pp);
-    const headline = getVerdictHeadline(verdict);
-    const reason = pickReason(ev, verdict);
     const href = opts.href || `event.html?id=${encodeURIComponent(ev.id)}`;
     const watchers = ev.watchers || "—";
-    const confidence = getConfidenceLabel(ev);
 
     return `
       <div class="event-card simple-v1" onclick="location.href='${href}'" role="link" tabindex="0">
@@ -151,7 +214,7 @@
             <span class="sc-cat-icon">${ICON_GLOBE}</span>
             <span class="sc-cat-label">${escapeHtml(getCategoryLabel(ev))}</span>
           </div>
-          <div class="sc-head-date">${escapeHtml(formatHorizonLong(ev))}</div>
+          <div class="sc-head-date">${escapeHtml(formatHeadDate(ev))}</div>
           <div class="sc-head-views">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
             ${escapeHtml(watchers)}
@@ -177,17 +240,7 @@
           </div>
         </div>
 
-        <div class="sc-insight sc-insight--${verdict.tone}">
-          <div class="sc-insight-ico">${ICON_TREND}</div>
-          <div class="sc-insight-body">
-            <strong>${escapeHtml(headline)}</strong>
-            <p>${escapeHtml(reason)}</p>
-          </div>
-          <div class="sc-insight-badge">
-            ${ICON_SIGNAL}
-            <span>Уверенность: ${escapeHtml(confidence)}</span>
-          </div>
-        </div>
+        ${renderEdgeBar(ev, verdict)}
       </div>`;
   }
 
