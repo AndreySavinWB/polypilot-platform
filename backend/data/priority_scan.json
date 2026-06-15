@@ -1,9 +1,9 @@
 {
   "scannedTotal": 300,
-  "passedGates": 49,
+  "passedGates": 56,
   "accepted": 15,
-  "watchlist": 22,
-  "rejected": 263,
+  "watchlist": 25,
+  "rejected": 260,
   "top": [
     {
       "event": {
@@ -12,9 +12,9 @@
         "title": "Balance of Power: 2026 Midterms",
         "description": "This market will resolve according to the result of the 2026 United States midterm elections.\n\nA party will be considered to have 'control' of the House of Representatives, if they win a majority of voting seats.\n\nA party will be considered to have 'control' of the Senate if they have more than half of the voting Senate members, or half of the voting Senate members and the Vice President.\n\nA candidate's party is determined by their ballot-listed or otherwise identifiable affiliation with that party at the time the 2026 United States midterm elections are conclusively called by this market's resolution sources. A candidate without a ballot-listed affiliation to either the Democrat or Republican Parties will be considered a member of one of these parties based on the party that they most recently expressed their intent to caucus with at the time the 2026 United States midterm elections are conclusively called by this market's resolution sources.\n\nIf control of the House is ambiguous given the above rules, this market will resolve according to the party affiliation of the first Speaker of the US House who is selected following the 2026 United States midterm elections. \n\nIf control of the Senate is ambiguous given the above rules, this market will resolve according to the party affiliation of the first Majority Leader of the US Senate who is selected following the 2026 United States midterm elections.\n\nThe resolution source for this market is the Associated Press, Fox News, and NBC. This market will resolve once all three sources have conclusively called winners of the House and Senate in the 2026 United States midterm elections. If all three sources do not achieve consensus in calling the relevant races for this market, it will resolve based on the official certification.\n",
         "category": null,
-        "volume": 7807998.577307025,
-        "volume24hr": 79098.50734099999,
-        "liquidity": 891531.24833,
+        "volume": 7809053.1152600255,
+        "volume24hr": 71817.06169399999,
+        "liquidity": 932664.10447,
         "startDate": "2025-07-11T21:15:44.724213Z",
         "endDate": "2026-11-03T00:00:00Z",
         "marketsCount": 5,
@@ -25,9 +25,9 @@
             "conditionId": "0x16c63b7cc37f012b9f59ee164ec03877914c701d06d48291ae8d6fc08a088b0d",
             "clobTokenIds": "[\"34722410608062854697106861099776685947172185964394483545370684749662285977831\", \"24483563228660028121020430722896740519524131851526579619586176931221901842798\"]",
             "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.425\", \"0.575\"]",
-            "volume": "2003985.9974190062",
-            "liquidity": "201463.341"
+            "outcomePrices": "[\"0.435\", \"0.565\"]",
+            "volume": "2004355.6687810062",
+            "liquidity": "212127.4087"
           },
           {
             "id": "562829",
@@ -37,7 +37,7 @@
             "outcomes": "[\"Yes\", \"No\"]",
             "outcomePrices": "[\"0.0195\", \"0.9805\"]",
             "volume": "1142447.7134460083",
-            "liquidity": "203429.68162"
+            "liquidity": "204450.89753"
           },
           {
             "id": "562830",
@@ -45,9 +45,9 @@
             "conditionId": "0x998bc71817b2d76921d1999ce0f3431cfd5945583667a371280ca2b430b0c06e",
             "clobTokenIds": "[\"6302359956133594764084277082169634158291609371270652093164054687145970756151\", \"558600218792430158020964384658762756367786275998757133304987611939841005404\"]",
             "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.365\", \"0.635\"]",
-            "volume": "1505331.7111729884",
-            "liquidity": "139198.3629"
+            "outcomePrices": "[\"0.355\", \"0.645\"]",
+            "volume": "1505591.1478359886",
+            "liquidity": "156144.337"
           }
         ],
         "source": "polymarket_gamma",
@@ -55,27 +55,27 @@
       },
       "priority": {
         "agent": "Priority Agent",
-        "score": 81.9,
+        "score": 81.8,
         "decision": "accepted",
-        "reason": "Событие связано с предстоящими выборами в Конгресс США, что является явным новостным драйвером. Критерии резолва четко определены, что позволяет уверенно оценить результаты выборов.",
+        "reason": "Событие связано с предстоящими выборами в Конгресс США, что является явным новостным драйвером. Критерии резолва четко определены, что позволяет уверенно оценить результаты.",
         "rubric": {
           "volume": {
-            "score": 95.0,
+            "score": 94.6,
             "weight": 25,
-            "weighted": 23.75,
-            "note": "объём всего $7,807,999, за 24ч $79,099"
+            "weighted": 23.65,
+            "note": "объём всего $7,809,053, за 24ч $71,817"
           },
           "liquidity": {
             "score": 100,
             "weight": 20,
             "weighted": 20.0,
-            "note": "ликвидность $891,531"
+            "note": "ликвидность $932,664"
           },
           "news_driver": {
             "score": 63.4,
             "weight": 25,
-            "weighted": 15.86,
-            "note": "ключевых тем: 2, активность 24ч/всего: 1.01% + LLM",
+            "weighted": 15.85,
+            "note": "ключевых тем: 2, активность 24ч/всего: 0.92% + LLM",
             "llmScore": 80.0
           },
           "resolution_clarity": {
@@ -95,7 +95,7 @@
             "score": 100,
             "weight": 5,
             "weighted": 5.0,
-            "note": "лидирующая вероятность ~42%"
+            "note": "лидирующая вероятность ~44%"
           }
         },
         "hardGates": {
@@ -118,9 +118,9 @@
         "title": "How many Fed rate cuts in 2026?",
         "description": "This market will resolve according to the exact amount of cuts of 25 basis points in 2026 by the Fed (including any cuts made during the December meeting).\n\nEmergency rate cuts outside of scheduled FOMC meetings will also count toward the total number of cuts in 2026. This market will remain open until December 31, 2026, 11:59 PM ET, to account for any such emergency actions.\n\nFor example, if the Fed cuts rates by 50 bps after a meeting, it would be considered 2 cuts (of 25 bps each).\n\nThis market will resolve early to \"No\" if the specified number of cuts becomes impossible — i.e., if more cuts have already occurred than the strike in question.\n\nNote that cuts between 1–24 bps (inclusive) will also be considered 1 rate cut.\n\nThe resolution source for this market will be FOMC statements after meetings scheduled in 2026 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm. The level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.",
         "category": null,
-        "volume": 34924498.70574368,
-        "volume24hr": 514184.812503999,
-        "liquidity": 1987783.99337,
+        "volume": 34964609.729940675,
+        "volume24hr": 455654.0518949992,
+        "liquidity": 2103371.78748,
         "startDate": "2025-09-29T22:29:04.30848Z",
         "endDate": "2026-12-31T00:00:00Z",
         "marketsCount": 13,
@@ -131,9 +131,9 @@
             "conditionId": "0xd4e77ba6f29fc093509d24f508631abd445ecf506bbdc9c4c80e60256a318527",
             "clobTokenIds": "[\"12403602920039269077597917340921667997547115084613238528792639013246536343316\", \"21294592205022969346730955103773391901993330222644504059576935265667917187903\"]",
             "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.7035\", \"0.2965\"]",
-            "volume": "5099827.241454033",
-            "liquidity": "72069.39689"
+            "outcomePrices": "[\"0.7015\", \"0.2985\"]",
+            "volume": "5106056.337714033",
+            "liquidity": "79725.49913"
           },
           {
             "id": "616903",
@@ -141,9 +141,9 @@
             "conditionId": "0x5e082f0b57f47a29044aa35b4c5658393122e659d5feae521c06b57cdd7f905c",
             "clobTokenIds": "[\"113379839734351069617987084078322474966003108854908079701423911002443710490196\", \"48058805012599375970268777474956242772204241523361869981040579395242001094965\"]",
             "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.205\", \"0.795\"]",
-            "volume": "1563559.1085869803",
-            "liquidity": "62831.0938"
+            "outcomePrices": "[\"0.215\", \"0.785\"]",
+            "volume": "1564535.3495359803",
+            "liquidity": "68260.5317"
           },
           {
             "id": "616904",
@@ -151,9 +151,9 @@
             "conditionId": "0xe0d9f508a249e0070db06eb7d1e1fb17eb23c963f6fb722c4c3f81e23240c1cd",
             "clobTokenIds": "[\"72535544017897924722695722172278828562733090748474862987195303914909938482758\", \"81407142104509110921187520775072626840789848613047331773172953370174825669358\"]",
             "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.034\", \"0.966\"]",
-            "volume": "1504347.1101269764",
-            "liquidity": "95307.44609"
+            "outcomePrices": "[\"0.035\", \"0.965\"]",
+            "volume": "1506236.354227976",
+            "liquidity": "92975.30684"
           }
         ],
         "source": "polymarket_gamma",
@@ -161,35 +161,35 @@
       },
       "priority": {
         "agent": "Priority Agent",
-        "score": 81.4,
+        "score": 80.3,
         "decision": "accepted",
-        "reason": "Событие связано с действиями ФРС, что делает его актуальным, но точные даты и количество сокращений остаются неопределенными. Критерии резолва четкие, основаны на официальных заявлениях ФРС.",
+        "reason": "Событие связано с действиями ФРС, что ��елает его актуальным, но точные даты и количество сокращений не определены. Критерии резолва ясны, так как основаны на официальных заявлениях ФРС.",
         "rubric": {
           "volume": {
             "score": 100,
             "weight": 25,
             "weighted": 25.0,
-            "note": "объём всего $34,924,499, за 24ч $514,185"
+            "note": "объём всего $34,964,610, за 24ч $455,654"
           },
           "liquidity": {
             "score": 100,
             "weight": 20,
             "weighted": 20.0,
-            "note": "ликвидность $1,987,784"
+            "note": "ликвидность $2,103,372"
           },
           "news_driver": {
-            "score": 60.2,
+            "score": 60.1,
             "weight": 25,
-            "weighted": 15.04,
-            "note": "ключевых тем: 3, активность 24ч/всего: 1.47% + LLM",
+            "weighted": 15.02,
+            "note": "ключевых тем: 3, активность 24ч/всего: 1.30% + LLM",
             "llmScore": 70.0
           },
           "resolution_clarity": {
-            "score": 85.5,
+            "score": 78.5,
             "weight": 15,
-            "weighted": 12.82,
+            "weighted": 11.78,
             "note": "развёрнутое описание, есть правила резолва, бинарный исход, есть дедлайн, много подрынков — сложнее + LLM",
-            "llmScore": 90.0
+            "llmScore": 80.0
           },
           "time_to_money": {
             "score": 35,
@@ -224,9 +224,9 @@
         "title": "Which party will win the House in 2026?",
         "description": "This market will resolve according to the party that controls the House of Representatives following the 2026 U.S. House elections scheduled for November 3, 2026.\n\nHouse control is defined as having more than half of the voting members of the U.S. House of Representatives.\n\nIf the outcome of this election is ambiguous given the above rules, this market will remain open until the Speaker of the House is selected following the 2026 U.S. general election, at which point it will resolve to the party the Speaker is affiliated with at the time of their election to that position. If the elected Speaker does not caucus with any listed party this market will resolve “Other”.\n\nDetermination of which party controls the House after the 2026 U.S. House elections will be based on a consensus of credible reporting, or if there is ambiguity, final federal and/or state election authority certification or other final official determination of the 2026 election results.",
         "category": "House Odds Deriv",
-        "volume": 7213984.461634911,
-        "volume24hr": 41631.271270000005,
-        "liquidity": 678269.2333,
+        "volume": 7215670.75892091,
+        "volume24hr": 42937.931816000004,
+        "liquidity": 691541.5181,
         "startDate": "2025-07-11T19:53:05.123813Z",
         "endDate": "2026-11-03T00:00:00Z",
         "marketsCount": 9,
@@ -248,8 +248,8 @@
             "clobTokenIds": "[\"83247781037352156539108067944461291821683755894607244160607042790356561625563\", \"33156410999665902694791064431724433042010245771106314074312009703157423879038\"]",
             "outcomes": "[\"Yes\", \"No\"]",
             "outcomePrices": "[\"0.825\", \"0.175\"]",
-            "volume": "3938726.356594963",
-            "liquidity": "301138.6187"
+            "volume": "3939816.463093963",
+            "liquidity": "306454.3076"
           },
           {
             "id": "562803",
@@ -258,8 +258,8 @@
             "clobTokenIds": "[\"65139230827417363158752884968303867495725894165574887635816574090175320800482\", \"17371217118862125782438074585166210555214661810823929795910191856905580975576\"]",
             "outcomes": "[\"Yes\", \"No\"]",
             "outcomePrices": "[\"0.175\", \"0.825\"]",
-            "volume": "3275430.1050399477",
-            "liquidity": "379480.7907"
+            "volume": "3278033.805826947",
+            "liquidity": "386711.6764"
           }
         ],
         "source": "polymarket_gamma",
@@ -269,25 +269,25 @@
         "agent": "Priority Agent",
         "score": 79.9,
         "decision": "accepted",
-        "reason": "Событие связано с предстоящими выборами в Конгресс США, что является явным новостным драйвером. Критерии резолва четкие, основаны на официальных результатах выборов и определении спикера Палаты представителей.",
+        "reason": "Событие связано с предстоящими выборами в Конгресс США, что является явным новостным драйвером. Критерии резолва четко определены, что позволяет уверенно оценить результат выборов.",
         "rubric": {
           "volume": {
-            "score": 92.2,
+            "score": 92.3,
             "weight": 25,
-            "weighted": 23.05,
-            "note": "объём всего $7,213,984, за 24ч $41,631"
+            "weighted": 23.09,
+            "note": "объём всего $7,215,671, за 24ч $42,938"
           },
           "liquidity": {
             "score": 100,
             "weight": 20,
             "weighted": 20.0,
-            "note": "ликвидность $678,269"
+            "note": "ликвидность $691,542"
           },
           "news_driver": {
             "score": 63.3,
             "weight": 25,
             "weighted": 15.81,
-            "note": "ключевых тем: 2, активность 24ч/всего: 0.58% + LLM",
+            "note": "ключевых тем: 2, активность 24ч/всего: 0.60% + LLM",
             "llmScore": 80.0
           },
           "resolution_clarity": {
@@ -325,75 +325,75 @@
     },
     {
       "event": {
-        "id": "60182",
-        "slug": "nobel-peace-prize-winner-2026-139",
-        "title": "Nobel Peace Prize Winner 2026",
-        "description": "This market will resolve according to the winner of the 2026 Nobel Peace Prize, as announced by the Norwegian Nobel Committee.\n\nIf multiple listed individuals or entities jointly receive the prize, the market will resolve to a single winner. If Donald Trump, Volodymyr Zelenskyy,  Benjamin Netanyahu, Vladimir Putin, or Elon Musk are among the recipients, the market will resolve to the highest-ranked among them in that exact order of precedence. If none of those five are among the winners and the prize is awarded jointly to at least one listed individual and at least one listed organization, the market will resolve in favor of the individual. If no prioritized individuals are among the winners and all listed recipients are of the same type (all individuals or all organizations), the market will resolve to the person whose last name, or the entity’s name, comes first in alphabetical order as listed in this market.\n\nIf no official announcement regarding the 2026 Nobel Peace Prize has been made by March 31, 2027, 11:59 PM ET, this market will resolve to \"Other.\"\n\nThe resolution source for this market will be the first official announcement from the Norwegian Nobel Committee.",
+        "id": "32224",
+        "slug": "which-party-will-win-the-senate-in-2026",
+        "title": "Which party will win the Senate in 2026?",
+        "description": "This market will resolve according to the party that controls the Senate following the 2026 U.S. Senate elections scheduled for November 3, 2026.\n\nSenate control is defined as having more than half of the voting Senate members, or half of the voting Senate members and the Vice Presidency.\n\nIf the outcome of this election is ambiguous given the above rules, this market will remain open until the Majority Leader of the US Senate is selected following the 2026 US general election, at which point it will resolve to the party the majority leader is affiliated with at the time of their election to that position. If the elected majority leader does not caucus with any listed party this market will resolve “Other”.\n\nDetermination of which party controls the Senate after the 2026 US Senate elections will be based on a consensus of credible reporting, or if there is ambiguity, final federal and/or state election authority certification or other final official determination of the 2026 election results.",
         "category": null,
-        "volume": 20281579.76484001,
-        "volume24hr": 88066.267494,
-        "liquidity": 2022224.07131,
-        "startDate": "2025-10-16T22:33:46.896383Z",
-        "endDate": "2026-10-10T00:00:00Z",
-        "marketsCount": 71,
+        "volume": 2742057.034910021,
+        "volume24hr": 5814.840537,
+        "liquidity": 379110.2311,
+        "startDate": "2025-07-11T19:53:05.106249Z",
+        "endDate": "2026-11-03T00:00:00Z",
+        "marketsCount": 9,
         "markets": [
           {
-            "id": "637002",
-            "question": "Will Donald Trump win the Nobel Peace Prize in 2026?",
-            "conditionId": "0x962e5b226a77266ab429029ee04665e8fcfeb10b91af593786ceab871d2e945f",
-            "clobTokenIds": "[\"96308556109755835434254900303426519652053230974356832970824534225192181988516\", \"75648553599758807820760400986240186978327005811004242427218252697572451485336\"]",
+            "id": "562793",
+            "question": "Will the Democratic Party control the Senate after the 2026 Midterm elections?",
+            "conditionId": "0x307a1ed89d60b61002dd5bbf00e1408c5ed2ab3fcdb056191ca7ef9bc34d38f3",
+            "clobTokenIds": "[\"113287701564209339913693347405685749986285999146352375265161592243948562084773\", \"107118433685650702332040991454078902188473746599223732907923581436160160612542\"]",
             "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.075\", \"0.925\"]",
-            "volume": "3644263.2721989923",
-            "liquidity": "389493.2046"
+            "outcomePrices": "[\"0.455\", \"0.545\"]",
+            "volume": "1452257.5907470102",
+            "liquidity": "194714.0697"
           },
           {
-            "id": "637004",
-            "question": "Will Yulia Navalnaya win the Nobel Peace Prize in 2026?",
-            "conditionId": "0xae76ef049f09b109cfb0a9bfa2335d7c9fde5bd262c64548b43308c810c314ec",
-            "clobTokenIds": "[\"3494130919441794744300504897798612438496650716124466384425423765833752918969\", \"28096161697269491739201577018265114286225290564353204301878588204336630210171\"]",
+            "id": "562794",
+            "question": "Will the Republican Party control the Senate after the 2026 Midterm elections?",
+            "conditionId": "0x86bfb53af7250a40928975c551d12c185b762fa4ce0b40c6a64a50c946d72587",
+            "clobTokenIds": "[\"51939490109676186832507970701169130490548061087912630009168726706475001411420\", \"108587038225191871355030577171066853142535232042155117887981453750193713427381\"]",
             "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.075\", \"0.925\"]",
-            "volume": "192396.12005499852",
-            "liquidity": "76869.6783"
+            "outcomePrices": "[\"0.555\", \"0.445\"]",
+            "volume": "1289799.4441630107",
+            "liquidity": "181723.1492"
           },
           {
-            "id": "637006",
-            "question": "Will Greta Thunberg win the Nobel Peace Prize in 2026?",
-            "conditionId": "0xdd84a0f9830eb540be5cd7a22bcaaa27aedced37c7994c480f95669a341f1c4e",
-            "clobTokenIds": "[\"110720206167890822616321575705807171983245849150110799188723045022216595670551\", \"88258427153334602839061103957324557393993316504272753015676420313968562088509\"]",
+            "id": "562795",
+            "question": "Will Party A control the Senate after the 2026 Midterm elections?",
+            "conditionId": "0x75e8380ff28ca9f077a37235d149f782bd859060e4c9e5c4d43742633e9dfcf2",
+            "clobTokenIds": "[\"101013678279667053072299759176727232476254933885205251482758940017727056216936\", \"79567790673116367761535331050117811143019665137672364070496977107486370387555\"]",
             "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.0125\", \"0.9875\"]",
-            "volume": "1326272.5272089976",
-            "liquidity": "74090.29396"
+            "outcomePrices": null,
+            "volume": "0",
+            "liquidity": "0"
           }
         ],
         "source": "polymarket_gamma",
-        "sourceUrl": "https://polymarket.com/event/nobel-peace-prize-winner-2026-139"
+        "sourceUrl": "https://polymarket.com/event/which-party-will-win-the-senate-in-2026"
       },
       "priority": {
         "agent": "Priority Agent",
-        "score": 79.8,
+        "score": 78.2,
         "decision": "accepted",
-        "reason": "Событие имеет четкий новостной драйвер — вручение Нобелевской премии мира в 2026 году, что является значимым событием. Критерии резолва также ясны и основаны на официальном источнике, что делает рынок понятным для аналитики.",
+        "reason": "Событие имеет четкий временной катализатор — выборы в Сенат США в 2026 году. Критерии резолва также ясны, так как определение контроля Сената основано на официальных результатах выборов.",
         "rubric": {
           "volume": {
-            "score": 95.5,
+            "score": 79.9,
             "weight": 25,
-            "weighted": 23.87,
-            "note": "объём всего $20,281,580, за 24ч $88,066"
+            "weighted": 19.98,
+            "note": "объём всего $2,742,057, за 24ч $5,815"
           },
           "liquidity": {
-            "score": 100,
+            "score": 96.4,
             "weight": 20,
-            "weighted": 20.0,
-            "note": "ликвидность $2,022,224"
+            "weighted": 19.28,
+            "note": "ликвидность $379,110"
           },
           "news_driver": {
-            "score": 66.7,
+            "score": 66.6,
             "weight": 25,
-            "weighted": 16.68,
-            "note": "ключевых тем: 3, активность 24ч/всего: 0.43% + LLM",
+            "weighted": 16.66,
+            "note": "ключевых тем: 3, активность 24ч/всего: 0.21% + LLM",
             "llmScore": 80.0
           },
           "resolution_clarity": {
@@ -407,13 +407,13 @@
             "score": 55,
             "weight": 10,
             "weighted": 5.5,
-            "note": "до резолва ~116 дн."
+            "note": "до резолва ~140 дн."
           },
           "price_quality": {
-            "score": 40,
+            "score": 100,
             "weight": 5,
-            "weighted": 2.0,
-            "note": "лидирующая вероятность ~8%"
+            "weighted": 5.0,
+            "note": "лидирующая вероятность ~46%"
           }
         },
         "hardGates": {
@@ -436,9 +436,9 @@
         "title": "World Cup Winner ",
         "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to “No”.\n\nIf the 2026 FIFA World Cup is permanently canceled or has not been completed by October 13, 2026, 11:59 PM this market will resolve to “Other”.\n\nThe primary resolution source will be official information from FIFA, however, a consensus of credible reporting may also be used.",
         "category": null,
-        "volume": 2335062057.5377545,
-        "volume24hr": 91152176.56461702,
-        "liquidity": 486203769.27235,
+        "volume": 2344184885.0804543,
+        "volume24hr": 80315179.38403106,
+        "liquidity": 488609280.45596,
         "startDate": "2025-07-02T22:28:24.564603Z",
         "endDate": "2026-07-20T00:00:00Z",
         "marketsCount": 60,
@@ -449,9 +449,9 @@
             "conditionId": "0x7976b8dbacf9077eb1453a62bcefd6ab2df199acd28aad276ff0d920d6992892",
             "clobTokenIds": "[\"4394372887385518214471608448209527405727552777602031099972143344338178308080\", \"112680630004798425069810935278212000865453267506345451433803052322987302357330\"]",
             "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.1605\", \"0.8395\"]",
-            "volume": "45255974.968258634",
-            "liquidity": "7253599.75587"
+            "outcomePrices": "[\"0.1615\", \"0.8385\"]",
+            "volume": "45515759.98386791",
+            "liquidity": "7645577.25931"
           },
           {
             "id": "558957",
@@ -460,8 +460,8 @@
             "clobTokenIds": "[\"79609298644734030886284029462369514848707878622071495577618126141372199748974\", \"19300733445673111152563700067702596357686293159476142927049736146587326855017\"]",
             "outcomes": "[\"Yes\", \"No\"]",
             "outcomePrices": "[\"0.0005\", \"0.9995\"]",
-            "volume": "46206301.53264519",
-            "liquidity": "21535868.77676"
+            "volume": "46231314.542645186",
+            "liquidity": "21720668.53188"
           },
           {
             "id": "558974",
@@ -470,8 +470,8 @@
             "clobTokenIds": "[\"62131913648515148266463816694306031394539656598501514114816028349608560215534\", \"45315272750116791836504013666029583517532908319286234834610455739871173419179\"]",
             "outcomes": "[\"Yes\", \"No\"]",
             "outcomePrices": "[\"0.0085\", \"0.9915\"]",
-            "volume": "48649024.57661518",
-            "liquidity": "3152062.5427"
+            "volume": "48723545.158293195",
+            "liquidity": "3091911.5269"
           }
         ],
         "source": "polymarket_gamma",
@@ -479,27 +479,27 @@
       },
       "priority": {
         "agent": "Priority Agent",
-        "score": 78.2,
+        "score": 78.1,
         "decision": "accepted",
-        "reason": "Событие связано с чемпионатом мира по футболу, который вызывает интерес, но до начала турнира еще много времени. Критерии резолва ясны, так как они зависят от официальных источников FIFA.",
+        "reason": "Событие имеет потенциал для новостного освещения, но до начала чемпионата мира еще много времени, и конкретные катализаторы неочевидны. Критерии резолва четкие, основаны на официальных источниках FIFA.",
         "rubric": {
           "volume": {
             "score": 100,
             "weight": 25,
             "weighted": 25.0,
-            "note": "объём всего $2,335,062,058, за 24ч $91,152,177"
+            "note": "объём всего $2,344,184,885, за 24ч $80,315,179"
           },
           "liquidity": {
             "score": 100,
             "weight": 20,
             "weighted": 20.0,
-            "note": "ликвидность $486,203,769"
+            "note": "ликвидность $488,609,280"
           },
           "news_driver": {
-            "score": 36.6,
+            "score": 36.4,
             "weight": 25,
-            "weighted": 9.16,
-            "note": "ключевых тем: 0, активность 24ч/всего: 3.90% + LLM",
+            "weighted": 9.11,
+            "note": "ключевых тем: 0, активность 24ч/всего: 3.43% + LLM",
             "llmScore": 50.0
           },
           "resolution_clarity": {
@@ -542,9 +542,9 @@
         "title": "Which company has best AI model end of June?",
         "description": "This market will resolve according to the company which owns the model which has the highest arena rank based off the Chatbot Arena LLM Leaderboard (https://lmarena.ai/) when the table under the \"Leaderboard\" tab is checked on June 30, 2026, 12:00 PM ET.\n\nResults from the \"Rank\" section on the Leaderboard tab of https://lmarena.ai/leaderboard/text with the style control off will be used to resolve this market.\n\nModels will be ordered primarily by their leaderboard rank at the market’s check time. If two or more models are tied on rank, they will be ordered by their Arena score, including any underlying, unrounded, granular values reflected in the data below the leaderboard. If a tie remains, alphabetical order of company names as listed in this market group will be used as a final tiebreaker (e.g., if the two models are tied by exact arena score, “Google” would be ranked ahead of “xAI”). This market will resolve based on the company that occupies first place under this ranking system.\n\nThe resolution source for this market is the Chatbot Arena LLM Leaderboard found at https://lmarena.ai/. If this resolution source is unavailable at check time, this market will remain open until the leaderboard comes back online and resolve based on the first check after it becomes available. If it becomes permanently unavailable, this market will resolve based on another resolution source.",
         "category": "Best AI Company",
-        "volume": 14936956.939012026,
-        "volume24hr": 1164553.007341,
-        "liquidity": 3050228.25337,
+        "volume": 14981919.933092028,
+        "volume24hr": 1195805.798361,
+        "liquidity": 3051510.29919,
         "startDate": "2025-10-10T21:54:22.492043Z",
         "endDate": "2026-06-30T00:00:00Z",
         "marketsCount": 19,
@@ -555,9 +555,9 @@
             "conditionId": "0x0bd1b836a2494f80aaee62927cf01e5f6fceb19114e96fc517c6440aea4576e4",
             "clobTokenIds": "[\"48636515238425021804591740157603774575693183581120073077366926452048719239424\", \"55343546711440719852073804567266677523610031228702521608443447223099518953270\"]",
             "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.065\", \"0.935\"]",
-            "volume": "1209975.7970070036",
-            "liquidity": "107989.7359"
+            "outcomePrices": "[\"0.075\", \"0.925\"]",
+            "volume": "1224943.2438070036",
+            "liquidity": "90109.4392"
           },
           {
             "id": "631141",
@@ -565,9 +565,9 @@
             "conditionId": "0x734c6c32a62f8a27035a222e45fc388d59eeffe89bb31ab26054bc29bcc3eee7",
             "clobTokenIds": "[\"80866595097163743756836544235158704187050842622501590485463390368127663845144\", \"59148378005891809491211416100126897026310179790411869168117833625964267167611\"]",
             "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.0345\", \"0.9655\"]",
-            "volume": "1125289.2367669942",
-            "liquidity": "121296.01883"
+            "outcomePrices": "[\"0.056\", \"0.944\"]",
+            "volume": "1141072.221599994",
+            "liquidity": "101976.87188"
           },
           {
             "id": "631143",
@@ -576,8 +576,8 @@
             "clobTokenIds": "[\"96960854506577913637827909727393368741530508565038173215850540697056617713094\", \"31722004522905291320816261931547127152600446925032713964065945137699274246281\"]",
             "outcomes": "[\"Yes\", \"No\"]",
             "outcomePrices": "[\"0.0015\", \"0.9985\"]",
-            "volume": "996840.9897570144",
-            "liquidity": "169279.33184"
+            "volume": "999258.4717570143",
+            "liquidity": "163539.1405"
           }
         ],
         "source": "polymarket_gamma",
@@ -585,27 +585,27 @@
       },
       "priority": {
         "agent": "Priority Agent",
-        "score": 77.8,
+        "score": 77.9,
         "decision": "accepted",
-        "reason": "Событие имеет четкую дату разрешения и критерии, однако новостной драйвер не является актуальным на данный момент, так как до конца июня 2026 года еще много времени. Резолв будет основан на официальном источнике, что обеспечивает ясность в разрешении.",
+        "reason": "Событие имеет четкие критерии для резолва, основанные на официальном источнике, однако дата разрешения далека и может быть подвержена изменениям. Это делает рынок менее привлекательным для краткосрочной аналитики PP.",
         "rubric": {
           "volume": {
             "score": 100,
             "weight": 25,
             "weighted": 25.0,
-            "note": "объём всего $14,936,957, за 24ч $1,164,553"
+            "note": "объём всего $14,981,920, за 24ч $1,195,806"
           },
           "liquidity": {
             "score": 100,
             "weight": 20,
             "weighted": 20.0,
-            "note": "ликвидность $3,050,228"
+            "note": "ликвидность $3,051,510"
           },
           "news_driver": {
-            "score": 38.3,
+            "score": 38.4,
             "weight": 25,
-            "weighted": 9.57,
-            "note": "ключевых тем: 0, активность 24ч/всего: 7.80% + LLM",
+            "weighted": 9.59,
+            "note": "ключевых тем: 0, активность 24ч/всего: 7.98% + LLM",
             "llmScore": 50.0
           },
           "resolution_clarity": {
@@ -625,7 +625,7 @@
             "score": 40,
             "weight": 5,
             "weighted": 2.0,
-            "note": "лидирующая вероятность ~6%"
+            "note": "лидирующая вероятность ~8%"
           }
         },
         "hardGates": {
@@ -643,120 +643,14 @@
     },
     {
       "event": {
-        "id": "32224",
-        "slug": "which-party-will-win-the-senate-in-2026",
-        "title": "Which party will win the Senate in 2026?",
-        "description": "This market will resolve according to the party that controls the Senate following the 2026 U.S. Senate elections scheduled for November 3, 2026.\n\nSenate control is defined as having more than half of the voting Senate members, or half of the voting Senate members and the Vice Presidency.\n\nIf the outcome of this election is ambiguous given the above rules, this market will remain open until the Majority Leader of the US Senate is selected following the 2026 US general election, at which point it will resolve to the party the majority leader is affiliated with at the time of their election to that position. If the elected majority leader does not caucus with any listed party this market will resolve “Other”.\n\nDetermination of which party controls the Senate after the 2026 US Senate elections will be based on a consensus of credible reporting, or if there is ambiguity, final federal and/or state election authority certification or other final official determination of the 2026 election results.",
-        "category": null,
-        "volume": 2740176.784910021,
-        "volume24hr": 4465.799424,
-        "liquidity": 361978.9233,
-        "startDate": "2025-07-11T19:53:05.106249Z",
-        "endDate": "2026-11-03T00:00:00Z",
-        "marketsCount": 9,
-        "markets": [
-          {
-            "id": "562793",
-            "question": "Will the Democratic Party control the Senate after the 2026 Midterm elections?",
-            "conditionId": "0x307a1ed89d60b61002dd5bbf00e1408c5ed2ab3fcdb056191ca7ef9bc34d38f3",
-            "clobTokenIds": "[\"113287701564209339913693347405685749986285999146352375265161592243948562084773\", \"107118433685650702332040991454078902188473746599223732907923581436160160612542\"]",
-            "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.445\", \"0.555\"]",
-            "volume": "1450496.0507470102",
-            "liquidity": "187530.1879"
-          },
-          {
-            "id": "562794",
-            "question": "Will the Republican Party control the Senate after the 2026 Midterm elections?",
-            "conditionId": "0x86bfb53af7250a40928975c551d12c185b762fa4ce0b40c6a64a50c946d72587",
-            "clobTokenIds": "[\"51939490109676186832507970701169130490548061087912630009168726706475001411420\", \"108587038225191871355030577171066853142535232042155117887981453750193713427381\"]",
-            "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.555\", \"0.445\"]",
-            "volume": "1289680.7341630107",
-            "liquidity": "175496.573"
-          },
-          {
-            "id": "562795",
-            "question": "Will Party A control the Senate after the 2026 Midterm elections?",
-            "conditionId": "0x75e8380ff28ca9f077a37235d149f782bd859060e4c9e5c4d43742633e9dfcf2",
-            "clobTokenIds": "[\"101013678279667053072299759176727232476254933885205251482758940017727056216936\", \"79567790673116367761535331050117811143019665137672364070496977107486370387555\"]",
-            "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": null,
-            "volume": "0",
-            "liquidity": "0"
-          }
-        ],
-        "source": "polymarket_gamma",
-        "sourceUrl": "https://polymarket.com/event/which-party-will-win-the-senate-in-2026"
-      },
-      "priority": {
-        "agent": "Priority Agent",
-        "score": 77.8,
-        "decision": "accepted",
-        "reason": "Событие связано с предстоящими выбо��ами в Сенат США, что является явным новостным драйвером. Критерии резолва четкие, основаны на официальных результатах выборов и определении большинства в Сенате.",
-        "rubric": {
-          "volume": {
-            "score": 78.8,
-            "weight": 25,
-            "weighted": 19.69,
-            "note": "объём всего $2,740,177, за 24ч $4,466"
-          },
-          "liquidity": {
-            "score": 95.8,
-            "weight": 20,
-            "weighted": 19.16,
-            "note": "ликвидность $361,979"
-          },
-          "news_driver": {
-            "score": 66.6,
-            "weight": 25,
-            "weighted": 16.65,
-            "note": "ключевых тем: 3, активность 24ч/всего: 0.16% + LLM",
-            "llmScore": 80.0
-          },
-          "resolution_clarity": {
-            "score": 78.5,
-            "weight": 15,
-            "weighted": 11.78,
-            "note": "развёрнутое описание, есть правила резолва, бинарный исход, есть дедлайн, много подрынков — сложнее + LLM",
-            "llmScore": 80.0
-          },
-          "time_to_money": {
-            "score": 55,
-            "weight": 10,
-            "weighted": 5.5,
-            "note": "до резолва ~140 дн."
-          },
-          "price_quality": {
-            "score": 100,
-            "weight": 5,
-            "weighted": 5.0,
-            "note": "лидирующая вероятность ~44%"
-          }
-        },
-        "hardGates": {
-          "passed": true,
-          "failed": []
-        },
-        "scoringMode": "rubric_v1_llm",
-        "thresholds": {
-          "accepted": 70,
-          "watchlist": 55
-        },
-        "rank": 7,
-        "scannedTotal": 300
-      }
-    },
-    {
-      "event": {
         "id": "73969",
         "slug": "trump-out-as-president-before-2027",
         "title": "Trump out as President before 2027?",
         "description": "This market will resolve to “Yes” if Donald Trump resigns or is removed as President or otherwise ceases to be the President of the United States for any period of time by December 31, 2026, 11:59 PM ET. Otherwise, this market will resolve to “No”.\n\nAn announcement of Donald Trump's resignation/removal before this market's end date will immediately resolve this market to \"Yes\", regardless of when the announced resignation/removal goes into effect.\n\nOnly permanent removal from office will qualify. Temporary removal (e.g. temporary invocation of the 25th Amendment under Section 3 or a Section 4 invocation not sustained by both Houses of Congress) or impeachment without removal will not count.\n\nA sustained invocation of the Twenty-Fifth Amendment, Section 4 (i.e., if both Houses of Congress, by two-thirds vote, uphold the Vice President and Cabinet’s determination of presidential inability) will qualify for a \"Yes\" resolution. \n\nThe resolution source for this market will be a consensus of credible reporting.",
         "category": "Trump out",
-        "volume": 9067560.624116223,
-        "volume24hr": 44777.060632,
-        "liquidity": 405890.8105,
+        "volume": 9067655.001127226,
+        "volume24hr": 44248.70753500001,
+        "liquidity": 429485.4253,
         "startDate": "2025-11-05T22:02:46.869817Z",
         "endDate": "2026-12-31T00:00:00Z",
         "marketsCount": 1,
@@ -768,8 +662,8 @@
             "clobTokenIds": "[\"59252515735652674747158950210016502214756531287333895140318848923768750410355\", \"2849827372590072151380088930233312280478318575453624773762283369907909283027\"]",
             "outcomes": "[\"Yes\", \"No\"]",
             "outcomePrices": "[\"0.095\", \"0.905\"]",
-            "volume": "9067586.623116223",
-            "liquidity": "400047.3677"
+            "volume": "9067655.001127226",
+            "liquidity": "430101.0002"
           }
         ],
         "source": "polymarket_gamma",
@@ -777,21 +671,21 @@
       },
       "priority": {
         "agent": "Priority Agent",
-        "score": 77.2,
+        "score": 77.4,
         "decision": "accepted",
-        "reason": "Событие имеет потенциальные новостные катализаторы, связанные с политической ситуацией в США, но конкретные сроки неясны. Критерии резолва достаточно четкие, что позволяет оценить вероятность исхода.",
+        "reason": "Событие активно обсуждается в новостях, особенно в контексте политической ситуации в США, но точные сроки и обстоятельства остаются неопределёнными. Критерии резолва чёткие, что делает рынок понятным для анализа.",
         "rubric": {
           "volume": {
             "score": 92.5,
             "weight": 25,
-            "weighted": 23.13,
-            "note": "объём всего $9,067,561, за 24ч $44,777"
+            "weighted": 23.12,
+            "note": "объём всего $9,067,655, за 24ч $44,249"
           },
           "liquidity": {
-            "score": 97.3,
+            "score": 98.0,
             "weight": 20,
-            "weighted": 19.46,
-            "note": "ликвидность $405,891"
+            "weighted": 19.6,
+            "note": "ликвидность $429,485"
           },
           "news_driver": {
             "score": 66.8,
@@ -829,7 +723,7 @@
           "accepted": 70,
           "watchlist": 55
         },
-        "rank": 8,
+        "rank": 7,
         "scannedTotal": 300
       }
     },
@@ -840,9 +734,9 @@
         "title": "Putin out as President of Russia by December 31, 2026?",
         "description": "This market will resolve to “Yes” if Vladimir Putin ceases to be President of Russia for any period of time between market creation and the specified date (ET). Otherwise, this market will resolve to “No”.\n\nAn announcement of Vladimir Putin's resignation/removal before this market's end date will immediately resolve this market to \"Yes\", regardless of when the announced resignation/removal goes into effect.\n\nIf the specified individual is detained, effectively removed from the specified position, or otherwise permanently prevented from fulfilling the duties of the specified position within this market’s timeframe, it will qualify for a “Yes” resolution.\n\nThe resolution source for this market will be official information from Vladimir Putin and the government of Russia; however, a consensus of credible reporting may also be used.",
         "category": "Putin out as President",
-        "volume": 7593275.822328992,
-        "volume24hr": 313476.589643,
-        "liquidity": 282791.5734,
+        "volume": 7598850.184955993,
+        "volume24hr": 318742.28150399996,
+        "liquidity": 396764.6453,
         "startDate": "2025-07-06T22:31:26.266096Z",
         "endDate": "2026-12-31T18:30:00Z",
         "marketsCount": 1,
@@ -854,8 +748,8 @@
             "clobTokenIds": "[\"350977769852917329387037893294763093471844346281449484439085576212613048126\", \"87073899845581463485186346288398658568334162612963837182986759797304993556208\"]",
             "outcomes": "[\"Yes\", \"No\"]",
             "outcomePrices": "[\"0.095\", \"0.905\"]",
-            "volume": "7593331.866283992",
-            "liquidity": "284359.144"
+            "volume": "7598889.800335992",
+            "liquidity": "411596.0749"
           }
         ],
         "source": "polymarket_gamma",
@@ -863,27 +757,27 @@
       },
       "priority": {
         "agent": "Priority Agent",
-        "score": 75.9,
+        "score": 76.8,
         "decision": "accepted",
-        "reason": "Событие имеет потенциальный новостной драйвер, так как вопросы о будущем Путина часто обсуждаются в СМИ, но конкретные сроки остаются неопределенными. Критерии резолва достаточно ясны, что делает рынок понятным для анализа.",
+        "reason": "Событие имеет значительный новостной интерес, но конкретные сроки и условия остаются неопределенными. Критерии резолва четкие, однако зависят от официальных источников и могут быть подвержены интерпретации.",
         "rubric": {
           "volume": {
             "score": 100,
             "weight": 25,
             "weighted": 25.0,
-            "note": "объём всего $7,593,276, за 24ч $313,477"
+            "note": "объём всего $7,598,850, за 24ч $318,742"
           },
           "liquidity": {
-            "score": 92.6,
+            "score": 97.0,
             "weight": 20,
-            "weighted": 18.51,
-            "note": "ликвидность $282,792"
+            "weighted": 19.4,
+            "note": "ликвидность $396,765"
           },
           "news_driver": {
             "score": 57.8,
             "weight": 25,
-            "weighted": 14.44,
-            "note": "ключевых тем: 2, активность 24ч/всего: 4.13% + LLM",
+            "weighted": 14.45,
+            "note": "ключевых тем: 2, активность 24ч/всего: 4.19% + LLM",
             "llmScore": 70.0
           },
           "resolution_clarity": {
@@ -915,69 +809,175 @@
           "accepted": 70,
           "watchlist": 55
         },
+        "rank": 8,
+        "scannedTotal": 300
+      }
+    },
+    {
+      "event": {
+        "id": "60182",
+        "slug": "nobel-peace-prize-winner-2026-139",
+        "title": "Nobel Peace Prize Winner 2026",
+        "description": "This market will resolve according to the winner of the 2026 Nobel Peace Prize, as announced by the Norwegian Nobel Committee.\n\nIf multiple listed individuals or entities jointly receive the prize, the market will resolve to a single winner. If Donald Trump, Volodymyr Zelenskyy,  Benjamin Netanyahu, Vladimir Putin, or Elon Musk are among the recipients, the market will resolve to the highest-ranked among them in that exact order of precedence. If none of those five are among the winners and the prize is awarded jointly to at least one listed individual and at least one listed organization, the market will resolve in favor of the individual. If no prioritized individuals are among the winners and all listed recipients are of the same type (all individuals or all organizations), the market will resolve to the person whose last name, or the entity’s name, comes first in alphabetical order as listed in this market.\n\nIf no official announcement regarding the 2026 Nobel Peace Prize has been made by March 31, 2027, 11:59 PM ET, this market will resolve to \"Other.\"\n\nThe resolution source for this market will be the first official announcement from the Norwegian Nobel Committee.",
+        "category": null,
+        "volume": 20298595.816619013,
+        "volume24hr": 88374.26880600001,
+        "liquidity": 2000444.03672,
+        "startDate": "2025-10-16T22:33:46.896383Z",
+        "endDate": "2026-10-10T00:00:00Z",
+        "marketsCount": 71,
+        "markets": [
+          {
+            "id": "637002",
+            "question": "Will Donald Trump win the Nobel Peace Prize in 2026?",
+            "conditionId": "0x962e5b226a77266ab429029ee04665e8fcfeb10b91af593786ceab871d2e945f",
+            "clobTokenIds": "[\"96308556109755835434254900303426519652053230974356832970824534225192181988516\", \"75648553599758807820760400986240186978327005811004242427218252697572451485336\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0.08\", \"0.92\"]",
+            "volume": "3644444.0121989916",
+            "liquidity": "391304.4272"
+          },
+          {
+            "id": "637004",
+            "question": "Will Yulia Navalnaya win the Nobel Peace Prize in 2026?",
+            "conditionId": "0xae76ef049f09b109cfb0a9bfa2335d7c9fde5bd262c64548b43308c810c314ec",
+            "clobTokenIds": "[\"3494130919441794744300504897798612438496650716124466384425423765833752918969\", \"28096161697269491739201577018265114286225290564353204301878588204336630210171\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0.075\", \"0.925\"]",
+            "volume": "192511.10005499853",
+            "liquidity": "80118.7733"
+          },
+          {
+            "id": "637006",
+            "question": "Will Greta Thunberg win the Nobel Peace Prize in 2026?",
+            "conditionId": "0xdd84a0f9830eb540be5cd7a22bcaaa27aedced37c7994c480f95669a341f1c4e",
+            "clobTokenIds": "[\"110720206167890822616321575705807171983245849150110799188723045022216595670551\", \"88258427153334602839061103957324557393993316504272753015676420313968562088509\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0.0125\", \"0.9875\"]",
+            "volume": "1327121.3069579983",
+            "liquidity": "79143.31009"
+          }
+        ],
+        "source": "polymarket_gamma",
+        "sourceUrl": "https://polymarket.com/event/nobel-peace-prize-winner-2026-139"
+      },
+      "priority": {
+        "agent": "Priority Agent",
+        "score": 74.6,
+        "decision": "accepted",
+        "reason": "Событие имеет определённый новостной контекст, но до объявления лауреата ещё много времени, что делает его менее актуальным. Критерии резолва ясны и основаны на официальном источнике, что обеспечивает высокую степень понятности.",
+        "rubric": {
+          "volume": {
+            "score": 95.5,
+            "weight": 25,
+            "weighted": 23.87,
+            "note": "объём всего $20,298,596, за 24ч $88,374"
+          },
+          "liquidity": {
+            "score": 100,
+            "weight": 20,
+            "weighted": 20.0,
+            "note": "ликвидность $2,000,444"
+          },
+          "news_driver": {
+            "score": 45.7,
+            "weight": 25,
+            "weighted": 11.43,
+            "note": "ключевых тем: 3, активность 24ч/всего: 0.44% + LLM",
+            "llmScore": 50.0
+          },
+          "resolution_clarity": {
+            "score": 78.5,
+            "weight": 15,
+            "weighted": 11.78,
+            "note": "развёрнутое описание, есть правила резолва, бинарный исход, есть дедлайн, много подрынков — сложнее + LLM",
+            "llmScore": 80.0
+          },
+          "time_to_money": {
+            "score": 55,
+            "weight": 10,
+            "weighted": 5.5,
+            "note": "до резолва ~116 дн."
+          },
+          "price_quality": {
+            "score": 40,
+            "weight": 5,
+            "weighted": 2.0,
+            "note": "лидирующая вероятность ~8%"
+          }
+        },
+        "hardGates": {
+          "passed": true,
+          "failed": []
+        },
+        "scoringMode": "rubric_v1_llm",
+        "thresholds": {
+          "accepted": 70,
+          "watchlist": 55
+        },
         "rank": 9,
         "scannedTotal": 300
       }
     },
     {
       "event": {
-        "id": "34044",
-        "slug": "will-china-invade-taiwan-before-2027",
-        "title": "Will China invade Taiwan by end of 2026?",
-        "description": "This market will resolve to \"Yes\" if China commences a military offensive intended to establish control over any portion of the Republic of China (Taiwan) by December 31, 2026, 11:59 PM ET. Otherwise, this market will resolve to \"No\".\n\nTerritory under the administration of the Republic of China including any inhabited islands will qualify, however uninhabited islands will not qualify. \n\nThe resolution source for this market will be will be official confirmation by China, Taiwan, the United Nations, or any permanent member of the UN Security Council, however a consensus of credible reporting will also be used.",
-        "category": "China invade Taiwan",
-        "volume": 34728889.62654705,
-        "volume24hr": 66245.49761400004,
-        "liquidity": 549213.74433,
-        "startDate": "2025-07-24T23:47:38.785111Z",
+        "id": "72347",
+        "slug": "will-the-iranian-regime-fall-by-the-end-of-2026",
+        "title": "Will the Iranian regime fall before 2027?",
+        "description": "This market will resolve to \"Yes\" if the Islamic Republic of Iran’s current ruling regime is overthrown, collapsed, or otherwise ceases to govern by December 31, 2026, 11:59 PM ET. Otherwise, this market will resolve to “No”.\n\nThis requires a broad consensus of reporting indicating that core structures of the Islamic Republic (e.g. the office of the Supreme Leader, the Guardian Council, IRGC control under clerical authority) have been dissolved, incapacitated, or replaced by a fundamentally different governing system or otherwise lost de facto power over a majority of the population of Iran. This could occur via revolution, civil war, military coup, or voluntary abdication, but only qualifies if the Islamic Republic no longer exercises sovereign power.\n\nRoutine political events such as elections, reforms, or leadership succession do not qualify. Internal coups or power shifts that preserve the Islamic Republic’s core structures also do not qualify. Only a clear break in continuity—such as a new provisional government, revolutionary council, or constitution replacing the Islamic Republic will qualify.\n\nPartial loss of territory or challenges from rebel or exile groups will not qualify unless the Islamic Republic no longer administers the majority of the Iranian population within Iran. \n\nThe resolution source will be a consensus of credible reporting. ",
+        "category": "iran regime",
+        "volume": 20144259.857777253,
+        "volume24hr": 64429.80733600001,
+        "liquidity": 373043.0612,
+        "startDate": "2025-11-03T23:54:31.344171Z",
         "endDate": "2026-12-31T00:00:00Z",
         "marketsCount": 1,
         "markets": [
           {
-            "id": "567621",
-            "question": "Will China invade Taiwan by end of 2026?",
-            "conditionId": "0xd9fb1184af0064e5e34b129f5b79afa5a17b7e32f2953ab05efed82315fee6d4",
-            "clobTokenIds": "[\"94559586571241563470235664821564670251180951772614764383113614156422396181162\", \"90772332434487149264114862115632028379978765245278600275169585501290867536237\"]",
+            "id": "663583",
+            "question": "Will the Iranian regime fall before 2027?",
+            "conditionId": "0xbb4d51e6364066d92eb6f9b8413dd7193de70966736044463b205834805a1f3b",
+            "clobTokenIds": "[\"10991849228756847439673778874175365458450913336396982752046655649803657501964\", \"106181075047366745139197108801635573283215248045056329679360376976893016488727\"]",
             "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.0615\", \"0.9385\"]",
-            "volume": "34728948.088659026",
-            "liquidity": "549180.27441"
+            "outcomePrices": "[\"0.105\", \"0.895\"]",
+            "volume": "20144264.802217253",
+            "liquidity": "372369.6886"
           }
         ],
         "source": "polymarket_gamma",
-        "sourceUrl": "https://polymarket.com/event/will-china-invade-taiwan-before-2027"
+        "sourceUrl": "https://polymarket.com/event/will-the-iranian-regime-fall-by-the-end-of-2026"
       },
       "priority": {
         "agent": "Priority Agent",
-        "score": 73.3,
+        "score": 73.0,
         "decision": "accepted",
-        "reason": "Событие активно обсуждается в новостях, однако точная дата начала военных действий не ясна. Критерии резолва в целом понятны, но могут возникнуть нюансы в интерпретации официальных источников.",
+        "reason": "Событие имеет неопределённые временные рамки и зависит от множества факторов, что делает его менее предсказуемым. Однако критерии резолва чётко определены, что позволяет оценить вероятность изменения режима в Иране.",
         "rubric": {
           "volume": {
-            "score": 94.2,
+            "score": 94.1,
             "weight": 25,
-            "weighted": 23.56,
-            "note": "объём всего $34,728,890, за 24ч $66,245"
+            "weighted": 23.53,
+            "note": "объём всего $20,144,260, за 24ч $64,430"
           },
           "liquidity": {
-            "score": 100,
+            "score": 96.2,
             "weight": 20,
-            "weighted": 20.0,
-            "note": "ликвидность $549,214"
+            "weighted": 19.24,
+            "note": "ликвидность $373,043"
           },
           "news_driver": {
-            "score": 49.1,
+            "score": 42.1,
             "weight": 25,
-            "weighted": 12.27,
-            "note": "ключевых тем: 0, активность 24ч/всего: 0.19% + LLM",
-            "llmScore": 70.0
+            "weighted": 10.54,
+            "note": "ключевых тем: 2, активность 24ч/всего: 0.32% + LLM",
+            "llmScore": 50.0
           },
           "resolution_clarity": {
-            "score": 79.5,
+            "score": 83.0,
             "weight": 15,
-            "weighted": 11.93,
+            "weighted": 12.45,
             "note": "развёрнутое описание, есть правила резолва, бинарный исход, есть дедлайн + LLM",
-            "llmScore": 75.0
+            "llmScore": 80.0
           },
           "time_to_money": {
             "score": 35,
@@ -986,10 +986,10 @@
             "note": "до резолва ~198 дн."
           },
           "price_quality": {
-            "score": 40,
+            "score": 75,
             "weight": 5,
-            "weighted": 2.0,
-            "note": "лидирующая вероятность ~6%"
+            "weighted": 3.75,
+            "note": "лидирующая вероятность ~10%"
           }
         },
         "hardGates": {
