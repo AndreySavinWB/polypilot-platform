@@ -16,21 +16,18 @@
   ];
 
   const CHECK_ITEMS = [
-    { label: "формулировка события", test: (ev) => !!ev.title },
-    { label: "дата закрытия", test: (ev) => !!ev.resolveDate },
-    { label: "текущая вероятность рынка", test: (ev) => ev.marketOdds != null },
-    { label: "источники данных", test: (ev) => (ev.warRoom?.agents || []).length > 1 },
-    { label: "похожие события", test: () => false },
-    { label: "противоречия", test: (ev) => Math.abs((ev.aiOdds || 0) - (ev.marketOdds || 0)) >= 8 },
-    { label: "риски", test: (ev) => !!(ev.riskTags?.length || ev.riskLevel) },
+    { label: "Формулировка события", test: (ev) => !!ev.title },
+    { label: "Дата и условия закрытия", test: (ev) => !!ev.resolveDate },
+    { label: "Рынок (Polymarket)", test: (ev) => ev.marketOdds != null },
+    { label: "Источники и новости", test: (ev) => (ev.warRoom?.agents || []).length > 1 },
+    { label: "Похожие исторические события", test: () => false },
+    { label: "Противоречия между источниками", test: (ev) => Math.abs((ev.aiOdds || 0) - (ev.marketOdds || 0)) >= 8 },
+    { label: "Риски и неизвестные", test: (ev) => !!(ev.riskTags?.length || ev.riskLevel) },
   ];
-
-  const SOURCE_LIST =
-    "новости · официальные источники · X / Reddit · Google Trends · YouTube / медиа · " +
-    "похожие события · история Polymarket · внешние аналитические сервисы";
 
   const ICON_BRAIN = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a4 4 0 0 1 4 4c0 .8-.2 1.5-.6 2.1A4 4 0 0 1 16 17a4 4 0 0 1-8 0 4 4 0 0 1-.4-7.9A4 4 0 0 1 12 3z"/><path d="M8 10H6a2 2 0 0 0 0 4h2"/><path d="M16 10h2a2 2 0 0 1 0 4h-2"/></svg>`;
   const ICON_SHIELD = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V6l8-3z"/></svg>`;
+  const ICON_TREND = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4,16 9,11 13,15 20,6"/><polyline points="15,6 20,6 20,11"/></svg>`;
 
   function escapeHtml(value) {
     return String(value)
@@ -247,23 +244,23 @@
       label: item.label,
       done: item.test(ev),
     }));
+
     return `
-      <section class="so-section">
-        <h2 class="so-section-title">Что мы проверили</h2>
-        <div class="so-check-grid">
+      <section class="so-checked-card">
+        <div class="so-checked-head">
+          <span class="so-checked-icon">${ICON_TREND}</span>
+          <h2 class="so-checked-title">Что мы проверили</h2>
+        </div>
+        <div class="so-checked-chips">
           ${checks
             .map(
               (c) => `
-            <div class="so-check-item ${c.done ? "done" : ""}">
-              <span class="so-check-mark">${c.done ? "✓" : "·"}</span>
+            <span class="so-check-chip ${c.done ? "done" : ""}">
+              <span class="so-check-chip-mark">${c.done ? "✓" : "·"}</span>
               ${escapeHtml(c.label)}
-            </div>`
+            </span>`
             )
             .join("")}
-        </div>
-        <div class="so-sources">
-          <strong>Источники</strong>
-          ${escapeHtml(SOURCE_LIST)}
         </div>
       </section>`;
   }

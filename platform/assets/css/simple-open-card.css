@@ -268,50 +268,82 @@
   color: rgba(255, 255, 255, 0.28);
 }
 
-.so-check-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 6px 16px;
-  margin-bottom: 14px;
+.so-checked-card {
+  margin-bottom: 28px;
+  padding: 18px 20px 20px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
-@media (max-width: 900px) { .so-check-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 560px) { .so-check-grid { grid-template-columns: 1fr; } }
-.so-check-item {
+.so-checked-head {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.55);
+  gap: 10px;
+  margin-bottom: 16px;
 }
-.so-check-item.done { color: rgba(255, 255, 255, 0.78); }
-.so-check-mark {
-  width: 18px;
-  height: 18px;
+.so-checked-icon {
+  width: 28px;
+  height: 28px;
   border-radius: 999px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 10px;
+  flex-shrink: 0;
+  color: #c4b5fd;
+  background: rgba(124, 58, 237, 0.18);
+  border: 1px solid rgba(124, 58, 237, 0.28);
+}
+.so-checked-icon svg {
+  width: 15px;
+  height: 15px;
+}
+.so-checked-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+  color: rgba(255, 255, 255, 0.92);
+}
+.so-checked-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.so-check-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: rgba(255, 255, 255, 0.52);
+  background: rgba(15, 18, 34, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+.so-check-chip.done {
+  color: rgba(255, 255, 255, 0.82);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.09);
+}
+.so-check-chip-mark {
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 700;
   flex-shrink: 0;
   background: rgba(255, 255, 255, 0.06);
-  color: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.28);
 }
-.so-check-item.done .so-check-mark {
-  background: rgba(74, 222, 128, 0.15);
+.so-check-chip.done .so-check-chip-mark {
+  background: rgba(74, 222, 128, 0.14);
+  border: 1px solid rgba(74, 222, 128, 0.32);
   color: #86efac;
-}
-.so-sources {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.38);
-  line-height: 1.6;
-}
-.so-sources strong {
-  display: block;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: rgba(255, 255, 255, 0.45);
-  margin-bottom: 6px;
 }
 
 .so-actions {
