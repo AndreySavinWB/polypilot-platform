@@ -1,25 +1,6 @@
 [
   {
     "testNo": 1,
-    "id": "30615",
-    "title": "World Cup Winner ",
-    "tags": [
-      "hot",
-      "multi_market"
-    ],
-    "priorityScore": 81.7,
-    "priorityDecision": "accepted",
-    "priorityRank": 1,
-    "riskLevel": "medium",
-    "pipelineStatus": "branch_resolution_unclear",
-    "titleRu": "Кто станет победителем Кубка мира?",
-    "eventType": "elections",
-    "ppVerdict": "Событие имеет высокий интерес, но результаты остаются неопределенными.",
-    "confidence": 75,
-    "sourceUrl": "https://polymarket.com/event/world-cup-winner"
-  },
-  {
-    "testNo": 2,
     "id": "32228",
     "title": "Balance of Power: 2026 Midterms",
     "tags": [
@@ -27,19 +8,19 @@
       "multi_market",
       "news_driven"
     ],
-    "priorityScore": 80.4,
+    "priorityScore": 81.9,
     "priorityDecision": "accepted",
-    "priorityRank": 2,
+    "priorityRank": 1,
     "riskLevel": "low",
     "pipelineStatus": "v1_0g_complete",
     "titleRu": "Каков баланс сил на промежуточных выборах 2026 года?",
     "eventType": "elections",
-    "ppVerdict": "Событие имеет высокую вероятность значительного влияния на политическую ситуацию в США.",
+    "ppVerdict": "Событие имеет высокую степень неопределенности, но четкие критерии резолва позволяют делать обоснованные прогнозы.",
     "confidence": 75,
     "sourceUrl": "https://polymarket.com/event/balance-of-power-2026-midterms"
   },
   {
-    "testNo": 3,
+    "testNo": 2,
     "id": "51456",
     "title": "How many Fed rate cuts in 2026?",
     "tags": [
@@ -47,19 +28,19 @@
       "multi_market",
       "news_driven"
     ],
-    "priorityScore": 80.1,
+    "priorityScore": 81.4,
     "priorityDecision": "accepted",
-    "priorityRank": 3,
+    "priorityRank": 2,
     "riskLevel": "medium",
     "pipelineStatus": "branch_resolution_unclear",
     "titleRu": "Сколько будет снижений ставки ФРС в 2026 году?",
     "eventType": "regulatory",
-    "ppVerdict": "Событие имеет высокую степень неопределенности из-за будущих экономических условий и решений ФРС.",
+    "ppVerdict": "Событие имеет высокую степень не��пределенности из-за непредсказуемости действий ФРС.",
     "confidence": 75,
     "sourceUrl": "https://polymarket.com/event/how-many-fed-rate-cuts-in-2026"
   },
   {
-    "testNo": 4,
+    "testNo": 3,
     "id": "32225",
     "title": "Which party will win the House in 2026?",
     "tags": [
@@ -67,36 +48,55 @@
       "multi_market",
       "news_driven"
     ],
-    "priorityScore": 79.6,
+    "priorityScore": 79.9,
     "priorityDecision": "accepted",
-    "priorityRank": 4,
+    "priorityRank": 3,
     "riskLevel": "medium",
     "pipelineStatus": "branch_resolution_unclear",
     "titleRu": "Какая партия выиграет выборы в Палату представителей в 2026?",
     "eventType": "elections",
-    "ppVerdict": "Событие имеет высокую степень неопределенности из-за возможных изменений в политической ситуации до выборов.",
-    "confidence": 70,
+    "ppVerdict": "Рынок имеет высокую вероятность, что Демократическая партия получит контроль над Палатой представителей после выборов 20",
+    "confidence": 82,
     "sourceUrl": "https://polymarket.com/event/which-party-will-win-the-house-in-2026"
   },
   {
-    "testNo": 5,
-    "id": "32224",
-    "title": "Which party will win the Senate in 2026?",
+    "testNo": 4,
+    "id": "60182",
+    "title": "Nobel Peace Prize Winner 2026",
     "tags": [
       "hot",
       "multi_market",
       "news_driven"
     ],
-    "priorityScore": 77.6,
+    "priorityScore": 79.8,
+    "priorityDecision": "accepted",
+    "priorityRank": 4,
+    "riskLevel": "medium",
+    "pipelineStatus": "branch_resolution_unclear",
+    "titleRu": "Кто станет лауреатом Нобелевской премии мира в 2026 году?",
+    "eventType": "elections",
+    "ppVerdict": "Событие имеет высокую степень неопределенности из-за отсутствия информации о кандидатах на Нобелевскую премию мира в 202",
+    "confidence": 70,
+    "sourceUrl": "https://polymarket.com/event/nobel-peace-prize-winner-2026-139"
+  },
+  {
+    "testNo": 5,
+    "id": "30615",
+    "title": "World Cup Winner ",
+    "tags": [
+      "hot",
+      "multi_market"
+    ],
+    "priorityScore": 78.2,
     "priorityDecision": "accepted",
     "priorityRank": 5,
     "riskLevel": "medium",
     "pipelineStatus": "branch_resolution_unclear",
-    "titleRu": "Какая партия выиграет выборы в Сенат в 2026 году?",
+    "titleRu": "Кто станет победителем Кубка мира?",
     "eventType": "elections",
-    "ppVerdict": "Исход выборов в Сенат в 2026 году будет зависеть от официальных результатов голосования.",
+    "ppVerdict": "Событие имеет высокую вероятность интереса, но есть много неопределенностей до начала турнира.",
     "confidence": 75,
-    "sourceUrl": "https://polymarket.com/event/which-party-will-win-the-senate-in-2026"
+    "sourceUrl": "https://polymarket.com/event/world-cup-winner"
   },
   {
     "testNo": 6,
@@ -106,89 +106,90 @@
       "hot",
       "multi_market"
     ],
-    "priorityScore": 76.8,
+    "priorityScore": 77.8,
     "priorityDecision": "accepted",
     "priorityRank": 6,
     "riskLevel": "medium",
     "pipelineStatus": "branch_resolution_unclear",
-    "titleRu": "Какая компания имеет лучшую модель ИИ на конец июня?",
+    "titleRu": "Какая компания имеет лучший ИИ-модель на конец июня?",
     "eventType": "crypto",
-    "ppVerdict": "Событие имеет четкие критерии для резолва, но его долгосрочный характер создает риски.",
+    "ppVerdict": "Событие имеет низкий уровень риска, но требует дальнейшего исследования.",
     "confidence": 75,
     "sourceUrl": "https://polymarket.com/event/which-company-has-best-ai-model-end-of-june"
   },
   {
     "testNo": 7,
-    "id": "31195",
-    "title": "Putin out as President of Russia by December 31, 2026?",
+    "id": "32224",
+    "title": "Which party will win the Senate in 2026?",
     "tags": [
-      "hot"
+      "hot",
+      "multi_market",
+      "news_driven"
     ],
-    "priorityScore": 76.1,
+    "priorityScore": 77.8,
     "priorityDecision": "accepted",
     "priorityRank": 7,
-    "riskLevel": "low",
-    "pipelineStatus": "v1_0g_complete",
-    "titleRu": "Путин уйдет с поста президента России до 31 декабря 2026 года?",
+    "riskLevel": "medium",
+    "pipelineStatus": "branch_resolution_unclear",
+    "titleRu": "Какая партия выиграет выборы в Сенат в 2026 году?",
     "eventType": "elections",
-    "ppVerdict": "Вероятность того, что Владимир Путин уйдет с поста президента до конца 2026 года, остается низкой.",
-    "confidence": 30,
-    "sourceUrl": "https://polymarket.com/event/putin-out-before-2027"
+    "ppVerdict": "Событие имеет четкие критерии разрешения и значительный объем торгов, что делает его интересным для наблюдения.",
+    "confidence": 75,
+    "sourceUrl": "https://polymarket.com/event/which-party-will-win-the-senate-in-2026"
   },
   {
     "testNo": 8,
-    "id": "72347",
-    "title": "Will the Iranian regime fall before 2027?",
-    "tags": [
-      "hot"
-    ],
-    "priorityScore": 75.4,
-    "priorityDecision": "accepted",
-    "priorityRank": 8,
-    "riskLevel": "low",
-    "pipelineStatus": "v1_0g_complete",
-    "titleRu": "Падёт ли иранский режим до 2027 года?",
-    "eventType": "crypto",
-    "ppVerdict": "Существует вероятность, что иранский режим может упасть до конца 2026 года, но это зависит от множества факторов.",
-    "confidence": 65,
-    "sourceUrl": "https://polymarket.com/event/will-the-iranian-regime-fall-by-the-end-of-2026"
-  },
-  {
-    "testNo": 9,
     "id": "73969",
     "title": "Trump out as President before 2027?",
     "tags": [
       "hot",
       "news_driven"
     ],
-    "priorityScore": 75.1,
+    "priorityScore": 77.2,
     "priorityDecision": "accepted",
-    "priorityRank": 9,
+    "priorityRank": 8,
     "riskLevel": "low",
     "pipelineStatus": "v1_0g_complete",
     "titleRu": "Трамп уйдет с поста президента до 2027 года?",
     "eventType": "elections",
-    "ppVerdict": "Существует вероятность того, что Трамп может покинуть пост президента до 2027 года.",
-    "confidence": 75,
+    "ppVerdict": "Вероятность того, что Дональд Трамп уйдет в отставку или будет удален с поста президента до 2027 года, существует, но он",
+    "confidence": 60,
     "sourceUrl": "https://polymarket.com/event/trump-out-as-president-before-2027"
   },
   {
-    "testNo": 10,
-    "id": "60182",
-    "title": "Nobel Peace Prize Winner 2026",
+    "testNo": 9,
+    "id": "31195",
+    "title": "Putin out as President of Russia by December 31, 2026?",
     "tags": [
-      "hot",
-      "multi_market"
+      "hot"
     ],
-    "priorityScore": 74.5,
+    "priorityScore": 75.9,
+    "priorityDecision": "accepted",
+    "priorityRank": 9,
+    "riskLevel": "low",
+    "pipelineStatus": "v1_0g_complete",
+    "titleRu": "Путин уйдет с поста президента России до 31 декабря 2026 года?",
+    "eventType": "elections",
+    "ppVerdict": "Существует вероятность того, что Владимир Путин уйдет с поста президента России до конца 2026 года.",
+    "confidence": 65,
+    "sourceUrl": "https://polymarket.com/event/putin-out-before-2027"
+  },
+  {
+    "testNo": 10,
+    "id": "34044",
+    "title": "Will China invade Taiwan by end of 2026?",
+    "tags": [
+      "hot"
+    ],
+    "priorityScore": 73.3,
     "priorityDecision": "accepted",
     "priorityRank": 10,
-    "riskLevel": "medium",
-    "pipelineStatus": "branch_resolution_unclear",
-    "titleRu": "Кто станет лауреатом Нобелевской премии мира в 2026 году?",
-    "eventType": "elections",
-    "ppVerdict": "Событие имеет высокую степень неопределенности из-за отсутствия информации о кандидатах на Нобелевскую премию мира 2026 ",
-    "confidence": 65,
-    "sourceUrl": "https://polymarket.com/event/nobel-peace-prize-winner-2026-139"
+    "riskLevel": "low",
+    "pipelineStatus": "v1_0g_complete",
+    "titleRu": "Китай вторгнется на Тайвань до конца 2026 года?",
+    "eventType": "crypto",
+    "ppVerdict": "Существует высокая вероятность того, что Китай может начать военные действия против Тайваня до конца 2026 года.",
+    "confidence": 75,
+    "sourceUrl": "https://polymarket.com/event/will-china-invade-taiwan-before-2027"
   }
 ]
