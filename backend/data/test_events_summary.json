@@ -15,8 +15,8 @@
     "pipelineStatus": "v1_0g_complete",
     "titleRu": "Аргентина долларизуется до 30 июня 2026 года?",
     "eventType": "crypto",
-    "ppVerdict": "На данный момент нет достаточных оснований полагать, что Аргентина долларизует свою экономику до 30 июня 2026 года.",
-    "confidence": 65,
+    "ppVerdict": "Скорее всего, Аргентина не начнет долларизацию до 30 июня 2026 года.",
+    "confidence": 75,
     "sourceUrl": "https://polymarket.com/event/will-argentina-dollarize-by-june-30-2026"
   },
   {
@@ -35,7 +35,7 @@
     "pipelineStatus": "v1_0g_complete",
     "titleRu": "Состоятся ли прямые переговоры между Северной и Южной Кореей до 30 июня?",
     "eventType": "geopolitics",
-    "ppVerdict": "На данный момент маловероятно, что Северная и Южная Корея проведут прямые переговоры до июня 2026 года.",
+    "ppVerdict": "Скорее всего, Северная и Южная Корея не начнут прямые переговоры до 30 июня 2026 года.",
     "confidence": 65,
     "sourceUrl": "https://polymarket.com/event/will-north-and-south-korea-engage-in-direct-talks-by-2027"
   },
@@ -50,12 +50,12 @@
     "priorityScore": 86.0,
     "priorityDecision": "accepted",
     "priorityRank": 3,
-    "riskLevel": "low",
+    "riskLevel": "medium",
     "pipelineStatus": "v1_0g_complete",
     "titleRu": "Станет ли китайская модель ИИ номером 1 к 30 июня?",
     "eventType": "crypto",
-    "ppVerdict": "На данный момент невозможно точно предсказать, станет ли китайская модель ИИ номером один к 30 июня.",
-    "confidence": 60,
+    "ppVerdict": "Существует вероятность, что китайская модель ИИ может занять первое место к 30 июня.",
+    "confidence": 70,
     "sourceUrl": "https://polymarket.com/event/will-a-chinese-ai-model-become-1-by-june-30"
   },
   {
@@ -74,7 +74,7 @@
     "pipelineStatus": "v1_0g_complete",
     "titleRu": "Запустит ли Tesla роботакси в Калифорнии до 30 июня?",
     "eventType": "crypto",
-    "ppVerdict": "Существует вероятность того, что Тесла запустит сервис роботакси в Калифорнии до 30 июня 2026 года.",
+    "ppVerdict": "Существует вероятность того, что Тесла запустит роботакси в Калифорнии до 30 июня 2026 года.",
     "confidence": 65,
     "sourceUrl": "https://polymarket.com/event/will-tesla-launch-robotaxis-in-california-by-june-30"
   },
@@ -94,7 +94,7 @@
     "pipelineStatus": "v1_0g_complete",
     "titleRu": "Тейлор Свифт беременна до свадьбы?",
     "eventType": "crypto",
-    "ppVerdict": "На данный момент вероятность беременности Тейлор Свифт до замужества низкая.",
+    "ppVerdict": "На данный момент вероятность того, что Тейлор Свифт объявит о беременности до свадьбы, низкая.",
     "confidence": 65,
     "sourceUrl": "https://polymarket.com/event/taylor-swift-pregnant-before-marriage"
   }
