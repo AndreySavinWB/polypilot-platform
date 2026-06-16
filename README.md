@@ -74,3 +74,11 @@ cd backend
 ## GitHub
 
 https://github.com/AndreySavinWB/polypilot-platform
+
+## Переезд на новый ПК
+
+Инструкция: `PolyPilot-Штаб/00_Старт/ПЕРЕХОД_НА_НОВЫЙ_ПК.md` · чеклист: `MIGRATION_CHECKLIST.md`
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\migration\backup-before-move.ps1
+```

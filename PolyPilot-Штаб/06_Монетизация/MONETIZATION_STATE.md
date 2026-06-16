@@ -7,6 +7,7 @@
 ## Текущий Статус
 
 **Фаза:** dual-track утверждён CEO · **Funnel 1.0 + Starter запущены** (2026-06-14).  
+**Track A:** Event Content Pack #1 **ready to publish** → CEO 72h sprint.  
 **Владелец:** `05_CRO / Monetization Manager`  
 **CEO-статус:** Track A Starter (primary) · Track B referral после $10k gate.
 
@@ -365,18 +366,44 @@ Telegram / community:
 
 ---
 
+## Event Content Pack #1 (Track A)
+
+| Field | Value |
+|-------|-------|
+| Pack ID | `PACK_001` |
+| Файл | [packs/PACK_001_FED_RATE_CUTS_2026.md](../05_Маркетинг/FUNNEL_1_0/packs/PACK_001_FED_RATE_CUTS_2026.md) |
+| event_id | `live-51456` |
+| Событие | How many Fed rate cuts in 2026? |
+| Статус | **ready to publish** (2026-06-14) |
+| PIE data | reference snapshot · `rules_v0` · `preliminary` · `collectionStatus=partial` |
+| Primary strategy | `education` · verdict `education_case` |
+| CTA chain | guest-event → bot `event_live-51456` → Starter T+48h |
+
+**Assets в пакете:** 3 Short scripts · 3 TG posts · X thread (6) · visual brief (4 cards) · 72h schedule · CEO manual vs automate.
+
+**KPI недели Pack #1:**
+
+| Metric | Target | Actual |
+|--------|--------|--------|
+| Pack published (TG + ≥1 Short) | 1 | — |
+| guest-event clicks from TG | ≥3 | — |
+| bot `/starter` applications | ≥1 | — |
+| Starter payment / pre-orders | 1 или 5 | — |
+
+**CEO action (T+0):** Post 1 + Short A → @polypilot_pro · guest-event UTM `utm_source=tg`.
+
+---
+
 ## Следующий Шаг CRO
 
-CEO утвердил dual-track (2026-06-14). **Запуск:**
+Pack #1 готов. **CEO публикует 72h sprint.**
 
 ```text
-1. Funnel 1.0 LAUNCH — PolyPilot-Штаб/05_Маркетинг/FUNNEL_1_0/LAUNCH.md
-2. Starter offer — PolyPilot-Штаб/06_Монетизация/STARTER_OFFER.md
-3. Landing — platform/app/starter.html
-4. Guest funnel — platform/app/guest-event.html
-5. Funnel config — platform/assets/js/pp-config.js
-6. $10k volume plan — VOLUME_10K_PLAN.md
-7. Disclosure — AFFILIATE_DISCLOSURE.md
-8. Backend/UI: real PIE-output в event.html (parallel)
+✓ Event Content Pack #1 — PACK_001_FED_RATE_CUTS_2026.md
+→ CEO: T+0 Post 1 + Short A + X thread (T+2h)
+→ CEO: T+24h Post 2 + Short B
+→ CEO: T+48h Post 3 (Starter CTA) + Short C
+→ CRO: фиксация метрик · Pack #2 после baseline
+Parallel: Railway Public URL → PP_PROD_API_BASE (live PIE)
 ```
 

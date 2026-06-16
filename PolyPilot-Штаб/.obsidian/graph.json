@@ -6,17 +6,60 @@
   "hideUnresolved": false,
   "showOrphans": true,
   "collapse-color-groups": true,
-  "colorGroups": [],
+  "colorGroups": [
+    {
+      "query": "file:ГЛАВНАЯ_СТРАНИЦА OR file:AI_КАРТОЧКА_СОБЫТИЯ OR file:МЕНЮ_ПЛАТФОРМЫ OR file:МОНЕТИЗАЦИЯ",
+      "color": {
+        "a": 1,
+        "rgb": 10048224
+      }
+    },
+    {
+      "query": "file:INTELLIGENCE_ENGINE_MVP OR file:PROBABILITY_INTELLIGENCE_ENGINE OR file:SOURCE_SCORING_SYSTEM OR file:EVENT_TYPE_CLASSIFIER",
+      "color": {
+        "a": 1,
+        "rgb": 3566291
+      }
+    },
+    {
+      "query": "file:ЛАБОРАТОРИЯ_АГЕНТОВ OR file:АРХИТЕКТУРА_АГЕНТОВ OR file:ПРИОРИТЕТ_АГЕНТ",
+      "color": {
+        "a": 1,
+        "rgb": 718129
+      }
+    },
+    {
+      "query": "file:INTELLIGENCE_DATA_FLOW OR file:СХЕМА_ДАННЫХ_СОБЫТИЯ OR file:MARKET_STRUCTURE_ANALYZER",
+      "color": {
+        "a": 1,
+        "rgb": 12569727
+      }
+    },
+    {
+      "query": "file:КОНТЕКСТ_ПРОЕКТА OR file:СТРУКТУРА_ПРОЕКТА OR file:ДОРОЖНАЯ_КАРТА OR file:ДОРОЖНАЯ_КАРТА_ОНЛАЙН",
+      "color": {
+        "a": 1,
+        "rgb": 16711680
+      }
+    },
+    {
+      "query": "file:ВИЗУАЛЬНЫЙ_СТИЛЬ OR file:04_ИНТЕРФЕЙС OR file:CURRENT_UI_STATUS OR file:CURRENT_UI_STATUS_FULL",
+      "color": {
+        "a": 1,
+        "rgb": 16514816
+      }
+    }
+  ],
   "collapse-display": false,
   "showArrow": true,
-  "textFadeMultiplier": 0,
-  "nodeSizeMultiplier": 1,
-  "lineSizeMultiplier": 1,
+  "textFadeMultiplier": -2.1,
+  "nodeSizeMultiplier": 1.60572916666667,
+  "lineSizeMultiplier": 0.6359375,
   "collapse-forces": false,
-  "centerStrength": 0.518713248970312,
-  "repelStrength": 10,
-  "linkStrength": 1,
-  "linkDistance": 431,
-  "scale": 1.4019828977760882,
+  "centerStrength": 0.723958333333333,
+  "repelStrength": 20,
+  "linkStrength": 0,
+  "linkDistance": 500,
+  "scale": 0.5359795996225741,
   "close": false
 }

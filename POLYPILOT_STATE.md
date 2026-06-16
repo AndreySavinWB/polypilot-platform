@@ -6,8 +6,26 @@
 
 ## Последний коммит
 
-**SHA:** `bc48e47` · OPEN CARD v2 baseline (9 секций, empty-state always-on)  
-**Дата:** 2026-06-14
+**SHA:** `c498722` · feed «Что смотреть сейчас» (spacing + typography)  
+**Дата:** 2026-06-14  
+**OPEN CARD baseline:** `bc48e47`
+
+---
+
+## Переезд на новый ПК (Windows)
+
+> **14.06.2026** — подготовлен полный пакет миграции.
+
+| Документ | Назначение |
+|----------|------------|
+| `PolyPilot-Штаб/00_Старт/ПЕРЕХОД_НА_НОВЫЙ_ПК.md` | дорожная карта + объяснение |
+| `MIGRATION_CHECKLIST.md` | чеклист на 1 страницу |
+| `scripts/migration/backup-before-move.ps1` | бэкап `.env`, `.runtime`, Cursor |
+| `scripts/migration/setup-new-pc.ps1` | проверка на новом ПК |
+
+**На старом ПК сейчас:** `git push` → `backup-before-move.ps1` → флешка/облако.
+
+**GitHub (источник правды для кода):** https://github.com/AndreySavinWB/polypilot-platform
 
 ---
 
@@ -35,6 +53,11 @@
   - Source Scoring System
   - Probability Formula v1.1
 - Полный UI-аудит платформы выполнен; обновлён 14.06 под OPEN CARD v2.
+- **Events feed v2 (лента «Что смотреть сейчас») — ✅ 14.06.2026:**
+  - `platform/app/events.html` + `simple-closed-card.js` → `renderFeedRow()`
+  - одна строка: Рынок + шкала | PolyPilot + шкала | статус
+  - фильтры feature + category, сортировка по edge
+  - Commits: `5342f76` → `9d3a2f7` → `c498722`
 - **OPEN CARD v2 (Simple Open Card) — visual baseline ✅ 14.06.2026:**
   - `platform/assets/js/simple-open-card.js` — единый `renderPage()` для demo + live
   - 9 секций: вердикт → почему/риски → комментарии → PMA → киты → проверили → итог → CTA → изменения
