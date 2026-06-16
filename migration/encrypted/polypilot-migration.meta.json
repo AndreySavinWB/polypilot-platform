@@ -1,0 +1,11 @@
+﻿{
+    "plainSizeBytes":  11181983,
+    "iterations":  200000,
+    "kdf":  "PBKDF2-SHA256",
+    "cipherSizeBytes":  11181984,
+    "version":  1,
+    "algorithm":  "AES-256-CBC",
+    "created":  "2026-06-16T15:10:46.1626766+03:00",
+    "saltBase64":  "etto6WszfcMKLD5YFKXrsQ==",
+    "ivBase64":  "ooyrtj79BBdWYyfGd3XrzA=="
+}

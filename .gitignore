@@ -1,6 +1,7 @@
 # Secrets
 .env
 **/.env
+migration/encrypted/PASSWORD.local.txt
 
 # Backend runtime (portable Python — install on server separately)
 backend/.runtime/

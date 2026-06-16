@@ -9,17 +9,17 @@
 - [ ] Проверить в бэкапе: `backend.env`, `backend.runtime`
 - [ ] Пароли: GitHub, Polza, Telegram, Vercel, Railway — в менеджере паролей
 
-## На новом ПК
+## На новом ПК (самый простой путь — через GitHub)
 
-- [ ] Установить: Git, Cursor, Obsidian (+ Python 3.12 или копия `.runtime`)
 - [ ] `git clone https://github.com/AndreySavinWB/polypilot-platform.git` → `d:\Andrey\PolyPilot`
-- [ ] Восстановить `backend\.env` из бэкапа
-- [ ] Восстановить `backend\.runtime` или установить Python
-- [ ] `scripts\migration\setup-new-pc.ps1`
-- [ ] Obsidian vault → `PolyPilot-Штаб`
-- [ ] Cursor → открыть `d:\Andrey\PolyPilot`, прочитать `POLYPILOT_STATE.md`
+- [ ] Открыть пароль из менеджера паролей (файл `migration/encrypted/PASSWORD.local.txt` только на **старом** ПК)
+- [ ] `$env:PP_MIGRATION_PASSWORD = "..."` → `scripts\migration\restore-from-github.ps1`
 - [ ] `backend\run.ps1` → `/health` OK
-- [ ] Браузер: https://polypilot-platform.vercel.app/app/events.html
+
+## На старом ПК (если ещё не сделано)
+
+- [ ] `git pull` + `git push` (весь код + `migration/encrypted/polypilot-migration.enc`)
+- [ ] Сохранить пароль из `migration/encrypted/PASSWORD.local.txt` в менеджер паролей / Telegram «Избранное»
 
 ## После переезда (продолжение работы)
 
