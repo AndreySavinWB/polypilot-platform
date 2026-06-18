@@ -102,6 +102,8 @@ class Handler(BaseHTTPRequestHandler):
                     "onRailway": bool(
                         os.getenv("RAILWAY_ENVIRONMENT") or os.getenv("RAILWAY_PROJECT_ID")
                     ),
+                    "railwayEnvironment": os.getenv("RAILWAY_ENVIRONMENT"),
+                    "railwayService": os.getenv("RAILWAY_SERVICE_NAME"),
                     "configuredEnvKeys": sorted(
                         k for k in os.environ
                         if k.startswith("TELEGRAM_") or k in ("CEO_BRIEF_SECRET", "PUBLIC_BACKEND_URL", "DAILY_PUBLISH_START_DATE")
@@ -208,6 +210,9 @@ class Handler(BaseHTTPRequestHandler):
 
 if __name__ == "__main__":
     load_env()
+    from src.bot.config import apply_bot_env_blob
+
+    apply_bot_env_blob()
     port = int(os.getenv("PORT", "8787"))
     host = os.getenv("HOST", "0.0.0.0")
     from src.bot import config as bot_config

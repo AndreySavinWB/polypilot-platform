@@ -1,4 +1,25 @@
+import base64
 import os
+
+
+def apply_bot_env_blob():
+    """Fallback: один Railway var PP_BOT_ENV = base64(.env telegram block)."""
+    blob = os.getenv("PP_BOT_ENV", "").strip()
+    if not blob:
+        return
+    try:
+        text = base64.b64decode(blob).decode("utf-8")
+    except (ValueError, UnicodeDecodeError):
+        return
+    for line in text.splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        key = key.strip()
+        value = value.strip().strip('"').strip("'")
+        if key and key not in os.environ:
+            os.environ[key] = value
 
 
 def _env(name: str) -> str:
@@ -38,3 +59,6 @@ def ceo_chat_id():
 
 def is_configured():
     return bool(bot_token())
+
+
+apply_bot_env_blob()
