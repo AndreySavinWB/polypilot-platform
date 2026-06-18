@@ -96,7 +96,53 @@ class Handler(BaseHTTPRequestHandler):
                 self._send_json(200, {
                     "ok": True,
                     "telegramConfigured": bot_config.is_configured(),
+                    "ceoChatConfigured": bool(bot_config.ceo_chat_id()),
+                    "publicBackendConfigured": bool(bot_config.public_backend_url()),
+                    "briefSecretConfigured": bool(bot_config.ceo_brief_secret()),
                 })
+                return
+
+            if parsed.path == "/api/telegram/setup-webhook":
+                from src.bot import config as bot_config, telegram_api
+
+                params = parse_qs(parsed.query)
+                key = (params.get("key") or [""])[0]
+                secret = bot_config.ceo_brief_secret()
+                if not secret or key != secret:
+                    self._send_json(403, {"error": "Invalid or missing key"})
+                    return
+                if not bot_config.is_configured():
+                    self._send_json(503, {"error": "TELEGRAM_BOT_TOKEN not set on server"})
+                    return
+                base = bot_config.public_backend_url()
+                if not base:
+                    self._send_json(503, {"error": "PUBLIC_BACKEND_URL not set on server"})
+                    return
+                token = bot_config.bot_token()
+                hook = f"{base}/api/telegram/webhook"
+                wh_secret = bot_config.webhook_secret() or None
+                result = telegram_api.set_webhook(token, hook, secret_token=wh_secret)
+                self._send_json(200, {"ok": True, "webhook": hook, "telegram": result})
+                return
+
+            if parsed.path == "/api/ceo/brief/send":
+                from src.bot import config as bot_config
+                from src.bot.ceo_brief import send_morning_brief_to_ceo
+
+                params = parse_qs(parsed.query)
+                key = (params.get("key") or [""])[0]
+                secret = bot_config.ceo_brief_secret()
+                if not secret or key != secret:
+                    self._send_json(403, {"error": "Invalid or missing key"})
+                    return
+                if not bot_config.is_configured():
+                    self._send_json(503, {"error": "TELEGRAM_BOT_TOKEN not set on server"})
+                    return
+                if not bot_config.ceo_chat_id():
+                    self._send_json(503, {"error": "TELEGRAM_CEO_CHAT_ID not set on server"})
+                    return
+                result = send_morning_brief_to_ceo()
+                self._send_json(200, result)
                 return
 
             self._send_json(404, {"error": "Not found"})
@@ -157,6 +203,11 @@ if __name__ == "__main__":
     load_env()
     port = int(os.getenv("PORT", "8787"))
     host = os.getenv("HOST", "0.0.0.0")
+    from src.bot import config as bot_config
+
+    has_tg = bot_config.is_configured()
+    has_ceo = bool(bot_config.ceo_chat_id())
+    print(f"[boot] telegram_token={'yes' if has_tg else 'NO'} ceo_chat={'yes' if has_ceo else 'NO'}")
     server = ThreadingHTTPServer((host, port), Handler)
     print(f"PolyPilot backend running on http://{host}:{port}")
     server.serve_forever()

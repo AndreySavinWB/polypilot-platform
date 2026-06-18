@@ -8,7 +8,7 @@
   "collapse-color-groups": true,
   "colorGroups": [
     {
-      "query": "file:ГЛАВНАЯ_СТРАНИЦА OR file:AI_КАРТОЧКА_СОБЫТИЯ OR file:МЕНЮ_ПЛАТФОРМЫ OR file:МОНЕТИЗАЦИЯ",
+      "query": "file:ГЛАВНАЯ_СТРАНИЦА OR file:AI_КАРТОЧКА_СОБЫТИЯ OR file:МЕНЮ_ПЛАТФОРМЫ OR file:MONETIZATION_STATE",
       "color": {
         "a": 1,
         "rgb": 10048224

@@ -6,15 +6,31 @@
 
 ## Последний коммит
 
-**SHA:** `c498722` · feed «Что смотреть сейчас» (spacing + typography)  
-**Дата:** 2026-06-14  
+**SHA:** `52f0ad5` · chore: auto harvest live events  
+**Дата:** 2026-06-16  
 **OPEN CARD baseline:** `bc48e47`
+
+---
+
+## Структура документации (17.06.2026)
+
+**Структурный рефакторинг v1 ✅:**
+
+| Изменение | Файл |
+|-----------|------|
+| Master-index документов | `PolyPilot-Штаб/00_Старт/DOC_INDEX.md` |
+| `06_Идеи` → `08_Идеи` | нумерация папок без конфликта |
+| Монетизация v1 → архив | `99_Архив/МОНЕТИЗАЦИЯ_v1_GUEST_PULSE_PRO.md` + stub [[МОНЕТИЗАЦИЯ]] |
+| PIE v1.2 → архив | `99_Архив/PIE_V1_2_АРХИВ.md` + stub [[PIE_V1_2_ФИНАЛЬНАЯ_АРХИТЕКТУРА]] |
+| CEO OS §7 синхронизирован | bottleneck = этап 4c |
+
+**Правило для AI-чатов:** `POLYPILOT_STATE.md` → `DOC_INDEX.md` → не создавать новый `.md` без проверки индекса.
 
 ---
 
 ## Переезд на новый ПК (Windows)
 
-> **14.06.2026** — подготовлен полный пакет миграции.
+> **17.06.2026** — переезд выполнен (`H:\PolyPilot-Platform`). Пакет миграции сохранён для справки.
 
 | Документ | Назначение |
 |----------|------------|
@@ -126,6 +142,7 @@
 - Создана операционная система управления проектом:
   - `POLYPILOT_STATE.md`
   - `CEO_OPERATING_SYSTEM.md`
+  - `PolyPilot-Штаб/00_Старт/DOC_INDEX.md` (master-index, 17.06)
 - Создана рабочая зона монетизации:
   - `PolyPilot-Штаб/06_Монетизация/README.md`
   - `PolyPilot-Штаб/06_Монетизация/CRO_SYSTEM_PROMPT.md`
@@ -144,7 +161,7 @@
 
 ## Что в работе
 
-- **Этап 4c — Pipeline → OPEN CARD v2 (приоритет завтра):**
+- **Этап 4c — Pipeline → OPEN CARD v2 (приоритет):**
   - `sync_live_to_mvp.py` → `crowdPulse`, `externalMarketCheck`, `whaleCheck` для всех live
   - `checkedReview` → чипы «Мы проверили»
   - `aiOdds` / `verdictText` / `arguments` из PIE
@@ -192,7 +209,7 @@
 
 ## Следующий шаг
 
-**Backend / 04_Dev — этап 4c (завтра):** pipeline → OPEN CARD v2 data contract
+**Backend / 04_Dev — этап 4c:** pipeline → OPEN CARD v2 data contract
 
 ```text
 1. sync_live_to_mvp.py — crowdPulse / PMA / whaleCheck для всех live (не только live-79061)

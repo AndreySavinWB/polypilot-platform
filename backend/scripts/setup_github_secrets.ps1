@@ -27,11 +27,13 @@ function Read-EnvValue([string]$Name) {
 $botToken = Read-EnvValue "TELEGRAM_BOT_TOKEN"
 $ceoChat = Read-EnvValue "TELEGRAM_CEO_CHAT_ID"
 $startDate = Read-EnvValue "DAILY_PUBLISH_START_DATE"
+$backendUrl = Read-EnvValue "PUBLIC_BACKEND_URL"
 $polzaKey = Read-EnvValue "POLZA_API_KEY"
 
 if (-not $botToken) { throw "В backend\.env нет TELEGRAM_BOT_TOKEN" }
 if (-not $ceoChat) { throw "В backend\.env нет TELEGRAM_CEO_CHAT_ID" }
 if (-not $startDate) { $startDate = "2026-06-14" }
+if (-not $backendUrl) { $backendUrl = "https://polypilot-platform-production.up.railway.app" }
 if (-not $polzaKey -or $polzaKey -eq "pza_...") {
     throw "В backend\.env нет реального POLZA_API_KEY (не заглушка pza_...)"
 }
@@ -42,11 +44,12 @@ if (-not $gh) {
     Write-Host "GitHub CLI (gh) не установлен — secrets через UI:" -ForegroundColor Yellow
     Write-Host $SecretsUrl
     Write-Host ""
-    Write-Host "Добавь 4 repository secrets (New repository secret):"
+    Write-Host "Добавь 5 repository secrets (New repository secret):"
     Write-Host "  1) TELEGRAM_BOT_TOKEN      = значение из backend\.env"
     Write-Host "  2) TELEGRAM_CEO_CHAT_ID    = $ceoChat"
     Write-Host "  3) DAILY_PUBLISH_START_DATE = $startDate"
-    Write-Host "  4) POLZA_API_KEY           = значение из backend\.env"
+    Write-Host "  4) PUBLIC_BACKEND_URL      = $backendUrl"
+    Write-Host "  5) POLZA_API_KEY           = значение из backend\.env"
     Write-Host ""
     Write-Host "Проверка workflow:" -ForegroundColor Cyan
     Write-Host $WorkflowUrl
@@ -66,6 +69,7 @@ try {
     gh secret set TELEGRAM_BOT_TOKEN --body $botToken --repo $Repo
     gh secret set TELEGRAM_CEO_CHAT_ID --body $ceoChat --repo $Repo
     gh secret set DAILY_PUBLISH_START_DATE --body $startDate --repo $Repo
+    gh secret set PUBLIC_BACKEND_URL --body $backendUrl --repo $Repo
     gh secret set POLZA_API_KEY --body $polzaKey --repo $Repo
     Write-Host ""
     Write-Host "Secrets установлены." -ForegroundColor Green

@@ -1,6 +1,6 @@
 # Probability Formula v1.1 — официальная формула PIE
 
-> [[PIE_V1_2_ФИНАЛЬНАЯ_АРХИТЕКТУРА]] · [[PROBABILITY_INTELLIGENCE_ENGINE]] · [[SOURCE_SCORING_SYSTEM]] · [[MARKET_STRUCTURE_ANALYZER]]
+> [[PROBABILITY_INTELLIGENCE_ENGINE]] · [[SOURCE_SCORING_SYSTEM]] · [[MARKET_STRUCTURE_ANALYZER]]
 
 > **Версия:** `pie_v1.3` · формула `prob_formula_v1.1`  
 > **Статус:** 📐 целевая формула зафиксирована · ✅ v0 реализован rules-only в `backend/src/agents/probability.py`  

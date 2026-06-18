@@ -1,6 +1,6 @@
 # Polymarket Analytics Check — v1 (PIE 5.6)
 
-> [[INTELLIGENCE_DATA_FLOW]] · [[СХЕМА_ДАННЫХ_СОБЫТИЯ]] · [[СХЕМА_МЯСОРУБКИ]] · [[PIE_V1_2_ФИНАЛЬНАЯ_АРХИТЕКТУРА]]
+> [[INTELLIGENCE_DATA_FLOW]] · [[СХЕМА_ДАННЫХ_СОБЫТИЯ]] · [[СХЕМА_МЯСОРУБКИ]] · [[PROBABILITY_INTELLIGENCE_ENGINE]]
 
 > **Версия:** `external_market_check_v1` · **Статус:** MVP mock + UI · **Дата:** 14 июня 2026
 

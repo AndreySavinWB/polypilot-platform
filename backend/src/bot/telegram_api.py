@@ -37,6 +37,11 @@ def send_message(token, chat_id, text, reply_markup=None, parse_mode="HTML"):
     return _call(token, "sendMessage", payload)
 
 
+def send_plain(token, chat_id, text, reply_markup=None):
+    """Без parse_mode — надёжнее для многострочных брифов."""
+    return send_message(token, chat_id, text, reply_markup=reply_markup, parse_mode=None)
+
+
 def answer_callback(token, callback_id, text=None):
     payload = {"callback_query_id": callback_id}
     if text:

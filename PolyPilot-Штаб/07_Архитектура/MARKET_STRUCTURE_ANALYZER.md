@@ -1,6 +1,6 @@
 # Market Structure Analyzer — анализатор структуры рынка
 
-> [[PIE_V1_2_ФИНАЛЬНАЯ_АРХИТЕКТУРА]] · [[PROBABILITY_INTELLIGENCE_ENGINE]] · [[EVENT_TYPE_CLASSIFIER]] · [[SOURCE_SCORING_SYSTEM]]
+> [[PROBABILITY_INTELLIGENCE_ENGINE]] · [[EVENT_TYPE_CLASSIFIER]] · [[SOURCE_SCORING_SYSTEM]]
 
 > **Версия:** `pie_v1.3`  
 > **Статус:** ✅ v0 реализован rules-only в `backend/src/agents/market_structure.py`  

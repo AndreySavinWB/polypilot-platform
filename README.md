@@ -10,7 +10,7 @@ AI-аналитика для рынков прогнозов (Polymarket). Ру�
 PolyPilot/
 ├── platform/          ← веб-приложение (HTML/CSS/JS)
 ├── backend/           ← API, агенты, Polymarket, LLM
-├── PolyPilot-Штаб/    ← документация Obsidian (vault)
+├── PolyPilot-Штаб/    ← документация Obsidian (vault) · старт: DOC_INDEX.md, ДОМ_ШТАБ.md
 ├── vercel.json        ← деплой platform/ на Vercel
 └── README.md          ← вы здесь
 ```

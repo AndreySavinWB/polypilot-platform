@@ -1,12 +1,19 @@
 import os
 
 
+def _env(name: str) -> str:
+    value = os.getenv(name, "").strip()
+    if len(value) >= 2 and value[0] == value[-1] and value[0] in "\"'":
+        value = value[1:-1].strip()
+    return value
+
+
 def bot_token():
-    return os.getenv("TELEGRAM_BOT_TOKEN", "").strip()
+    return _env("TELEGRAM_BOT_TOKEN")
 
 
 def webhook_secret():
-    return os.getenv("TELEGRAM_WEBHOOK_SECRET", "").strip()
+    return _env("TELEGRAM_WEBHOOK_SECRET")
 
 
 def site_base():
@@ -14,11 +21,19 @@ def site_base():
 
 
 def channel_url():
-    return os.getenv("TELEGRAM_CHANNEL_URL", "https://t.me/polypilot_pro").strip()
+    return _env("TELEGRAM_CHANNEL_URL") or "https://t.me/polypilot_pro"
+
+
+def ceo_brief_secret() -> str:
+    return _env("CEO_BRIEF_SECRET") or _env("TELEGRAM_WEBHOOK_SECRET")
 
 
 def public_backend_url():
-    return os.getenv("PUBLIC_BACKEND_URL", "").rstrip("/")
+    return _env("PUBLIC_BACKEND_URL").rstrip("/")
+
+
+def ceo_chat_id():
+    return _env("TELEGRAM_CEO_CHAT_ID")
 
 
 def is_configured():

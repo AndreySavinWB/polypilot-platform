@@ -7,3 +7,11 @@ startCommand = "python server.py"
 healthcheckPath = "/health"
 healthcheckTimeout = 120
 restartPolicyType = "ON_FAILURE"
+
+# Несекретные env (токен — только в Railway Variables: TELEGRAM_BOT_TOKEN)
+[env]
+PUBLIC_BACKEND_URL = "https://polypilot-platform-production.up.railway.app"
+TELEGRAM_CEO_CHAT_ID = "772407663"
+CEO_BRIEF_SECRET = "pp-ceo-morning-2026"
+DAILY_PUBLISH_START_DATE = "2026-06-14"
+TELEGRAM_CHANNEL_URL = "https://t.me/polypilot_pro"

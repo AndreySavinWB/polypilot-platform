@@ -1,6 +1,6 @@
 # Event Type Classifier — классификатор типа события
 
-> [[PIE_V1_2_ФИНАЛЬНАЯ_АРХИТЕКТУРА]] · [[PROBABILITY_INTELLIGENCE_ENGINE]] · [[MARKET_STRUCTURE_ANALYZER]]
+> [[PROBABILITY_INTELLIGENCE_ENGINE]] · [[MARKET_STRUCTURE_ANALYZER]]
 
 > **Версия:** `pie_v1.3`  
 > **Статус:** 📐 зафиксирован на бумаге  

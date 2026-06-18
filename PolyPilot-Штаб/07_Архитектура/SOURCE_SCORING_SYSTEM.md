@@ -1,6 +1,6 @@
 # Source Scoring System — система оценки источников
 
-> [[PIE_V1_2_ФИНАЛЬНАЯ_АРХИТЕКТУРА]] · [[PROBABILITY_INTELLIGENCE_ENGINE]] · [[PROBABILITY_FORMULA_V1_1]]
+> [[PROBABILITY_INTELLIGENCE_ENGINE]] · [[PROBABILITY_FORMULA_V1_1]]
 
 > **Версия:** `pie_v1.3`  
 > **Статус:** 📐 зафиксирован на бумаге  
