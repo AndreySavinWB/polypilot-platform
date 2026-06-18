@@ -3,7 +3,6 @@ import os
 import re
 
 from src.bot import config, store, telegram_api
-from src.bot.ceo_brief import build_morning_brief, build_publish_full, is_ceo_chat
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 DISCLAIMER = (
@@ -150,32 +149,6 @@ def send_starter_intro(chat_id, token):
     )
 
 
-def _ceo_only_reply(chat_id, token, text):
-    if is_ceo_chat(chat_id):
-        telegram_api.send_message(token, chat_id, text, parse_mode="HTML")
-        return True
-    telegram_api.send_message(
-        token,
-        chat_id,
-        "Эта команда только для CEO. Для разбора события: /start",
-    )
-    return False
-
-
-def handle_ceo_today(chat_id, token):
-    from src.bot.ceo_brief import build_morning_brief_plain
-    telegram_api.send_plain(token, chat_id, build_morning_brief_plain())
-
-
-def handle_ceo_publish(chat_id, token):
-    telegram_api.send_message(
-        token,
-        chat_id,
-        build_publish_full(),
-        parse_mode=None,
-    )
-
-
 def send_default_welcome(chat_id, token, payload=""):
     event_id = None
     if payload.startswith("event_"):
@@ -260,35 +233,7 @@ def handle_message(message, token):
         handle_start(chat_id, token, "starter")
         return
 
-    if text.startswith("/today") or text.startswith("/brief"):
-        if is_ceo_chat(chat_id):
-            handle_ceo_today(chat_id, token)
-        else:
-            _ceo_only_reply(chat_id, token, "")
-        return
-
-    if text.startswith("/publish"):
-        if is_ceo_chat(chat_id):
-            handle_ceo_publish(chat_id, token)
-        else:
-            _ceo_only_reply(chat_id, token, "")
-        return
-
     if text.startswith("/help"):
-        if is_ceo_chat(chat_id):
-            telegram_api.send_message(
-                token,
-                chat_id,
-                (
-                    "<b>PolyPilot CEO</b>\n\n"
-                    "/today — задачи на день + план контента\n"
-                    "/publish — полный текст поста в канал\n"
-                    "/start — как у обычного пользователя\n\n"
-                    "Автобудильник: 9:00 Europe/Moscow (GitHub Actions)"
-                ),
-                parse_mode="HTML",
-            )
-            return
         telegram_api.send_message(
             token,
             chat_id,
