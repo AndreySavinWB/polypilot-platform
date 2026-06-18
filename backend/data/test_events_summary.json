@@ -1,25 +1,6 @@
 [
   {
     "testNo": 1,
-    "id": "73212",
-    "title": "Will North and South Korea engage in direct talks by June 30?",
-    "tags": [
-      "hot",
-      "sports"
-    ],
-    "priorityScore": 90.0,
-    "priorityDecision": "accepted",
-    "priorityRank": 1,
-    "riskLevel": "low",
-    "pipelineStatus": "v1_0g_complete",
-    "titleRu": "Состоятся ли прямые переговоры между Северной и Южной Кореей до 30 июня?",
-    "eventType": "geopolitics",
-    "ppVerdict": "Скорее всего, Северная и Южная Корея не проведут прямые переговоры до июня 2026 года.",
-    "confidence": 65,
-    "sourceUrl": "https://polymarket.com/event/will-north-and-south-korea-engage-in-direct-talks-by-2027"
-  },
-  {
-    "testNo": 2,
     "id": "69702",
     "title": "Will Argentina dollarize by June 30, 2026?",
     "tags": [
@@ -29,14 +10,34 @@
     ],
     "priorityScore": 86.0,
     "priorityDecision": "accepted",
-    "priorityRank": 2,
+    "priorityRank": 1,
     "riskLevel": "medium",
     "pipelineStatus": "v1_0g_complete",
-    "titleRu": "Долларизует ли Аргентина свою экономику к 30 июня 2026 года?",
+    "titleRu": "Долларизует ли Аргентина свою экономику до 30 июня 2026 года?",
     "eventType": "crypto",
-    "ppVerdict": "На данный момент нет достаточных оснований полагат��, что Аргентина начнет долларизацию до 30 июня 2026 года.",
+    "ppVerdict": "На данный момент вероятность долларизации Аргентины до 30 июня 2026 года остается неопределенной.",
     "confidence": 65,
     "sourceUrl": "https://polymarket.com/event/will-argentina-dollarize-by-june-30-2026"
+  },
+  {
+    "testNo": 2,
+    "id": "73212",
+    "title": "Will North and South Korea engage in direct talks by June 30?",
+    "tags": [
+      "hot",
+      "sports",
+      "low_liquidity"
+    ],
+    "priorityScore": 86.0,
+    "priorityDecision": "accepted",
+    "priorityRank": 2,
+    "riskLevel": "low",
+    "pipelineStatus": "v1_0g_complete",
+    "titleRu": "Состоятся ли прямые переговоры между Северной и Южной Кореей до 30 июня?",
+    "eventType": "geopolitics",
+    "ppVerdict": "Существует вероятность, что Северная и Южная Корея могут начать прямые переговоры до конца июня 2026 года.",
+    "confidence": 65,
+    "sourceUrl": "https://polymarket.com/event/will-north-and-south-korea-engage-in-direct-talks-by-2027"
   },
   {
     "testNo": 3,
@@ -49,12 +50,12 @@
     "priorityScore": 86.0,
     "priorityDecision": "accepted",
     "priorityRank": 3,
-    "riskLevel": "medium",
+    "riskLevel": "low",
     "pipelineStatus": "v1_0g_complete",
     "titleRu": "Станет ли китайская модель ИИ номером 1 к 30 июня?",
     "eventType": "crypto",
-    "ppVerdict": "На данный момент трудно предсказать, станет ли китайская модель ИИ номером один к 30 июня 2026 года.",
-    "confidence": 65,
+    "ppVerdict": "Существует вероятность, что китайская модель ИИ может занять первое место к указанному сроку.",
+    "confidence": 75,
     "sourceUrl": "https://polymarket.com/event/will-a-chinese-ai-model-become-1-by-june-30"
   },
   {
@@ -73,7 +74,7 @@
     "pipelineStatus": "v1_0g_complete",
     "titleRu": "Запустит ли Tesla роботакси в Калифорнии до 30 июня?",
     "eventType": "crypto",
-    "ppVerdict": "Существует вероятность того, что Tesla запустит роботакси в Калифорнии до 30 июня 2026 года.",
+    "ppVerdict": "Существует вероятность того, что Тесла запустит роботакси в Калифорнии до 30 июня 2026 года.",
     "confidence": 75,
     "sourceUrl": "https://polymarket.com/event/will-tesla-launch-robotaxis-in-california-by-june-30"
   },
@@ -89,11 +90,11 @@
     "priorityScore": 77.0,
     "priorityDecision": "accepted",
     "priorityRank": 5,
-    "riskLevel": "low",
+    "riskLevel": "medium",
     "pipelineStatus": "v1_0g_complete",
     "titleRu": "Тейлор Свифт беременна до свадьбы?",
     "eventType": "crypto",
-    "ppVerdict": "На данный момент вероятность беременности Тейлор Свифт до свадьбы остается неопределенной.",
+    "ppVerdict": "На данный момент вероятность беременности Тейлор Свифт до замужества низка.",
     "confidence": 65,
     "sourceUrl": "https://polymarket.com/event/taylor-swift-pregnant-before-marriage"
   }
