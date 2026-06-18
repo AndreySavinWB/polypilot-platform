@@ -99,6 +99,13 @@ class Handler(BaseHTTPRequestHandler):
                     "ceoChatConfigured": bool(bot_config.ceo_chat_id()),
                     "publicBackendConfigured": bool(bot_config.public_backend_url()),
                     "briefSecretConfigured": bool(bot_config.ceo_brief_secret()),
+                    "onRailway": bool(
+                        os.getenv("RAILWAY_ENVIRONMENT") or os.getenv("RAILWAY_PROJECT_ID")
+                    ),
+                    "configuredEnvKeys": sorted(
+                        k for k in os.environ
+                        if k.startswith("TELEGRAM_") or k in ("CEO_BRIEF_SECRET", "PUBLIC_BACKEND_URL", "DAILY_PUBLISH_START_DATE")
+                    ),
                 })
                 return
 
