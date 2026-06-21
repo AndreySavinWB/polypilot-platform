@@ -13,9 +13,9 @@
     "priorityRank": 1,
     "riskLevel": "medium",
     "pipelineStatus": "v1_0g_complete",
-    "titleRu": "Долларизует ли Аргентина свою экономику до 30 июня 2026 года?",
+    "titleRu": "Долларизует ли Аргентина свою экономику к 30 июня 2026 года?",
     "eventType": "crypto",
-    "ppVerdict": "На данный момент вероятность долларизации Аргентины до 30 июня 2026 года является умеренной.",
+    "ppVerdict": "На данный момент вероятность долларизации Аргентины до 30 июня 2026 года остается неопределенной.",
     "confidence": 65,
     "sourceUrl": "https://polymarket.com/event/will-argentina-dollarize-by-june-30-2026"
   },
@@ -31,11 +31,11 @@
     "priorityScore": 86.0,
     "priorityDecision": "accepted",
     "priorityRank": 2,
-    "riskLevel": "low",
+    "riskLevel": "medium",
     "pipelineStatus": "v1_0g_complete",
     "titleRu": "Состоятся ли прямые переговоры между Северной и Южной Кореей до 30 июня?",
     "eventType": "geopolitics",
-    "ppVerdict": "Скорее всего, Северная и Южная Корея не проведут прямые переговоры до июня 2026 года.",
+    "ppVerdict": "Скорее всего, Северная и Южная Корея не начнут прямые переговоры до июня 2026 года.",
     "confidence": 65,
     "sourceUrl": "https://polymarket.com/event/will-north-and-south-korea-engage-in-direct-talks-by-2027"
   },
@@ -54,7 +54,7 @@
     "pipelineStatus": "v1_0g_complete",
     "titleRu": "Станет ли китайская модель ИИ номером 1 к 30 июня?",
     "eventType": "crypto",
-    "ppVerdict": "На данный момент нет достаточных оснований полагать, что китайская ИИ-модель займет первое место к 30 июня.",
+    "ppVerdict": "Существует вероятность, что китайская модель ИИ может занять первое место к указанной дате.",
     "confidence": 65,
     "sourceUrl": "https://polymarket.com/event/will-a-chinese-ai-model-become-1-by-june-30"
   },
@@ -75,7 +75,7 @@
     "titleRu": "Запустит ли Tesla роботакси в Калифорнии до 30 июня?",
     "eventType": "crypto",
     "ppVerdict": "Существует вероятность, что Тесла запустит роботакси в Калифорнии до 30 июня 2026 года.",
-    "confidence": 65,
+    "confidence": 75,
     "sourceUrl": "https://polymarket.com/event/will-tesla-launch-robotaxis-in-california-by-june-30"
   },
   {
@@ -90,7 +90,7 @@
     "priorityScore": 77.0,
     "priorityDecision": "accepted",
     "priorityRank": 5,
-    "riskLevel": "low",
+    "riskLevel": "medium",
     "pipelineStatus": "v1_0g_complete",
     "titleRu": "Тейлор Свифт беременна до свадьбы?",
     "eventType": "crypto",
