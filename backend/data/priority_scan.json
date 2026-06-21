@@ -14,7 +14,7 @@
         "category": null,
         "volume": 22337.202153000017,
         "volume24hr": null,
-        "liquidity": 3057.44198,
+        "liquidity": 2851.7794,
         "startDate": "2025-10-31T15:19:06.377162Z",
         "endDate": "2026-06-30T00:00:00Z",
         "marketsCount": 1,
@@ -25,9 +25,9 @@
             "conditionId": "0x56c7155047a53039900207933ec97016bc9a4fa140fcc4cceb1e4622b659d813",
             "clobTokenIds": "[\"85942265466488014050178628789837529099253370994950475616619512156841463704755\", \"105968432729863346987070765562525401181584491873900212191225154794647241934079\"]",
             "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.0155\", \"0.9845\"]",
+            "outcomePrices": "[\"0.0165\", \"0.9835\"]",
             "volume": "22337.202153000017",
-            "liquidity": "2808.34044"
+            "liquidity": "2851.1794"
           }
         ],
         "source": "polymarket_gamma",
@@ -57,7 +57,7 @@
           },
           "liquidity": {
             "score": 0,
-            "note": "$3,057 (<$20K)"
+            "note": "$2,852 (<$20K)"
           },
           "category_whitelist": {
             "score": 10,
@@ -98,7 +98,7 @@
         "category": "North x South Korea Talks",
         "volume": 82115.25821700007,
         "volume24hr": null,
-        "liquidity": 11107.45605,
+        "liquidity": 10565.96736,
         "startDate": "2025-11-05T19:24:34.944Z",
         "endDate": "2026-06-30T00:00:00Z",
         "marketsCount": 1,
@@ -109,9 +109,9 @@
             "conditionId": "0x2fd0c0a6ab43aea7cb0b433c9555d5515d8c5ecfb825a11c3b47ef91b92694e5",
             "clobTokenIds": "[\"20156392834793884056489274487927561883924285910512901155525996094764792351548\", \"87637084302709500570233388023806581187998367755992238614491528759268119050184\"]",
             "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.0165\", \"0.9835\"]",
+            "outcomePrices": "[\"0.0155\", \"0.9845\"]",
             "volume": "82115.25821700007",
-            "liquidity": "12140.70669"
+            "liquidity": "10514.02025"
           }
         ],
         "source": "polymarket_gamma",
@@ -141,7 +141,7 @@
           },
           "liquidity": {
             "score": 0,
-            "note": "$11,107 (<$20K)"
+            "note": "$10,566 (<$20K)"
           },
           "category_whitelist": {
             "score": 10,
@@ -180,9 +180,9 @@
         "title": "Will a Chinese AI model become #1 by June 30? ",
         "description": "This market will resolve to \"Yes\" if any model owned by a Chinese company has the highest arena score on the Chatbot Arena LLM Leaderboard (https://lmarena.ai/) by June 30, 2026, at 11:59 PM ET. Otherwise, this market will resolve to \"No.\"\n\nIf a Chinese AI model ties for #1 Arena score, it will suffice to resolve this market to \"Yes.\"\n\nThe resolution source for this market is the Chatbot Arena LLM Leaderboard found at https://lmarena.ai/. If this resolution source becomes unavailable, the market will remain open until it is accessible again. If it becomes permanently unavailable, resolution will be based on another credible source.",
         "category": "Chinese AI #1",
-        "volume": 293055.8126770002,
-        "volume24hr": 70.84756,
-        "liquidity": 35855.29317,
+        "volume": 293063.23206900014,
+        "volume24hr": 71.65695199999999,
+        "liquidity": 28801.66281,
         "startDate": "2025-11-12T21:32:20.789605Z",
         "endDate": "2026-06-30T00:00:00Z",
         "marketsCount": 1,
@@ -194,8 +194,8 @@
             "clobTokenIds": "[\"112811152964827027174505288151697410186253934891522168611483125802682930869987\", \"69470160605360379556498347527851442267093526561863535937699362447933541328505\"]",
             "outcomes": "[\"Yes\", \"No\"]",
             "outcomePrices": "[\"0.0085\", \"0.9915\"]",
-            "volume": "293055.8126770002",
-            "liquidity": "33620.95291"
+            "volume": "293063.23206900014",
+            "liquidity": "29339.46893"
           }
         ],
         "source": "polymarket_gamma",
@@ -225,7 +225,7 @@
           },
           "liquidity": {
             "score": 4,
-            "note": "$35,855 (≥$20K)"
+            "note": "$28,802 (≥$20K)"
           },
           "category_whitelist": {
             "score": 10,
@@ -266,7 +266,7 @@
         "category": "Tesla Robotaxi Launch",
         "volume": 113224.91779499981,
         "volume24hr": 60.35,
-        "liquidity": 8704.93744,
+        "liquidity": 6729.11798,
         "startDate": "2025-11-12T22:06:20.775662Z",
         "endDate": "2026-06-30T00:00:00Z",
         "marketsCount": 1,
@@ -277,9 +277,9 @@
             "conditionId": "0x05854770e1cb3657fffffc0ee4b21768262b7083bd30015247ed4e257cb35a4d",
             "clobTokenIds": "[\"49110018287300804234584571000145517689767265512333035272204822023052123364689\", \"41422388073297854103231743078571415583255384227036842712157020650213006040470\"]",
             "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.041\", \"0.959\"]",
+            "outcomePrices": "[\"0.045\", \"0.955\"]",
             "volume": "113224.91779499981",
-            "liquidity": "6768.46543"
+            "liquidity": "7653.08798"
           }
         ],
         "source": "polymarket_gamma",
@@ -309,7 +309,7 @@
           },
           "liquidity": {
             "score": 0,
-            "note": "$8,705 (<$20K)"
+            "note": "$6,729 (<$20K)"
           },
           "category_whitelist": {
             "score": 10,
@@ -348,9 +348,9 @@
         "title": "Taylor Swift pregnant before marriage?",
         "description": "This market will resolve to \"Yes\" if Taylor Swift announces that she is pregnant before she announces that she is married to Travis Kelce. Otherwise, this market will resolve to \"No\".\n\nOnly credible announcements will qualify. Pregnancy or marriage announcements that are not credible, for example jokes, will not suffice.\n\nIf Taylor Swift does not announce that she is pregnant or married to Travis Kelce by August 31, 2026 ET, or their engagement is otherwise broken off, this market will resolve to \"No\".\n\nThe resolution source will be statements from Taylor Swift or her representatives; however, a definitive consensus of credible media reporting may be used.",
         "category": null,
-        "volume": 241316.23804499992,
-        "volume24hr": 982.723906,
-        "liquidity": 10225.34701,
+        "volume": 241609.29748899993,
+        "volume24hr": 1274.77325,
+        "liquidity": 10019.05982,
         "startDate": "2025-08-28T16:38:46.487Z",
         "endDate": "2026-08-31T00:00:00Z",
         "marketsCount": 1,
@@ -362,8 +362,8 @@
             "clobTokenIds": "[\"332462812953361158016354695716232633373752944798478737086328444144960550554\", \"95178020761422271081901024182012949958678400416842257242483644267309564096726\"]",
             "outcomes": "[\"Yes\", \"No\"]",
             "outcomePrices": "[\"0.0145\", \"0.9855\"]",
-            "volume": "241316.23804499992",
-            "liquidity": "10371.89594"
+            "volume": "241609.29748899993",
+            "liquidity": "9748.45909"
           }
         ],
         "source": "polymarket_gamma",
@@ -393,7 +393,7 @@
           },
           "liquidity": {
             "score": 0,
-            "note": "$10,225 (<$20K)"
+            "note": "$10,019 (<$20K)"
           },
           "category_whitelist": {
             "score": 10,
