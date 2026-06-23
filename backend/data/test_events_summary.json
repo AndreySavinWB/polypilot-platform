@@ -35,7 +35,7 @@
     "pipelineStatus": "v1_0g_complete",
     "titleRu": "Состоятся ли прямые переговоры между Северной и Южной Кореей до 30 июня?",
     "eventType": "geopolitics",
-    "ppVerdict": "Скорее всего, Северная и Южная Корея не начнут прямые переговоры до июня 2026 года.",
+    "ppVerdict": "Существует вероятность, что Северная и Южная Корея смогут провести прямые переговоры до 30 июня 2026 года.",
     "confidence": 65,
     "sourceUrl": "https://polymarket.com/event/will-north-and-south-korea-engage-in-direct-talks-by-2027"
   },
@@ -50,11 +50,11 @@
     "priorityScore": 86.0,
     "priorityDecision": "accepted",
     "priorityRank": 3,
-    "riskLevel": "medium",
+    "riskLevel": "low",
     "pipelineStatus": "v1_0g_complete",
     "titleRu": "Станет ли китайская модель ИИ номером 1 к 30 июня?",
     "eventType": "crypto",
-    "ppVerdict": "На данный момент нет достаточных оснований полагать, что китайская AI модель станет номером один к 30 июня.",
+    "ppVerdict": "На данный момент нет достаточных оснований полагать, что китайская модель ИИ займет первое место к 30 июня.",
     "confidence": 65,
     "sourceUrl": "https://polymarket.com/event/will-a-chinese-ai-model-become-1-by-june-30"
   },
@@ -75,7 +75,7 @@
     "titleRu": "Запустит ли Tesla роботакси в Калифорнии до 30 июня?",
     "eventType": "crypto",
     "ppVerdict": "Существует вероятность того, что Тесла запустит роботакси в Калифорнии до 30 июня 2026 года.",
-    "confidence": 75,
+    "confidence": 65,
     "sourceUrl": "https://polymarket.com/event/will-tesla-launch-robotaxis-in-california-by-june-30"
   },
   {
@@ -94,7 +94,7 @@
     "pipelineStatus": "v1_0g_complete",
     "titleRu": "Тейлор Свифт беременна до свадьбы?",
     "eventType": "crypto",
-    "ppVerdict": "На данный момент нет оснований полагать, что Тейлор Свифт объявит о беременности до замужества.",
+    "ppVerdict": "На данный момент вероятность беременности Тейлор Свифт до свадьбы низка.",
     "confidence": 65,
     "sourceUrl": "https://polymarket.com/event/taylor-swift-pregnant-before-marriage"
   }
