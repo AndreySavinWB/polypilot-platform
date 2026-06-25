@@ -14,7 +14,7 @@
     "pipelineStatus": "v1_0g_complete",
     "titleRu": "Станет ли китайская модель ИИ номером 1 к 30 июня?",
     "eventType": "crypto",
-    "ppVerdict": "Существует вероятность, что китайская AI модель может занять первое место к 30 июня.",
+    "ppVerdict": "Существует вероятность того, что китайская модель ИИ может занять первое место к указанному сроку, но это не гарантирова",
     "confidence": 65,
     "sourceUrl": "https://polymarket.com/event/will-a-chinese-ai-model-become-1-by-june-30"
   },
@@ -30,12 +30,12 @@
     "priorityScore": 86.0,
     "priorityDecision": "accepted",
     "priorityRank": 2,
-    "riskLevel": "high",
+    "riskLevel": "medium",
     "pipelineStatus": "v1_0g_complete",
     "titleRu": "Долларизует ли Аргентина свою экономику к 30 июня 2026 года?",
     "eventType": "crypto",
     "ppVerdict": "На данный момент вероятность долларизации Аргентины к 30 июня 2026 года остается неопределенной.",
-    "confidence": 60,
+    "confidence": 65,
     "sourceUrl": "https://polymarket.com/event/will-argentina-dollarize-by-june-30-2026"
   },
   {
@@ -54,8 +54,8 @@
     "pipelineStatus": "v1_0g_complete",
     "titleRu": "Состоятся ли прямые переговоры между Северной и Южной Кореей до 30 июня?",
     "eventType": "geopolitics",
-    "ppVerdict": "Скорее всего, Северная и Южная Корея не проведут прямые переговоры до июня 2026 года.",
-    "confidence": 70,
+    "ppVerdict": "Существует вероятность, что Северная и Южная Корея смогут провести прямые переговоры до конца июня 2026 года.",
+    "confidence": 65,
     "sourceUrl": "https://polymarket.com/event/will-north-and-south-korea-engage-in-direct-talks-by-2027"
   },
   {
@@ -74,7 +74,7 @@
     "pipelineStatus": "v1_0g_complete",
     "titleRu": "Запустит ли Tesla роботакси в Калифорнии до 30 июня?",
     "eventType": "crypto",
-    "ppVerdict": "Существует вероятность того, что Тесла запустит сервис роботакси в Калифорнии до 30 июня 2026 года.",
+    "ppVerdict": "Существует вероятность, что Тесла запустит роботакси в Калифорнии до 30 июня 2026 года.",
     "confidence": 75,
     "sourceUrl": "https://polymarket.com/event/will-tesla-launch-robotaxis-in-california-by-june-30"
   },
@@ -94,7 +94,7 @@
     "pipelineStatus": "v1_0g_complete",
     "titleRu": "Тейлор Свифт беременна до свадьбы?",
     "eventType": "crypto",
-    "ppVerdict": "На данный момент вероятность беременности Тейлор Свифт до свадьбы низка, так как нет официальных заявлений.",
+    "ppVerdict": "На данный момент вероятность беременности Тейлор Свифт до свадьбы низкая, так как нет официальных заявлений.",
     "confidence": 65,
     "sourceUrl": "https://polymarket.com/event/taylor-swift-pregnant-before-marriage"
   }
