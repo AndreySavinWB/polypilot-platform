@@ -12,9 +12,9 @@
         "title": "Will a Chinese AI model become #1 by June 30? ",
         "description": "This market will resolve to \"Yes\" if any model owned by a Chinese company has the highest arena score on the Chatbot Arena LLM Leaderboard (https://lmarena.ai/) by June 30, 2026, at 11:59 PM ET. Otherwise, this market will resolve to \"No.\"\n\nIf a Chinese AI model ties for #1 Arena score, it will suffice to resolve this market to \"Yes.\"\n\nThe resolution source for this market is the Chatbot Arena LLM Leaderboard found at https://lmarena.ai/. If this resolution source becomes unavailable, the market will remain open until it is accessible again. If it becomes permanently unavailable, resolution will be based on another credible source.",
         "category": "Chinese AI #1",
-        "volume": 309858.6672380004,
-        "volume24hr": 1066.887665,
-        "liquidity": 62489.7342,
+        "volume": 311491.1302380003,
+        "volume24hr": 2668.9266650000004,
+        "liquidity": 59635.49149,
         "startDate": "2025-11-12T21:32:20.789605Z",
         "endDate": "2026-06-30T00:00:00Z",
         "marketsCount": 1,
@@ -25,9 +25,9 @@
             "conditionId": "0xfd98180aa78ffbba17c7fd563223fec106ca05b32319f06df1834fe51f61fa5d",
             "clobTokenIds": "[\"112811152964827027174505288151697410186253934891522168611483125802682930869987\", \"69470160605360379556498347527851442267093526561863535937699362447933541328505\"]",
             "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.002\", \"0.998\"]",
-            "volume": "309858.6672380004",
-            "liquidity": "62339.27449"
+            "outcomePrices": "[\"0.0025\", \"0.9975\"]",
+            "volume": "311491.1302380003",
+            "liquidity": "58427.69149"
           }
         ],
         "source": "polymarket_gamma",
@@ -57,7 +57,7 @@
           },
           "liquidity": {
             "score": 7,
-            "note": "$62,490 (≥$50K)"
+            "note": "$59,635 (≥$50K)"
           },
           "category_whitelist": {
             "score": 10,
@@ -98,7 +98,7 @@
         "category": null,
         "volume": 27539.284668000026,
         "volume24hr": 10.63,
-        "liquidity": 5939.01916,
+        "liquidity": 5939.13216,
         "startDate": "2025-10-31T15:19:06.377162Z",
         "endDate": "2026-06-30T00:00:00Z",
         "marketsCount": 1,
@@ -111,7 +111,7 @@
             "outcomes": "[\"Yes\", \"No\"]",
             "outcomePrices": "[\"0.002\", \"0.998\"]",
             "volume": "27539.284668000026",
-            "liquidity": "5939.01916"
+            "liquidity": "5939.13216"
           }
         ],
         "source": "polymarket_gamma",
@@ -180,9 +180,9 @@
         "title": "Will North and South Korea engage in direct talks by June 30?",
         "description": "This market will resolve to \"Yes\" if, North and South Korea engage in direct talks, defined as an official meeting or communication between government representatives of both sides, conducted without a third-party relaying messages, by June 30, 2026 at 11:59 PM ET. Otherwise this market will resolve to “No”.\n\nThe talks may be in-person, by phone, or virtual, and must be publicly acknowledged by either government or reported by credible media. \n\nRoutine military deconfliction, backchannel exchanges, or talks conducted entirely through another country or organization will not count. \n\nThe resolutions source will be a consensus of credible reporting.",
         "category": "North x South Korea Talks",
-        "volume": 82342.00121600003,
-        "volume24hr": null,
-        "liquidity": 13993.25972,
+        "volume": 82702.00121600003,
+        "volume24hr": 360,
+        "liquidity": 14254.21934,
         "startDate": "2025-11-05T19:24:34.944Z",
         "endDate": "2026-06-30T00:00:00Z",
         "marketsCount": 1,
@@ -194,8 +194,8 @@
             "clobTokenIds": "[\"20156392834793884056489274487927561883924285910512901155525996094764792351548\", \"87637084302709500570233388023806581187998367755992238614491528759268119050184\"]",
             "outcomes": "[\"Yes\", \"No\"]",
             "outcomePrices": "[\"0.011\", \"0.989\"]",
-            "volume": "82342.00121600003",
-            "liquidity": "13993.25972"
+            "volume": "82702.00121600003",
+            "liquidity": "14254.21934"
           }
         ],
         "source": "polymarket_gamma",
@@ -225,7 +225,7 @@
           },
           "liquidity": {
             "score": 0,
-            "note": "$13,993 (<$20K)"
+            "note": "$14,254 (<$20K)"
           },
           "category_whitelist": {
             "score": 10,
@@ -266,7 +266,7 @@
         "category": "Tesla Robotaxi Launch",
         "volume": 114330.3587639998,
         "volume24hr": 10,
-        "liquidity": 7298.60212,
+        "liquidity": 7621.30768,
         "startDate": "2025-11-12T22:06:20.775662Z",
         "endDate": "2026-06-30T00:00:00Z",
         "marketsCount": 1,
@@ -277,9 +277,9 @@
             "conditionId": "0x05854770e1cb3657fffffc0ee4b21768262b7083bd30015247ed4e257cb35a4d",
             "clobTokenIds": "[\"49110018287300804234584571000145517689767265512333035272204822023052123364689\", \"41422388073297854103231743078571415583255384227036842712157020650213006040470\"]",
             "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.0125\", \"0.9875\"]",
+            "outcomePrices": "[\"0.0115\", \"0.9885\"]",
             "volume": "114330.3587639998",
-            "liquidity": "7294.58898"
+            "liquidity": "6772.00772"
           }
         ],
         "source": "polymarket_gamma",
@@ -309,7 +309,7 @@
           },
           "liquidity": {
             "score": 0,
-            "note": "$7,299 (<$20K)"
+            "note": "$7,621 (<$20K)"
           },
           "category_whitelist": {
             "score": 10,
@@ -350,7 +350,7 @@
         "category": null,
         "volume": 249754.28041799992,
         "volume24hr": 1000,
-        "liquidity": 11723.42759,
+        "liquidity": 10766.65954,
         "startDate": "2025-08-28T16:38:46.487Z",
         "endDate": "2026-08-31T00:00:00Z",
         "marketsCount": 1,
@@ -361,9 +361,9 @@
             "conditionId": "0xfcde7eec764a4e3dd2c43e92efec3cd23d8df64cceff357914a31d2c7820a6ea",
             "clobTokenIds": "[\"332462812953361158016354695716232633373752944798478737086328444144960550554\", \"95178020761422271081901024182012949958678400416842257242483644267309564096726\"]",
             "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.0135\", \"0.9865\"]",
+            "outcomePrices": "[\"0.013\", \"0.987\"]",
             "volume": "249754.28041799992",
-            "liquidity": "12013.38652"
+            "liquidity": "12187.91735"
           }
         ],
         "source": "polymarket_gamma",
@@ -393,7 +393,7 @@
           },
           "liquidity": {
             "score": 0,
-            "note": "$11,723 (<$20K)"
+            "note": "$10,767 (<$20K)"
           },
           "category_whitelist": {
             "score": 10,
