@@ -26,9 +26,9 @@
         "title": "Will a Chinese AI model become #1 by June 30? ",
         "description": "This market will resolve to \"Yes\" if any model owned by a Chinese company has the highest arena score on the Chatbot Arena LLM Leaderboard (https://lmarena.ai/) by June 30, 2026, at 11:59 PM ET. Otherwise, this market will resolve to \"No.\"\n\nIf a Chinese AI model ties for #1 Arena score, it will suffice to resolve this market to \"Yes.\"\n\nThe resolution source for this market is the Chatbot Arena LLM Leaderboard found at https://lmarena.ai/. If this resolution source becomes unavailable, the market will remain open until it is accessible again. If it becomes permanently unavailable, resolution will be based on another credible source.",
         "category": "Chinese AI #1",
-        "volume": 311491.1302380003,
-        "volume24hr": 2668.9266650000004,
-        "liquidity": 59635.49149,
+        "volume": 312312.5492380003,
+        "volume24hr": 3463.7556650000006,
+        "liquidity": 58654.27529,
         "startDate": "2025-11-12T21:32:20.789605Z",
         "endDate": "2026-06-30T00:00:00Z",
         "marketsCount": 1,
@@ -39,9 +39,9 @@
             "conditionId": "0xfd98180aa78ffbba17c7fd563223fec106ca05b32319f06df1834fe51f61fa5d",
             "clobTokenIds": "[\"112811152964827027174505288151697410186253934891522168611483125802682930869987\", \"69470160605360379556498347527851442267093526561863535937699362447933541328505\"]",
             "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.0025\", \"0.9975\"]",
-            "volume": "311491.1302380003",
-            "liquidity": "58427.69149"
+            "outcomePrices": "[\"0.0015\", \"0.9985\"]",
+            "volume": "312312.5492380003",
+            "liquidity": "59843.99256"
           }
         ],
         "source": "polymarket_gamma",
@@ -74,15 +74,15 @@
         "contradictionMap": [],
         "analogs": [],
         "probability": {
-          "marketProb": 0.0025,
+          "marketProb": 0.0015,
           "ppProb": 0.02,
           "edgePp": 1.8,
           "confidence": 0.52,
           "components": {
             "marketBase": {
-              "value": 0.0025,
+              "value": 0.0015,
               "structureMult": 0.75,
-              "centeredValue": -0.3731
+              "centeredValue": -0.3739
             },
             "whaleSignal": {
               "signal": "none",
@@ -224,10 +224,10 @@
           "flags": [],
           "normalizationStatus": "ok",
           "marketSnapshot": {
-            "marketProb": 0.0025,
-            "volume": 311491.13,
-            "volume24h": 2668.93,
-            "liquidity": 59635.49,
+            "marketProb": 0.0015,
+            "volume": 312312.55,
+            "volume24h": 3463.76,
+            "liquidity": 58654.28,
             "priceChange24h": null,
             "spread": 0.0
           }
@@ -247,7 +247,7 @@
           "anomalies": [
             {
               "type": "volume_spike",
-              "description": "24h volume is 1.9x average daily volume",
+              "description": "24h volume is 2.5x average daily volume",
               "severity": "medium"
             }
           ],
@@ -309,38 +309,38 @@
         "source": "polymarket_gamma",
         "newsScout": {
           "agent": "News Scout",
-          "summary": "На данный момент нет информации о текущих китайских AI моделях, которые могут занять первое место.",
+          "summary": "На данный момент нет информации о китайских моделях ИИ, которые могут занять первое место к указанной дате.",
           "facts": [
-            "Рынок будет разрешен в \"Да\", если любая модель, принадлежащая китайской компании, займет первое место на Chatbot Arena LLM Leaderboard к 30 июня 2026 года.",
-            "Если китайская AI модель разделит первое место, это также будет считаться как \"Да\"."
+            "Существует рынок, связанный с китайскими моделями ИИ.",
+            "Рынок будет разрешен, если китайская модель ИИ займет первое место на Chatbot Arena LLM Leaderboard к 30 июня 2026 года."
           ],
           "missing": [
-            "Информация о текущих китайских AI моделях и их позициях на Chatbot Arena LLM Leaderboard."
+            "Информация о текущих китайских моделях ИИ и их позициях на рынке."
           ]
         },
         "riskOfficer": {
           "agent": "Risk Officer",
           "riskLevel": "medium",
           "flags": [
-            "Неясность в отношении текущих моделей AI и их производительности."
+            "Неопределенность в отношении будущих достижений китайских моделей ИИ."
           ]
         },
         "verdict": {
           "agent": "Verdict Agent",
-          "ppVerdict": "Существует вероятность, что китайская AI модель может занять первое место к указанному сроку.",
+          "ppVerdict": "На данный момент сложно предсказать, станет ли китайская модель ИИ номером один к 30 июня 2026 года.",
           "confidence": 65,
           "edgeScore": null,
-          "status": "ready"
+          "status": "research_required"
         },
         "ui": {
-          "closedCardBadge": "Accepted",
+          "closedCardBadge": "Watchlist",
           "warRoomAgents": [
             "Priority Agent",
             "News Scout",
             "Risk Officer",
             "Verdict Agent"
           ],
-          "disclaimer": "Анализ только. Не является финансовым советом."
+          "disclaimer": "Анализ только. Не финансовый совет."
         },
         "priority": {
           "agent": "Simplicity Filter",
@@ -366,7 +366,7 @@
             },
             "liquidity": {
               "score": 7,
-              "note": "$59,635 (≥$50K)"
+              "note": "$58,654 (≥$50K)"
             },
             "category_whitelist": {
               "score": 10,
@@ -413,8 +413,8 @@
         "description": "This market will resolve to \"Yes\" if Argentina begins to peg its currency to the United States dollar (USD), or adopts the United States dollar as official legal tender, June 30, 2026, 11:59 PM ET. Otherwise, this market will resolve to \"No\".\n\nAn announcement that dollarization will begin will not be sufficient to resolve this market to \"Yes\" - for this market to resolve to \"Yes\", dollarization must have actually begun.\n\nNote: a peg does not need to be 1:1 to USD.\n\nThis market's resolution source will be a consensus of credible reporting indicating either of the listed scenarios have begun.",
         "category": null,
         "volume": 27539.284668000026,
-        "volume24hr": 10.63,
-        "liquidity": 5939.13216,
+        "volume24hr": null,
+        "liquidity": 5687.82396,
         "startDate": "2025-10-31T15:19:06.377162Z",
         "endDate": "2026-06-30T00:00:00Z",
         "marketsCount": 1,
@@ -427,7 +427,7 @@
             "outcomes": "[\"Yes\", \"No\"]",
             "outcomePrices": "[\"0.002\", \"0.998\"]",
             "volume": "27539.284668000026",
-            "liquidity": "5939.13216"
+            "liquidity": "5737.02396"
           }
         ],
         "source": "polymarket_gamma",
@@ -463,7 +463,7 @@
           "marketProb": 0.002,
           "ppProb": 0.02,
           "edgePp": 1.8,
-          "confidence": 0.3,
+          "confidence": 0.36,
           "components": {
             "marketBase": {
               "value": 0.002,
@@ -520,7 +520,7 @@
           "strategyFits": [
             {
               "strategy": "education",
-              "fitScore": 63,
+              "fitScore": 75,
               "status": "candidate",
               "reason": "clear event category: crypto",
               "requiredChecks": [
@@ -586,8 +586,8 @@
           "marketProbText": "0%",
           "ppProbText": "2%",
           "edgeText": "+1.8pp",
-          "confidence": 0.3,
-          "riskLevel": "high",
+          "confidence": 0.36,
+          "riskLevel": "medium",
           "requiredChecks": [
             "simple_resolution",
             "clear_title",
@@ -613,8 +613,8 @@
           "marketSnapshot": {
             "marketProb": 0.002,
             "volume": 27539.28,
-            "volume24h": 10.63,
-            "liquidity": 5939.13,
+            "volume24h": 0.0,
+            "liquidity": 5687.82,
             "priceChange24h": null,
             "spread": 0.0
           }
@@ -671,17 +671,15 @@
           "scoringMode": "rules_v0"
         },
         "risk": {
-          "riskScore": 68.0,
-          "riskLevel": "high",
+          "riskScore": 50.0,
+          "riskLevel": "medium",
           "flags": [
             "Низкая ликвидность — цена и исполнение могут искажаться.",
-            "Тонкий рынок: мало объёма за 24ч относительно ликвидности.",
             "Цена близка к 0% или 100% — рынок почти решён.",
             "Короткий горизонт — мало времени на подтверждение тезиса."
           ],
           "factors": [
             "low_liquidity",
-            "thin_market",
             "dead_price",
             "short_horizon"
           ],
@@ -694,33 +692,33 @@
         "source": "polymarket_gamma",
         "newsScout": {
           "agent": "News Scout",
-          "summary": "На данный момент нет подтвержденных новостей о долларизации Аргентины.",
+          "summary": "На данный момент нет официальных заявлений о долларизации Аргентины.",
           "facts": [
             "Аргентина рассматривает возможность долларизации своей экономики.",
             "Долларизация может помочь стабилизировать экономику страны."
           ],
           "missing": [
-            "Конкретные даты начала долларизации.",
-            "Официальные заявления правительства Аргентины."
+            "Официальные заявления правительства Аргентины о начале долларизации.",
+            "Данные о текущем состоянии экономики Аргентины."
           ]
         },
         "riskOfficer": {
           "agent": "Risk Officer",
           "riskLevel": "medium",
           "flags": [
-            "Неопределенность в политической ситуации в Аргентине.",
-            "Экономические риски, связанные с долларизацией."
+            "Неопределенность в экономической политике Аргентины.",
+            "Возможные изменения в международной экономической ситуации."
           ]
         },
         "verdict": {
           "agent": "Verdict Agent",
-          "ppVerdict": "На данный момент нет достаточных оснований для уверенности в том, что Аргентина начнет долларизацию до 30 июня 2026 года.",
-          "confidence": 65,
+          "ppVerdict": "На данный момент нет достаточных оснований полагать, что Аргентина начнет долларизацию до 30 июня 2026 года.",
+          "confidence": 75,
           "edgeScore": null,
-          "status": "research_required"
+          "status": "ready"
         },
         "ui": {
-          "closedCardBadge": "Watchlist",
+          "closedCardBadge": "Accepted",
           "warRoomAgents": [
             "Priority Agent",
             "News Scout",
@@ -753,7 +751,7 @@
             },
             "liquidity": {
               "score": 0,
-              "note": "$5,939 (<$20K)"
+              "note": "$5,688 (<$20K)"
             },
             "category_whitelist": {
               "score": 10,
@@ -801,7 +799,7 @@
         "category": "North x South Korea Talks",
         "volume": 82702.00121600003,
         "volume24hr": 360,
-        "liquidity": 14254.21934,
+        "liquidity": 14547.33293,
         "startDate": "2025-11-05T19:24:34.944Z",
         "endDate": "2026-06-30T00:00:00Z",
         "marketsCount": 1,
@@ -814,7 +812,7 @@
             "outcomes": "[\"Yes\", \"No\"]",
             "outcomePrices": "[\"0.011\", \"0.989\"]",
             "volume": "82702.00121600003",
-            "liquidity": "14254.21934"
+            "liquidity": "14544.32293"
           }
         ],
         "source": "polymarket_gamma",
@@ -1001,7 +999,7 @@
             "marketProb": 0.011,
             "volume": 82702.0,
             "volume24h": 360.0,
-            "liquidity": 14254.22,
+            "liquidity": 14547.33,
             "priceChange24h": null,
             "spread": 0.0
           }
@@ -1079,26 +1077,26 @@
           "agent": "News Scout",
           "summary": "На данный момент нет официальных заявлений о прямых переговорах между Северной и Южной Кореей.",
           "facts": [
-            "Северная и Южная Корея не проводили официальных встреч с 2021 года.",
+            "Северная и Южная Корея не проводили официальных переговоров с 2019 года.",
             "Существуют слухи о возможных переговорах, но они не подтверждены.",
-            "Существуют регулярные военные консультации, но они не считаются официальными переговорами."
+            "Обе стороны имеют интерес к улучшению отношений, но политическая ситуация остается напряженной."
           ],
           "missing": [
-            "Официальные заявления от правительств Северной и Южной Кореи.",
-            "Независимые сообщения от надежных СМИ о переговорах."
+            "Недостаток информации о текущих дипломатических усилиях.",
+            "Отсутствие официальных заявлений от правительств обеих стран."
           ]
         },
         "riskOfficer": {
           "agent": "Risk Officer",
           "riskLevel": "medium",
           "flags": [
-            "Неопределенность в политической ситуации на Корейском полуострове.",
-            "Отсутствие официальных заявлений о переговорах."
+            "Политическая нестабильность в регионе.",
+            "Неопределенность в намерениях обеих сторон."
           ]
         },
         "verdict": {
           "agent": "Verdict Agent",
-          "ppVerdict": "Скорее всего, Северная и Южная Корея не начнут прямые переговоры до июня 2026 года.",
+          "ppVerdict": "На данный момент маловероятно, что Северная и Южная Корея проведут прямые переговоры до конца июня 2026 года.",
           "confidence": 65,
           "edgeScore": null,
           "status": "ready"
@@ -1137,7 +1135,7 @@
             },
             "liquidity": {
               "score": 0,
-              "note": "$14,254 (<$20K)"
+              "note": "$14,547 (<$20K)"
             },
             "category_whitelist": {
               "score": 10,
@@ -1184,8 +1182,8 @@
         "description": "This market will resolve to \"Yes\" if Tesla publicly launches a self-driving taxi service in California by June 30, 2026, 11:59 PM ET. Otherwise, this market will resolve to \"No\".\n\nAny taxi service available to the general public which operates without a human driver actively controlling the vehicle will count, regardless of membership or other financial restrictions. \n\nServices which are limited to Tesla employees or a limited test group without general access will not qualify. \n\nThis market's resolution source will be a consensus of credible reporting.",
         "category": "Tesla Robotaxi Launch",
         "volume": 114330.3587639998,
-        "volume24hr": 10,
-        "liquidity": 7621.30768,
+        "volume24hr": null,
+        "liquidity": 6148.12901,
         "startDate": "2025-11-12T22:06:20.775662Z",
         "endDate": "2026-06-30T00:00:00Z",
         "marketsCount": 1,
@@ -1196,9 +1194,9 @@
             "conditionId": "0x05854770e1cb3657fffffc0ee4b21768262b7083bd30015247ed4e257cb35a4d",
             "clobTokenIds": "[\"49110018287300804234584571000145517689767265512333035272204822023052123364689\", \"41422388073297854103231743078571415583255384227036842712157020650213006040470\"]",
             "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.0115\", \"0.9885\"]",
+            "outcomePrices": "[\"0.013\", \"0.987\"]",
             "volume": "114330.3587639998",
-            "liquidity": "6772.00772"
+            "liquidity": "6148.12901"
           }
         ],
         "source": "polymarket_gamma",
@@ -1231,15 +1229,15 @@
         "contradictionMap": [],
         "analogs": [],
         "probability": {
-          "marketProb": 0.0115,
+          "marketProb": 0.013,
           "ppProb": 0.02,
-          "edgePp": 0.9,
-          "confidence": 0.3,
+          "edgePp": 0.7,
+          "confidence": 0.36,
           "components": {
             "marketBase": {
-              "value": 0.0115,
+              "value": 0.013,
               "structureMult": 0.25,
-              "centeredValue": -0.1221
+              "centeredValue": -0.1217
             },
             "whaleSignal": {
               "signal": "none",
@@ -1291,7 +1289,7 @@
           "strategyFits": [
             {
               "strategy": "education",
-              "fitScore": 63,
+              "fitScore": 75,
               "status": "candidate",
               "reason": "clear event category: crypto",
               "requiredChecks": [
@@ -1356,9 +1354,9 @@
           "summary": "Событие подходит как учебный кейс: clear event category: crypto. Можно объяснить рынок, резолв и ограничения данных.",
           "marketProbText": "1%",
           "ppProbText": "2%",
-          "edgeText": "+0.9pp",
-          "confidence": 0.3,
-          "riskLevel": "high",
+          "edgeText": "+0.7pp",
+          "confidence": 0.36,
+          "riskLevel": "medium",
           "requiredChecks": [
             "simple_resolution",
             "clear_title",
@@ -1382,10 +1380,10 @@
           "flags": [],
           "normalizationStatus": "ok",
           "marketSnapshot": {
-            "marketProb": 0.0115,
+            "marketProb": 0.013,
             "volume": 114330.36,
-            "volume24h": 10.0,
-            "liquidity": 7621.31,
+            "volume24h": 0.0,
+            "liquidity": 6148.13,
             "priceChange24h": null,
             "spread": 0.0
           }
@@ -1442,17 +1440,15 @@
           "scoringMode": "rules_v0"
         },
         "risk": {
-          "riskScore": 68.0,
-          "riskLevel": "high",
+          "riskScore": 50.0,
+          "riskLevel": "medium",
           "flags": [
             "Низкая ликвидность — цена и исполнение могут искажаться.",
-            "Тонкий рынок: мало объёма за 24ч относительно ликвидности.",
             "Цена близка к 0% или 100% — рынок почти решён.",
             "Короткий горизонт — мало времени на подтверждение тезиса."
           ],
           "factors": [
             "low_liquidity",
-            "thin_market",
             "dead_price",
             "short_horizon"
           ],
@@ -1465,28 +1461,27 @@
         "source": "polymarket_gamma",
         "newsScout": {
           "agent": "News Scout",
-          "summary": "Тесла планирует запустить сервис такси без водителей в Калифорнии к 30 июня 2026 года.",
+          "summary": "Тесла планирует запустить сервис роботакси в Калифорнии до 30 июня 2026 года.",
           "facts": [
-            "Тесла объявила о намерении запустить сервис такси без водителей.",
-            "Сервис должен быть доступен для широкой публики.",
-            "Запуск запланирован до 30 июня 2026 года."
+            "Тесла объявила о планах по запуску роботакси.",
+            "Сервис должен быть доступен для широкой публики без участия человека-водителя."
           ],
           "missing": [
-            "Подтверждение от Теслы о конкретных датах запуска.",
-            "Данные о текущем статусе разработки технологии."
+            "Подтверждение от Теслы о конкретной дате запуска.",
+            "Независимые отчеты о тестировании или запуске сервиса."
           ]
         },
         "riskOfficer": {
           "agent": "Risk Officer",
           "riskLevel": "medium",
           "flags": [
-            "Необходимы дополнительные данные о статусе разработки."
+            "Необходимы дополнительные данные о запуске."
           ]
         },
         "verdict": {
           "agent": "Verdict Agent",
-          "ppVerdict": "Существует вероятность того, что Тесла запустит роботакси в Калифорнии до 30 июня 2026 года.",
-          "confidence": 75,
+          "ppVerdict": "Существует вероятность, что Тесла запустит роботакси в Калифорнии до 30 июня 2026 года.",
+          "confidence": 70,
           "edgeScore": null,
           "status": "ready"
         },
@@ -1498,7 +1493,7 @@
             "Risk Officer",
             "Verdict Agent"
           ],
-          "disclaimer": "Анализ только. Не финансовый совет."
+          "disclaimer": "Анализ только. Не является финансовым советом."
         },
         "priority": {
           "agent": "Simplicity Filter",
@@ -1524,7 +1519,7 @@
             },
             "liquidity": {
               "score": 0,
-              "note": "$7,621 (<$20K)"
+              "note": "$6,148 (<$20K)"
             },
             "category_whitelist": {
               "score": 10,
@@ -1572,7 +1567,7 @@
         "category": null,
         "volume": 249754.28041799992,
         "volume24hr": 1000,
-        "liquidity": 10766.65954,
+        "liquidity": 11907.91421,
         "startDate": "2025-08-28T16:38:46.487Z",
         "endDate": "2026-08-31T00:00:00Z",
         "marketsCount": 1,
@@ -1583,9 +1578,9 @@
             "conditionId": "0xfcde7eec764a4e3dd2c43e92efec3cd23d8df64cceff357914a31d2c7820a6ea",
             "clobTokenIds": "[\"332462812953361158016354695716232633373752944798478737086328444144960550554\", \"95178020761422271081901024182012949958678400416842257242483644267309564096726\"]",
             "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.013\", \"0.987\"]",
+            "outcomePrices": "[\"0.0105\", \"0.9895\"]",
             "volume": "249754.28041799992",
-            "liquidity": "12187.91735"
+            "liquidity": "11525.60847"
           }
         ],
         "source": "polymarket_gamma",
@@ -1618,15 +1613,15 @@
         "contradictionMap": [],
         "analogs": [],
         "probability": {
-          "marketProb": 0.013,
+          "marketProb": 0.0105,
           "ppProb": 0.02,
-          "edgePp": 0.7,
+          "edgePp": 0.9,
           "confidence": 0.42,
           "components": {
             "marketBase": {
-              "value": 0.013,
+              "value": 0.0105,
               "structureMult": 0.25,
-              "centeredValue": -0.1217
+              "centeredValue": -0.1224
             },
             "whaleSignal": {
               "signal": "none",
@@ -1743,7 +1738,7 @@
           "summary": "Событие подходит как учебный кейс: clear event category: crypto. Можно объяснить рынок, резолв и ограничения данных.",
           "marketProbText": "1%",
           "ppProbText": "2%",
-          "edgeText": "+0.7pp",
+          "edgeText": "+0.9pp",
           "confidence": 0.42,
           "riskLevel": "low",
           "requiredChecks": [
@@ -1769,10 +1764,10 @@
           "flags": [],
           "normalizationStatus": "ok",
           "marketSnapshot": {
-            "marketProb": 0.013,
+            "marketProb": 0.0105,
             "volume": 249754.28,
             "volume24h": 1000.0,
-            "liquidity": 10766.66,
+            "liquidity": 11907.91,
             "priceChange24h": null,
             "spread": 0.0
           }
@@ -1846,27 +1841,25 @@
         "source": "polymarket_gamma",
         "newsScout": {
           "agent": "News Scout",
-          "summary": "На данный момент нет официальных заявлений о беременности Тейлор Свифт.",
+          "summary": "На данный момент нет подтвержденных новостей о беременности Тейлор Свифт.",
           "facts": [
             "Тейлор Свифт не делала официальных заявлений о беременности.",
-            "Тейлор Свифт не объявила о свадьбе с Трависом Келси."
+            "Сроки для объявления о беременности или свадьбе установлены до 31 августа 2026 года."
           ],
           "missing": [
-            "Официальные заявления от Тейлор Свифт или её представителей.",
-            "Кредибильные сообщения от СМИ о беременности или свадьбе."
+            "Подтвержденные источники о беременности или свадьбе Тейлор Свифт."
           ]
         },
         "riskOfficer": {
           "agent": "Risk Officer",
           "riskLevel": "medium",
           "flags": [
-            "Отсутствие официальных заявлений.",
-            "Непредсказуемость личной жизни Тейлор Свифт."
+            "Отсутствие официальных заявлений."
           ]
         },
         "verdict": {
           "agent": "Verdict Agent",
-          "ppVerdict": "На данный момент вероятность беременности Тейлор Свифт до свадьбы низка, так как нет официальных заявлений.",
+          "ppVerdict": "На данный момент вероятность беременности Тейлор Свифт до свадьбы низка.",
           "confidence": 65,
           "edgeScore": null,
           "status": "ready"
@@ -1905,7 +1898,7 @@
             },
             "liquidity": {
               "score": 0,
-              "note": "$10,767 (<$20K)"
+              "note": "$11,908 (<$20K)"
             },
             "category_whitelist": {
               "score": 10,

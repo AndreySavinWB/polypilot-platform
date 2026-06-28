@@ -12,9 +12,9 @@
         "title": "Will a Chinese AI model become #1 by June 30? ",
         "description": "This market will resolve to \"Yes\" if any model owned by a Chinese company has the highest arena score on the Chatbot Arena LLM Leaderboard (https://lmarena.ai/) by June 30, 2026, at 11:59 PM ET. Otherwise, this market will resolve to \"No.\"\n\nIf a Chinese AI model ties for #1 Arena score, it will suffice to resolve this market to \"Yes.\"\n\nThe resolution source for this market is the Chatbot Arena LLM Leaderboard found at https://lmarena.ai/. If this resolution source becomes unavailable, the market will remain open until it is accessible again. If it becomes permanently unavailable, resolution will be based on another credible source.",
         "category": "Chinese AI #1",
-        "volume": 311491.1302380003,
-        "volume24hr": 2668.9266650000004,
-        "liquidity": 59635.49149,
+        "volume": 312312.5492380003,
+        "volume24hr": 3463.7556650000006,
+        "liquidity": 58654.27529,
         "startDate": "2025-11-12T21:32:20.789605Z",
         "endDate": "2026-06-30T00:00:00Z",
         "marketsCount": 1,
@@ -25,9 +25,9 @@
             "conditionId": "0xfd98180aa78ffbba17c7fd563223fec106ca05b32319f06df1834fe51f61fa5d",
             "clobTokenIds": "[\"112811152964827027174505288151697410186253934891522168611483125802682930869987\", \"69470160605360379556498347527851442267093526561863535937699362447933541328505\"]",
             "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.0025\", \"0.9975\"]",
-            "volume": "311491.1302380003",
-            "liquidity": "58427.69149"
+            "outcomePrices": "[\"0.0015\", \"0.9985\"]",
+            "volume": "312312.5492380003",
+            "liquidity": "59843.99256"
           }
         ],
         "source": "polymarket_gamma",
@@ -57,7 +57,7 @@
           },
           "liquidity": {
             "score": 7,
-            "note": "$59,635 (≥$50K)"
+            "note": "$58,654 (≥$50K)"
           },
           "category_whitelist": {
             "score": 10,
@@ -97,8 +97,8 @@
         "description": "This market will resolve to \"Yes\" if Argentina begins to peg its currency to the United States dollar (USD), or adopts the United States dollar as official legal tender, June 30, 2026, 11:59 PM ET. Otherwise, this market will resolve to \"No\".\n\nAn announcement that dollarization will begin will not be sufficient to resolve this market to \"Yes\" - for this market to resolve to \"Yes\", dollarization must have actually begun.\n\nNote: a peg does not need to be 1:1 to USD.\n\nThis market's resolution source will be a consensus of credible reporting indicating either of the listed scenarios have begun.",
         "category": null,
         "volume": 27539.284668000026,
-        "volume24hr": 10.63,
-        "liquidity": 5939.13216,
+        "volume24hr": null,
+        "liquidity": 5687.82396,
         "startDate": "2025-10-31T15:19:06.377162Z",
         "endDate": "2026-06-30T00:00:00Z",
         "marketsCount": 1,
@@ -111,7 +111,7 @@
             "outcomes": "[\"Yes\", \"No\"]",
             "outcomePrices": "[\"0.002\", \"0.998\"]",
             "volume": "27539.284668000026",
-            "liquidity": "5939.13216"
+            "liquidity": "5737.02396"
           }
         ],
         "source": "polymarket_gamma",
@@ -141,7 +141,7 @@
           },
           "liquidity": {
             "score": 0,
-            "note": "$5,939 (<$20K)"
+            "note": "$5,688 (<$20K)"
           },
           "category_whitelist": {
             "score": 10,
@@ -182,7 +182,7 @@
         "category": "North x South Korea Talks",
         "volume": 82702.00121600003,
         "volume24hr": 360,
-        "liquidity": 14254.21934,
+        "liquidity": 14547.33293,
         "startDate": "2025-11-05T19:24:34.944Z",
         "endDate": "2026-06-30T00:00:00Z",
         "marketsCount": 1,
@@ -195,7 +195,7 @@
             "outcomes": "[\"Yes\", \"No\"]",
             "outcomePrices": "[\"0.011\", \"0.989\"]",
             "volume": "82702.00121600003",
-            "liquidity": "14254.21934"
+            "liquidity": "14544.32293"
           }
         ],
         "source": "polymarket_gamma",
@@ -225,7 +225,7 @@
           },
           "liquidity": {
             "score": 0,
-            "note": "$14,254 (<$20K)"
+            "note": "$14,547 (<$20K)"
           },
           "category_whitelist": {
             "score": 10,
@@ -265,8 +265,8 @@
         "description": "This market will resolve to \"Yes\" if Tesla publicly launches a self-driving taxi service in California by June 30, 2026, 11:59 PM ET. Otherwise, this market will resolve to \"No\".\n\nAny taxi service available to the general public which operates without a human driver actively controlling the vehicle will count, regardless of membership or other financial restrictions. \n\nServices which are limited to Tesla employees or a limited test group without general access will not qualify. \n\nThis market's resolution source will be a consensus of credible reporting.",
         "category": "Tesla Robotaxi Launch",
         "volume": 114330.3587639998,
-        "volume24hr": 10,
-        "liquidity": 7621.30768,
+        "volume24hr": null,
+        "liquidity": 6148.12901,
         "startDate": "2025-11-12T22:06:20.775662Z",
         "endDate": "2026-06-30T00:00:00Z",
         "marketsCount": 1,
@@ -277,9 +277,9 @@
             "conditionId": "0x05854770e1cb3657fffffc0ee4b21768262b7083bd30015247ed4e257cb35a4d",
             "clobTokenIds": "[\"49110018287300804234584571000145517689767265512333035272204822023052123364689\", \"41422388073297854103231743078571415583255384227036842712157020650213006040470\"]",
             "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.0115\", \"0.9885\"]",
+            "outcomePrices": "[\"0.013\", \"0.987\"]",
             "volume": "114330.3587639998",
-            "liquidity": "6772.00772"
+            "liquidity": "6148.12901"
           }
         ],
         "source": "polymarket_gamma",
@@ -309,7 +309,7 @@
           },
           "liquidity": {
             "score": 0,
-            "note": "$7,621 (<$20K)"
+            "note": "$6,148 (<$20K)"
           },
           "category_whitelist": {
             "score": 10,
@@ -350,7 +350,7 @@
         "category": null,
         "volume": 249754.28041799992,
         "volume24hr": 1000,
-        "liquidity": 10766.65954,
+        "liquidity": 11907.91421,
         "startDate": "2025-08-28T16:38:46.487Z",
         "endDate": "2026-08-31T00:00:00Z",
         "marketsCount": 1,
@@ -361,9 +361,9 @@
             "conditionId": "0xfcde7eec764a4e3dd2c43e92efec3cd23d8df64cceff357914a31d2c7820a6ea",
             "clobTokenIds": "[\"332462812953361158016354695716232633373752944798478737086328444144960550554\", \"95178020761422271081901024182012949958678400416842257242483644267309564096726\"]",
             "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.013\", \"0.987\"]",
+            "outcomePrices": "[\"0.0105\", \"0.9895\"]",
             "volume": "249754.28041799992",
-            "liquidity": "12187.91735"
+            "liquidity": "11525.60847"
           }
         ],
         "source": "polymarket_gamma",
@@ -393,7 +393,7 @@
           },
           "liquidity": {
             "score": 0,
-            "note": "$10,767 (<$20K)"
+            "note": "$11,908 (<$20K)"
           },
           "category_whitelist": {
             "score": 10,
