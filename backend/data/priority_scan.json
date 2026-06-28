@@ -12,9 +12,9 @@
         "title": "Will a Chinese AI model become #1 by June 30? ",
         "description": "This market will resolve to \"Yes\" if any model owned by a Chinese company has the highest arena score on the Chatbot Arena LLM Leaderboard (https://lmarena.ai/) by June 30, 2026, at 11:59 PM ET. Otherwise, this market will resolve to \"No.\"\n\nIf a Chinese AI model ties for #1 Arena score, it will suffice to resolve this market to \"Yes.\"\n\nThe resolution source for this market is the Chatbot Arena LLM Leaderboard found at https://lmarena.ai/. If this resolution source becomes unavailable, the market will remain open until it is accessible again. If it becomes permanently unavailable, resolution will be based on another credible source.",
         "category": "Chinese AI #1",
-        "volume": 312312.5492380003,
-        "volume24hr": 3463.7556650000006,
-        "liquidity": 58654.27529,
+        "volume": 313120.1622380003,
+        "volume24hr": 4260.502665000001,
+        "liquidity": 69769.02973,
         "startDate": "2025-11-12T21:32:20.789605Z",
         "endDate": "2026-06-30T00:00:00Z",
         "marketsCount": 1,
@@ -26,8 +26,8 @@
             "clobTokenIds": "[\"112811152964827027174505288151697410186253934891522168611483125802682930869987\", \"69470160605360379556498347527851442267093526561863535937699362447933541328505\"]",
             "outcomes": "[\"Yes\", \"No\"]",
             "outcomePrices": "[\"0.0015\", \"0.9985\"]",
-            "volume": "312312.5492380003",
-            "liquidity": "59843.99256"
+            "volume": "313120.1622380003",
+            "liquidity": "70819.07973"
           }
         ],
         "source": "polymarket_gamma",
@@ -57,7 +57,7 @@
           },
           "liquidity": {
             "score": 7,
-            "note": "$58,654 (≥$50K)"
+            "note": "$69,769 (≥$50K)"
           },
           "category_whitelist": {
             "score": 10,
@@ -96,9 +96,9 @@
         "title": "Will Argentina dollarize by June 30, 2026?",
         "description": "This market will resolve to \"Yes\" if Argentina begins to peg its currency to the United States dollar (USD), or adopts the United States dollar as official legal tender, June 30, 2026, 11:59 PM ET. Otherwise, this market will resolve to \"No\".\n\nAn announcement that dollarization will begin will not be sufficient to resolve this market to \"Yes\" - for this market to resolve to \"Yes\", dollarization must have actually begun.\n\nNote: a peg does not need to be 1:1 to USD.\n\nThis market's resolution source will be a consensus of credible reporting indicating either of the listed scenarios have begun.",
         "category": null,
-        "volume": 27539.284668000026,
-        "volume24hr": null,
-        "liquidity": 5687.82396,
+        "volume": 27774.534668000026,
+        "volume24hr": 235.25,
+        "liquidity": 4834.40479,
         "startDate": "2025-10-31T15:19:06.377162Z",
         "endDate": "2026-06-30T00:00:00Z",
         "marketsCount": 1,
@@ -110,8 +110,8 @@
             "clobTokenIds": "[\"85942265466488014050178628789837529099253370994950475616619512156841463704755\", \"105968432729863346987070765562525401181584491873900212191225154794647241934079\"]",
             "outcomes": "[\"Yes\", \"No\"]",
             "outcomePrices": "[\"0.002\", \"0.998\"]",
-            "volume": "27539.284668000026",
-            "liquidity": "5737.02396"
+            "volume": "27774.534668000026",
+            "liquidity": "5034.40479"
           }
         ],
         "source": "polymarket_gamma",
@@ -141,7 +141,7 @@
           },
           "liquidity": {
             "score": 0,
-            "note": "$5,688 (<$20K)"
+            "note": "$4,834 (<$20K)"
           },
           "category_whitelist": {
             "score": 10,
@@ -182,7 +182,7 @@
         "category": "North x South Korea Talks",
         "volume": 82702.00121600003,
         "volume24hr": 360,
-        "liquidity": 14547.33293,
+        "liquidity": 14058.79215,
         "startDate": "2025-11-05T19:24:34.944Z",
         "endDate": "2026-06-30T00:00:00Z",
         "marketsCount": 1,
@@ -195,7 +195,7 @@
             "outcomes": "[\"Yes\", \"No\"]",
             "outcomePrices": "[\"0.011\", \"0.989\"]",
             "volume": "82702.00121600003",
-            "liquidity": "14544.32293"
+            "liquidity": "14334.3505"
           }
         ],
         "source": "polymarket_gamma",
@@ -225,7 +225,7 @@
           },
           "liquidity": {
             "score": 0,
-            "note": "$14,547 (<$20K)"
+            "note": "$14,059 (<$20K)"
           },
           "category_whitelist": {
             "score": 10,
@@ -266,7 +266,7 @@
         "category": "Tesla Robotaxi Launch",
         "volume": 114330.3587639998,
         "volume24hr": null,
-        "liquidity": 6148.12901,
+        "liquidity": 5679.73771,
         "startDate": "2025-11-12T22:06:20.775662Z",
         "endDate": "2026-06-30T00:00:00Z",
         "marketsCount": 1,
@@ -309,7 +309,7 @@
           },
           "liquidity": {
             "score": 0,
-            "note": "$6,148 (<$20K)"
+            "note": "$5,680 (<$20K)"
           },
           "category_whitelist": {
             "score": 10,
@@ -348,9 +348,9 @@
         "title": "Taylor Swift pregnant before marriage?",
         "description": "This market will resolve to \"Yes\" if Taylor Swift announces that she is pregnant before she announces that she is married to Travis Kelce. Otherwise, this market will resolve to \"No\".\n\nOnly credible announcements will qualify. Pregnancy or marriage announcements that are not credible, for example jokes, will not suffice.\n\nIf Taylor Swift does not announce that she is pregnant or married to Travis Kelce by August 31, 2026 ET, or their engagement is otherwise broken off, this market will resolve to \"No\".\n\nThe resolution source will be statements from Taylor Swift or her representatives; however, a definitive consensus of credible media reporting may be used.",
         "category": null,
-        "volume": 249754.28041799992,
-        "volume24hr": 1000,
-        "liquidity": 11907.91421,
+        "volume": 250109.0204179999,
+        "volume24hr": 354.74,
+        "liquidity": 11107.35407,
         "startDate": "2025-08-28T16:38:46.487Z",
         "endDate": "2026-08-31T00:00:00Z",
         "marketsCount": 1,
@@ -361,9 +361,9 @@
             "conditionId": "0xfcde7eec764a4e3dd2c43e92efec3cd23d8df64cceff357914a31d2c7820a6ea",
             "clobTokenIds": "[\"332462812953361158016354695716232633373752944798478737086328444144960550554\", \"95178020761422271081901024182012949958678400416842257242483644267309564096726\"]",
             "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.0105\", \"0.9895\"]",
-            "volume": "249754.28041799992",
-            "liquidity": "11525.60847"
+            "outcomePrices": "[\"0.011\", \"0.989\"]",
+            "volume": "250109.0204179999",
+            "liquidity": "10741.93322"
           }
         ],
         "source": "polymarket_gamma",
@@ -393,7 +393,7 @@
           },
           "liquidity": {
             "score": 0,
-            "note": "$11,908 (<$20K)"
+            "note": "$11,107 (<$20K)"
           },
           "category_whitelist": {
             "score": 10,
