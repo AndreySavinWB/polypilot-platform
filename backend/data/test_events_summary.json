@@ -1,85 +1,6 @@
 [
   {
     "testNo": 1,
-    "id": "79050",
-    "title": "Will a Chinese AI model become #1 by June 30? ",
-    "tags": [
-      "hot",
-      "crypto_simple"
-    ],
-    "priorityScore": 89.0,
-    "priorityDecision": "accepted",
-    "priorityRank": 1,
-    "riskLevel": "low",
-    "pipelineStatus": "v1_0g_complete",
-    "titleRu": "Станет ли китайская модель ИИ номером 1 к 30 июня?",
-    "eventType": "crypto",
-    "ppVerdict": "Существует вероятность, что китайская модель ИИ может занять первое место к указанной дате.",
-    "confidence": 70,
-    "sourceUrl": "https://polymarket.com/event/will-a-chinese-ai-model-become-1-by-june-30"
-  },
-  {
-    "testNo": 2,
-    "id": "69702",
-    "title": "Will Argentina dollarize by June 30, 2026?",
-    "tags": [
-      "hot",
-      "crypto_simple",
-      "low_liquidity"
-    ],
-    "priorityScore": 86.0,
-    "priorityDecision": "accepted",
-    "priorityRank": 2,
-    "riskLevel": "medium",
-    "pipelineStatus": "v1_0g_complete",
-    "titleRu": "Долларизует ли Аргентина свою экономику до 30 июня 2026 года?",
-    "eventType": "crypto",
-    "ppVerdict": "На данный момент нет достаточных оснований полагать, что Аргентина начнет долларизацию до 30 июня 2026 года.",
-    "confidence": 65,
-    "sourceUrl": "https://polymarket.com/event/will-argentina-dollarize-by-june-30-2026"
-  },
-  {
-    "testNo": 3,
-    "id": "73212",
-    "title": "Will North and South Korea engage in direct talks by June 30?",
-    "tags": [
-      "hot",
-      "sports",
-      "low_liquidity"
-    ],
-    "priorityScore": 86.0,
-    "priorityDecision": "accepted",
-    "priorityRank": 3,
-    "riskLevel": "low",
-    "pipelineStatus": "v1_0g_complete",
-    "titleRu": "Состоятся ли прямые переговоры между Северной и Южной Кореей до 30 июня?",
-    "eventType": "geopolitics",
-    "ppVerdict": "Существует вероятность того, что Северная и Южная Корея могут начать прямые переговоры до 2026 года.",
-    "confidence": 65,
-    "sourceUrl": "https://polymarket.com/event/will-north-and-south-korea-engage-in-direct-talks-by-2027"
-  },
-  {
-    "testNo": 4,
-    "id": "79061",
-    "title": "Will Tesla launch robotaxis in California by June 30?",
-    "tags": [
-      "hot",
-      "crypto_simple",
-      "low_liquidity"
-    ],
-    "priorityScore": 82.0,
-    "priorityDecision": "accepted",
-    "priorityRank": 4,
-    "riskLevel": "medium",
-    "pipelineStatus": "v1_0g_complete",
-    "titleRu": "Запустит ли Tesla роботакси в Калифорнии до 30 июня?",
-    "eventType": "crypto",
-    "ppVerdict": "Существует вероятность того, что Тесла запустит службу роботакси в Калифорнии к установленному сроку.",
-    "confidence": 75,
-    "sourceUrl": "https://polymarket.com/event/will-tesla-launch-robotaxis-in-california-by-june-30"
-  },
-  {
-    "testNo": 5,
     "id": "40270",
     "title": "Taylor Swift pregnant before marriage?",
     "tags": [
@@ -89,12 +10,12 @@
     ],
     "priorityScore": 77.0,
     "priorityDecision": "accepted",
-    "priorityRank": 5,
+    "priorityRank": 1,
     "riskLevel": "low",
     "pipelineStatus": "v1_0g_complete",
     "titleRu": "Тейлор Свифт беременна до свадьбы?",
     "eventType": "crypto",
-    "ppVerdict": "На данный момент нет достаточных оснований полагать, что Тейлор Свифт объявит о беременности до свадьбы.",
+    "ppVerdict": "На данный момент вероятность беременности Тейлор Свифт до свадьбы низка.",
     "confidence": 65,
     "sourceUrl": "https://polymarket.com/event/taylor-swift-pregnant-before-marriage"
   }
