@@ -11,11 +11,11 @@
     "priorityScore": 77.0,
     "priorityDecision": "accepted",
     "priorityRank": 1,
-    "riskLevel": "low",
+    "riskLevel": "medium",
     "pipelineStatus": "v1_0g_complete",
     "titleRu": "Тейлор Свифт беременна до свадьбы?",
     "eventType": "crypto",
-    "ppVerdict": "На данный момент нет достаточных оснований полагать, что Тейлор Свифт объявит о беременности до замужества.",
+    "ppVerdict": "Вероятность того, что Тейлор Свифт объявит о беременности до свадьбы, остается неопределенной.",
     "confidence": 65,
     "sourceUrl": "https://polymarket.com/event/taylor-swift-pregnant-before-marriage"
   }
