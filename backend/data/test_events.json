@@ -27,9 +27,9 @@
         "title": "Taylor Swift pregnant before marriage?",
         "description": "This market will resolve to \"Yes\" if Taylor Swift announces that she is pregnant before she announces that she is married to Travis Kelce. Otherwise, this market will resolve to \"No\".\n\nOnly credible announcements will qualify. Pregnancy or marriage announcements that are not credible, for example jokes, will not suffice.\n\nIf Taylor Swift does not announce that she is pregnant or married to Travis Kelce by August 31, 2026 ET, or their engagement is otherwise broken off, this market will resolve to \"No\".\n\nThe resolution source will be statements from Taylor Swift or her representatives; however, a definitive consensus of credible media reporting may be used.",
         "category": null,
-        "volume": 250109.0204179999,
-        "volume24hr": null,
-        "liquidity": 8144.38561,
+        "volume": 250110.37041799992,
+        "volume24hr": 1.35,
+        "liquidity": 10714.3393,
         "startDate": "2025-08-28T16:38:46.487Z",
         "endDate": "2026-08-31T00:00:00Z",
         "marketsCount": 1,
@@ -41,8 +41,8 @@
             "clobTokenIds": "[\"332462812953361158016354695716232633373752944798478737086328444144960550554\", \"95178020761422271081901024182012949958678400416842257242483644267309564096726\"]",
             "outcomes": "[\"Yes\", \"No\"]",
             "outcomePrices": "[\"0.0125\", \"0.9875\"]",
-            "volume": "250109.0204179999",
-            "liquidity": "8745.24711"
+            "volume": "250110.37041799992",
+            "liquidity": "10445.31142"
           }
         ],
         "source": "polymarket_gamma",
@@ -221,15 +221,15 @@
         "normalizedEvent": {
           "titleRu": "Тейлор Свифт беременна до свадьбы?",
           "resolutionCriteria": "Taylor Swift pregnant before marriage?. This market will resolve to \"Yes\" if Taylor Swift announces that she is pregnant before she announces that she is married to Travis Kelce. Otherwise, this market will resolve to \"No\".  Only credible announcements will qualify. Pregnancy or marriage announcements that are not credible, for example jokes, will not suffice.  If Taylor Swift does not announce that she is pregnant or married to Travis Kelce by August 31, 2026 ET, or their engagement is otherwise broken off, this market will resolve t",
-          "horizonDays": 62,
+          "horizonDays": 61,
           "decisionMaker": "Polymarket / UMA",
           "flags": [],
           "normalizationStatus": "ok",
           "marketSnapshot": {
             "marketProb": 0.0125,
-            "volume": 250109.02,
-            "volume24h": 0.0,
-            "liquidity": 8144.39,
+            "volume": 250110.37,
+            "volume24h": 1.35,
+            "liquidity": 10714.34,
             "priceChange24h": null,
             "spread": 0.0
           }
@@ -286,14 +286,14 @@
           "scoringMode": "rules_v0"
         },
         "risk": {
-          "riskScore": 38.0,
+          "riskScore": 34.0,
           "riskLevel": "medium",
           "flags": [
-            "Низкая ликвидность — цена и исполнение могут искажаться.",
+            "Тонкий рынок: мало объёма за 24ч относительно ликвидности.",
             "Цена близка к 0% или 100% — рынок почти решён."
           ],
           "factors": [
-            "low_liquidity",
+            "thin_market",
             "dead_price"
           ],
           "scoringMode": "rules_v1_0a"
@@ -308,25 +308,22 @@
           "summary": "На данный момент нет официальных заявлений о беременности Тейлор Свифт.",
           "facts": [
             "Тейлор Свифт не делала официальных заявлений о беременности.",
-            "Существует условие, что рынок закроется, если до 31 августа 2026 года не будет объявлено о беременности или свадьбе."
+            "Существует вероятность, что она может объявить о беременности до свадьбы."
           ],
           "missing": [
-            "Официальные заявления от Тейлор Свифт или ее представителей.",
-            "Кредибильные сообщения от СМИ о беременности."
+            "Официальные заявления от Тейлор Свифт или её представителей.",
+            "Кредибельные сообщения от СМИ о беременности."
           ]
         },
         "riskOfficer": {
           "agent": "Risk Officer",
           "riskLevel": "medium",
-          "flags": [
-            "Неясность в отношении будущих объявлений.",
-            "Вероятность изменения статуса отношений между Тейлор Свифт и Трависом Келси."
-          ]
+          "flags": []
         },
         "verdict": {
           "agent": "Verdict Agent",
-          "ppVerdict": "На данный момент вероятность беременности Тейлор Свифт до свадьбы с Трависом Келси остается неопределенной.",
-          "confidence": 65,
+          "ppVerdict": "На данный момент вероятность беременности Тейлор Свифт до свадьбы является неопределенной.",
+          "confidence": 60,
           "edgeScore": null,
           "status": "research_required"
         },
@@ -356,7 +353,7 @@
             },
             "horizon": {
               "score": 10,
-              "note": "~62 дн. (≤90)"
+              "note": "~61 дн. (≤90)"
             },
             "truth_source": {
               "score": 12,
@@ -364,7 +361,7 @@
             },
             "liquidity": {
               "score": 0,
-              "note": "$8,144 (<$20K)"
+              "note": "$10,714 (<$20K)"
             },
             "category_whitelist": {
               "score": 10,
