@@ -29,7 +29,7 @@
         "category": null,
         "volume": 250110.37041799992,
         "volume24hr": 1.35,
-        "liquidity": 10714.3393,
+        "liquidity": 10071.08278,
         "startDate": "2025-08-28T16:38:46.487Z",
         "endDate": "2026-08-31T00:00:00Z",
         "marketsCount": 1,
@@ -42,7 +42,7 @@
             "outcomes": "[\"Yes\", \"No\"]",
             "outcomePrices": "[\"0.0125\", \"0.9875\"]",
             "volume": "250110.37041799992",
-            "liquidity": "10445.31142"
+            "liquidity": "9277.33212"
           }
         ],
         "source": "polymarket_gamma",
@@ -229,7 +229,7 @@
             "marketProb": 0.0125,
             "volume": 250110.37,
             "volume24h": 1.35,
-            "liquidity": 10714.34,
+            "liquidity": 10071.08,
             "priceChange24h": null,
             "spread": 0.0
           }
@@ -318,11 +318,13 @@
         "riskOfficer": {
           "agent": "Risk Officer",
           "riskLevel": "medium",
-          "flags": []
+          "flags": [
+            "Неопределенность в отношении будущих объявлений."
+          ]
         },
         "verdict": {
           "agent": "Verdict Agent",
-          "ppVerdict": "На данный момент вероятность беременности Тейлор Свифт до свадьбы является неопределенной.",
+          "ppVerdict": "На данный момент вероятность беременности Тейлор Свифт до свадьбы остается неопределенной.",
           "confidence": 60,
           "edgeScore": null,
           "status": "research_required"
@@ -361,7 +363,7 @@
             },
             "liquidity": {
               "score": 0,
-              "note": "$10,714 (<$20K)"
+              "note": "$10,071 (<$20K)"
             },
             "category_whitelist": {
               "score": 10,
