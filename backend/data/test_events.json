@@ -18,8 +18,7 @@
       "testNo": 1,
       "tags": [
         "hot",
-        "crypto_simple",
-        "low_liquidity"
+        "crypto_simple"
       ],
       "event": {
         "id": "40270",
@@ -27,9 +26,9 @@
         "title": "Taylor Swift pregnant before marriage?",
         "description": "This market will resolve to \"Yes\" if Taylor Swift announces that she is pregnant before she announces that she is married to Travis Kelce. Otherwise, this market will resolve to \"No\".\n\nOnly credible announcements will qualify. Pregnancy or marriage announcements that are not credible, for example jokes, will not suffice.\n\nIf Taylor Swift does not announce that she is pregnant or married to Travis Kelce by August 31, 2026 ET, or their engagement is otherwise broken off, this market will resolve to \"No\".\n\nThe resolution source will be statements from Taylor Swift or her representatives; however, a definitive consensus of credible media reporting may be used.",
         "category": null,
-        "volume": 253277.38041799993,
-        "volume24hr": 3001.01,
-        "liquidity": 15653.15109,
+        "volume": 277289.8729679999,
+        "volume24hr": 27013.502550000005,
+        "liquidity": 41627.45375,
         "startDate": "2025-08-28T16:38:46.487Z",
         "endDate": "2026-08-31T00:00:00Z",
         "marketsCount": 1,
@@ -40,9 +39,9 @@
             "conditionId": "0xfcde7eec764a4e3dd2c43e92efec3cd23d8df64cceff357914a31d2c7820a6ea",
             "clobTokenIds": "[\"332462812953361158016354695716232633373752944798478737086328444144960550554\", \"95178020761422271081901024182012949958678400416842257242483644267309564096726\"]",
             "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.008\", \"0.992\"]",
-            "volume": "253277.38041799993",
-            "liquidity": "15080.31301"
+            "outcomePrices": "[\"0.0035\", \"0.9965\"]",
+            "volume": "277289.8729679999",
+            "liquidity": "42540.88416"
           }
         ],
         "source": "polymarket_gamma",
@@ -54,9 +53,9 @@
         "pieVersion": "pie_v1_0g",
         "priority": {
           "agent": "Simplicity Filter",
-          "score": 77.0,
+          "score": 81.0,
           "decision": "accepted",
-          "reason": "Simple accept · кандидат на публикацию · score 77.0. Простое крипто. Сильные: clear_outcome (20), title_clarity (15).",
+          "reason": "Simple accept · кандидат на публикацию · score 81.0. Простое крипто. Сильные: clear_outcome (20), title_clarity (15).",
           "gates": {
             "passed": true,
             "failed": [],
@@ -75,21 +74,21 @@
         "contradictionMap": [],
         "analogs": [],
         "probability": {
-          "marketProb": 0.008,
+          "marketProb": 0.0035,
           "ppProb": 0.02,
-          "edgePp": 1.2,
-          "confidence": 0.46,
+          "edgePp": 1.7,
+          "confidence": 0.56,
           "components": {
             "marketBase": {
-              "value": 0.008,
-              "structureMult": 0.25,
-              "centeredValue": -0.123
+              "value": 0.0035,
+              "structureMult": 0.64,
+              "centeredValue": -0.3178
             },
             "whaleSignal": {
               "signal": "accumulation_no",
               "rawAdjustment": -0.07,
-              "qualityMult": 0.2,
-              "value": -0.014
+              "qualityMult": 0.52,
+              "value": -0.0364
             },
             "evidenceSignal": {
               "value": -0.0187,
@@ -107,23 +106,20 @@
           "scoringMode": "rules_v0"
         },
         "marketStructure": {
-          "marketHealthScore": 8,
-          "liquidityTier": "low",
+          "marketHealthScore": 52,
+          "liquidityTier": "medium",
           "spreadRisk": "low",
           "walletConcentration": "unknown",
           "whaleDominance": null,
-          "manipulationRisk": "high",
-          "crowdParticipation": "low",
-          "priceReliability": "low",
-          "marketReliability": 0.08,
-          "structureSummary": "Рынок структурно опасен: цена может быть ненадёжной из-за тонкой ликвидности или аномального движения.",
+          "manipulationRisk": "medium",
+          "crowdParticipation": "moderate",
+          "priceReliability": "moderate",
+          "marketReliability": 0.52,
+          "structureSummary": "Рынок умеренно надёжен: цену можно учитывать, но нужны проверки структуры и риска.",
           "flags": [
-            "thin_market",
             "volume_spike",
             "whale_proxy_flow",
-            "thin_market_whale_combo",
-            "dead_price",
-            "price_unreliable"
+            "dead_price"
           ],
           "sourcesUsed": [
             "polymarket_gamma",
@@ -137,7 +133,7 @@
           "strategyFits": [
             {
               "strategy": "education",
-              "fitScore": 75,
+              "fitScore": 83,
               "status": "candidate",
               "reason": "clear event category: crypto",
               "requiredChecks": [
@@ -152,28 +148,10 @@
               ]
             },
             {
-              "strategy": "news_lag",
-              "fitScore": 54,
-              "status": "watchlist",
-              "reason": "catalyst-driven event type: crypto; official/resolution evidence exists, but no external news feed yet; market activity is rising; market price reliability is low",
-              "requiredChecks": [
-                "source_quality",
-                "freshness",
-                "market_reaction",
-                "resolution_link"
-              ],
-              "invalidation": [
-                "stale_news",
-                "weak_source",
-                "already_priced_in",
-                "unclear_resolution"
-              ]
-            },
-            {
               "strategy": "whale_copy",
-              "fitScore": 7,
-              "status": "not_a_fit",
-              "reason": "whale proxy signal: accumulation_no; liquidity is low; market price reliability is low; market structure manipulation risk is high; thin market + whale proxy flow",
+              "fitScore": 70,
+              "status": "candidate",
+              "reason": "whale proxy signal: accumulation_no",
               "requiredChecks": [
                 "liquidity",
                 "spread",
@@ -186,10 +164,29 @@
                 "unclear_resolution",
                 "hedge_flow"
               ]
+            },
+            {
+              "strategy": "news_lag",
+              "fitScore": 58,
+              "status": "watchlist",
+              "reason": "catalyst-driven event type: crypto; official/resolution evidence exists, but no external news feed yet; market activity is rising",
+              "requiredChecks": [
+                "source_quality",
+                "freshness",
+                "market_reaction",
+                "resolution_link"
+              ],
+              "invalidation": [
+                "stale_news",
+                "weak_source",
+                "already_priced_in",
+                "unclear_resolution"
+              ]
             }
           ],
           "queues": [
             "education_queue",
+            "whale_queue",
             "news_queue"
           ],
           "verdictMode": "education_case",
@@ -200,10 +197,10 @@
           "primaryStrategy": "education",
           "mode": "education_case",
           "summary": "Событие подходит как учебный кейс: clear event category: crypto. Можно объяснить рынок, резолв и ограничения данных.",
-          "marketProbText": "1%",
+          "marketProbText": "0%",
           "ppProbText": "2%",
-          "edgeText": "+1.2pp",
-          "confidence": 0.46,
+          "edgeText": "+1.7pp",
+          "confidence": 0.56,
           "riskLevel": "low",
           "requiredChecks": [
             "simple_resolution",
@@ -228,10 +225,10 @@
           "flags": [],
           "normalizationStatus": "ok",
           "marketSnapshot": {
-            "marketProb": 0.008,
-            "volume": 253277.38,
-            "volume24h": 3001.01,
-            "liquidity": 15653.15,
+            "marketProb": 0.0035,
+            "volume": 277289.87,
+            "volume24h": 27013.5,
+            "liquidity": 41627.45,
             "priceChange24h": null,
             "spread": 0.0
           }
@@ -251,7 +248,7 @@
           "anomalies": [
             {
               "type": "volume_spike",
-              "description": "24h volume is 3.6x average daily volume",
+              "description": "24h volume is 29.9x average daily volume",
               "severity": "high"
             }
           ],
@@ -262,7 +259,7 @@
             {
               "type": "market",
               "title": "Рыночный сигнал Polymarket",
-              "summary": "Рынок оценивает вероятность в 1%, сигнал объёма: rising, аномалия: high",
+              "summary": "Рынок оценивает вероятность в 0%, сигнал объёма: rising, аномалия: high",
               "source": "Polymarket",
               "url": "https://polymarket.com/event/taylor-swift-pregnant-before-marriage",
               "publishedAt": null,
@@ -311,14 +308,14 @@
         "source": "polymarket_gamma",
         "newsScout": {
           "agent": "News Scout",
-          "summary": "На данный момент нет официальных заявлений о беременности Тейлор Свифт.",
+          "summary": "На данный момент нет официальных новостей о беременности Тейлор Свифт.",
           "facts": [
             "Тейлор Свифт не делала официальных заявлений о беременности.",
-            "Существует вероятность, что Тейлор Свифт может объявить о беременности до свадьбы."
+            "Тейлор Свифт не объявила о свадьбе с Трависом Келси."
           ],
           "missing": [
             "Официальные заявления от Тейлор Свифт или её представителей.",
-            "Кредибельные источники новостей о её личной жизни."
+            "Достоверные сообщения от СМИ о беременности или свадьбе."
           ]
         },
         "riskOfficer": {
@@ -328,26 +325,26 @@
         },
         "verdict": {
           "agent": "Verdict Agent",
-          "ppVerdict": "На данный момент нет достаточных оснований полагать, что Тейлор Свифт объявит о беременности до свадьбы.",
-          "confidence": 65,
+          "ppVerdict": "На данный момент вероятность беременности Тейлор Свифт до свадьбы с Трависом Келси не подтверждена.",
+          "confidence": 60,
           "edgeScore": null,
-          "status": "ready"
+          "status": "research_required"
         },
         "ui": {
-          "closedCardBadge": "Accepted",
+          "closedCardBadge": "Watchlist",
           "warRoomAgents": [
             "Priority Agent",
             "News Scout",
             "Risk Officer",
             "Verdict Agent"
           ],
-          "disclaimer": "Анализ только. Не финансовый совет."
+          "disclaimer": "Analysis only. Not financial advice."
         },
         "priority": {
           "agent": "Simplicity Filter",
-          "score": 77.0,
+          "score": 81.0,
           "decision": "accepted",
-          "reason": "Simple accept · кандидат на публикацию · score 77.0. Простое крипто. Сильные: clear_outcome (20), title_clarity (15).",
+          "reason": "Simple accept · кандидат на публикацию · score 81.0. Простое крипто. Сильные: clear_outcome (20), title_clarity (15).",
           "rubric": {
             "clear_outcome": {
               "score": 20,
@@ -366,8 +363,8 @@
               "note": "крипто — price feed как источник"
             },
             "liquidity": {
-              "score": 0,
-              "note": "$15,653 (<$20K)"
+              "score": 4,
+              "note": "$41,627 (≥$20K)"
             },
             "category_whitelist": {
               "score": 10,

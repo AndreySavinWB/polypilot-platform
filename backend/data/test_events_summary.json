@@ -5,18 +5,17 @@
     "title": "Taylor Swift pregnant before marriage?",
     "tags": [
       "hot",
-      "crypto_simple",
-      "low_liquidity"
+      "crypto_simple"
     ],
-    "priorityScore": 77.0,
+    "priorityScore": 81.0,
     "priorityDecision": "accepted",
     "priorityRank": 1,
     "riskLevel": "low",
     "pipelineStatus": "v1_0g_complete",
     "titleRu": "Тейлор Свифт беременна до свадьбы?",
     "eventType": "crypto",
-    "ppVerdict": "На данный момент нет достаточных оснований полагать, что Тейлор Свифт объявит о беременности до свадьбы.",
-    "confidence": 65,
+    "ppVerdict": "На данный момент вероятность беременности Тейлор Свифт до свадьбы с Трависом Келси не подтверждена.",
+    "confidence": 60,
     "sourceUrl": "https://polymarket.com/event/taylor-swift-pregnant-before-marriage"
   }
 ]
