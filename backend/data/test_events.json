@@ -26,9 +26,9 @@
         "title": "Taylor Swift pregnant before marriage?",
         "description": "This market will resolve to \"Yes\" if Taylor Swift announces that she is pregnant before she announces that she is married to Travis Kelce. Otherwise, this market will resolve to \"No\".\n\nOnly credible announcements will qualify. Pregnancy or marriage announcements that are not credible, for example jokes, will not suffice.\n\nIf Taylor Swift does not announce that she is pregnant or married to Travis Kelce by August 31, 2026 ET, or their engagement is otherwise broken off, this market will resolve to \"No\".\n\nThe resolution source will be statements from Taylor Swift or her representatives; however, a definitive consensus of credible media reporting may be used.",
         "category": null,
-        "volume": 290136.6001889997,
-        "volume24hr": 39860.22977100001,
-        "liquidity": 40185.10444,
+        "volume": 293272.4200349996,
+        "volume24hr": 42995.03961700002,
+        "liquidity": 40416.25562,
         "startDate": "2025-08-28T16:38:46.487Z",
         "endDate": "2026-08-31T00:00:00Z",
         "marketsCount": 1,
@@ -39,9 +39,9 @@
             "conditionId": "0xfcde7eec764a4e3dd2c43e92efec3cd23d8df64cceff357914a31d2c7820a6ea",
             "clobTokenIds": "[\"332462812953361158016354695716232633373752944798478737086328444144960550554\", \"95178020761422271081901024182012949958678400416842257242483644267309564096726\"]",
             "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.0025\", \"0.9975\"]",
-            "volume": "290138.5240349997",
-            "liquidity": "39918.08202"
+            "outcomePrices": "[\"0.0015\", \"0.9985\"]",
+            "volume": "293272.4200349996",
+            "liquidity": "37072.25667"
           }
         ],
         "source": "polymarket_gamma",
@@ -74,15 +74,15 @@
         "contradictionMap": [],
         "analogs": [],
         "probability": {
-          "marketProb": 0.0025,
+          "marketProb": 0.0015,
           "ppProb": 0.02,
           "edgePp": 1.8,
           "confidence": 0.56,
           "components": {
             "marketBase": {
-              "value": 0.0025,
+              "value": 0.0015,
               "structureMult": 0.64,
-              "centeredValue": -0.3184
+              "centeredValue": -0.319
             },
             "whaleSignal": {
               "signal": "accumulation_no",
@@ -225,10 +225,10 @@
           "flags": [],
           "normalizationStatus": "ok",
           "marketSnapshot": {
-            "marketProb": 0.0025,
-            "volume": 290136.6,
-            "volume24h": 39860.23,
-            "liquidity": 40185.1,
+            "marketProb": 0.0015,
+            "volume": 293272.42,
+            "volume24h": 42995.04,
+            "liquidity": 40416.26,
             "priceChange24h": null,
             "spread": 0.0
           }
@@ -248,7 +248,7 @@
           "anomalies": [
             {
               "type": "volume_spike",
-              "description": "24h volume is 42.2x average daily volume",
+              "description": "24h volume is 45.0x average daily volume",
               "severity": "high"
             }
           ],
@@ -308,33 +308,31 @@
         "source": "polymarket_gamma",
         "newsScout": {
           "agent": "News Scout",
-          "summary": "На данный момент нет официальных новостей о беременности Тейлор Свифт.",
+          "summary": "Нет подтвержденных новостей о беременности Тейлор Свифт.",
           "facts": [
             "Тейлор Свифт не делала официальных заявлений о беременности.",
-            "Существует рынок, связанный с возможной беременностью Тейлор Свифт до её замужества."
+            "Существует вероятность, что она может объявить о беременности до свадьбы."
           ],
           "missing": [
-            "Официальные заявления от Тейлор Свифт или её представителей.",
-            "Кредибильные сообщения от СМИ о беременности."
+            "Подтвержденные источники о беременности или свадьбе."
           ]
         },
         "riskOfficer": {
           "agent": "Risk Officer",
           "riskLevel": "medium",
           "flags": [
-            "Неясность в отношении будущих объявлений.",
-            "Возможность изменения личной жизни Тейлор Свифт."
+            "Отсутствие официальных заявлений."
           ]
         },
         "verdict": {
           "agent": "Verdict Agent",
-          "ppVerdict": "На данный момент вероятность беременности Тейлор Свифт до замужества низкая.",
+          "ppVerdict": "На данный момент нет достаточных оснований полагать, что Тейлор Свифт объявит о беременности до свадьбы.",
           "confidence": 65,
           "edgeScore": null,
           "status": "research_required"
         },
         "ui": {
-          "closedCardBadge": "Watchlist",
+          "closedCardBadge": "Accepted",
           "warRoomAgents": [
             "Priority Agent",
             "News Scout",
@@ -367,7 +365,7 @@
             },
             "liquidity": {
               "score": 4,
-              "note": "$40,185 (≥$20K)"
+              "note": "$40,416 (≥$20K)"
             },
             "category_whitelist": {
               "score": 10,
