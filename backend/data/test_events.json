@@ -26,9 +26,9 @@
         "title": "Taylor Swift pregnant before marriage?",
         "description": "This market will resolve to \"Yes\" if Taylor Swift announces that she is pregnant before she announces that she is married to Travis Kelce. Otherwise, this market will resolve to \"No\".\n\nOnly credible announcements will qualify. Pregnancy or marriage announcements that are not credible, for example jokes, will not suffice.\n\nIf Taylor Swift does not announce that she is pregnant or married to Travis Kelce by August 31, 2026 ET, or their engagement is otherwise broken off, this market will resolve to \"No\".\n\nThe resolution source will be statements from Taylor Swift or her representatives; however, a definitive consensus of credible media reporting may be used.",
         "category": null,
-        "volume": 277289.8729679999,
-        "volume24hr": 27013.502550000005,
-        "liquidity": 41627.45375,
+        "volume": 290136.6001889997,
+        "volume24hr": 39860.22977100001,
+        "liquidity": 40185.10444,
         "startDate": "2025-08-28T16:38:46.487Z",
         "endDate": "2026-08-31T00:00:00Z",
         "marketsCount": 1,
@@ -39,9 +39,9 @@
             "conditionId": "0xfcde7eec764a4e3dd2c43e92efec3cd23d8df64cceff357914a31d2c7820a6ea",
             "clobTokenIds": "[\"332462812953361158016354695716232633373752944798478737086328444144960550554\", \"95178020761422271081901024182012949958678400416842257242483644267309564096726\"]",
             "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.0035\", \"0.9965\"]",
-            "volume": "277289.8729679999",
-            "liquidity": "42540.88416"
+            "outcomePrices": "[\"0.0025\", \"0.9975\"]",
+            "volume": "290138.5240349997",
+            "liquidity": "39918.08202"
           }
         ],
         "source": "polymarket_gamma",
@@ -74,15 +74,15 @@
         "contradictionMap": [],
         "analogs": [],
         "probability": {
-          "marketProb": 0.0035,
+          "marketProb": 0.0025,
           "ppProb": 0.02,
-          "edgePp": 1.7,
+          "edgePp": 1.8,
           "confidence": 0.56,
           "components": {
             "marketBase": {
-              "value": 0.0035,
+              "value": 0.0025,
               "structureMult": 0.64,
-              "centeredValue": -0.3178
+              "centeredValue": -0.3184
             },
             "whaleSignal": {
               "signal": "accumulation_no",
@@ -199,7 +199,7 @@
           "summary": "Событие подходит как учебный кейс: clear event category: crypto. Можно объяснить рынок, резолв и ограничения данных.",
           "marketProbText": "0%",
           "ppProbText": "2%",
-          "edgeText": "+1.7pp",
+          "edgeText": "+1.8pp",
           "confidence": 0.56,
           "riskLevel": "low",
           "requiredChecks": [
@@ -220,15 +220,15 @@
         "normalizedEvent": {
           "titleRu": "Тейлор Свифт беременна до свадьбы?",
           "resolutionCriteria": "Taylor Swift pregnant before marriage?. This market will resolve to \"Yes\" if Taylor Swift announces that she is pregnant before she announces that she is married to Travis Kelce. Otherwise, this market will resolve to \"No\".  Only credible announcements will qualify. Pregnancy or marriage announcements that are not credible, for example jokes, will not suffice.  If Taylor Swift does not announce that she is pregnant or married to Travis Kelce by August 31, 2026 ET, or their engagement is otherwise broken off, this market will resolve t",
-          "horizonDays": 60,
+          "horizonDays": 59,
           "decisionMaker": "Polymarket / UMA",
           "flags": [],
           "normalizationStatus": "ok",
           "marketSnapshot": {
-            "marketProb": 0.0035,
-            "volume": 277289.87,
-            "volume24h": 27013.5,
-            "liquidity": 41627.45,
+            "marketProb": 0.0025,
+            "volume": 290136.6,
+            "volume24h": 39860.23,
+            "liquidity": 40185.1,
             "priceChange24h": null,
             "spread": 0.0
           }
@@ -248,7 +248,7 @@
           "anomalies": [
             {
               "type": "volume_spike",
-              "description": "24h volume is 29.9x average daily volume",
+              "description": "24h volume is 42.2x average daily volume",
               "severity": "high"
             }
           ],
@@ -311,22 +311,25 @@
           "summary": "На данный момент нет официальных новостей о беременности Тейлор Свифт.",
           "facts": [
             "Тейлор Свифт не делала официальных заявлений о беременности.",
-            "Тейлор Свифт не объявила о свадьбе с Трависом Келси."
+            "Существует рынок, связанный с возможной беременностью Тейлор Свифт до её замужества."
           ],
           "missing": [
             "Официальные заявления от Тейлор Свифт или её представителей.",
-            "Достоверные сообщения от СМИ о беременности или свадьбе."
+            "Кредибильные сообщения от СМИ о беременности."
           ]
         },
         "riskOfficer": {
           "agent": "Risk Officer",
           "riskLevel": "medium",
-          "flags": []
+          "flags": [
+            "Неясность в отношении будущих объявлений.",
+            "Возможность изменения личной жизни Тейлор Свифт."
+          ]
         },
         "verdict": {
           "agent": "Verdict Agent",
-          "ppVerdict": "На данный момент вероятность беременности Тейлор Свифт до свадьбы с Трависом Келси не подтверждена.",
-          "confidence": 60,
+          "ppVerdict": "На данный момент вероятность беременности Тейлор Свифт до замужества низкая.",
+          "confidence": 65,
           "edgeScore": null,
           "status": "research_required"
         },
@@ -338,7 +341,7 @@
             "Risk Officer",
             "Verdict Agent"
           ],
-          "disclaimer": "Analysis only. Not financial advice."
+          "disclaimer": "Анализ только. Не является финансовым советом."
         },
         "priority": {
           "agent": "Simplicity Filter",
@@ -356,7 +359,7 @@
             },
             "horizon": {
               "score": 10,
-              "note": "~60 дн. (≤90)"
+              "note": "~59 дн. (≤90)"
             },
             "truth_source": {
               "score": 12,
@@ -364,7 +367,7 @@
             },
             "liquidity": {
               "score": 4,
-              "note": "$41,627 (≥$20K)"
+              "note": "$40,185 (≥$20K)"
             },
             "category_whitelist": {
               "score": 10,
