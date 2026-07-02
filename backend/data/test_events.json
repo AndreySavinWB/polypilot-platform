@@ -27,8 +27,8 @@
         "description": "This market will resolve to \"Yes\" if Taylor Swift announces that she is pregnant before she announces that she is married to Travis Kelce. Otherwise, this market will resolve to \"No\".\n\nOnly credible announcements will qualify. Pregnancy or marriage announcements that are not credible, for example jokes, will not suffice.\n\nIf Taylor Swift does not announce that she is pregnant or married to Travis Kelce by August 31, 2026 ET, or their engagement is otherwise broken off, this market will resolve to \"No\".\n\nThe resolution source will be statements from Taylor Swift or her representatives; however, a definitive consensus of credible media reporting may be used.",
         "category": null,
         "volume": 293272.4200349996,
-        "volume24hr": 42995.03961700002,
-        "liquidity": 40416.25562,
+        "volume24hr": 39995.03961700002,
+        "liquidity": 41021.82984,
         "startDate": "2025-08-28T16:38:46.487Z",
         "endDate": "2026-08-31T00:00:00Z",
         "marketsCount": 1,
@@ -41,7 +41,7 @@
             "outcomes": "[\"Yes\", \"No\"]",
             "outcomePrices": "[\"0.0015\", \"0.9985\"]",
             "volume": "293272.4200349996",
-            "liquidity": "37072.25667"
+            "liquidity": "41033.97411"
           }
         ],
         "source": "polymarket_gamma",
@@ -227,8 +227,8 @@
           "marketSnapshot": {
             "marketProb": 0.0015,
             "volume": 293272.42,
-            "volume24h": 42995.04,
-            "liquidity": 40416.26,
+            "volume24h": 39995.04,
+            "liquidity": 41021.83,
             "priceChange24h": null,
             "spread": 0.0
           }
@@ -248,7 +248,7 @@
           "anomalies": [
             {
               "type": "volume_spike",
-              "description": "24h volume is 45.0x average daily volume",
+              "description": "24h volume is 41.9x average daily volume",
               "severity": "high"
             }
           ],
@@ -308,28 +308,27 @@
         "source": "polymarket_gamma",
         "newsScout": {
           "agent": "News Scout",
-          "summary": "Нет подтвержденных новостей о беременности Тейлор Свифт.",
+          "summary": "На данный момент нет официальных заявлений о беременности Тейлор Свифт.",
           "facts": [
             "Тейлор Свифт не делала официальных заявлений о беременности.",
-            "Существует вероятность, что она может объявить о беременности до свадьбы."
+            "Рынок будет разрешен на основе официальных заявлений от Тейлор Свифт или ее представителей."
           ],
           "missing": [
-            "Подтвержденные источники о беременности или свадьбе."
+            "Недостаток информации о текущих отношениях Тейлор Свифт и Трависа Келси.",
+            "Отсутствие слухов или новостей о беременности."
           ]
         },
         "riskOfficer": {
           "agent": "Risk Officer",
           "riskLevel": "medium",
-          "flags": [
-            "Отсутствие официальных заявлений."
-          ]
+          "flags": []
         },
         "verdict": {
           "agent": "Verdict Agent",
-          "ppVerdict": "На данный момент нет достаточных оснований полагать, что Тейлор Свифт объявит о беременности до свадьбы.",
-          "confidence": 65,
+          "ppVerdict": "На данный момент невозможно предсказать, объявит ли Тейлор Свифт о беременности до свадьбы.",
+          "confidence": 70,
           "edgeScore": null,
-          "status": "research_required"
+          "status": "ready"
         },
         "ui": {
           "closedCardBadge": "Accepted",
@@ -339,7 +338,7 @@
             "Risk Officer",
             "Verdict Agent"
           ],
-          "disclaimer": "Анализ только. Не является финансовым советом."
+          "disclaimer": "Анализ только. Не финансовый совет."
         },
         "priority": {
           "agent": "Simplicity Filter",
@@ -365,7 +364,7 @@
             },
             "liquidity": {
               "score": 4,
-              "note": "$40,416 (≥$20K)"
+              "note": "$41,022 (≥$20K)"
             },
             "category_whitelist": {
               "score": 10,
