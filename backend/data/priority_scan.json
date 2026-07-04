@@ -1,95 +1,10 @@
 {
   "scannedTotal": 300,
-  "passedGates": 1,
-  "accepted": 1,
+  "passedGates": 0,
+  "accepted": 0,
   "watchlist": 0,
-  "rejected": 299,
-  "top": [
-    {
-      "event": {
-        "id": "40270",
-        "slug": "taylor-swift-pregnant-before-marriage",
-        "title": "Taylor Swift pregnant before marriage?",
-        "description": "This market will resolve to \"Yes\" if Taylor Swift announces that she is pregnant before she announces that she is married to Travis Kelce. Otherwise, this market will resolve to \"No\".\n\nOnly credible announcements will qualify. Pregnancy or marriage announcements that are not credible, for example jokes, will not suffice.\n\nIf Taylor Swift does not announce that she is pregnant or married to Travis Kelce by August 31, 2026 ET, or their engagement is otherwise broken off, this market will resolve to \"No\".\n\nThe resolution source will be statements from Taylor Swift or her representatives; however, a definitive consensus of credible media reporting may be used.",
-        "category": null,
-        "volume": 307359.6460349996,
-        "volume24hr": 11771.329999999998,
-        "liquidity": 46038.63774,
-        "startDate": "2025-08-28T16:38:46.487Z",
-        "endDate": "2026-08-31T00:00:00Z",
-        "marketsCount": 1,
-        "markets": [
-          {
-            "id": "582717",
-            "question": "Taylor Swift pregnant before marriage?",
-            "conditionId": "0xfcde7eec764a4e3dd2c43e92efec3cd23d8df64cceff357914a31d2c7820a6ea",
-            "clobTokenIds": "[\"332462812953361158016354695716232633373752944798478737086328444144960550554\", \"95178020761422271081901024182012949958678400416842257242483644267309564096726\"]",
-            "outcomes": "[\"Yes\", \"No\"]",
-            "outcomePrices": "[\"0.0005\", \"0.9995\"]",
-            "volume": "307359.6460349996",
-            "liquidity": "45740.59705"
-          }
-        ],
-        "source": "polymarket_gamma",
-        "sourceUrl": "https://polymarket.com/event/taylor-swift-pregnant-before-marriage"
-      },
-      "priority": {
-        "agent": "Simplicity Filter",
-        "score": 81.0,
-        "decision": "accepted",
-        "reason": "Simple accept · кандидат на публикацию · score 81.0. Простое крипто. Сильные: clear_outcome (20), title_clarity (15).",
-        "rubric": {
-          "clear_outcome": {
-            "score": 20,
-            "note": "бинарный рынок (1 market)"
-          },
-          "title_clarity": {
-            "score": 15,
-            "note": "короткий title, явный вопрос"
-          },
-          "horizon": {
-            "score": 10,
-            "note": "~57 дн. (≤90)"
-          },
-          "truth_source": {
-            "score": 12,
-            "note": "крипто — price feed как источник"
-          },
-          "liquidity": {
-            "score": 4,
-            "note": "$46,039 (≥$20K)"
-          },
-          "category_whitelist": {
-            "score": 10,
-            "note": "P1 · Простое крипто"
-          },
-          "resolution_clarity": {
-            "score": 10,
-            "note": "есть правила резолва, бинарный исход в правилах, есть дедлайн"
-          }
-        },
-        "hardGates": {
-          "passed": true,
-          "failed": [],
-          "category": {
-            "simpleCategory": "crypto_simple",
-            "categoryTier": "P1",
-            "categoryLabel": "Простое крипто"
-          }
-        },
-        "scoringMode": "simplicity_v1",
-        "simpleCategory": "crypto_simple",
-        "categoryTier": "P1",
-        "categoryLabel": "Простое крипто",
-        "thresholds": {
-          "accepted": 70,
-          "watchlist": 60
-        },
-        "rank": 1,
-        "scannedTotal": 300
-      }
-    }
-  ],
+  "rejected": 300,
+  "top": [],
   "rubricVersion": "simplicity_v1",
   "rankMode": "simple",
   "weights": {
