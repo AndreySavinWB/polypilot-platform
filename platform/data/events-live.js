@@ -1,5 +1,5 @@
 /** Auto-generated from backend/data/test_events.json */
 window.EVENTS_LIVE = {
   "events": [],
-  "generatedAt": "2026-07-11T19:01:19.521149+00:00"
+  "generatedAt": "2026-07-12T02:38:28.373226+00:00"
 };
